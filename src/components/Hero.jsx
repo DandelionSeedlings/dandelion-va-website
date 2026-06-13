@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { FiArrowRight, FiCheckCircle } from 'react-icons/fi'
-import Image from 'next/image'
 
 export default function Hero() {
   return (
@@ -51,18 +50,69 @@ export default function Hero() {
             </div>
           </motion.div>
 
+          {/* Stats/Results Visual */}
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.3 }}
             className="relative hidden lg:block">
-            <div className="relative w-full max-w-md mx-auto">
-              <div className="absolute -inset-4 bg-gradient-to-br from-gold/30 to-navy-900/10 rounded-[2.5rem] rotate-2"></div>
-              <div className="absolute -inset-4 bg-gradient-to-br from-navy-900/10 to-gold/20 rounded-[2.5rem] -rotate-2"></div>
-              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-                <Image src="/images/headshot.jpg" alt="Simone Theron - Professional Virtual Assistant" fill className="object-cover" priority />
+            <div className="relative w-full max-w-lg mx-auto">
+              {/* Decorative frame */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-gold/20 to-navy-900/10 rounded-[2.5rem] rotate-1"></div>
+              <div className="absolute -inset-4 bg-gradient-to-br from-navy-900/10 to-gold/15 rounded-[2.5rem] -rotate-1"></div>
+
+              {/* Stats Card */}
+              <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl border border-gold/10 p-8">
+                <div className="text-center mb-8">
+                  <p className="text-navy-900 font-bold text-lg mb-1">Trusted by South African Businesses</p>
+                  <div className="w-16 h-0.5 bg-gold mx-auto"></div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: 0.8 }}
+                    className="bg-navy-900 rounded-xl p-5 text-center">
+                    <p className="text-3xl font-bold text-gold">500+</p>
+                    <p className="text-sm text-cream/70 mt-1">Hours Saved</p>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: 1.0 }}
+                    className="bg-gold-pale rounded-xl p-5 text-center border border-gold/20">
+                    <p className="text-3xl font-bold text-navy-900">50+</p>
+                    <p className="text-sm text-navy-600 mt-1">Happy Clients</p>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: 1.2 }}
+                    className="bg-gold-pale rounded-xl p-5 text-center border border-gold/20">
+                    <p className="text-3xl font-bold text-navy-900">100%</p>
+                    <p className="text-sm text-navy-600 mt-1">Satisfaction</p>
+                  </motion.div>
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: 1.4 }}
+                    className="bg-navy-900 rounded-xl p-5 text-center">
+                    <p className="text-3xl font-bold text-gold">24h</p>
+                    <p className="text-sm text-cream/70 mt-1">Response Time</p>
+                  </motion.div>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-gold/10">
+                  <div className="flex items-center justify-center gap-2 text-sm text-navy-600">
+                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <span>Currently accepting new clients</span>
+                  </div>
+                </div>
               </div>
-              <motion.div className="absolute -bottom-6 -right-6 bg-navy-900 p-6 rounded-2xl shadow-xl border border-gold/30"
-                animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity }}>
-                <p className="font-bold text-gold text-lg">Expert VA & Developer</p>
-                <p className="text-sm text-cream/70">Ready to transform your workflow</p>
+
+              {/* Floating badge */}
+              <motion.div className="absolute -bottom-4 -right-4 bg-navy-900 p-4 rounded-xl shadow-xl border border-gold/30"
+                animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity }}>
+                <p className="font-bold text-gold">BCEA-Exempt</p>
+                <p className="text-xs text-cream/70">Independent Contractor</p>
               </motion.div>
             </div>
           </motion.div>
