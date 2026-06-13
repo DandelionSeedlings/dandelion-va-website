@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { FiMenu, FiX } from 'react-icons/fi'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [logoError, setLogoError] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,15 +37,18 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10">
-              <Image
+            {!logoError ? (
+              <img
                 src="/images/logo-icon.png"
                 alt="Dandelion Creations DC Monogram"
-                fill
-                className="object-contain"
-                priority
+                className="w-10 h-10 object-contain"
+                onError={() => setLogoError(true)}
               />
-            </div>
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-[#D4AF37] flex items-center justify-center">
+                <span className="text-[#0a1628] font-serif font-bold text-lg">DC</span>
+              </div>
+            )}
             <div className="hidden sm:block">
               <p
                 className={`font-serif text-xl tracking-wide transition-colors duration-300 ${

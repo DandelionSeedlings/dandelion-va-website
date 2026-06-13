@@ -1,7 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
 import { FiMail, FiPhone, FiMapPin, FiFacebook, FiInstagram, FiLinkedin } from 'react-icons/fi'
 
 export default function Footer() {
@@ -13,13 +11,17 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="relative w-12 h-12">
-                <Image
-                  src="/images/logo-icon-dark.png"
-                  alt="Dandelion Creations DC Monogram"
-                  fill
-                  className="object-contain"
-                />
+              <img
+                src="/images/logo-icon-dark.png"
+                alt="Dandelion Creations DC Monogram"
+                className="w-12 h-12 object-contain"
+                onError={(e) => {
+                  e.target.style.display = 'none'
+                  e.target.nextSibling.style.display = 'flex'
+                }}
+              />
+              <div className="hidden w-12 h-12 rounded-full bg-[#D4AF37] items-center justify-center">
+                <span className="text-[#0a1628] font-serif font-bold text-lg">DC</span>
               </div>
               <div>
                 <p className="font-serif text-lg tracking-wide text-white">Dandelion</p>
