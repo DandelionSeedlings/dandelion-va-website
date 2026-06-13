@@ -29,7 +29,7 @@ export default function Navbar() {
       className={`fixed w-full z-50 transition-all duration-500 ${
         scrolled
           ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
-          : 'bg-transparent py-5'
+          : 'bg-[#0a1628]/90 backdrop-blur-md py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,9 +49,7 @@ export default function Navbar() {
               >
                 Dandelion
               </p>
-              <p
-                className={`text-[10px] font-bold tracking-[0.3em] uppercase transition-colors duration-300 text-[#D4AF37]`}
-              >
+              <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D4AF37]">
                 Creations
               </p>
             </div>
