@@ -7,7 +7,6 @@ import { FiMenu, FiX } from 'react-icons/fi'
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [logoError, setLogoError] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,18 +36,11 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            {!logoError ? (
-              <img
-                src="/images/logo-icon.png"
-                alt="Dandelion Creations DC Monogram"
-                className="w-10 h-10 object-contain"
-                onError={() => setLogoError(true)}
-              />
-            ) : (
-              <div className="w-10 h-10 rounded-full bg-[#D4AF37] flex items-center justify-center">
-                <span className="text-[#0a1628] font-serif font-bold text-lg">DC</span>
-              </div>
-            )}
+            <img
+              src="/images/logo-icon.png?v=2"
+              alt="Dandelion Creations"
+              className="w-10 h-10 object-contain"
+            />
             <div className="hidden sm:block">
               <p
                 className={`font-serif text-xl tracking-wide transition-colors duration-300 ${
@@ -58,9 +50,7 @@ export default function Navbar() {
                 Dandelion
               </p>
               <p
-                className={`text-[10px] font-bold tracking-[0.3em] uppercase transition-colors duration-300 ${
-                  scrolled ? 'text-[#D4AF37]' : 'text-[#D4AF37]'
-                }`}
+                className={`text-[10px] font-bold tracking-[0.3em] uppercase transition-colors duration-300 text-[#D4AF37]`}
               >
                 Creations
               </p>
