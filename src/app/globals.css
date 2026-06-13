@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Lato:wght@300;400;700;900&display=swap');
+
+* { @apply scroll-smooth; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  @apply bg-cream text-navy-900;
+  font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 { @apply font-serif font-bold; }
+
+.font-script { font-family: 'Dancing Script', cursive; }
+
+.transition-smooth { @apply transition-all duration-500 ease-out; }
+
+.btn-primary {
+  @apply px-8 py-4 bg-gold text-navy-900 rounded-full font-bold hover:bg-gold-dark transition-smooth shadow-lg hover:shadow-xl tracking-wide;
+}
+
+.btn-navy {
+  @apply px-8 py-4 bg-navy-900 text-gold rounded-full font-bold hover:bg-navy-700 transition-smooth shadow-lg hover:shadow-xl tracking-wide;
+}
+
+.btn-outline {
+  @apply px-8 py-4 border-2 border-gold text-gold rounded-full font-bold hover:bg-gold hover:text-navy-900 transition-smooth;
+}
+
+.section-padding { @apply py-24 px-4 sm:px-6 lg:px-8; }
+
+.container-max { @apply max-w-7xl mx-auto; }
+
+.gold-gradient-text {
+  @apply bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent;
+}
