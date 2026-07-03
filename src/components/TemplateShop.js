@@ -122,14 +122,15 @@ const products = [
     name: 'Marketability',
     subtitle: 'SMM & Web Framework',
     price: 0,
-    priceLabel: 'POA',
+    priceLabel: 'Request Quote',
     description: 'Tiered digital strategies, social media management intake, and fast GitHub/Vercel website launch workflows.',
     tagline: 'Engineered for high-speed digital authority and conversions.',
     icon: FaBullhorn,
-    color: 'from-gray-400 to-gray-500',
-    badge: 'COMING SOON',
-    badgeColor: 'bg-gray-400',
-    available: false,
+    color: 'from-violet-500 to-purple-600',
+    badge: 'REQUEST QUOTE',
+    badgeColor: 'bg-violet-500',
+    available: true,
+    orderUrl: 'https://script.google.com/macros/s/AKfycbxYopxLBZudEeEFN5c44RkuQMdHns7pCZksPpFLBtZYy3E9UUVJhgtOUnomEEc82UFpgg/exec',
     features: ['Strategy intake', 'Social media management', 'Website launch', 'Conversion tracking'],
   },
   {
@@ -137,14 +138,15 @@ const products = [
     name: 'Promotability',
     subtitle: 'Corporate Swag Tracker',
     price: 0,
-    priceLabel: 'POA',
+    priceLabel: 'Request Quote',
     description: 'Visual proofing, local South African supplier directory linking, and markup calculators for physical branded merchandise.',
     tagline: 'Transforming your visual identity into tangible corporate impact.',
     icon: FaTshirt,
-    color: 'from-gray-400 to-gray-500',
-    badge: 'COMING SOON',
-    badgeColor: 'bg-gray-400',
-    available: false,
+    color: 'from-pink-500 to-rose-600',
+    badge: 'REQUEST QUOTE',
+    badgeColor: 'bg-pink-500',
+    available: true,
+    orderUrl: 'https://script.google.com/macros/s/AKfycbwvyLaypTc0yWj5xcAIw0PmtngDvE2B4REgkzJr1u6nFcJIJ8Zz8o68RxNWRaI9gVyt/exec',
     features: ['Visual proofing', 'Supplier directory', 'Markup calculator', 'Order tracking'],
   },
   {
@@ -210,6 +212,7 @@ export default function TemplateShop() {
   };
 
   const getOrderUrl = (product) => {
+    if (product.orderUrl) return product.orderUrl;
     return `${ORDER_FORM_URL}?product=${encodeURIComponent(product.name + ' — ' + product.subtitle)}`;
   };
 
@@ -248,7 +251,7 @@ export default function TemplateShop() {
                   ? 'border-transparent hover:border-gold/40 hover:shadow-xl hover:-translate-y-1 cursor-pointer' 
                   : 'border-gray-200 opacity-70 cursor-not-allowed'
               }`}
-              onClick={() => openModal(product)}
+              onClick={() => product.orderUrl ? window.open(product.orderUrl, '_blank') : openModal(product)}
             >
               {/* Card Header */}
               <div className={`bg-gradient-to-r ${product.color} p-6 text-white relative`}>
