@@ -270,8 +270,8 @@ export default function TemplateShop() {
                 <div className="flex items-center justify-between">
                   <div className="text-2xl font-bold text-gold">{product.priceLabel}</div>
                   {product.available ? (
-                    <span className="text-gold text-sm font-medium flex items-center gap-1">
-                      <FaShoppingCart size={14} /> Order
+                    <span className="text-emerald-500 text-sm font-medium flex items-center gap-1">
+                      <FaArrowRight size={14} /> Get Free
                     </span>
                   ) : (
                     <span className="text-gray-400 text-sm font-medium">Coming Soon</span>
@@ -345,14 +345,25 @@ export default function TemplateShop() {
                 <span className="text-3xl font-bold text-gold">{selectedProduct.priceLabel}</span>
               </div>
 
-              <a
-                href={ORDER_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full bg-gold hover:bg-[#c4a030] text-navy-900 text-center py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <FaShoppingCart /> Order {selectedProduct.name}
-              </a>
+              {selectedProduct.id === 'connectability' ? (
+                <a
+                  href="https://dandelion-va.vercel.app/get-connectability"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full bg-emerald-500 hover:bg-emerald-600 text-white text-center py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <FaArrowRight /> Get Connectability Free
+                </a>
+              ) : (
+                <a
+                  href={ORDER_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full bg-gold hover:bg-[#c4a030] text-navy-900 text-center py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <FaShoppingCart /> Order {selectedProduct.name}
+                </a>
+              )}
               <p className="text-center text-navy-400 text-xs mt-3">
                 You can add more products in the order form
               </p>

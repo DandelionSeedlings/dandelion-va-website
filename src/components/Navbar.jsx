@@ -73,6 +73,19 @@ export default function Navbar() {
               </a>
             ))}
             <a
+              href="https://dandelion-va.vercel.app/get-connectability"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`font-medium text-sm tracking-wide hover:text-emerald-400 transition-colors duration-300 relative group ${
+                scrolled ? 'text-emerald-600' : 'text-emerald-400'
+              }`}
+            >
+              <span className="flex items-center gap-1">
+                ✦ Free CRM
+              </span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a
               href={ORDER_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
@@ -122,6 +135,17 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
+            <a
+              href="https://dandelion-va.vercel.app/get-connectability"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-emerald-600 font-medium hover:text-emerald-700 transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              <span className="flex items-center gap-2">
+                ✦ Get Connectability Free
+              </span>
+            </a>
             <a
               href={ORDER_FORM_URL}
               target="_blank"

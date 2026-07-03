@@ -47,8 +47,9 @@ export default function Hero() {
                 Order Products
                 <FiArrowRight className="w-5 h-5" />
               </a>
-              <a href="#services" className="btn-outline inline-flex items-center justify-center text-lg">
-                Explore Services
+              <a href="https://dandelion-va.vercel.app/get-connectability" target="_blank" rel="noopener noreferrer" className="btn-outline inline-flex items-center justify-center gap-2 text-lg border-emerald-500 text-emerald-600 hover:bg-emerald-50">
+                <FiCheckCircle className="w-5 h-5" />
+                Try Connectability Free
               </a>
             </div>
 
