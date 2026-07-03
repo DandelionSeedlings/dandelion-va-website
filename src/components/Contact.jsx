@@ -1,7 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiMail, FiPhone, FiMapPin, FiExternalLink, FiCheckCircle, FiCalendar, FiClock, FiMessageCircle } from 'react-icons/fi'
+import { FiMail, FiPhone, FiMapPin, FiExternalLink, FiCheckCircle, FiCalendar, FiClock, FiMessageCircle, FiShoppingCart } from 'react-icons/fi'
+
+const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbyUAtVX_pKihPq2iBqb_bq4ctso-v8z52YHHlSX3TflJaz_DlaMsTq8FUSoCw7hmQqPNw/exec'
 
 export default function Contact() {
   return (
@@ -24,7 +26,7 @@ export default function Contact() {
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto rounded-full"></div>
           <p className="text-xl text-cream/60 max-w-2xl mx-auto mt-6">
-            Ready to transform your business? Book a discovery call and let's discuss how I can help.
+            Ready to transform your business? Book a discovery call or order your products directly.
           </p>
         </motion.div>
 
@@ -109,40 +111,77 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Right: CTA Card */}
+          {/* Right: Two CTA Cards */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }} 
             whileInView={{ opacity: 1, x: 0 }} 
             transition={{ duration: 0.6 }} 
             viewport={{ once: true }}
+            className="space-y-6"
           >
-            <div className="bg-gradient-to-br from-gold/20 to-navy-800 rounded-2xl p-10 border border-gold/20 shadow-2xl">
-              <div className="text-center mb-8">
-                <div className="w-20 h-20 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <FiMessageCircle className="w-10 h-10 text-gold" />
+            {/* Order Products Card */}
+            <div className="bg-gradient-to-br from-gold/30 to-gold/10 rounded-2xl p-8 border border-gold/30 shadow-2xl">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-gold/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FiShoppingCart className="w-8 h-8 text-gold" />
                 </div>
-                <h3 className="text-3xl font-bold text-cream mb-3">Book a Discovery Call</h3>
-                <p className="text-cream/60">
-                  Tell me about your project and I'll get back to you within 24 hours with next steps.
+                <h3 className="text-2xl font-bold text-cream mb-2">Order Products</h3>
+                <p className="text-cream/60 text-sm">
+                  Browse AbilitySuite™ and order directly. License keys delivered within 24 hours.
                 </p>
               </div>
 
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center gap-3 text-cream/70">
-                  <FiCheckCircle className="w-5 h-5 text-gold flex-shrink-0" />
+              <div className="space-y-2 mb-6">
+                <div className="flex items-center gap-3 text-cream/70 text-sm">
+                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
+                  <span>12 products from FREE to R1,499</span>
+                </div>
+                <div className="flex items-center gap-3 text-cream/70 text-sm">
+                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
+                  <span>Bank transfer or QR code payment</span>
+                </div>
+                <div className="flex items-center gap-3 text-cream/70 text-sm">
+                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
+                  <span>Instant license key delivery</span>
+                </div>
+              </div>
+
+              <a 
+                href={ORDER_FORM_URL}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block w-full bg-gold text-navy-900 text-center py-4 rounded-xl font-bold text-lg hover:bg-gold-light transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              >
+                <FiShoppingCart className="w-5 h-5" />
+                Order Now
+                <FiExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Book Discovery Call Card */}
+            <div className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-2xl p-8 border border-gold/20">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FiMessageCircle className="w-8 h-8 text-gold" />
+                </div>
+                <h3 className="text-2xl font-bold text-cream mb-2">Book a Discovery Call</h3>
+                <p className="text-cream/60 text-sm">
+                  For custom VA services, automation projects, or tailored solutions.
+                </p>
+              </div>
+
+              <div className="space-y-2 mb-6">
+                <div className="flex items-center gap-3 text-cream/70 text-sm">
+                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
                   <span>Free 15-30 minute consultation</span>
                 </div>
-                <div className="flex items-center gap-3 text-cream/70">
-                  <FiCheckCircle className="w-5 h-5 text-gold flex-shrink-0" />
+                <div className="flex items-center gap-3 text-cream/70 text-sm">
+                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
                   <span>No obligation, no pressure</span>
                 </div>
-                <div className="flex items-center gap-3 text-cream/70">
-                  <FiCheckCircle className="w-5 h-5 text-gold flex-shrink-0" />
+                <div className="flex items-center gap-3 text-cream/70 text-sm">
+                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
                   <span>Custom proposal within 48 hours</span>
-                </div>
-                <div className="flex items-center gap-3 text-cream/70">
-                  <FiClock className="w-5 h-5 text-gold flex-shrink-0" />
-                  <span>Response guaranteed within 24h</span>
                 </div>
               </div>
 
@@ -150,19 +189,15 @@ export default function Contact() {
                 href="https://forms.gle/H7tviRGGacXykoYUA" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="block w-full bg-gold text-navy-900 text-center py-5 rounded-xl font-bold text-lg hover:bg-gold-light transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                className="block w-full bg-white/10 text-white text-center py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300 border border-white/20 flex items-center justify-center gap-2"
               >
                 Start Discovery Call
-                <FiExternalLink className="w-5 h-5" />
+                <FiExternalLink className="w-4 h-4" />
               </a>
-
-              <p className="text-center text-cream/40 text-sm mt-4">
-                Or WhatsApp me directly: <a href="https://wa.me/27728393087" className="text-gold hover:underline">+27 72 839 3087</a>
-              </p>
             </div>
 
             {/* Trust badge */}
-            <div className="mt-6 flex items-center justify-center gap-2 text-sm text-cream/40">
+            <div className="flex items-center justify-center gap-2 text-sm text-cream/40">
               <FiCheckCircle className="w-4 h-4 text-green-500" />
               <span>BCEA-Exempt Independent Contractor</span>
             </div>

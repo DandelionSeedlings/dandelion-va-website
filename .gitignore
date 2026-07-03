@@ -8,3 +8,6 @@
 *.pem
 .vscode
 .idea
+
+.vercel
+.env*

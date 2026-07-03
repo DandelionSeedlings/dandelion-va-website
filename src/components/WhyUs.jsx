@@ -1,7 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiLock, FiClock, FiCode, FiHeart, FiGlobe, FiAward } from 'react-icons/fi'
+import { FiLock, FiClock, FiCode, FiHeart, FiGlobe, FiAward, FiShoppingCart } from 'react-icons/fi'
+
+const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbyUAtVX_pKihPq2iBqb_bq4ctso-v8z52YHHlSX3TflJaz_DlaMsTq8FUSoCw7hmQqPNw/exec'
 
 export default function WhyUs() {
   const reasons = [
@@ -40,6 +42,24 @@ export default function WhyUs() {
             </motion.div>
           ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <a
+            href={ORDER_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
+          >
+            <FiShoppingCart /> Order AbilitySuite™ Products
+          </a>
+        </motion.div>
       </div>
     </section>
   )

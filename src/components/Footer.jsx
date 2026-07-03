@@ -1,6 +1,8 @@
 'use client'
 
-import { FiMail, FiPhone, FiMapPin, FiFacebook, FiInstagram, FiLinkedin } from 'react-icons/fi'
+import { FiMail, FiPhone, FiMapPin, FiFacebook, FiInstagram, FiLinkedin, FiShoppingCart } from 'react-icons/fi'
+
+const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbyUAtVX_pKihPq2iBqb_bq4ctso-v8z52YHHlSX3TflJaz_DlaMsTq8FUSoCw7hmQqPNw/exec'
 
 export default function Footer() {
   return (
@@ -77,22 +79,40 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href={ORDER_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm flex items-center gap-2"
+                >
+                  <FiShoppingCart size={14} /> Order Products
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Products */}
           <div>
-            <h4 className="font-serif text-lg text-white mb-6">Services</h4>
+            <h4 className="font-serif text-lg text-white mb-6">AbilitySuite™ Products</h4>
             <ul className="space-y-3">
               {[
-                'Virtual Assistant',
-                'Google Apps Script',
-                'Social Media Management',
-                'Admin Support',
-                'Digital Marketing',
-              ].map((service) => (
-                <li key={service}>
-                  <span className="text-gray-400 text-sm">{service}</span>
+                { name: 'CRM Mini (FREE)', href: '#templates' },
+                { name: 'ReceiptSnap — R299', href: ORDER_FORM_URL },
+                { name: 'Content Planner — R299', href: ORDER_FORM_URL },
+                { name: 'CRM Pro — R499', href: ORDER_FORM_URL },
+                { name: 'Invoice Sorter — R499', href: ORDER_FORM_URL },
+                { name: 'Stock & Supplier — R499', href: ORDER_FORM_URL },
+              ].map((product) => (
+                <li key={product.name}>
+                  <a
+                    href={product.href}
+                    target={product.href.startsWith('http') ? '_blank' : undefined}
+                    rel={product.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm"
+                  >
+                    {product.name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -127,6 +147,16 @@ export default function Footer() {
                 <span className="text-gray-400 text-sm">Pretoria, South Africa</span>
               </li>
             </ul>
+
+            {/* Order CTA */}
+            <a
+              href={ORDER_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 bg-[#D4AF37] text-[#0a1628] px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#c4a030] transition-all duration-300"
+            >
+              <FiShoppingCart size={16} /> Order Now
+            </a>
           </div>
         </div>
 
@@ -137,7 +167,7 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} Dandelion Creations VA. All rights reserved.
             </p>
             <p className="text-gray-600 text-xs">
-              Crafted with precision for businesses that value excellence.
+              AbilitySuite™ — 12 Business Automation Tools. Crafted with precision for businesses that value excellence.
             </p>
           </div>
         </div>

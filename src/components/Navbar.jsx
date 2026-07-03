@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { FiMenu, FiX } from 'react-icons/fi'
+import { FiMenu, FiX, FiShoppingCart } from 'react-icons/fi'
+
+const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbyUAtVX_pKihPq2iBqb_bq4ctso-v8z52YHHlSX3TflJaz_DlaMsTq8FUSoCw7hmQqPNw/exec'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -19,7 +21,7 @@ export default function Navbar() {
   const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
-    { name: 'Templates', href: '#templates' },
+    { name: 'Products', href: '#templates' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'Portfolio', href: '#portfolio' },
     { name: 'Contact', href: '#contact' },
@@ -71,10 +73,26 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="#contact"
-              className="bg-[#D4AF37] text-[#0a1628] px-6 py-2.5 rounded-sm font-semibold text-sm tracking-wide hover:bg-[#c4a030] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/20"
+              href={ORDER_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`font-medium text-sm tracking-wide hover:text-[#D4AF37] transition-colors duration-300 relative group ${
+                scrolled ? 'text-[#0a1628]' : 'text-white/90'
+              }`}
             >
-              Book Discovery Call
+              <span className="flex items-center gap-1">
+                <FiShoppingCart size={14} /> Order
+              </span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D4AF37] group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a
+              href={ORDER_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#D4AF37] text-[#0a1628] px-6 py-2.5 rounded-sm font-semibold text-sm tracking-wide hover:bg-[#c4a030] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/20 flex items-center gap-2"
+            >
+              <FiShoppingCart size={16} />
+              Order Now
             </a>
           </div>
 
@@ -105,11 +123,26 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="#contact"
+              href={ORDER_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-[#0a1628] font-medium hover:text-[#D4AF37] transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              <span className="flex items-center gap-2">
+                <FiShoppingCart size={16} /> Order Products
+              </span>
+            </a>
+            <a
+              href={ORDER_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="block bg-[#D4AF37] text-[#0a1628] text-center px-6 py-3 rounded-sm font-semibold hover:bg-[#c4a030] transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              Book Discovery Call
+              <span className="flex items-center justify-center gap-2">
+                <FiShoppingCart size={16} /> Order Now
+              </span>
             </a>
           </div>
         )}
