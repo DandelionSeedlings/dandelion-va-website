@@ -12,6 +12,7 @@ const playfair = Playfair_Display({
 })
 
 export const metadata = {
+  metadataBase: new URL('https://dandelioncreations.co.za'),
   title: 'Dandelion Creations VA | Premium Virtual Assistant & Automation Services',
   description: 'High-level virtual assistant and technical automation services for businesses ready to scale. From R5,000/month. Based in Pretoria, South Africa.',
   keywords: 'virtual assistant, VA South Africa, Google Apps Script, automation, social media management, admin support, Pretoria VA',
@@ -20,6 +21,7 @@ export const metadata = {
     title: 'Dandelion Creations VA',
     description: 'Premium Virtual Assistant & Technical Automation Services',
     type: 'website',
+    url: 'https://dandelioncreations.co.za',
   },
 }
 

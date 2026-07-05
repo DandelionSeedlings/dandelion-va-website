@@ -17,28 +17,30 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9 }}>
 
+            {/* Tagline */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+              className="inline-flex items-center gap-2 bg-gold/20 text-navy-900 px-5 py-2.5 rounded-full text-sm font-bold mb-4 border border-gold/30">
+              <FiCheckCircle className="w-4 h-4 text-gold-dark" />
+              Planting the abilities your business needs to grow
+            </motion.div>
+
             {/* Google Apps Script Badge */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
               className="inline-flex items-center gap-2 bg-navy-900 text-gold px-5 py-2.5 rounded-full text-sm font-bold mb-6 border border-gold/30">
               <FiCode className="w-4 h-4" />
               Google Apps Script Developer
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-              className="inline-flex items-center gap-2 bg-gold/20 text-navy-900 px-5 py-2.5 rounded-full text-sm font-bold mb-6 border border-gold/30">
-              <FiCheckCircle className="w-4 h-4 text-gold-dark" />
-              BCEA-Exempt Independent Contractor
-            </motion.div>
-
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-navy-900 leading-tight mb-6">
-              Automate Your{' '}
-              <span className="text-gold-dark">Business</span>{' '}
-              <span className="font-script text-navy-700">With Code</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-navy-900 leading-tight mb-6">
+              Stop Wasting{' '}
+              <span className="text-gold-dark">20+ Hours</span>{' '}
+              Per Week on Manual{' '}
+              <span className="font-script text-navy-700">Admin Work</span>
             </h1>
 
             <p className="text-xl text-navy-600 mb-10 max-w-lg leading-relaxed">
-              Custom Google Apps Script automation that runs inside your Google Workspace. 
-              From spreadsheets to full systems — no subscriptions, no monthly fees.
+              Every hour you spend copying, pasting, and chasing spreadsheets is an hour you could be growing your business. 
+              We build custom Google Workspace systems that eliminate the busywork — so you can focus on what actually makes money.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -47,7 +49,7 @@ export default function Hero() {
                 Order Products
                 <FiArrowRight className="w-5 h-5" />
               </a>
-              <a href="https://dandelion-va.vercel.app/get-connectability" target="_blank" rel="noopener noreferrer" className="btn-outline inline-flex items-center justify-center gap-2 text-lg border-emerald-500 text-emerald-600 hover:bg-emerald-50">
+              <a href="https://dandelioncreations.co.za/get-connectability" target="_blank" rel="noopener noreferrer" className="btn-outline inline-flex items-center justify-center gap-2 text-lg border-emerald-500 text-emerald-600 hover:bg-emerald-50">
                 <FiCheckCircle className="w-5 h-5" />
                 Try Connectability Free
               </a>

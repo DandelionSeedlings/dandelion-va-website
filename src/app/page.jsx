@@ -6,6 +6,7 @@ import About from '../components/About'
 import Services from '../components/Services'
 import TemplateShop from '../components/TemplateShop'
 import Pricing from '../components/Pricing'
+import Roadmap from '../components/Roadmap'
 import Portfolio from '../components/Portfolio'
 import WhyUs from '../components/WhyUs'
 import Contact from '../components/Contact'
@@ -20,6 +21,7 @@ export default function Home() {
       <Services />
       <TemplateShop />
       <Pricing />
+      <Roadmap />
       <Portfolio />
       <WhyUs />
       <Contact />

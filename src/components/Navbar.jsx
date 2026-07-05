@@ -24,6 +24,7 @@ export default function Navbar() {
     { name: 'Products', href: '#templates' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '#contact' },
   ]
 
@@ -73,7 +74,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="https://dandelion-va.vercel.app/get-connectability"
+              href="https://dandelioncreations.co.za/get-connectability"
               target="_blank"
               rel="noopener noreferrer"
               className={`font-medium text-sm tracking-wide hover:text-emerald-400 transition-colors duration-300 relative group ${
@@ -124,7 +125,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="https://dandelion-va.vercel.app/get-connectability"
+              href="https://dandelioncreations.co.za/get-connectability"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-emerald-600 font-medium hover:text-emerald-700 transition-colors py-2"

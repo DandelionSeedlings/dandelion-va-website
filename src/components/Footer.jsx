@@ -69,10 +69,10 @@ export default function Footer() {
           <div>
             <h4 className="font-serif text-lg text-white mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              {['About', 'Services', 'Pricing', 'Portfolio', 'Contact'].map((link) => (
+              {['About', 'Services', 'Pricing', 'Portfolio', 'Blog', 'Contact'].map((link) => (
                 <li key={link}>
                   <a
-                    href={`#${link.toLowerCase()}`}
+                    href={link === 'Blog' ? '/blog' : `#${link.toLowerCase()}`}
                     className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm"
                   >
                     {link}
@@ -97,7 +97,7 @@ export default function Footer() {
             <h4 className="font-serif text-lg text-white mb-6">AbilitySuite™ Products</h4>
             <ul className="space-y-3">
               {[
-                { name: 'CRM Mini (FREE)', href: '#templates' },
+                { name: 'CRM Mini (FREE)', href: 'https://dandelioncreations.co.za/get-connectability' },
                 { name: 'ReceiptSnap — R299', href: ORDER_FORM_URL },
                 { name: 'Content Planner — R299', href: ORDER_FORM_URL },
                 { name: 'CRM Pro — R499', href: ORDER_FORM_URL },
