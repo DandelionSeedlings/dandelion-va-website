@@ -200,14 +200,13 @@ export default function Pricing() {
                   </a>
                 </div>
                 <div className="hidden md:block">
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-                    <div className="space-y-3">
-                      <div className="h-3 bg-emerald-500/30 rounded-full w-full"></div>
-                      <div className="h-3 bg-emerald-500/20 rounded-full w-4/5"></div>
-                      <div className="h-3 bg-emerald-500/20 rounded-full w-3/4"></div>
-                      <div className="h-3 bg-emerald-500/20 rounded-full w-full"></div>
-                    </div>
-                    <p className="text-cream/40 text-xs mt-4 text-center">Free CRM Dashboard Preview</p>
+                  <div className="bg-white/5 rounded-xl p-4 border border-white/10 overflow-hidden">
+                    <img
+                      src="/images/connectability-dashboard.png"
+                      alt="Connectability CRM Dashboard"
+                      className="w-full rounded-lg shadow-lg"
+                    />
+                    <p className="text-cream/40 text-xs mt-3 text-center">Free CRM Dashboard Preview</p>
                   </div>
                 </div>
               </div>
