@@ -57,8 +57,7 @@ export default function Portfolio() {
         >
           {stats.map((stat, i) => (
             <div key={i} className="bg-white rounded-2xl p-6 text-center shadow-lg border border-gold/10">
-              <p className="text-3xl
-                            <p className="text-3xl md:text-4xl font-bold text-gold mb-1">{stat.value}</p>
+              <p className="text-3xl md:text-4xl font-bold text-gold mb-1">{stat.value}</p>
               <p className="text-sm font-semibold text-navy-900">{stat.label}</p>
               <p className="text-xs text-navy-500">{stat.sub}</p>
             </div>
