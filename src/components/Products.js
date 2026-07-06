@@ -292,7 +292,7 @@ const products = [
   },
 ];
 
-export default function TemplateShop() {
+export default function Products() {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const openModal = (product) => {

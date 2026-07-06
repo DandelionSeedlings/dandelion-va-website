@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import About from '../components/About'
 import Services from '../components/Services'
-import TemplateShop from '../components/TemplateShop'
+import Products from '../components/Products'
 import Pricing from '../components/Pricing'
 import Roadmap from '../components/Roadmap'
 import Portfolio from '../components/Portfolio'
@@ -19,7 +19,7 @@ export default function Home() {
       <Hero />
       <About />
       <Services />
-      <TemplateShop />
+      <Products />
       <Pricing />
       <Roadmap />
       <Portfolio />
