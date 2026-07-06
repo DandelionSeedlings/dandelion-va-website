@@ -6,6 +6,7 @@ import About from '../components/About'
 import Services from '../components/Services'
 import Products from '../components/Products'
 import Pricing from '../components/Pricing'
+import ResellerSection from '../components/ResellerSection'
 import Roadmap from '../components/Roadmap'
 import Portfolio from '../components/Portfolio'
 import WhyUs from '../components/WhyUs'
@@ -21,6 +22,7 @@ export default function Home() {
       <Services />
       <Products />
       <Pricing />
+      <ResellerSection />
       <Roadmap />
       <Portfolio />
       <WhyUs />

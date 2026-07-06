@@ -26,6 +26,7 @@ export default function Navbar() {
     { name: 'Portfolio', href: '#portfolio' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '#contact' },
+    { name: 'Resellers', href: '#resellers' },
   ]
 
   return (
