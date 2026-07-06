@@ -47,13 +47,13 @@ export default function Services() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i*0.1, duration: 0.6 }} viewport={{ once: true }}
-              className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group border ${
+              className={`relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group border ${
                 service.featured 
                   ? 'border-gold/50 ring-2 ring-gold/20' 
                   : 'border-transparent hover:border-gold/30'
               }`}>
               {service.featured && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-navy-900 px-4 py-1 rounded-full text-xs font-bold">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-navy-900 px-4 py-1 rounded-full text-xs font-bold z-10 shadow-md">
                   WHAT I DO BEST
                 </div>
               )}
@@ -91,7 +91,7 @@ export default function Services() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="#templates"
+              href="#products"
               className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/30 px-6 py-3 rounded-lg font-medium transition-all duration-300"
             >
               View All Products

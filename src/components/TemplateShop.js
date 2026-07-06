@@ -12,68 +12,69 @@ import {
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec';
 
+// Refined category headers — navy/gold brand palette
 const productCategories = [
   {
     id: 'client-management',
-    title: '📊 Client Management',
+    title: 'Client Management',
     icon: FaUsers,
-    color: 'text-emerald-600',
-    bgColor: 'bg-emerald-50',
-    borderColor: 'border-emerald-200',
+    color: 'text-[#C9A84C]',
+    bgColor: 'bg-[#0F172A]',
+    borderColor: 'border-[#C9A84C]/30',
     products: ['connectability', 'scalability']
   },
   {
     id: 'financial-operations',
-    title: '💰 Financial Operations',
+    title: 'Financial Operations',
     icon: FaMoneyBillWave,
-    color: 'text-cyan-600',
-    bgColor: 'bg-cyan-50',
-    borderColor: 'border-cyan-200',
+    color: 'text-[#C9A84C]',
+    bgColor: 'bg-[#0F172A]',
+    borderColor: 'border-[#C9A84C]/30',
     products: ['profitability', 'payability', 'mini-cash-up']
   },
   {
     id: 'inventory',
-    title: '📦 Inventory',
+    title: 'Inventory',
     icon: FaBoxes,
-    color: 'text-sky-600',
-    bgColor: 'bg-sky-50',
-    borderColor: 'border-sky-200',
+    color: 'text-[#C9A84C]',
+    bgColor: 'bg-[#0F172A]',
+    borderColor: 'border-[#C9A84C]/30',
     products: ['availability']
   },
   {
     id: 'people-time',
-    title: '⏱️ People & Time',
+    title: 'People & Time',
     icon: FaClock,
-    color: 'text-gray-600',
-    bgColor: 'bg-gray-50',
-    borderColor: 'border-gray-200',
+    color: 'text-[#94A3B8]',
+    bgColor: 'bg-[#1E293B]',
+    borderColor: 'border-[#64748B]/30',
     products: ['trackability']
   },
   {
     id: 'quick-solutions',
-    title: '📱 Quick Solutions',
+    title: 'Quick Solutions',
     icon: FaEye,
-    color: 'text-amber-600',
-    bgColor: 'bg-amber-50',
-    borderColor: 'border-amber-200',
+    color: 'text-[#C9A84C]',
+    bgColor: 'bg-[#0F172A]',
+    borderColor: 'border-[#C9A84C]/30',
     products: ['receiptsnap', 'visibility']
   },
   {
     id: 'growth-branding',
-    title: '🎨 Growth & Branding',
+    title: 'Growth & Branding',
     icon: FaBullhorn,
-    color: 'text-violet-600',
-    bgColor: 'bg-violet-50',
-    borderColor: 'border-violet-200',
+    color: 'text-[#C9A84C]',
+    bgColor: 'bg-[#0F172A]',
+    borderColor: 'border-[#C9A84C]/30',
     products: ['marketability', 'promotability', 'cv-portfolio']
   },
   {
     id: 'custom',
-    title: '🔧 Custom',
+    title: 'Custom',
     icon: FaCogs,
-    color: 'text-gold-dark',
-    bgColor: 'bg-gold/10',
-    borderColor: 'border-gold/30',
+    color: 'text-[#C9A84C]',
+    bgColor: 'bg-[#0F172A]',
+    borderColor: 'border-[#C9A84C]/30',
     products: ['adaptability']
   }
 ];
@@ -314,7 +315,7 @@ export default function TemplateShop() {
   const getProductById = (id) => products.find(p => p.id === id);
 
   return (
-    <section id="templates" className="section-padding bg-cream">
+    <section id="products" className="section-padding bg-cream">
       <div className="container-max">
         {/* Section Header */}
         <motion.div
@@ -348,11 +349,11 @@ export default function TemplateShop() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Category Header */}
-                <div className={`flex items-center gap-3 mb-6 px-4 py-3 rounded-xl ${category.bgColor} ${category.borderColor} border`}>
-                  <category.icon className={`w-6 h-6 ${category.color}`} />
-                  <h3 className={`text-xl font-bold ${category.color}`}>{category.title}</h3>
-                  <div className="h-px flex-1 bg-gray-200" />
+                {/* Category Header — Refined navy/gold brand palette */}
+                <div className={`flex items-center gap-3 mb-6 px-5 py-3.5 rounded-xl ${category.bgColor} ${category.borderColor} border`}>
+                  <category.icon className={`w-5 h-5 ${category.color}`} />
+                  <h3 className={`text-lg font-bold tracking-wide ${category.color}`}>{category.title}</h3>
+                  <div className="h-px flex-1 bg-[#334155]/50" />
                 </div>
 
                 {/* Products Grid */}

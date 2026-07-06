@@ -57,7 +57,8 @@ export default function Portfolio() {
         >
           {stats.map((stat, i) => (
             <div key={i} className="bg-white rounded-2xl p-6 text-center shadow-lg border border-gold/10">
-              <p className="text-3xl md:text-4xl font-bold text-gold mb-1">{stat.value}</p>
+              <p className="text-3xl
+                            <p className="text-3xl md:text-4xl font-bold text-gold mb-1">{stat.value}</p>
               <p className="text-sm font-semibold text-navy-900">{stat.label}</p>
               <p className="text-xs text-navy-500">{stat.sub}</p>
             </div>
@@ -119,9 +120,7 @@ export default function Portfolio() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href={ORDER_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#products"
               className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
             >
               <FiShoppingCart /> Browse Ready-Made Products
