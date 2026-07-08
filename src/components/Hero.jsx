@@ -14,35 +14,38 @@ export default function Hero() {
     if (!canvas) return
 
     const ctx = canvas.getContext('2d')
-    let w, h
     let animationId
     const streaks = []
 
     function resize() {
-      w = canvas.width = canvas.offsetWidth * window.devicePixelRatio
-      h = canvas.height = canvas.offsetHeight * window.devicePixelRatio
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
+      const rect = canvas.getBoundingClientRect()
+      const dpr = window.devicePixelRatio || 1
+      canvas.width = rect.width * dpr
+      canvas.height = rect.height * dpr
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      return { width: rect.width, height: rect.height }
     }
 
-    function initStreaks() {
+    function initStreaks(cw, ch) {
       streaks.length = 0
-      const count = Math.floor(canvas.offsetWidth / 250) + 3
+      const count = Math.max(6, Math.floor(cw / 180))
       for (let i = 0; i < count; i++) {
         streaks.push({
-          x: Math.random() * canvas.offsetWidth,
-          y: 80 + Math.random() * (canvas.offsetHeight - 160),
-          length: 200 + Math.random() * 400,
-          speed: 0.15 + Math.random() * 0.35,
-          opacity: 0.03 + Math.random() * 0.08,
-          width: 0.5 + Math.random() * 1.5,
-          drift: (Math.random() - 0.5) * 0.02
+          x: Math.random() * cw,
+          y: 60 + Math.random() * (ch - 120),
+          length: 150 + Math.random() * 350,
+          speed: 0.3 + Math.random() * 0.6,
+          opacity: 0.06 + Math.random() * 0.1,
+          width: 1 + Math.random() * 2
         })
       }
     }
 
     function draw() {
-      const cw = canvas.offsetWidth
-      const ch = canvas.offsetHeight
+      const rect = canvas.getBoundingClientRect()
+      const cw = rect.width
+      const ch = rect.height
+
       ctx.clearRect(0, 0, cw, ch)
 
       streaks.forEach(s => {
@@ -57,29 +60,30 @@ export default function Hero() {
         ctx.fillRect(s.x - s.length, s.y - s.width / 2, s.length * 2, s.width)
 
         s.x += s.speed
-        s.y += s.drift
-
         if (s.x > cw + s.length) {
           s.x = -s.length
-          s.y = 80 + Math.random() * (ch - 160)
+          s.y = 60 + Math.random() * (ch - 120)
         }
-        if (s.y < 60 || s.y > ch - 60) s.drift *= -1
       })
 
       animationId = requestAnimationFrame(draw)
     }
 
-    resize()
-    initStreaks()
-    draw()
+    // Delay to ensure canvas has layout
+    const timeoutId = setTimeout(() => {
+      const { width, height } = resize()
+      initStreaks(width, height)
+      draw()
+    }, 100)
 
     const handleResize = () => {
-      resize()
-      initStreaks()
+      const { width, height } = resize()
+      initStreaks(width, height)
     }
     window.addEventListener('resize', handleResize)
 
     return () => {
+      clearTimeout(timeoutId)
       cancelAnimationFrame(animationId)
       window.removeEventListener('resize', handleResize)
     }
