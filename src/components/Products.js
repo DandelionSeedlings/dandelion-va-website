@@ -13,69 +13,79 @@ import {
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec';
 
-// Refined category headers — navy/gold brand palette
+// Floating seeds configuration
+const floatingSeeds = Array.from({ length: 8 }, (_, i) => ({
+  id: i,
+  left: `${5 + (i * 11) % 90}%`,
+  top: `${10 + (i * 13) % 80}%`,
+  size: 20 + (i % 4) * 15,
+  delay: i * 1.2,
+  duration: 16 + (i % 5) * 4,
+  opacity: 0.08 + (i % 3) * 0.04
+}));
+
 const productCategories = [
   {
     id: 'client-management',
     title: 'Client Management',
     icon: FaUsers,
-    color: 'text-[#C9A84C]',
-    bgColor: 'bg-[#0F172A]',
-    borderColor: 'border-[#C9A84C]/30',
+    color: 'text-gold',
+    bgColor: 'bg-navy-900/50',
+    borderColor: 'border-gold/20',
     products: ['connectability', 'scalability']
   },
   {
     id: 'financial-operations',
     title: 'Financial Operations',
     icon: FaMoneyBillWave,
-    color: 'text-[#C9A84C]',
-    bgColor: 'bg-[#0F172A]',
-    borderColor: 'border-[#C9A84C]/30',
+    color: 'text-gold',
+    bgColor: 'bg-navy-900/50',
+    borderColor: 'border-gold/20',
     products: ['payability', 'profitability', 'mini-cash-up']
   },
   {
     id: 'inventory',
     title: 'Inventory',
     icon: FaBoxes,
-    color: 'text-[#C9A84C]',
-    bgColor: 'bg-[#0F172A]',
-    borderColor: 'border-[#C9A84C]/30',
+    color: 'text-gold',
+    bgColor: 'bg-navy-900/50',
+    borderColor: 'border-gold/20',
     products: ['availability']
   },
   {
     id: 'people-time',
     title: 'People & Time',
     icon: FaClock,
-    color: 'text-[#94A3B8]',
-    bgColor: 'bg-[#1E293B]',
-    borderColor: 'border-[#64748B]/30',
+    color: 'text-gray-400',
+    bgColor: 'bg-navy-800/50',
+    borderColor: 'border-gray-500/20',
     products: ['trackability']
   },
   {
     id: 'quick-solutions',
     title: 'Quick Solutions',
     icon: FaEye,
-    color: 'text-[#C9A84C]',
-    bgColor: 'bg-[#0F172A]',
-    borderColor: 'border-[#C9A84C]/30',
+    color: 'text-gold',
+    bgColor: 'bg-navy-900/50',
+    borderColor: 'border-gold/20',
     products: ['receiptsnap', 'visibility']
   },
   {
     id: 'growth-branding',
     title: 'Growth & Branding',
     icon: FaBullhorn,
-    color: 'text-[#C9A84C]',
-    bgColor: 'bg-[#0F172A]',
-    borderColor: 'border-[#C9A84C]/30',
+    color: 'text-gold',
+    bgColor: 'bg-navy-900/50',
+    borderColor: 'border-gold/20',
     products: ['marketability', 'promotability', 'cv-portfolio']
   },
   {
     id: 'custom',
     title: 'Custom',
     icon: FaCogs,
-    color: 'text-[#C9A84C]',
-    bgColor: 'bg-[#0F172A]',
-    borderColor: 'border-[#C9A84C]/30',
+    color: 'text-gold',
+    bgColor: 'bg-navy-900/50',
+    borderColor: 'border-gold/20',
     products: ['adaptability']
   }
 ];
@@ -338,8 +348,54 @@ export default function Products() {
   };
 
   return (
-    <section id="products" className="section-padding bg-cream">
-      <div className="container-max">
+    <section id="products" className="section-padding bg-cream relative overflow-hidden">
+      {/* Floating Dandelion Seeds Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {floatingSeeds.map((seed) => (
+          <div
+            key={seed.id}
+            className="absolute"
+            style={{
+              left: seed.left,
+              top: seed.top,
+              width: `${seed.size}px`,
+              height: `${seed.size}px`,
+              opacity: seed.opacity,
+              animation: `float-seed-products ${seed.duration}s ease-in-out ${seed.delay}s infinite`,
+            }}
+          >
+            <img
+              src="/images/dandelion-seed.png"
+              alt=""
+              className="w-full h-full"
+              style={{
+                transform: `rotate(${(seed.id * 47) % 360}deg)`,
+                filter: 'drop-shadow(0 1px 2px rgba(201,162,39,0.15))'
+              }}
+              draggable={false}
+            />
+          </div>
+        ))}
+      </div>
+
+      <style jsx>{`
+        @keyframes float-seed-products {
+          0%, 100% {
+            transform: translate(0, 0) rotate(0deg);
+          }
+          25% {
+            transform: translate(12px, -18px) rotate(4deg);
+          }
+          50% {
+            transform: translate(-8px, -28px) rotate(-2deg);
+          }
+          75% {
+            transform: translate(15px, -12px) rotate(6deg);
+          }
+        }
+      `}</style>
+
+      <div className="container-max relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -358,7 +414,7 @@ export default function Products() {
           </p>
         </motion.div>
 
-        {/* Partner Code Banner */}
+        {/* Partner Code Banner — Glass Morphism */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -366,7 +422,7 @@ export default function Products() {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <div className="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 md:p-8 border border-gold/30 relative overflow-hidden">
+          <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-gold/20 shadow-lg relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-2xl"></div>
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4">
@@ -374,8 +430,8 @@ export default function Products() {
                   <FaPercentage className="w-6 h-6 text-gold" />
                 </div>
                 <div>
-                  <h3 className="text-cream font-bold text-lg">Have a Partner Code?</h3>
-                  <p className="text-cream/60 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid product.</p>
+                  <h3 className="text-navy-900 font-bold text-lg">Have a Partner Code?</h3>
+                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid product.</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 w-full md:w-auto">
@@ -386,11 +442,11 @@ export default function Products() {
                     value={globalPartnerCode}
                     onChange={(e) => setGlobalPartnerCode(e.target.value.toUpperCase())}
                     placeholder="e.g. PARTNER-SARAH"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/80 border border-gold/30 text-navy-900 placeholder-navy-400 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all"
                   />
                 </div>
                 {globalPartnerCode.trim() && (
-                  <span className="text-emerald-400 text-sm font-bold flex items-center gap-1 whitespace-nowrap">
+                  <span className="text-emerald-600 text-sm font-bold flex items-center gap-1 whitespace-nowrap">
                     <FaCheckCircle size={14} /> 10% Active
                   </span>
                 )}
@@ -413,11 +469,11 @@ export default function Products() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Category Header */}
-                <div className={`flex items-center gap-3 mb-6 px-5 py-3.5 rounded-xl ${category.bgColor} ${category.borderColor} border`}>
+                {/* Category Header — Glass */}
+                <div className={`flex items-center gap-3 mb-6 px-5 py-3.5 rounded-xl ${category.bgColor} backdrop-blur-sm ${category.borderColor} border`}>
                   <category.icon className={`w-5 h-5 ${category.color}`} />
                   <h3 className={`text-lg font-bold tracking-wide ${category.color}`}>{category.title}</h3>
-                  <div className="h-px flex-1 bg-[#334155]/50" />
+                  <div className="h-px flex-1 bg-gold/20" />
                 </div>
 
                 {/* Products Grid */}
@@ -429,9 +485,9 @@ export default function Products() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.05 }}
-                      className={`bg-white rounded-2xl shadow-lg overflow-hidden border-2 transition-all duration-300 ${
+                      className={`group bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border transition-all duration-300 ${
                         product.available 
-                          ? 'border-transparent hover:border-gold/40 hover:shadow-xl hover:-translate-y-1 cursor-pointer' 
+                          ? 'border-transparent hover:border-gold/40 hover:shadow-xl hover:-translate-y-2 hover:shadow-gold/10 cursor-pointer' 
                           : 'border-gray-200 opacity-70 cursor-not-allowed'
                       }`}
                       onClick={() => product.orderUrl ? window.open(buildOrderUrl(product, globalPartnerCode), '_blank') : openModal(product)}
@@ -439,7 +495,7 @@ export default function Products() {
                       {/* Card Header */}
                       <div className={`bg-gradient-to-r ${product.color} p-6 text-white relative`}>
                         {product.badge && (
-                          <span className={`absolute top-4 right-4 ${product.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full`}>
+                          <span className={`absolute top-4 right-4 ${product.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg`}>
                             {product.badge}
                           </span>
                         )}
@@ -465,7 +521,7 @@ export default function Products() {
                             )}
                           </div>
                           {product.available ? (
-                            <span className="text-emerald-500 text-sm font-medium flex items-center gap-1">
+                            <span className="text-emerald-500 text-sm font-medium flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                               <FaArrowRight size={14} /> {product.price === 0 && !product.orderUrl ? 'Get Free' : 'Order Now'}
                             </span>
                           ) : (
@@ -488,13 +544,13 @@ export default function Products() {
           })}
         </div>
 
-        {/* ReceiptSnap vs Payability Comparison */}
+        {/* ReceiptSnap vs Payability Comparison — Glass */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-white rounded-2xl shadow-xl border border-gold/20 p-8 md:p-12 mb-16"
+          className="bg-white/60 backdrop-blur-md rounded-2xl shadow-xl border border-gold/20 p-8 md:p-12 mb-16"
         >
           <div className="text-center mb-10">
             <span className="text-gold font-script text-xl mb-2 block">Not Sure Which Financial Tool?</span>
@@ -504,7 +560,7 @@ export default function Products() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* ReceiptSnap */}
-            <div className="bg-amber-50 rounded-xl p-8 border-2 border-amber-200">
+            <div className="bg-amber-50/80 backdrop-blur-sm rounded-xl p-8 border-2 border-amber-200/50">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl flex items-center justify-center text-white">
                   <FaReceipt size={24} />
@@ -534,14 +590,14 @@ export default function Products() {
                   <FaCheckCircle className="text-amber-500 flex-shrink-0" size={14} /> Export CSV for your accountant
                 </li>
               </ul>
-              <div className="bg-white rounded-lg p-4 border border-amber-100">
+              <div className="bg-white/80 rounded-lg p-4 border border-amber-100">
                 <p className="text-xs text-navy-500 font-medium">Best for:</p>
                 <p className="text-sm text-navy-700">Freelancers, small businesses, anyone who needs to track expenses and stay SARS-compliant.</p>
               </div>
             </div>
 
             {/* Payability */}
-            <div className="bg-cyan-50 rounded-xl p-8 border-2 border-cyan-200">
+            <div className="bg-cyan-50/80 backdrop-blur-sm rounded-xl p-8 border-2 border-cyan-200/50">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center text-white">
                   <FaFileInvoice size={24} />
@@ -571,7 +627,7 @@ export default function Products() {
                   <FaCheckCircle className="text-cyan-500 flex-shrink-0" size={14} /> VAT reports & monthly summaries
                 </li>
               </ul>
-              <div className="bg-white rounded-lg p-4 border border-cyan-100">
+              <div className="bg-white/80 rounded-lg p-4 border border-cyan-100">
                 <p className="text-xs text-navy-500 font-medium">Best for:</p>
                 <p className="text-sm text-navy-700">Service businesses, agencies, consultants — anyone who invoices clients and needs cash flow visibility.</p>
               </div>
@@ -589,7 +645,7 @@ export default function Products() {
           </div>
         </motion.div>
 
-        {/* Adaptability White-Label Section */}
+        {/* Adaptability White-Label Section — Enhanced */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -611,7 +667,7 @@ export default function Products() {
               <p className="text-cream/80 text-lg mb-6 leading-relaxed">
                 Adaptability is our white-label setup service. We take any AbilitySuite™ product, rebrand it with your colors, logo, and business name, and deliver it as your own custom tool.
               </p>
-              <div className="bg-white/10 rounded-xl p-6 border border-white/10 mb-6">
+              <div className="bg-white/10 rounded-xl p-6 border border-white/10 mb-6 backdrop-blur-sm">
                 <p className="text-gold font-bold mb-2">Example:</p>
                 <p className="text-cream/80 text-sm">
                   Scalability (CRM Pro) + Adaptability White-Label = <span className="text-gold font-bold">Your own custom CRM</span> for just <span className="text-gold font-bold">R1,498 total</span>
@@ -694,24 +750,24 @@ export default function Products() {
           </div>
         </motion.div>
 
-        {/* Order Form CTA */}
+        {/* Order Form CTA — Glass */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-8 text-center"
+          className="bg-white/60 backdrop-blur-md rounded-2xl p-8 text-center border border-gold/20 shadow-lg"
         >
-          <h3 className="text-2xl font-serif text-white mb-4">
+          <h3 className="text-2xl font-serif text-navy-900 mb-4">
             Ready to Automate Your Business?
           </h3>
-          <p className="text-white/70 max-w-lg mx-auto mb-6">
+          <p className="text-navy-600 max-w-lg mx-auto mb-6">
             Select your products, fill in your details, and pay via bank transfer or QR code.
             Your license keys are delivered within 24 hours.
           </p>
           
           {globalPartnerCode.trim() && (
-            <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-emerald-500/30">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-600 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-emerald-500/30">
               <FaTag size={12} /> Partner code <span className="uppercase">{globalPartnerCode}</span> active — 10% off at checkout
             </div>
           )}
@@ -728,7 +784,7 @@ export default function Products() {
           </div>
 
           {!globalPartnerCode.trim() && (
-            <p className="text-white/40 text-sm">
+            <p className="text-navy-400 text-sm">
               <FaTag className="inline mr-1" size={10} />
               Have a partner code? <button onClick={() => document.querySelector('input[placeholder*="PARTNER"]').scrollIntoView({ behavior: 'smooth' })} className="text-gold underline hover:no-underline">Enter it above</button> for 10% off.
             </p>
