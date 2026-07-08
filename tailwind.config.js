@@ -26,9 +26,9 @@ module.exports = {
         'coral-accent': '#E85D4E',
       },
       fontFamily: {
-        'serif': ['Georgia', 'serif'],
+        'serif': ['var(--font-playfair)', 'Georgia', 'serif'],
         'script': ['"Dancing Script"', 'cursive'],
-        'sans': ['Lato', 'sans-serif'],
+        'sans': ['var(--font-inter)', 'Lato', 'sans-serif'],
       },
     },
   },
