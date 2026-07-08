@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiCheck, FiStar, FiArrowRight, FiShoppingCart, FiCode, FiZap, FiMessageCircle, FiTag, FiPercentage } from 'react-icons/fi'
+import { FiCheck, FiStar, FiArrowRight, FiShoppingCart, FiCode, FiZap, FiMessageCircle, FiTag, FiPercent } from 'react-icons/fi'
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
@@ -187,7 +187,7 @@ export default function Pricing() {
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <FiPercentage className="w-6 h-6 text-gold" />
+                  <FiPercent className="w-6 h-6 text-gold" />
                 </div>
                 <div>
                   <h3 className="text-cream font-bold text-lg">Have a Partner Code?</h3>
