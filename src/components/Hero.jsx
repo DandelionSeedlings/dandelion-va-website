@@ -28,15 +28,15 @@ export default function Hero() {
 
     function initStreaks(cw, ch) {
       streaks.length = 0
-      const count = Math.max(6, Math.floor(cw / 180))
+      const count = Math.max(10, Math.floor(cw / 120))
       for (let i = 0; i < count; i++) {
         streaks.push({
           x: Math.random() * cw,
-          y: 60 + Math.random() * (ch - 120),
-          length: 150 + Math.random() * 350,
-          speed: 0.3 + Math.random() * 0.6,
-          opacity: 0.06 + Math.random() * 0.1,
-          width: 1 + Math.random() * 2
+          y: 40 + Math.random() * (ch - 80),
+          length: 80 + Math.random() * 200,
+          speed: 0.8 + Math.random() * 1.5,
+          opacity: 0.2 + Math.random() * 0.3,
+          width: 2 + Math.random() * 4
         })
       }
     }
@@ -51,9 +51,9 @@ export default function Hero() {
       streaks.forEach(s => {
         const grad = ctx.createLinearGradient(s.x - s.length, s.y, s.x + s.length, s.y)
         grad.addColorStop(0, 'rgba(201,162,39,0)')
-        grad.addColorStop(0.3, `rgba(201,162,39,${s.opacity * 0.5})`)
-        grad.addColorStop(0.5, `rgba(232,213,163,${s.opacity})`)
-        grad.addColorStop(0.7, `rgba(201,162,39,${s.opacity * 0.5})`)
+        grad.addColorStop(0.3, `rgba(201,162,39,${s.opacity})`)
+        grad.addColorStop(0.5, `rgba(232,213,163,${s.opacity * 1.5})`)
+        grad.addColorStop(0.7, `rgba(201,162,39,${s.opacity})`)
         grad.addColorStop(1, 'rgba(201,162,39,0)')
 
         ctx.fillStyle = grad
@@ -62,14 +62,13 @@ export default function Hero() {
         s.x += s.speed
         if (s.x > cw + s.length) {
           s.x = -s.length
-          s.y = 60 + Math.random() * (ch - 120)
+          s.y = 40 + Math.random() * (ch - 80)
         }
       })
 
       animationId = requestAnimationFrame(draw)
     }
 
-    // Delay to ensure canvas has layout
     const timeoutId = setTimeout(() => {
       const { width, height } = resize()
       initStreaks(width, height)
@@ -97,9 +96,9 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full"
       />
 
-      {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900/90 via-transparent to-navy-900/95 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-900/60 via-transparent to-navy-900/60 pointer-events-none" />
+      {/* Gradient Overlays — reduced opacity so streaks show through */}
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-900/50 via-transparent to-navy-900/70 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-900/40 via-transparent to-navy-900/40 pointer-events-none" />
 
       <div className="container-max px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
