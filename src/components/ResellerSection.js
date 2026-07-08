@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiCheck, FiStar, FiArrowRight, FiShield, FiUsers, FiZap, FiPackage, FiTrendingUp } from 'react-icons/fi'
+import { FiCheck, FiStar, FiArrowRight, FiShield, FiUsers, FiZap, FiPackage, FiTrendingUp, FiLink, FiDollarSign, FiSend } from 'react-icons/fi'
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
@@ -218,6 +218,110 @@ export default function ResellerSection() {
           </div>
         </motion.div>
 
+        {/* Affiliate / Partner Program */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="bg-navy-800/50 rounded-3xl p-8 md:p-12 border border-gold/20 relative overflow-hidden">
+            {/* Decorative accent */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl"></div>
+
+            <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <span className="text-gold font-bold tracking-widest uppercase text-sm mb-4 block">Partner Program</span>
+                <h3 className="text-3xl md:text-4xl font-serif font-bold text-cream mb-4">
+                  Not Ready to White-Label? <span className="text-gold">Refer & Earn.</span>
+                </h3>
+                <p className="text-cream/60 text-lg mb-8 leading-relaxed">
+                  You don't need to buy a license to make money. Share AbilitySuite™ with your network and earn commission on every sale. No setup. No risk. Just your unique link.
+                </p>
+
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center gap-5 bg-navy-900/60 rounded-xl p-5 border border-gold/10">
+                    <div className="w-14 h-14 bg-emerald-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <FiDollarSign className="w-6 h-6 text-emerald-400" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-emerald-400">20%</div>
+                      <div className="text-cream/70 text-sm">Commission on individual products <span className="text-cream/40">(R299 – R799)</span></div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-5 bg-navy-900/60 rounded-xl p-5 border border-gold/10">
+                    <div className="w-14 h-14 bg-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <FiDollarSign className="w-6 h-6 text-gold" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-gold">25%</div>
+                      <div className="text-cream/70 text-sm">Commission on Reseller tiers <span className="text-cream/40">(R1,499 – R14,999)</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <ul className="space-y-3 mb-8">
+                  {[
+                    'Unique referral code tracked to you',
+                    'Monthly EFT payouts — no minimum threshold',
+                    'Real-time sales dashboard (Google Sheet)',
+                    'Marketing assets & copy provided',
+                    'No cap — earn on unlimited referrals',
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-sm text-cream/70">
+                      <FiCheck className="w-4 h-4 text-gold flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="https://wa.me/27728393087?text=Hi%20Simone%2C%20I%27m%20interested%20in%20the%20AbilitySuite%20Partner%20Program.%20Please%20send%20me%20the%20details."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
+                >
+                  <FiSend /> Apply for Partner Program
+                </a>
+                <p className="text-cream/40 text-xs mt-3">Limited to 15 partners. Applications reviewed within 48 hours.</p>
+              </div>
+
+              <div className="hidden lg:block">
+                <div className="bg-navy-900/60 rounded-2xl p-8 border border-gold/10">
+                  <h4 className="text-gold font-bold text-sm uppercase tracking-widest mb-6 text-center">How Partner Earnings Work</h4>
+                  <div className="space-y-6">
+                    {[
+                      { label: 'You share your code', desc: 'Post on social, email your list, or mention it in a meeting.', icon: FiLink },
+                      { label: 'They buy with your code', desc: 'Customer gets 10% off. You get tracked as the referrer.', icon: FiUsers },
+                      { label: 'You earn monthly', desc: 'Commission paid via EFT on the 1st of every month.', icon: FiDollarSign },
+                    ].map((step, i) => (
+                      <div key={i} className="flex items-start gap-4">
+                        <div className="w-10 h-10 bg-gold/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <step.icon className="w-5 h-5 text-gold" />
+                        </div>
+                        <div>
+                          <h5 className="text-cream font-bold text-sm mb-1">{step.label}</h5>
+                          <p className="text-cream/50 text-sm">{step.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-gold/10">
+                    <div className="text-center">
+                      <p className="text-cream/40 text-xs mb-2">Example: One Professional Bundle sale</p>
+                      <div className="text-3xl font-bold text-gold">R1,250</div>
+                      <p className="text-cream/50 text-sm">Your commission (25% of R4,999)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* FAQ / Trust */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -227,8 +331,8 @@ export default function ResellerSection() {
           className="text-center"
         >
           <p className="text-cream/60 mb-6 max-w-2xl mx-auto">
-            Questions about white-label rights, support boundaries, or custom development? 
-            Every reseller gets a clear agreement outlining exactly what&apos;s included.
+            Questions about white-label rights, support boundaries, partner commissions, or custom development? 
+            Every reseller and partner gets a clear agreement outlining exactly what&apos;s included.
           </p>
           <a
             href="https://wa.me/27728393087"

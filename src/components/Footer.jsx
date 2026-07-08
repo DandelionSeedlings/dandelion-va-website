@@ -1,10 +1,41 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { FiMail, FiPhone, FiMapPin, FiFacebook, FiInstagram, FiLinkedin, FiShoppingCart } from 'react-icons/fi'
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
 export default function Footer() {
+  const [partnerCode, setPartnerCode] = useState('')
+
+  useEffect(() => {
+    // Check URL params first
+    const urlParams = new URLSearchParams(window.location.search)
+    const codeFromUrl = urlParams.get('partner')
+    if (codeFromUrl) {
+      setPartnerCode(codeFromUrl.toUpperCase())
+      localStorage.setItem('dc_partner_code', codeFromUrl.toUpperCase())
+      return
+    }
+    // Fall back to localStorage
+    const codeFromStorage = localStorage.getItem('dc_partner_code')
+    if (codeFromStorage) {
+      setPartnerCode(codeFromStorage)
+    }
+  }, [])
+
+  const buildOrderUrl = (productName, subtitle) => {
+    const params = new URLSearchParams()
+    if (productName && subtitle) {
+      params.set('product', productName + ' — ' + subtitle)
+    }
+    if (partnerCode) {
+      params.set('partner', partnerCode)
+    }
+    const query = params.toString()
+    return query ? `${ORDER_FORM_URL}?${query}` : ORDER_FORM_URL
+  }
+
   return (
     <footer className="bg-[#0a1628] text-white pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,7 +112,7 @@ export default function Footer() {
               ))}
               <li>
                 <a
-                  href={ORDER_FORM_URL}
+                  href={buildOrderUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm flex items-center gap-2"
@@ -97,18 +128,18 @@ export default function Footer() {
             <h4 className="font-serif text-lg text-white mb-6">AbilitySuite™ Products</h4>
             <ul className="space-y-3">
               {[
-                { name: 'CRM Mini (FREE)', href: 'https://dandelioncreations.co.za/get-connectability' },
-                { name: 'ReceiptSnap — R299', href: ORDER_FORM_URL },
-                { name: 'Content Planner — R299', href: ORDER_FORM_URL },
-                { name: 'CRM Pro — R499', href: ORDER_FORM_URL },
-                { name: 'Invoice Sorter — R499', href: ORDER_FORM_URL },
-                { name: 'Stock & Supplier — R499', href: ORDER_FORM_URL },
+                { name: 'CRM Mini (FREE)', ability: 'CRM Mini', href: 'https://dandelioncreations.co.za/get-connectability', isExternal: true },
+                { name: 'ReceiptSnap — R299', ability: 'Receipt Tracker', href: buildOrderUrl('ReceiptSnap', 'Receipt Tracker'), isExternal: false },
+                { name: 'Content Planner — R299', ability: 'Content Planner', href: buildOrderUrl('Visibility', 'Content Planner'), isExternal: false },
+                { name: 'CRM Pro — R499', ability: 'CRM Pro', href: buildOrderUrl('Scalability', 'CRM Pro'), isExternal: false },
+                { name: 'Invoice Sorter — R499', ability: 'Invoice Sorter', href: buildOrderUrl('Payability', 'Invoice Sorter'), isExternal: false },
+                { name: 'Stock & Supplier — R499', ability: 'Stock & Supplier', href: buildOrderUrl('Availability', 'Stock & Supplier'), isExternal: false },
               ].map((product) => (
                 <li key={product.name}>
                   <a
                     href={product.href}
-                    target={product.href.startsWith('http') ? '_blank' : undefined}
-                    rel={product.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    target={product.isExternal ? '_blank' : '_blank'}
+                    rel="noopener noreferrer"
                     className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm"
                   >
                     {product.name}
@@ -150,13 +181,19 @@ export default function Footer() {
 
             {/* Order CTA */}
             <a
-              href={ORDER_FORM_URL}
+              href={buildOrderUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 bg-[#D4AF37] text-[#0a1628] px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#c4a030] transition-all duration-300"
             >
               <FiShoppingCart size={16} /> Order Now
             </a>
+
+            {partnerCode && (
+              <p className="text-emerald-400 text-xs mt-2 font-medium">
+                Partner code {partnerCode} active
+              </p>
+            )}
           </div>
         </div>
 

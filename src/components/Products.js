@@ -7,7 +7,8 @@ import {
   FaUsers, FaFileInvoice, FaBoxes, FaChartLine, 
   FaCalendarAlt, FaBullhorn, FaTshirt, FaClock,
   FaBuilding, FaCogs, FaReceipt, FaArrowRight,
-  FaBalanceScale, FaMoneyBillWave, FaCalculator
+  FaBalanceScale, FaMoneyBillWave, FaCalculator,
+  FaTag, FaPercentage
 } from 'react-icons/fa';
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec';
@@ -30,7 +31,7 @@ const productCategories = [
     color: 'text-[#C9A84C]',
     bgColor: 'bg-[#0F172A]',
     borderColor: 'border-[#C9A84C]/30',
-    products: ['profitability', 'payability', 'mini-cash-up']
+    products: ['payability', 'profitability', 'mini-cash-up']
   },
   {
     id: 'inventory',
@@ -294,6 +295,8 @@ const products = [
 
 export default function Products() {
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [partnerCode, setPartnerCode] = useState('');
+  const [globalPartnerCode, setGlobalPartnerCode] = useState('');
 
   const openModal = (product) => {
     if (product.available) {
@@ -304,15 +307,35 @@ export default function Products() {
 
   const closeModal = () => {
     setSelectedProduct(null);
+    setPartnerCode('');
     document.body.style.overflow = 'auto';
   };
 
-  const getOrderUrl = (product) => {
-    if (product.orderUrl) return product.orderUrl;
-    return `${ORDER_FORM_URL}?product=${encodeURIComponent(product.name + ' — ' + product.subtitle)}`;
+  const buildOrderUrl = (product, code) => {
+    const base = product.orderUrl || ORDER_FORM_URL;
+    const params = new URLSearchParams();
+    
+    if (!product.orderUrl) {
+      params.set('product', product.name + ' — ' + product.subtitle);
+    }
+    if (code && code.trim()) {
+      params.set('partner', code.trim().toUpperCase());
+    }
+    
+    const query = params.toString();
+    return query ? `${base}?${query}` : base;
   };
 
   const getProductById = (id) => products.find(p => p.id === id);
+
+  const discountedPrice = (price) => {
+    if (price === 0) return price;
+    return Math.round(price * 0.9);
+  };
+
+  const formatPrice = (price) => {
+    return 'R' + price.toLocaleString('en-ZA');
+  };
 
   return (
     <section id="products" className="section-padding bg-cream">
@@ -323,7 +346,7 @@ export default function Products() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="text-gold font-script text-2xl mb-2 block">Digital Products</span>
           <h2 className="text-4xl md:text-5xl font-serif text-navy-900 mb-4">
@@ -333,6 +356,47 @@ export default function Products() {
             Professional Google Sheets templates that automate your business.
             No subscriptions. No monthly fees. Yours forever.
           </p>
+        </motion.div>
+
+        {/* Partner Code Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-12"
+        >
+          <div className="bg-gradient-to-r from-navy-900 to-navy-800 rounded-2xl p-6 md:p-8 border border-gold/30 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-2xl"></div>
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <FaPercentage className="w-6 h-6 text-gold" />
+                </div>
+                <div>
+                  <h3 className="text-cream font-bold text-lg">Have a Partner Code?</h3>
+                  <p className="text-cream/60 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid product.</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 w-full md:w-auto">
+                <div className="relative flex-1 md:w-64">
+                  <FaTag className="absolute left-3 top-1/2 -translate-y-1/2 text-navy-400 w-4 h-4" />
+                  <input
+                    type="text"
+                    value={globalPartnerCode}
+                    onChange={(e) => setGlobalPartnerCode(e.target.value.toUpperCase())}
+                    placeholder="e.g. PARTNER-SARAH"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all"
+                  />
+                </div>
+                {globalPartnerCode.trim() && (
+                  <span className="text-emerald-400 text-sm font-bold flex items-center gap-1 whitespace-nowrap">
+                    <FaCheckCircle size={14} /> 10% Active
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Category Grouped Products */}
@@ -349,7 +413,7 @@ export default function Products() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Category Header — Refined navy/gold brand palette */}
+                {/* Category Header */}
                 <div className={`flex items-center gap-3 mb-6 px-5 py-3.5 rounded-xl ${category.bgColor} ${category.borderColor} border`}>
                   <category.icon className={`w-5 h-5 ${category.color}`} />
                   <h3 className={`text-lg font-bold tracking-wide ${category.color}`}>{category.title}</h3>
@@ -370,7 +434,7 @@ export default function Products() {
                           ? 'border-transparent hover:border-gold/40 hover:shadow-xl hover:-translate-y-1 cursor-pointer' 
                           : 'border-gray-200 opacity-70 cursor-not-allowed'
                       }`}
-                      onClick={() => product.orderUrl ? window.open(product.orderUrl, '_blank') : openModal(product)}
+                      onClick={() => product.orderUrl ? window.open(buildOrderUrl(product, globalPartnerCode), '_blank') : openModal(product)}
                     >
                       {/* Card Header */}
                       <div className={`bg-gradient-to-r ${product.color} p-6 text-white relative`}>
@@ -390,7 +454,16 @@ export default function Products() {
                         <p className="text-navy-400 text-xs italic mb-4">"{product.tagline}"</p>
 
                         <div className="flex items-center justify-between">
-                          <div className="text-2xl font-bold text-gold">{product.priceLabel}</div>
+                          <div>
+                            {globalPartnerCode.trim() && product.price > 0 ? (
+                              <div className="flex items-center gap-2">
+                                <span className="text-lg text-navy-400 line-through">{product.priceLabel}</span>
+                                <span className="text-2xl font-bold text-emerald-600">{formatPrice(discountedPrice(product.price))}</span>
+                              </div>
+                            ) : (
+                              <div className="text-2xl font-bold text-gold">{product.priceLabel}</div>
+                            )}
+                          </div>
                           {product.available ? (
                             <span className="text-emerald-500 text-sm font-medium flex items-center gap-1">
                               <FaArrowRight size={14} /> {product.price === 0 && !product.orderUrl ? 'Get Free' : 'Order Now'}
@@ -399,6 +472,13 @@ export default function Products() {
                             <span className="text-gray-400 text-sm font-medium">Coming Soon</span>
                           )}
                         </div>
+                        
+                        {globalPartnerCode.trim() && product.price > 0 && (
+                          <p className="text-emerald-600 text-xs mt-2 font-medium">
+                            <FaTag className="inline mr-1" size={10} />
+                            Partner code applied — 10% off
+                          </p>
+                        )}
                       </div>
                     </motion.div>
                   ))}
@@ -431,7 +511,10 @@ export default function Products() {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-navy-900">ReceiptSnap</h4>
-                  <p className="text-amber-600 font-bold">R299 — One Time</p>
+                  <p className="text-amber-600 font-bold">
+                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(299)) : 'R299'} — One Time
+                    {globalPartnerCode.trim() && <span className="text-navy-400 text-sm line-through ml-2">R299</span>}
+                  </p>
                 </div>
               </div>
               <p className="text-navy-600 mb-6 text-sm leading-relaxed">
@@ -465,7 +548,10 @@ export default function Products() {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-navy-900">Payability</h4>
-                  <p className="text-cyan-600 font-bold">R499 — One Time</p>
+                  <p className="text-cyan-600 font-bold">
+                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(499)) : 'R499'} — One Time
+                    {globalPartnerCode.trim() && <span className="text-navy-400 text-sm line-through ml-2">R499</span>}
+                  </p>
                 </div>
               </div>
               <p className="text-navy-600 mb-6 text-sm leading-relaxed">
@@ -553,13 +639,18 @@ export default function Products() {
                 </li>
               </ul>
               <a
-                href={ORDER_FORM_URL}
+                href={buildOrderUrl({ name: 'Adaptability', subtitle: 'White-Label Setup', price: 999, orderUrl: null }, globalPartnerCode)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
               >
-                <FaShoppingCart /> Order Adaptability — R999
+                <FaShoppingCart /> Order Adaptability — {globalPartnerCode.trim() ? formatPrice(discountedPrice(999)) : 'R999'}
               </a>
+              {globalPartnerCode.trim() && (
+                <p className="text-emerald-400 text-sm mt-2">
+                  <FaTag className="inline mr-1" size={10} /> Partner code applied — 10% off
+                </p>
+              )}
             </div>
             <div className="hidden lg:block">
               <div className="bg-white/5 rounded-2xl p-8 border border-white/10 backdrop-blur-sm">
@@ -618,14 +709,30 @@ export default function Products() {
             Select your products, fill in your details, and pay via bank transfer or QR code.
             Your license keys are delivered within 24 hours.
           </p>
-          <a
-            href={ORDER_FORM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
-          >
-            <FaShoppingCart /> Order Now — One Form, Everything You Need
-          </a>
+          
+          {globalPartnerCode.trim() && (
+            <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-emerald-500/30">
+              <FaTag size={12} /> Partner code <span className="uppercase">{globalPartnerCode}</span> active — 10% off at checkout
+            </div>
+          )}
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+            <a
+              href={buildOrderUrl({ name: 'Multiple Products', subtitle: 'Custom Order', price: 0, orderUrl: null }, globalPartnerCode)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
+            >
+              <FaShoppingCart /> Order Now — One Form, Everything You Need
+            </a>
+          </div>
+
+          {!globalPartnerCode.trim() && (
+            <p className="text-white/40 text-sm">
+              <FaTag className="inline mr-1" size={10} />
+              Have a partner code? <button onClick={() => document.querySelector('input[placeholder*="PARTNER"]').scrollIntoView({ behavior: 'smooth' })} className="text-gold underline hover:no-underline">Enter it above</button> for 10% off.
+            </p>
+          )}
         </motion.div>
       </div>
 
@@ -661,9 +768,45 @@ export default function Products() {
                 ))}
               </ul>
 
-              <div className="flex items-center justify-between mb-6 p-4 bg-gold-pale/30 rounded-xl">
+              <div className="flex items-center justify-between mb-4 p-4 bg-gold-pale/30 rounded-xl">
                 <span className="text-navy-600 text-sm">Price</span>
-                <span className="text-3xl font-bold text-gold">{selectedProduct.priceLabel}</span>
+                {globalPartnerCode.trim() && selectedProduct.price > 0 ? (
+                  <div className="text-right">
+                    <span className="text-lg text-navy-400 line-through block">{selectedProduct.priceLabel}</span>
+                    <span className="text-3xl font-bold text-emerald-600">{formatPrice(discountedPrice(selectedProduct.price))}</span>
+                  </div>
+                ) : (
+                  <span className="text-3xl font-bold text-gold">{selectedProduct.priceLabel}</span>
+                )}
+              </div>
+
+              {globalPartnerCode.trim() && selectedProduct.price > 0 && (
+                <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center gap-2">
+                  <FaTag className="text-emerald-500" size={14} />
+                  <span className="text-emerald-700 text-sm font-medium">
+                    Partner code <span className="font-bold uppercase">{globalPartnerCode}</span> applied — 10% off
+                  </span>
+                </div>
+              )}
+
+              {/* Partner Code Input in Modal */}
+              <div className="mb-6">
+                <label className="text-navy-600 text-sm font-medium mb-2 block">Partner Code (optional)</label>
+                <div className="relative">
+                  <FaTag className="absolute left-3 top-1/2 -translate-y-1/2 text-navy-400 w-4 h-4" />
+                  <input
+                    type="text"
+                    value={partnerCode}
+                    onChange={(e) => setPartnerCode(e.target.value.toUpperCase())}
+                    placeholder="Enter code for 10% off"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-navy-200 text-navy-900 placeholder-navy-400 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all"
+                  />
+                </div>
+                {partnerCode.trim() && !globalPartnerCode.trim() && (
+                  <p className="text-emerald-600 text-xs mt-2 font-medium">
+                    <FaCheckCircle className="inline mr-1" size={10} /> 10% discount will be applied at checkout
+                  </p>
+                )}
               </div>
 
               {selectedProduct.id === 'connectability' ? (
@@ -677,7 +820,7 @@ export default function Products() {
                 </a>
               ) : (
                 <a
-                  href={getOrderUrl(selectedProduct)}
+                  href={buildOrderUrl(selectedProduct, partnerCode || globalPartnerCode)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full bg-gold hover:bg-[#c4a030] text-navy-900 text-center py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2"

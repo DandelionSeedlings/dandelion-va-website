@@ -1,11 +1,14 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiCheck, FiStar, FiArrowRight, FiShoppingCart, FiCode, FiZap, FiMessageCircle } from 'react-icons/fi'
+import { FiCheck, FiStar, FiArrowRight, FiShoppingCart, FiCode, FiZap, FiMessageCircle, FiTag, FiPercentage } from 'react-icons/fi'
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
 export default function Pricing() {
+  const [partnerCode, setPartnerCode] = useState('')
+
   const step1Product = {
     name: 'Connectability',
     ability: 'CRM Mini',
@@ -16,13 +19,13 @@ export default function Pricing() {
   };
 
   const step2Products = [
-    { name: 'ReceiptSnap', ability: 'Receipt Tracker', price: 'R299', popular: false },
-    { name: 'Visibility', ability: 'Content Planner', price: 'R299', popular: false },
-    { name: 'Scalability', ability: 'CRM Pro', price: 'R499', popular: true },
-    { name: 'Payability', ability: 'Invoice Sorter', price: 'R499', popular: false },
-    { name: 'Availability', ability: 'Stock & Supplier', price: 'R499', popular: false },
-    { name: 'Profitability', ability: 'Income & Expenses', price: 'R799', popular: false },
-    { name: 'Adaptability', ability: 'White-Label Setup', price: 'R999', popular: false },
+    { name: 'ReceiptSnap', ability: 'Receipt Tracker', price: 299, priceLabel: 'R299', popular: false },
+    { name: 'Visibility', ability: 'Content Planner', price: 299, priceLabel: 'R299', popular: false },
+    { name: 'Scalability', ability: 'CRM Pro', price: 499, priceLabel: 'R499', popular: true },
+    { name: 'Payability', ability: 'Invoice Sorter', price: 499, priceLabel: 'R499', popular: false },
+    { name: 'Availability', ability: 'Stock & Supplier', price: 499, priceLabel: 'R499', popular: false },
+    { name: 'Profitability', ability: 'Income & Expenses', price: 799, priceLabel: 'R799', popular: false },
+    { name: 'Adaptability', ability: 'White-Label Setup', price: 999, priceLabel: 'R999', popular: false },
   ];
 
   const step3Services = [
@@ -118,6 +121,22 @@ export default function Pricing() {
     { service: 'Custom Automation', rate: 'From R5,000' },
   ]
 
+  const buildOrderUrl = (productName, subtitle) => {
+    const params = new URLSearchParams()
+    params.set('product', productName + ' — ' + subtitle)
+    if (partnerCode.trim()) {
+      params.set('partner', partnerCode.trim().toUpperCase())
+    }
+    return `${ORDER_FORM_URL}?${params.toString()}`
+  }
+
+  const discountedPrice = (price) => {
+    if (!partnerCode.trim() || price === 0) return price
+    return Math.round(price * 0.9)
+  }
+
+  const formatPrice = (price) => 'R' + price.toLocaleString('en-ZA')
+
   return (
     <section id="pricing" className="section-padding bg-navy-900 relative overflow-hidden">
       {/* Subtle background pattern */}
@@ -145,7 +164,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-r from-gold via-gold-light to-gold rounded-2xl p-6 md:p-8 mb-16 text-center shadow-2xl border-2 border-gold/50"
+          className="bg-gradient-to-r from-gold via-gold-light to-gold rounded-2xl p-6 md:p-8 mb-12 text-center shadow-2xl border-2 border-gold/50"
         >
           <p className="text-navy-900 text-xl md:text-2xl font-bold tracking-wide">
             100% NO SUBSCRIPTIONS. ONE PAYMENT. LIFETIME UPDATES.
@@ -153,6 +172,47 @@ export default function Pricing() {
           <p className="text-navy-800 text-sm mt-2 font-medium">
             Every AbilitySuite™ product is a one-time purchase. You own it forever. No monthly fees. No hidden costs.
           </p>
+        </motion.div>
+
+        {/* Partner Code Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <div className="bg-navy-800/80 rounded-2xl p-6 border border-gold/20 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-2xl"></div>
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <FiPercentage className="w-6 h-6 text-gold" />
+                </div>
+                <div>
+                  <h3 className="text-cream font-bold text-lg">Have a Partner Code?</h3>
+                  <p className="text-cream/60 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid product.</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 w-full md:w-auto">
+                <div className="relative flex-1 md:w-64">
+                  <FiTag className="absolute left-3 top-1/2 -translate-y-1/2 text-cream/40 w-4 h-4" />
+                  <input
+                    type="text"
+                    value={partnerCode}
+                    onChange={(e) => setPartnerCode(e.target.value.toUpperCase())}
+                    placeholder="e.g. PARTNER-SARAH"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all"
+                  />
+                </div>
+                {partnerCode.trim() && (
+                  <span className="text-emerald-400 text-sm font-bold flex items-center gap-1 whitespace-nowrap">
+                    <FiCheck className="w-4 h-4" /> 10% Active
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* 3-STEP JOURNEY */}
@@ -249,11 +309,19 @@ export default function Pricing() {
                   )}
                   <p className="text-xs text-cream/50 mb-1">{product.ability}</p>
                   <p className="text-sm font-bold text-cream mb-2">{product.name}</p>
-                  <p className={`text-xl font-bold ${product.price === 'FREE' ? 'text-emerald-400' : 'text-gold'}`}>
-                    {product.price}
-                  </p>
+                  
+                  {partnerCode.trim() ? (
+                    <div>
+                      <span className="text-lg text-cream/40 line-through">{product.priceLabel}</span>
+                      <p className="text-xl font-bold text-emerald-400">{formatPrice(discountedPrice(product.price))}</p>
+                      <p className="text-emerald-500/70 text-[10px] mt-1">Partner code applied</p>
+                    </div>
+                  ) : (
+                    <p className="text-xl font-bold text-gold">{product.priceLabel}</p>
+                  )}
+
                   <a
-                    href={ORDER_FORM_URL}
+                    href={buildOrderUrl(product.name, product.ability)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-3 block text-center text-xs font-bold bg-gold/10 text-gold py-2 rounded-lg hover:bg-gold/20 transition-colors"
