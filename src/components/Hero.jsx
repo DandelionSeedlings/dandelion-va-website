@@ -6,20 +6,21 @@ import { FiArrowRight, FiCheckCircle, FiShoppingCart, FiCode } from 'react-icons
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
 export default function Hero() {
-  // Generate 15 seed positions — bigger, brighter, more visible
-  const seeds = Array.from({ length: 15 }, (_, i) => ({
+  // Seed positions with varied sizes and rotations
+  const seeds = Array.from({ length: 12 }, (_, i) => ({
     id: i,
-    left: `${5 + (i * 6.5) % 90}%`,
-    top: `${5 + (i * 11) % 80}%`,
-    size: 6 + (i % 5) * 3, // 6px to 18px
-    delay: i * 0.6,
-    duration: 10 + (i % 4) * 3,
-    opacity: 0.35 + (i % 3) * 0.15 // 0.35 to 0.65
+    left: `${3 + (i * 8) % 94}%`,
+    top: `${5 + (i * 9) % 85}%`,
+    size: 24 + (i % 6) * 12, // 24px to 84px
+    delay: i * 0.7,
+    duration: 14 + (i % 5) * 4,
+    opacity: 0.25 + (i % 3) * 0.15,
+    rotation: (i * 37) % 360
   }))
 
   return (
     <section className="relative min-h-screen flex items-center bg-gradient-to-br from-cream via-gold-pale/30 to-cream pt-24 overflow-hidden">
-      {/* Floating Dandelion Seeds */}
+      {/* Floating Dandelion Seeds using actual image */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {seeds.map((seed) => (
           <div
@@ -30,56 +31,19 @@ export default function Hero() {
               top: seed.top,
               width: `${seed.size}px`,
               height: `${seed.size}px`,
+              opacity: seed.opacity,
               animation: `float-seed ${seed.duration}s ease-in-out ${seed.delay}s infinite`,
             }}
           >
-            {/* Seed head — bright gold dot */}
-            <div
-              className="absolute rounded-full"
+            <img
+              src="/images/dandelion-seed.png"
+              alt=""
+              className="w-full h-full"
               style={{
-                width: `${seed.size}px`,
-                height: `${seed.size}px`,
-                background: `radial-gradient(circle at 30% 30%, rgba(255,230,150,${seed.opacity + 0.2}) 0%, rgba(201,162,39,${seed.opacity}) 40%, rgba(201,162,39,${seed.opacity * 0.3}) 100%)`,
-                boxShadow: `0 0 ${seed.size}px rgba(201,162,39,${seed.opacity * 0.5})`,
+                transform: `rotate(${seed.rotation}deg)`,
+                filter: 'drop-shadow(0 2px 4px rgba(201,162,39,0.2))'
               }}
-            />
-            {/* Parachute line */}
-            <div
-              className="absolute"
-              style={{
-                left: `${seed.size / 2 - 0.5}px`,
-                top: `${seed.size}px`,
-                width: '1.5px',
-                height: `${seed.size * 2.5}px`,
-                background: `linear-gradient(to bottom, rgba(201,162,39,${seed.opacity * 0.6}), rgba(201,162,39,0))`,
-                transform: `rotate(${(seed.id * 47) % 50 - 25}deg)`,
-                transformOrigin: 'top center',
-              }}
-            />
-            {/* Tiny feathery bits */}
-            <div
-              className="absolute"
-              style={{
-                left: `${seed.size / 2}px`,
-                top: `${seed.size * 3}px`,
-                width: `${seed.size * 1.5}px`,
-                height: '1px',
-                background: `rgba(201,162,39,${seed.opacity * 0.4})`,
-                transform: `rotate(${(seed.id * 47) % 50 - 25 + 20}deg)`,
-                transformOrigin: 'left center',
-              }}
-            />
-            <div
-              className="absolute"
-              style={{
-                left: `${seed.size / 2}px`,
-                top: `${seed.size * 3}px`,
-                width: `${seed.size * 1.5}px`,
-                height: '1px',
-                background: `rgba(201,162,39,${seed.opacity * 0.4})`,
-                transform: `rotate(${(seed.id * 47) % 50 - 25 - 20}deg)`,
-                transformOrigin: 'left center',
-              }}
+              draggable={false}
             />
           </div>
         ))}
@@ -91,13 +55,13 @@ export default function Hero() {
             transform: translate(0, 0) rotate(0deg);
           }
           25% {
-            transform: translate(20px, -25px) rotate(8deg);
+            transform: translate(15px, -20px) rotate(5deg);
           }
           50% {
-            transform: translate(-15px, -40px) rotate(-5deg);
+            transform: translate(-10px, -35px) rotate(-3deg);
           }
           75% {
-            transform: translate(25px, -20px) rotate(10deg);
+            transform: translate(20px, -15px) rotate(8deg);
           }
         }
       `}</style>
