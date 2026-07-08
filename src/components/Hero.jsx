@@ -6,8 +6,73 @@ import { FiArrowRight, FiCheckCircle, FiShoppingCart, FiCode } from 'react-icons
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
 export default function Hero() {
+  // Generate 12 seed positions
+  const seeds = Array.from({ length: 12 }, (_, i) => ({
+    id: i,
+    left: `${8 + (i * 7.5) % 85}%`,
+    top: `${10 + (i * 13) % 75}%`,
+    size: 3 + (i % 4) * 1.5,
+    delay: i * 0.8,
+    duration: 12 + (i % 5) * 4,
+    opacity: 0.15 + (i % 3) * 0.1
+  }))
+
   return (
     <section className="relative min-h-screen flex items-center bg-gradient-to-br from-cream via-gold-pale/30 to-cream pt-24 overflow-hidden">
+      {/* Floating Dandelion Seeds */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {seeds.map((seed) => (
+          <div
+            key={seed.id}
+            className="absolute rounded-full"
+            style={{
+              left: seed.left,
+              top: seed.top,
+              width: `${seed.size}px`,
+              height: `${seed.size}px`,
+              background: `radial-gradient(circle, rgba(201,162,39,${seed.opacity}) 0%, rgba(201,162,39,${seed.opacity * 0.3}) 40%, transparent 70%)`,
+              animation: `float-seed ${seed.duration}s ease-in-out ${seed.delay}s infinite`,
+              filter: 'blur(0.5px)'
+            }}
+          />
+        ))}
+        {/* A few with tiny "parachute" lines */}
+        {seeds.slice(0, 5).map((seed) => (
+          <div
+            key={`line-${seed.id}`}
+            className="absolute"
+            style={{
+              left: `calc(${seed.left} + ${seed.size / 2}px)`,
+              top: `calc(${seed.top} + ${seed.size / 2}px)`,
+              width: '1px',
+              height: `${seed.size * 3}px`,
+              background: `linear-gradient(to bottom, rgba(201,162,39,${seed.opacity * 0.4}), transparent)`,
+              transform: `rotate(${(seed.id * 37) % 60 - 30}deg)`,
+              transformOrigin: 'top center',
+              animation: `float-seed ${seed.duration}s ease-in-out ${seed.delay}s infinite`,
+              opacity: seed.opacity
+            }}
+          />
+        ))}
+      </div>
+
+      <style jsx>{`
+        @keyframes float-seed {
+          0%, 100% {
+            transform: translate(0, 0) rotate(0deg);
+          }
+          25% {
+            transform: translate(15px, -20px) rotate(5deg);
+          }
+          50% {
+            transform: translate(-10px, -35px) rotate(-3deg);
+          }
+          75% {
+            transform: translate(20px, -15px) rotate(8deg);
+          }
+        }
+      `}</style>
+
       {/* Decorative elements */}
       <div className="absolute top-40 right-20 w-96 h-96 bg-gold/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 left-10 w-72 h-72 bg-navy-900/5 rounded-full blur-3xl"></div>
