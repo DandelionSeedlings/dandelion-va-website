@@ -34,8 +34,8 @@ export default function Navbar() {
     <nav
       className={`fixed left-1/2 top-4 z-50 w-[calc(100%-1.5rem)] max-w-7xl -translate-x-1/2 rounded-sm border transition-all duration-500 ${
         scrolled
-          ? 'border-white/35 bg-white/90 py-3 shadow-2xl shadow-navy-900/12 backdrop-blur-2xl'
-          : 'border-white/20 bg-[#0a1628]/48 py-3 shadow-2xl shadow-black/20 backdrop-blur-2xl'
+          ? 'border-white/35 bg-[#0a1628]/95 py-3 shadow-2xl shadow-navy-900/12 backdrop-blur-2xl'
+          : 'border-white/20 bg-[#0a1628] py-3 shadow-2xl shadow-black/20'
       }`}
     >
       <div className="px-4 sm:px-5 lg:px-6">
@@ -48,11 +48,7 @@ export default function Navbar() {
               className="w-10 h-10 object-contain"
             />
             <div className="hidden sm:block">
-              <p
-                className={`font-serif text-xl tracking-wide transition-colors duration-300 ${
-                  scrolled ? 'text-[#0a1628]' : 'text-white'
-                }`}
-              >
+              <p className="font-serif text-xl tracking-wide text-white transition-colors duration-300">
                 Dandelion
               </p>
               <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D4AF37]">
@@ -67,9 +63,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className={`font-medium text-sm tracking-wide hover:text-[#D4AF37] transition-colors duration-300 relative group ${
-                  scrolled ? 'text-[#0a1628]' : 'text-white/90'
-                }`}
+                className="font-medium text-sm tracking-wide text-white/90 hover:text-[#D4AF37] transition-colors duration-300 relative group"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D4AF37] group-hover:w-full transition-all duration-300"></span>
@@ -79,9 +73,7 @@ export default function Navbar() {
               href="https://dandelioncreations.co.za/get-connectability"
               target="_blank"
               rel="noopener noreferrer"
-              className={`font-medium text-sm tracking-wide hover:text-emerald-400 transition-colors duration-300 relative group ${
-                scrolled ? 'text-emerald-600' : 'text-emerald-400'
-              }`}
+              className="font-medium text-sm tracking-wide text-emerald-400 hover:text-emerald-300 transition-colors duration-300 relative group"
             >
               <span className="flex items-center gap-1">
                 ✦ Start Free
@@ -102,11 +94,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className={`md:hidden p-2 rounded-lg transition-colors duration-300 ${
-              scrolled
-                ? 'text-[#0a1628] hover:bg-gray-100'
-                : 'text-white hover:bg-white/10'
-            }`}
+            className="md:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors duration-300"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
@@ -115,12 +103,12 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden mt-4 rounded-sm bg-white/95 shadow-xl p-6 space-y-4 border border-white/70 backdrop-blur-xl">
+          <div className="md:hidden mt-4 rounded-sm bg-[#0a1628] shadow-xl p-6 space-y-4 border border-white/10">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="block text-[#0a1628] font-medium hover:text-[#D4AF37] transition-colors py-2"
+                className="block text-white font-medium hover:text-[#D4AF37] transition-colors py-2"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
@@ -130,7 +118,7 @@ export default function Navbar() {
               href="https://dandelioncreations.co.za/get-connectability"
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-emerald-600 font-medium hover:text-emerald-700 transition-colors py-2"
+              className="block text-emerald-400 font-medium hover:text-emerald-300 transition-colors py-2"
               onClick={() => setIsOpen(false)}
             >
               <span className="flex items-center gap-2">

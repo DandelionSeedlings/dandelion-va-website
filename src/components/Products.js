@@ -30,8 +30,8 @@ const productCategories = [
     title: 'Relationship Systems',
     icon: FaUsers,
     color: 'text-gold',
-    bgColor: 'bg-navy-900/50',
-    borderColor: 'border-gold/20',
+    bgColor: 'bg-navy-900',
+    borderColor: 'border-gold/30',
     products: ['connectability', 'scalability']
   },
   {
@@ -39,8 +39,8 @@ const productCategories = [
     title: 'Financial Infrastructure',
     icon: FaMoneyBillWave,
     color: 'text-gold',
-    bgColor: 'bg-navy-900/50',
-    borderColor: 'border-gold/20',
+    bgColor: 'bg-navy-900',
+    borderColor: 'border-gold/30',
     products: ['payability', 'profitability', 'mini-cash-up']
   },
   {
@@ -48,17 +48,17 @@ const productCategories = [
     title: 'Supply & Stock Control',
     icon: FaBoxes,
     color: 'text-gold',
-    bgColor: 'bg-navy-900/50',
-    borderColor: 'border-gold/20',
+    bgColor: 'bg-navy-900',
+    borderColor: 'border-gold/30',
     products: ['availability']
   },
   {
     id: 'people-time',
     title: 'Workforce Systems',
     icon: FaClock,
-    color: 'text-gray-400',
-    bgColor: 'bg-navy-800/50',
-    borderColor: 'border-gray-500/20',
+    color: 'text-white',
+    bgColor: 'bg-navy-800',
+    borderColor: 'border-gray-500/30',
     products: ['trackability']
   },
   {
@@ -66,8 +66,8 @@ const productCategories = [
     title: 'Rapid Deployment Tools',
     icon: FaEye,
     color: 'text-gold',
-    bgColor: 'bg-navy-900/50',
-    borderColor: 'border-gold/20',
+    bgColor: 'bg-navy-900',
+    borderColor: 'border-gold/30',
     products: ['receiptsnap', 'visibility']
   },
   {
@@ -75,8 +75,8 @@ const productCategories = [
     title: 'Growth Engineering',
     icon: FaBullhorn,
     color: 'text-gold',
-    bgColor: 'bg-navy-900/50',
-    borderColor: 'border-gold/20',
+    bgColor: 'bg-navy-900',
+    borderColor: 'border-gold/30',
     products: ['marketability', 'promotability', 'cv-portfolio']
   },
   {
@@ -84,8 +84,8 @@ const productCategories = [
     title: 'Bespoke Builds',
     icon: FaCogs,
     color: 'text-gold',
-    bgColor: 'bg-navy-900/50',
-    borderColor: 'border-gold/20',
+    bgColor: 'bg-navy-900',
+    borderColor: 'border-gold/30',
     products: ['adaptability']
   }
 ];
@@ -97,7 +97,7 @@ const products = [
     subtitle: 'CRM Mini',
     price: 0,
     priceLabel: 'FREE',
-    description: 'The relationship-tracking layer every operation needs before it can scale — deployed free, upgraded when you\'re ready.',
+    description: 'The relationship-tracking layer every operation needs before it can scale &mdash; deployed free, upgraded when you\'re ready.',
     tagline: 'The foundation layer for every client relationship you\'ll ever manage.',
     icon: FaUsers,
     color: 'from-emerald-500 to-teal-600',
@@ -113,7 +113,7 @@ const products = [
     subtitle: 'CRM Pro',
     price: 499,
     priceLabel: 'R499',
-    description: 'A full pipeline architecture — deal stages, relationship metrics, and growth tracking — engineered for teams that have outgrown a contact list.',
+    description: 'A full pipeline architecture &mdash; deal stages, relationship metrics, and growth tracking &mdash; engineered for teams that have outgrown a contact list.',
     tagline: 'Expanding your reach with systematic precision.',
     icon: FaUsers,
     color: 'from-blue-500 to-indigo-600',
@@ -274,7 +274,7 @@ const products = [
     name: 'CV/Portfolio Builder',
     subtitle: 'Professional Document Generator',
     price: 0,
-    priceLabel: 'R299–R999',
+    priceLabel: 'R299\u2013R999',
     description: 'Generate polished CVs, portfolios, and proposal documents from your Google Sheets data. Perfect for freelancers and agencies.',
     tagline: 'Your experience, beautifully presented.',
     icon: FaFileInvoice,
@@ -326,7 +326,7 @@ export default function Products() {
     const params = new URLSearchParams();
 
     if (!product.orderUrl) {
-      params.set('product', product.name + ' — ' + product.subtitle);
+      params.set('product', product.name + ' \u2014 ' + product.subtitle);
     }
     if (code && code.trim()) {
       params.set('partner', code.trim().toUpperCase());
@@ -378,7 +378,22 @@ export default function Products() {
         ))}
       </div>
 
-      <style jsx>{`\n        @keyframes float-seed-products {\n          0%, 100% {\n            transform: translate(0, 0) rotate(0deg);\n          }\n          25% {\n            transform: translate(12px, -18px) rotate(4deg);\n          }\n          50% {\n            transform: translate(-8px, -28px) rotate(-2deg);\n          }\n          75% {\n            transform: translate(15px, -12px) rotate(6deg);\n          }\n        }\n      `}</style>
+      <style>{`
+        @keyframes float-seed-products {
+          0%, 100% {
+            transform: translate(0, 0) rotate(0deg);
+          }
+          25% {
+            transform: translate(12px, -18px) rotate(4deg);
+          }
+          50% {
+            transform: translate(-8px, -28px) rotate(-2deg);
+          }
+          75% {
+            transform: translate(15px, -12px) rotate(6deg);
+          }
+        }
+      `}</style>
 
       <div className="container-max relative z-10">
         {/* Section Header */}
@@ -391,20 +406,20 @@ export default function Products() {
         >
           <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">Engineered Systems</p>
           <h2 className="text-4xl md:text-5xl font-serif text-navy-900 mb-4">
-            AbilitySuite™
+            AbilitySuite&trade;
           </h2>
           <p className="text-navy-600 text-lg max-w-2xl mx-auto">
             A Modular Operations Architecture
           </p>
           <p className="text-navy-500 text-base max-w-3xl mx-auto mt-4">
-            Each Ability is a purpose-engineered automation solving one operational problem precisely — deployed inside your existing Google Workspace, owned outright, and built to interoperate as your business scales. This isn&apos;t a bundle of templates. It&apos;s infrastructure, assembled module by module, exactly to the shape of your operation.
+            Each Ability is a purpose-engineered automation solving one operational problem precisely &mdash; deployed inside your existing Google Workspace, owned outright, and built to interoperate as your business scales. This isn&apos;t a bundle of templates. It&apos;s infrastructure, assembled module by module, exactly to the shape of your operation.
           </p>
           <p className="text-gold-dark font-bold text-sm mt-4">
-            No subscriptions. No rented software. Build it once, and it&apos;s yours — permanently.
+            No subscriptions. No rented software. Build it once, and it&apos;s yours &mdash; permanently.
           </p>
         </motion.div>
 
-        {/* Partner Code Banner — Glass Morphism */}
+        {/* Partner Code Banner */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -459,8 +474,8 @@ export default function Products() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Category Header — Glass */}
-                <div className={`flex items-center gap-3 mb-6 px-5 py-3.5 rounded-xl ${category.bgColor} backdrop-blur-sm ${category.borderColor} border`}>
+                {/* Category Header - SOLID NAVY */}
+                <div className={`flex items-center gap-3 mb-6 px-5 py-3.5 rounded-xl ${category.bgColor} ${category.borderColor} border`}>
                   <category.icon className={`w-5 h-5 ${category.color}`} />
                   <h3 className={`text-lg font-bold tracking-wide ${category.color}`}>{category.title}</h3>
                   <div className="h-px flex-1 bg-gold/20" />
@@ -522,7 +537,7 @@ export default function Products() {
                         {globalPartnerCode.trim() && product.price > 0 && (
                           <p className="text-emerald-600 text-xs mt-2 font-medium">
                             <FaTag className="inline mr-1" size={10} />
-                            Partner code applied — 10% off
+                            Partner code applied &mdash; 10% off
                           </p>
                         )}
                       </div>
@@ -534,7 +549,7 @@ export default function Products() {
           })}
         </div>
 
-        {/* ReceiptSnap vs Payability Comparison — Glass */}
+        {/* ReceiptSnap vs Payability Comparison */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -558,7 +573,7 @@ export default function Products() {
                 <div>
                   <h4 className="text-xl font-bold text-navy-900">ReceiptSnap</h4>
                   <p className="text-amber-600 font-bold">
-                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(299)) : 'R299'} — One Time
+                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(299)) : 'R299'} &mdash; One Time
                     {globalPartnerCode.trim() && <span className="text-navy-400 text-sm line-through ml-2">R299</span>}
                   </p>
                 </div>
@@ -595,13 +610,13 @@ export default function Products() {
                 <div>
                   <h4 className="text-xl font-bold text-navy-900">Payability</h4>
                   <p className="text-cyan-600 font-bold">
-                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(499)) : 'R499'} — One Time
+                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(499)) : 'R499'} &mdash; One Time
                     {globalPartnerCode.trim() && <span className="text-navy-400 text-sm line-through ml-2">R499</span>}
                   </p>
                 </div>
               </div>
               <p className="text-navy-600 mb-6 text-sm leading-relaxed">
-                <strong>You sell things and need to get paid.</strong> Payability is a full accounts receivable system — generate branded PDF invoices, track payments, send reminders, and know exactly who owes you what.
+                <strong>You sell things and need to get paid.</strong> Payability is a full accounts receivable system &mdash; generate branded PDF invoices, track payments, send reminders, and know exactly who owes you what.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center gap-2 text-sm text-navy-700">
@@ -619,7 +634,7 @@ export default function Products() {
               </ul>
               <div className="bg-white/80 rounded-lg p-4 border border-cyan-100">
                 <p className="text-xs text-navy-500 font-medium">Best for:</p>
-                <p className="text-sm text-navy-700">Service businesses, agencies, consultants — anyone who invoices clients and needs cash flow visibility.</p>
+                <p className="text-sm text-navy-700">Service businesses, agencies, consultants &mdash; anyone who invoices clients and needs cash flow visibility.</p>
               </div>
             </div>
           </div>
@@ -630,12 +645,12 @@ export default function Products() {
               The Simple Rule
             </p>
             <p className="text-navy-600 text-sm max-w-2xl mx-auto">
-              <strong>ReceiptSnap</strong> governs what leaves your business. <strong>Payability</strong> governs what comes back in. Most operations eventually need both — they&apos;re built to run side by side inside the same Workspace.
+              <strong>ReceiptSnap</strong> governs what leaves your business. <strong>Payability</strong> governs what comes back in. Most operations eventually need both &mdash; they&apos;re built to run side by side inside the same Workspace.
             </p>
           </div>
         </motion.div>
 
-        {/* Adaptability White-Label Section — Enhanced */}
+        {/* Adaptability White-Label Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -655,7 +670,7 @@ export default function Products() {
                 Every Module, Rebuilt as Yours.
               </h3>
               <p className="text-cream/80 text-lg mb-6 leading-relaxed">
-                Adaptability is where engineering becomes bespoke. We take any Ability module and rebuild it entirely around your identity — your colors, your logo, your business name, on every sheet — and hand it back as a system that looks, and functions, like it was built from scratch for you alone.
+                Adaptability is where engineering becomes bespoke. We take any Ability module and rebuild it entirely around your identity &mdash; your colors, your logo, your business name, on every sheet &mdash; and hand it back as a system that looks, and functions, like it was built from scratch for you alone.
               </p>
               <div className="bg-white/10 rounded-xl p-6 border border-white/10 mb-6 backdrop-blur-sm">
                 <p className="text-gold font-bold mb-2">Example:</p>
@@ -690,11 +705,11 @@ export default function Products() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
               >
-                <FaShoppingCart /> Commission Adaptability — {globalPartnerCode.trim() ? formatPrice(discountedPrice(999)) : 'R999'}
+                <FaShoppingCart /> Commission Adaptability &mdash; {globalPartnerCode.trim() ? formatPrice(discountedPrice(999)) : 'R999'}
               </a>
               {globalPartnerCode.trim() && (
                 <p className="text-emerald-400 text-sm mt-2">
-                  <FaTag className="inline mr-1" size={10} /> Partner code applied — 10% off
+                  <FaTag className="inline mr-1" size={10} /> Partner code applied &mdash; 10% off
                 </p>
               )}
             </div>
@@ -712,7 +727,7 @@ export default function Products() {
                       </div>
                       <div>
                         <p className="text-navy-900 font-bold text-sm">Your Business CRM</p>
-                        <p className="text-navy-500 text-xs">Powered by AbilitySuite™</p>
+                        <p className="text-navy-500 text-xs">Powered by AbilitySuite&trade;</p>
                       </div>
                     </div>
                     <div className="h-2 bg-gray-100 rounded-full mb-2"></div>
@@ -725,7 +740,7 @@ export default function Products() {
                       </div>
                       <div>
                         <p className="text-navy-900 font-bold text-sm">Your Business Invoice System</p>
-                        <p className="text-navy-500 text-xs">Powered by AbilitySuite™</p>
+                        <p className="text-navy-500 text-xs">Powered by AbilitySuite&trade;</p>
                       </div>
                     </div>
                     <div className="h-2 bg-gray-100 rounded-full mb-2"></div>
@@ -733,14 +748,14 @@ export default function Products() {
                   </div>
                 </div>
                 <p className="text-center text-cream/40 text-xs mt-4">
-                  * Visual mockup — actual branding uses your real assets
+                  * Visual mockup &mdash; actual branding uses your real assets
                 </p>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Order Form CTA — Glass */}
+        {/* Order Form CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -758,7 +773,7 @@ export default function Products() {
 
           {globalPartnerCode.trim() && (
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-600 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-emerald-500/30">
-              <FaTag size={12} /> Partner code <span className="uppercase">{globalPartnerCode}</span> active — 10% off at checkout
+              <FaTag size={12} /> Partner code <span className="uppercase">{globalPartnerCode}</span> active &mdash; 10% off at checkout
             </div>
           )}
 
@@ -769,7 +784,7 @@ export default function Products() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
             >
-              <FaShoppingCart /> Deploy Now — One Form, Everything You Need
+              <FaShoppingCart /> Deploy Now &mdash; One Form, Everything You Need
             </a>
           </div>
 
@@ -830,7 +845,7 @@ export default function Products() {
                 <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center gap-2">
                   <FaTag className="text-emerald-500" size={14} />
                   <span className="text-emerald-700 text-sm font-medium">
-                    Partner code <span className="font-bold uppercase">{globalPartnerCode}</span> applied — 10% off
+                    Partner code <span className="font-bold uppercase">{globalPartnerCode}</span> applied &mdash; 10% off
                   </span>
                 </div>
               )}
