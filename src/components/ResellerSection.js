@@ -9,12 +9,12 @@ export default function ResellerSection() {
   const tiers = [
     {
       name: 'Starter',
-      product: 'Single Product',
+      product: 'Single Module',
       price: 'R1,499',
-      description: 'Perfect for solo VAs and consultants adding one automation product to their service menu.',
+      description: 'For independent consultants ready to add a proven, engineered system to their service offering — without building it themselves.',
       icon: FiPackage,
       features: [
-        'One AbilitySuite™ product of your choice',
+        'One AbilitySuite™ module of your choice',
         'Full white-label rights (remove Dandelion branding)',
         'Unique reseller license key',
         'Reseller dashboard (activations & client list)',
@@ -29,14 +29,14 @@ export default function ResellerSection() {
     },
     {
       name: 'Professional',
-      product: '3-Product Bundle',
+      product: '3-Module Bundle',
       price: 'R4,999',
       description: 'For small agencies ready to build a full automation product line under their own brand.',
       icon: FiUsers,
       features: [
-        'Pick any 3 AbilitySuite™ products',
+        'Pick any 3 AbilitySuite™ modules',
         'Unified white-label branding across all 3',
-        'Unique license keys per product',
+        'Unique license keys per module',
         'Advanced reseller dashboard with revenue tracking',
         'Custom color palette & domain prefixing',
         'Priority email support (8-hour response)',
@@ -55,14 +55,14 @@ export default function ResellerSection() {
       description: 'The complete ecosystem. For established agencies competing at enterprise level.',
       icon: FiTrendingUp,
       features: [
-        'ALL 14 AbilitySuite™ products included',
+        'ALL 14 AbilitySuite™ modules included',
         'Complete white-label ecosystem',
         'Custom branded client portal',
         'Custom domain option (apps.youragency.com)',
         'Full asset rebranding (emails, templates, copy)',
         'Priority support + dedicated Slack channel',
         'Monthly strategy calls + quarterly reviews',
-        'Early access to new products (Trackability, etc.)',
+        'Early access to new modules (Trackability, etc.)',
         'Revenue analytics dashboard',
         'One-time purchase — unlimited resells',
       ],
@@ -74,10 +74,10 @@ export default function ResellerSection() {
   ]
 
   const benefits = [
-    { title: 'No Coding Required', desc: 'You sell. We build. Your clients never know we exist.', icon: FiZap },
+    { title: 'Zero Engineering Overhead', desc: 'You deploy. We maintain the architecture. Your clients see only your brand.', icon: FiZap },
     { title: '100% White-Label', desc: 'Your logo, your colors, your brand. Everywhere.', icon: FiShield },
     { title: 'Unlimited Resells', desc: 'Buy once. Sell to unlimited clients. Keep 100% of your revenue.', icon: FiTrendingUp },
-    { title: 'Lifetime Updates', desc: 'Products improve over time. Your clients get updates automatically.', icon: FiPackage },
+    { title: 'Systems That Improve Without You Lifting a Finger', desc: 'Every module gets engineering improvements over time, pushed automatically to every deployment.', icon: FiPackage },
   ]
 
   return (
@@ -99,12 +99,11 @@ export default function ResellerSection() {
         >
           <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">White-Label Program</p>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-cream mb-6">
-            Sell Automation Under <span className="text-gold">Your Brand</span>
+            Deploy Our Engineering. <span className="text-gold">Own the Client Relationship.</span>
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto rounded-full"></div>
           <p className="text-xl text-cream/60 max-w-3xl mx-auto mt-6">
-            I build the tech. You sell it. Your clients never know I exist. 
-            One payment. Unlimited resells. Your brand, your pricing, your empire.
+            We build the infrastructure. You deploy it under your own brand, at your own pricing, to your own clients — who never need to know we exist. One payment. No revenue share. No limits on how many times you deploy it.
           </p>
         </motion.div>
 
@@ -237,7 +236,7 @@ export default function ResellerSection() {
                   Not Ready to White-Label? <span className="text-gold">Refer & Earn.</span>
                 </h3>
                 <p className="text-cream/60 text-lg mb-8 leading-relaxed">
-                  You don't need to buy a license to make money. Share AbilitySuite™ with your network and earn commission on every sale. No setup. No risk. Just your unique link.
+                  Not ready to deploy your own branded system? You can still refer businesses to ours — and earn commission on every engagement, with zero setup required.
                 </p>
 
                 <div className="space-y-4 mb-8">
@@ -247,7 +246,7 @@ export default function ResellerSection() {
                     </div>
                     <div>
                       <div className="text-2xl font-bold text-emerald-400">20%</div>
-                      <div className="text-cream/70 text-sm">Commission on individual products <span className="text-cream/40">(R299 – R799)</span></div>
+                      <div className="text-cream/70 text-sm">Commission on individual modules <span className="text-cream/40">(R299 – R799)</span></div>
                     </div>
                   </div>
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiMail, FiPhone, FiMapPin, FiExternalLink, FiCheckCircle, FiCalendar, FiClock, FiMessageCircle, FiShoppingCart } from 'react-icons/fi'
+import { FiMail, FiPhone, FiMapPin, FiExternalLink, FiCheckCircle, FiCalendar, FiMessageCircle, FiShoppingCart } from 'react-icons/fi'
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
@@ -22,11 +22,11 @@ export default function Contact() {
         >
           <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">Get In Touch</p>
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-            Let's Work <span className="text-gold">Together</span>
+            Let&apos;s Diagnose What&apos;s Actually <span className="text-gold">Slowing You Down</span>
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto rounded-full"></div>
           <p className="text-xl text-cream/60 max-w-2xl mx-auto mt-6">
-            Ready to transform your business? Book a discovery call or order your products directly.
+            Whether you need a single engineered module or a fully custom system, it starts the same way: understanding exactly what&apos;s breaking in your operation before we propose anything. Book a systems audit, or deploy an Ability module directly.
           </p>
         </motion.div>
 
@@ -82,29 +82,29 @@ export default function Contact() {
                 <div className="flex gap-4">
                   <div className="w-8 h-8 bg-gold rounded-full flex items-center justify-center flex-shrink-0 text-navy-900 font-bold text-sm">1</div>
                   <div>
-                    <p className="font-medium text-cream">Submit the Form</p>
-                    <p className="text-sm text-cream/50">Share your project details and goals</p>
+                    <p className="font-medium text-cream">Submit the Brief</p>
+                    <p className="text-sm text-cream/50">Tell us what&apos;s breaking, not what solution you think you need.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <div className="w-8 h-8 bg-gold/30 rounded-full flex items-center justify-center flex-shrink-0 text-gold font-bold text-sm">2</div>
                   <div>
-                    <p className="font-medium text-cream">I Review Within 24 Hours</p>
-                    <p className="text-sm text-cream/50">I'll assess your needs and prepare recommendations</p>
+                    <p className="font-medium text-cream">We Diagnose Within 24 Hours</p>
+                    <p className="text-sm text-cream/50">We assess the actual operational gap, not just the request.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <div className="w-8 h-8 bg-gold/30 rounded-full flex items-center justify-center flex-shrink-0 text-gold font-bold text-sm">3</div>
                   <div>
-                    <p className="font-medium text-cream">Discovery Call Scheduled</p>
-                    <p className="text-sm text-cream/50">We'll discuss your project in detail (15-30 min)</p>
+                    <p className="font-medium text-cream">Systems Audit Scheduled</p>
+                    <p className="text-sm text-cream/50">A focused 15–30 minute session on your process, not a sales call.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <div className="w-8 h-8 bg-gold/30 rounded-full flex items-center justify-center flex-shrink-0 text-gold font-bold text-sm">4</div>
                   <div>
-                    <p className="font-medium text-cream">Custom Proposal Sent</p>
-                    <p className="text-sm text-cream/50">Tailored solution with clear pricing and timeline</p>
+                    <p className="font-medium text-cream">Engineering Proposal Delivered</p>
+                    <p className="text-sm text-cream/50">The exact system, scoped, priced, and timelined.</p>
                   </div>
                 </div>
               </div>
@@ -125,16 +125,16 @@ export default function Contact() {
                 <div className="w-16 h-16 bg-gold/30 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FiShoppingCart className="w-8 h-8 text-gold" />
                 </div>
-                <h3 className="text-2xl font-bold text-cream mb-2">Order Products</h3>
+                <h3 className="text-2xl font-bold text-cream mb-2">Deploy an Engineered Module</h3>
                 <p className="text-cream/60 text-sm">
-                  Browse AbilitySuite™ and order directly. License keys delivered within 24 hours.
+                  Deploy an engineered module directly. Delivered and ready to run within 24 hours.
                 </p>
               </div>
 
               <div className="space-y-2 mb-6">
                 <div className="flex items-center gap-3 text-cream/70 text-sm">
                   <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
-                  <span>12 products from FREE to R1,499</span>
+                  <span>14 modules from FREE to R1,499</span>
                 </div>
                 <div className="flex items-center gap-3 text-cream/70 text-sm">
                   <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
@@ -153,27 +153,27 @@ export default function Contact() {
                 className="block w-full bg-gold text-navy-900 text-center py-4 rounded-xl font-bold text-lg hover:bg-gold-light transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
                 <FiShoppingCart className="w-5 h-5" />
-                Order Now
+                Deploy Now
                 <FiExternalLink className="w-4 h-4" />
               </a>
             </div>
 
-            {/* Book Discovery Call Card */}
+            {/* Book Systems Audit Card */}
             <div className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-2xl p-8 border border-gold/20">
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FiMessageCircle className="w-8 h-8 text-gold" />
                 </div>
-                <h3 className="text-2xl font-bold text-cream mb-2">Book a Discovery Call</h3>
+                <h3 className="text-2xl font-bold text-cream mb-2">Book a Systems Audit</h3>
                 <p className="text-cream/60 text-sm">
-                  For custom VA services, automation projects, or tailored solutions.
+                  For fully custom builds, embedded operations support, or anything that doesn&apos;t fit an existing module.
                 </p>
               </div>
 
               <div className="space-y-2 mb-6">
                 <div className="flex items-center gap-3 text-cream/70 text-sm">
                   <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
-                  <span>Free 15-30 minute consultation</span>
+                  <span>Free 15–30 minute diagnostic session</span>
                 </div>
                 <div className="flex items-center gap-3 text-cream/70 text-sm">
                   <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
@@ -181,7 +181,7 @@ export default function Contact() {
                 </div>
                 <div className="flex items-center gap-3 text-cream/70 text-sm">
                   <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
-                  <span>Custom proposal within 48 hours</span>
+                  <span>Engineering proposal within 48 hours</span>
                 </div>
               </div>
 
@@ -191,7 +191,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="block w-full bg-white/10 text-white text-center py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300 border border-white/20 flex items-center justify-center gap-2"
               >
-                Start Discovery Call
+                Start Systems Audit
                 <FiExternalLink className="w-4 h-4" />
               </a>
             </div>

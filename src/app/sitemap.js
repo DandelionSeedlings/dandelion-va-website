@@ -1,20 +1,22 @@
-import { getAllSlugs } from '../lib/blog'
-
 export default async function sitemap() {
   const baseUrl = 'https://dandelioncreations.co.za'
-  
-  const staticRoutes = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
-    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+
+  const routes = [
+    '',
+    '/about',
+    '/services',
+    '/products',
+    '/pricing',
+    '/portfolio',
+    '/blog',
+    '/contact',
+    '/resellers',
   ]
 
-  const slugs = getAllSlugs()
-  const blogPosts = slugs.map((slug) => ({
-    url: `${baseUrl}/blog/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.7,
+  return routes.map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: 'weekly',
+    priority: route === '' ? 1.0 : 0.8,
   }))
-
-  return [...staticRoutes, ...blogPosts]
 }

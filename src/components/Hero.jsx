@@ -75,11 +75,11 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9 }}>
 
-            {/* Tagline */}
+            {/* Tagline — repositioned */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
               className="inline-flex items-center gap-2 bg-gold/20 text-navy-900 px-5 py-2.5 rounded-full text-sm font-bold mb-4 border border-gold/30">
               <FiCheckCircle className="w-4 h-4 text-gold-dark" />
-              Planting the abilities your business needs to grow
+              Engineered Clarity for Growing Businesses
             </motion.div>
 
             {/* Google Apps Script Badge */}
@@ -90,22 +90,23 @@ export default function Hero() {
             </motion.div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-navy-900 leading-tight mb-6">
-              Stop Wasting{' '}
-              <span className="text-gold-dark">20+ Hours</span>{' '}
-              Per Week on Manual{' '}
-              <span className="font-script text-navy-700">Admin Work</span>
+              Your Business Doesn&apos;t Need{' '}
+              <span className="text-gold-dark">More Software.</span>{' '}
+              It Needs <span className="font-script text-navy-700">Better Engineering.</span>
             </h1>
 
             <p className="text-xl text-navy-600 mb-10 max-w-lg leading-relaxed">
-              Every hour you spend copying, pasting, and chasing spreadsheets is an hour you could be growing your business. 
-              We build custom Google Workspace systems that eliminate the busywork — so you can focus on what actually makes money.
+              Dandelion Creations designs and builds custom automated systems inside Google Workspace — precise, permanent, and built around how your business actually runs. No subscriptions. No bloated platforms. No admin chaos. Just infrastructure that works.
+            </p>
+
+            <p className="text-lg text-navy-500 mb-10 max-w-lg leading-relaxed italic">
+              Most businesses aren&apos;t short on data. They&apos;re short on structure. We build the structure.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <a href={ORDER_FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-navy inline-flex items-center justify-center gap-2 text-lg">
-                <FiShoppingCart className="w-5 h-5" />
-                Order Products
+              <a href="#products" className="btn-navy inline-flex items-center justify-center gap-2 text-lg">
                 <FiArrowRight className="w-5 h-5" />
+                View the AbilitySuite™ Ecosystem
               </a>
               <a href="https://dandelioncreations.co.za/get-connectability" target="_blank" rel="noopener noreferrer" className="btn-outline inline-flex items-center justify-center gap-2 text-lg border-emerald-500 text-emerald-600 hover:bg-emerald-50">
                 <FiCheckCircle className="w-5 h-5" />
@@ -114,7 +115,7 @@ export default function Hero() {
             </div>
 
             <div className="flex gap-10">
-              {[{v:'500+',l:'Hours Automated'},{v:'12',l:'Products Built'},{v:'100%',l:'Custom Code'}].map((s,i) => (
+              {[{v:'500+',l:'Hours Reclaimed'},{v:'14',l:'Systems Deployed'},{v:'50+',l:'Businesses Running on Our Systems'}].map((s,i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 + i*0.15 }}>
                   <p className="text-3xl font-bold text-gold-dark">{s.v}</p>
                   <p className="text-sm text-navy-500">{s.l}</p>
@@ -145,15 +146,15 @@ export default function Hero() {
                     transition={{ delay: 0.8 }}
                     className="bg-navy-900 rounded-xl p-5 text-center">
                     <p className="text-3xl font-bold text-gold">500+</p>
-                    <p className="text-sm text-cream/70 mt-1">Hours Automated</p>
+                    <p className="text-sm text-cream/70 mt-1">Hours Reclaimed</p>
                   </motion.div>
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }} 
                     animate={{ opacity: 1, y: 0 }} 
                     transition={{ delay: 1.0 }}
                     className="bg-gold-pale rounded-xl p-5 text-center border border-gold/20">
-                    <p className="text-3xl font-bold text-navy-900">12</p>
-                    <p className="text-sm text-navy-600 mt-1">Products Available</p>
+                    <p className="text-3xl font-bold text-navy-900">14</p>
+                    <p className="text-sm text-navy-600 mt-1">Systems Deployed</p>
                   </motion.div>
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }} 
@@ -161,15 +162,15 @@ export default function Hero() {
                     transition={{ delay: 1.2 }}
                     className="bg-gold-pale rounded-xl p-5 text-center border border-gold/20">
                     <p className="text-3xl font-bold text-navy-900">50+</p>
-                    <p className="text-sm text-navy-600 mt-1">Happy Clients</p>
+                    <p className="text-sm text-navy-600 mt-1">Businesses Running on Our Systems</p>
                   </motion.div>
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }} 
                     animate={{ opacity: 1, y: 0 }} 
                     transition={{ delay: 1.4 }}
                     className="bg-navy-900 rounded-xl p-5 text-center">
-                    <p className="text-3xl font-bold text-gold">24h</p>
-                    <p className="text-sm text-cream/70 mt-1">Response Time</p>
+                    <p className="text-3xl font-bold text-gold">100%</p>
+                    <p className="text-sm text-cream/70 mt-1">Fully Owned Infrastructure</p>
                   </motion.div>
                 </div>
 
@@ -185,7 +186,7 @@ export default function Hero() {
               <motion.div className="absolute -bottom-4 -right-4 bg-navy-900 p-4 rounded-xl shadow-xl border border-gold/30"
                 animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity }}>
                 <p className="font-bold text-gold">AbilitySuite™</p>
-                <p className="text-xs text-cream/70">12 Business Tools</p>
+                <p className="text-xs text-cream/70">14 Business Systems</p>
               </motion.div>
             </div>
           </motion.div>

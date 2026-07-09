@@ -1,521 +1,263 @@
 'use client'
 
-import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiCheck, FiStar, FiArrowRight, FiShoppingCart, FiCode, FiZap, FiMessageCircle, FiTag, FiPercent } from 'react-icons/fi'
+import { FiCheck, FiArrowRight, FiZap, FiPercent, FiTrendingUp, FiShield } from 'react-icons/fi'
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
-export default function Pricing() {
-  const [partnerCode, setPartnerCode] = useState('')
+const steps = [
+  {
+    number: '01',
+    title: 'Diagnose',
+    description: 'We audit your current operational gaps and map them to the right systems. No guesswork. No overselling.',
+    icon: FiZap,
+  },
+  {
+    number: '02',
+    title: 'Deploy',
+    description: 'Your systems are configured, branded, and handed over ready to run. You own the infrastructure from day one.',
+    icon: FiPercent,
+  },
+  {
+    number: '03',
+    title: 'Direct',
+    description: 'You run your operation. We stay available for refinements, new modules, and strategic adjustments as you scale.',
+    icon: FiTrendingUp,
+  },
+]
 
-  const step1Product = {
+const products = [
+  {
     name: 'Connectability',
-    ability: 'CRM Mini',
-    price: 'FREE',
-    description: 'Start with a free client management system. Track leads, manage contacts, and build your pipeline — no credit card required.',
-    features: ['Contact management', 'Lead tracking', 'Basic pipeline', 'Email integration', 'Lifetime free updates'],
-    href: 'https://dandelioncreations.co.za/get-connectability'
-  };
+    tagline: 'Staff & Student Management',
+    price: 'R499',
+    description: 'Complete people-tracking infrastructure for schools, academies, and training centres.',
+    features: [
+      'Staff & student database',
+      'QR check-in/out system',
+      'Automated WhatsApp alerts',
+      'Digital sign-in sheets',
+      'Emergency contact management',
+      'One-time purchase',
+    ],
+    cta: 'Get Connectability',
+    popular: false,
+    accent: 'border-emerald-500/30',
+  },
+  {
+    name: 'Marketability',
+    tagline: 'Social Media Command Centre',
+    price: 'R499',
+    description: 'The full content pipeline from idea to published post, with approval workflows and analytics.',
+    features: [
+      'Content calendar & scheduler',
+      'Multi-platform publishing',
+      'Approval workflows',
+      'Hashtag & trend tracking',
+      'Performance analytics',
+      'One-time purchase',
+    ],
+    cta: 'Get Marketability',
+    popular: true,
+    accent: 'border-gold',
+  },
+  {
+    name: 'Payability',
+    tagline: 'Invoice & Revenue Intelligence',
+    price: 'R499',
+    description: 'Automated invoicing, payment tracking, and revenue dashboards that keep cash flow visible.',
+    features: [
+      'Automated invoice generation',
+      'Payment reminder system',
+      'Revenue dashboard',
+      'Client portal',
+      'PDF export & email delivery',
+      'One-time purchase',
+    ],
+    cta: 'Get Payability',
+    popular: false,
+    accent: 'border-violet-500/30',
+  },
+  {
+    name: 'ReceiptSnap',
+    tagline: 'Expense Capture & Tracking',
+    price: 'R299',
+    description: 'Snap receipts with your phone. Automatic categorisation, tax-ready reports, and SARS compliance.',
+    features: [
+      'Camera receipt capture',
+      'Auto-categorisation',
+      'Tax-ready reports',
+      'SARS-compliant exports',
+      'Mileage & expense tracking',
+      'One-time purchase',
+    ],
+    cta: 'Get ReceiptSnap',
+    popular: false,
+    accent: 'border-blue-500/30',
+  },
+]
 
-  const step2Products = [
-    { name: 'ReceiptSnap', ability: 'Receipt Tracker', price: 299, priceLabel: 'R299', popular: false },
-    { name: 'Visibility', ability: 'Content Planner', price: 299, priceLabel: 'R299', popular: false },
-    { name: 'Scalability', ability: 'CRM Pro', price: 499, priceLabel: 'R499', popular: true },
-    { name: 'Payability', ability: 'Invoice Sorter', price: 499, priceLabel: 'R499', popular: false },
-    { name: 'Availability', ability: 'Stock & Supplier', price: 499, priceLabel: 'R499', popular: false },
-    { name: 'Profitability', ability: 'Income & Expenses', price: 799, priceLabel: 'R799', popular: false },
-    { name: 'Adaptability', ability: 'White-Label Setup', price: 999, priceLabel: 'R999', popular: false },
-  ];
+const retainerTiers = [
+  {
+    name: 'Essential',
+    hours: '10 hours/month',
+    price: 'R5,000',
+    description: 'For businesses that need reliable operational support without the overhead of a full-time hire.',
+    features: [
+      '10 hours embedded operations support',
+      'Email & WhatsApp communication',
+      'Weekly check-in calls',
+      'Priority task handling',
+      'System maintenance included',
+    ],
+    cta: 'Start Essential',
+    popular: false,
+  },
+  {
+    name: 'Growth',
+    hours: '20 hours/month',
+    price: 'R9,500',
+    description: 'For growing businesses that need strategic operational partnership, not just task execution.',
+    features: [
+      '20 hours embedded operations support',
+      'Dedicated operations engineer',
+      'Bi-weekly strategy sessions',
+      'Process documentation & refinement',
+      'System optimisation & upgrades',
+      'Same-day response guarantee',
+    ],
+    cta: 'Start Growth',
+    popular: true,
+  },
+  {
+    name: 'Scale',
+    hours: '40 hours/month',
+    price: 'R18,000',
+    description: 'For established businesses ready to fully outsource operational leadership and system architecture.',
+    features: [
+      '40 hours embedded operations support',
+      'Senior operations engineer assigned',
+      'Weekly strategy & review calls',
+      'Full system architecture oversight',
+      'Custom module development',
+      '24-hour response guarantee',
+      'Quarterly business reviews',
+    ],
+    cta: 'Start Scale',
+    popular: false,
+  },
+]
 
-  const step3Services = [
-    { name: 'Marketability', description: 'SMM & Web Framework', price: 'Custom Quote' },
-    { name: 'Promotability', description: 'Corporate Swag Tracker', price: 'Custom Quote' },
-    { name: 'Custom Scripts', description: 'Google Apps Script automation', price: 'From R1,500' },
-    { name: 'VA Retainers', description: 'Ongoing operational support', price: 'From R5,000/mo' },
-  ];
-
-  const vaPlans = [
-    {
-      name: 'Professional',
-      price: 'From R5,000',
-      period: '/ month',
-      hours: '20 hours per month',
-      description: 'Ideal for growing businesses needing consistent operational support.',
-      features: [
-        '20 hours of dedicated VA support',
-        'Social Media Management (Digital content scheduling & engagement)',
-        'Email & Calendar Management',
-        'Standard Administrative Support',
-      ],
-      popular: false,
-      accent: 'border-navy-700',
-      buttonClass: 'bg-navy-900 text-gold hover:bg-navy-700',
-    },
-    {
-      name: 'Growth',
-      price: 'From R9,000',
-      period: '/ month',
-      hours: '30 hours per month',
-      description: 'For businesses ready to scale operations and automate manual workflows.',
-      features: [
-        '30 hours of specialized support',
-        'Advanced Social Media & Content Strategy',
-        'Google Sheets Automation & Script Basics',
-        'Standard Systems Integration (Zapier / Make)',
-        'Monthly Performance & Strategy Calls',
-      ],
-      popular: true,
-      accent: 'border-gold',
-      buttonClass: 'bg-gold text-navy-900 hover:bg-gold-light',
-    },
-    {
-      name: 'Premium',
-      price: 'From R16,000',
-      period: '/ month',
-      hours: '40 hours per month',
-      description: 'High-level technical execution and dedicated management for maximum efficiency.',
-      features: [
-        '40 hours of elite technical support',
-        'Custom App Development & Advanced Google Apps Script',
-        'Database Management & Systems Architecture',
-        'Priority 1-Hour Response (Within Core Business Hours)',
-      ],
-      popular: false,
-      accent: 'border-navy-900',
-      buttonClass: 'bg-navy-900 text-gold hover:bg-navy-700',
-    },
-  ]
-
-  const scriptPackages = [
-    {
-      name: 'Custom Script',
-      price: 'From R1,500',
-      description: 'One task, automated. A single Google Apps Script that solves one specific problem.',
-      features: ['Single automation', 'Google Sheets/Forms/Calendar', '1 revision included', 'Delivery in 2–3 days'],
-      icon: FiCode,
-      popular: false,
-    },
-    {
-      name: 'Full Workflow',
-      price: 'From R5,000',
-      description: 'Your whole system, connected. Multiple scripts working together across your workspace.',
-      features: ['Multi-step automation', 'Cross-app integration', '3 revisions included', 'Delivery in 1–2 weeks'],
-      icon: FiZap,
-      popular: true,
-    },
-    {
-      name: 'Free Audit',
-      price: '15 min',
-      description: "Let's find what to automate. I'll review your workflow and identify automation opportunities.",
-      features: ['Workflow review', 'Automation roadmap', 'Priority recommendations', 'No obligation'],
-      icon: FiMessageCircle,
-      popular: false,
-    },
-  ]
-
-  const additionalRates = [
-    { service: 'Hourly Overage', rate: 'R450/hour' },
-    { service: 'Specialized Projects', rate: 'Custom Quote' },
-    { service: 'Google Apps Script', rate: 'From R1,500' },
-    { service: 'Custom Automation', rate: 'From R5,000' },
-  ]
-
-  const buildOrderUrl = (productName, subtitle) => {
-    const params = new URLSearchParams()
-    params.set('product', productName + ' — ' + subtitle)
-    if (partnerCode.trim()) {
-      params.set('partner', partnerCode.trim().toUpperCase())
-    }
-    return `${ORDER_FORM_URL}?${params.toString()}`
-  }
-
-  const discountedPrice = (price) => {
-    if (!partnerCode.trim() || price === 0) return price
-    return Math.round(price * 0.9)
-  }
-
-  const formatPrice = (price) => 'R' + price.toLocaleString('en-ZA')
-
+export default function Pricing() {
   return (
-    <section id="pricing" className="section-padding bg-navy-900 relative overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-20 w-72 h-72 border border-gold rounded-full"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 border border-gold rounded-full"></div>
-      </div>
-
-      <div className="container-max px-6 relative z-10">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
-          className="text-center mb-20">
-          <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">Investment</p>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-cream mb-6">
-            Transparent <span className="text-gold">Pricing</span>
-          </h2>
-          <div className="w-24 h-1 bg-gold mx-auto rounded-full"></div>
-          <p className="text-xl text-cream/60 max-w-2xl mx-auto mt-6">
-            Value-based packages designed for serious businesses. Every tier scales with your ambition.
-          </p>
-        </motion.div>
-
-        {/* NO SUBSCRIPTIONS BANNER */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-r from-gold via-gold-light to-gold rounded-2xl p-6 md:p-8 mb-12 text-center shadow-2xl border-2 border-gold/50"
-        >
-          <p className="text-navy-900 text-xl md:text-2xl font-bold tracking-wide">
-            100% NO SUBSCRIPTIONS. ONE PAYMENT. LIFETIME UPDATES.
-          </p>
-          <p className="text-navy-800 text-sm mt-2 font-medium">
-            Every AbilitySuite™ product is a one-time purchase. You own it forever. No monthly fees. No hidden costs.
-          </p>
-        </motion.div>
-
-        {/* Partner Code Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <div className="bg-navy-800/80 rounded-2xl p-6 border border-gold/20 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-2xl"></div>
-            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gold/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <FiPercent className="w-6 h-6 text-gold" />
-                </div>
-                <div>
-                  <h3 className="text-cream font-bold text-lg">Have a Partner Code?</h3>
-                  <p className="text-cream/60 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid product.</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 w-full md:w-auto">
-                <div className="relative flex-1 md:w-64">
-                  <FiTag className="absolute left-3 top-1/2 -translate-y-1/2 text-cream/40 w-4 h-4" />
-                  <input
-                    type="text"
-                    value={partnerCode}
-                    onChange={(e) => setPartnerCode(e.target.value.toUpperCase())}
-                    placeholder="e.g. PARTNER-SARAH"
-                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/10 border border-white/20 text-cream placeholder-cream/40 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/50 transition-all"
-                  />
-                </div>
-                {partnerCode.trim() && (
-                  <span className="text-emerald-400 text-sm font-bold flex items-center gap-1 whitespace-nowrap">
-                    <FiCheck className="w-4 h-4" /> 10% Active
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* 3-STEP JOURNEY */}
-        <div className="space-y-16 mb-20">
-          {/* STEP 1: FREE */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                1
-              </div>
-              <div>
-                <h3 className="text-2xl font-serif font-bold text-cream">Start Free</h3>
-                <p className="text-cream/60 text-sm">No risk. No credit card. Just value.</p>
-              </div>
-            </div>
-            
-            <div className="bg-gradient-to-br from-emerald-900/50 to-navy-800 rounded-2xl p-8 border-2 border-emerald-500/30">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-sm font-bold mb-4">
-                    <FiStar size={14} /> FREE FOREVER
-                  </div>
-                  <h4 className="text-3xl font-bold text-cream mb-2">{step1Product.name}</h4>
-                  <p className="text-emerald-400 font-medium mb-4">{step1Product.ability}</p>
-                  <p className="text-cream/70 mb-6 leading-relaxed">{step1Product.description}</p>
-                  <ul className="space-y-2 mb-6">
-                    {step1Product.features.map((f, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-cream/80">
-                        <FiCheck className="text-emerald-400" size={16} /> {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={step1Product.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-xl font-bold transition-all duration-300"
-                  >
-                    Get Connectability Free <FiArrowRight />
-                  </a>
-                </div>
-                <div className="hidden md:block">
-                  <div className="bg-white/5 rounded-xl p-4 border border-white/10 overflow-hidden">
-                    <img
-                      src="/images/connectability-dashboard.png"
-                      alt="Connectability CRM Dashboard"
-                      className="w-full rounded-lg shadow-lg"
-                    />
-                    <p className="text-cream/40 text-xs mt-3 text-center">Free CRM Dashboard Preview</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* STEP 2: SOLVE PROBLEMS */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-gold rounded-full flex items-center justify-center text-navy-900 font-bold text-xl shadow-lg">
-                2
-              </div>
-              <div>
-                <h3 className="text-2xl font-serif font-bold text-cream">Solve Your Problems</h3>
-                <p className="text-cream/60 text-sm">R299 – R999. One payment. Yours forever.</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {step2Products.map((product, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05, duration: 0.4 }}
-                  viewport={{ once: true }}
-                  className={`bg-navy-800/80 rounded-xl p-5 border transition-all duration-300 hover:-translate-y-1 ${
-                    product.popular ? 'border-gold/50 shadow-lg shadow-gold/10' : 'border-gold/10 hover:border-gold/30'
-                  }`}
-                >
-                  {product.popular && (
-                    <span className="inline-block bg-gold/20 text-gold text-xs font-bold px-2 py-1 rounded-full mb-2">
-                      POPULAR
-                    </span>
-                  )}
-                  <p className="text-xs text-cream/50 mb-1">{product.ability}</p>
-                  <p className="text-sm font-bold text-cream mb-2">{product.name}</p>
-                  
-                  {partnerCode.trim() ? (
-                    <div>
-                      <span className="text-lg text-cream/40 line-through">{product.priceLabel}</span>
-                      <p className="text-xl font-bold text-emerald-400">{formatPrice(discountedPrice(product.price))}</p>
-                      <p className="text-emerald-500/70 text-[10px] mt-1">Partner code applied</p>
-                    </div>
-                  ) : (
-                    <p className="text-xl font-bold text-gold">{product.priceLabel}</p>
-                  )}
-
-                  <a
-                    href={buildOrderUrl(product.name, product.ability)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 block text-center text-xs font-bold bg-gold/10 text-gold py-2 rounded-lg hover:bg-gold/20 transition-colors"
-                  >
-                    Order Now
-                  </a>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* STEP 3: EXPERT HELP */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-violet-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                3
-              </div>
-              <div>
-                <h3 className="text-2xl font-serif font-bold text-cream">Need Expert Help?</h3>
-                <p className="text-cream/60 text-sm">Custom quotes for complex needs.</p>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-4">
-              {step3Services.map((service, i) => (
-                <div key={i} className="bg-navy-800/50 rounded-xl p-6 border border-gold/10 hover:border-gold/30 transition-colors">
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-lg font-bold text-cream">{service.name}</h4>
-                    <span className="text-gold font-bold text-sm">{service.price}</span>
-                  </div>
-                  <p className="text-cream/60 text-sm mb-4">{service.description}</p>
-                  <a
-                    href="https://wa.me/27728393087"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gold text-sm font-medium hover:underline flex items-center gap-1"
-                  >
-                    Request Quote <FiArrowRight size={14} />
-                  </a>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ── GOOGLE SHEETS AUTOMATION ── */}
+    <section id="pricing" className="section-padding bg-cream">
+      <div className="container-max">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <span className="text-gold font-bold tracking-widest uppercase text-sm mb-4 block">
+            Own Your Infrastructure
+          </span>
+          <h2 className="text-4xl md:text-5xl font-serif text-navy-900 mb-4">
+            Systems First. Subscriptions Never.
+          </h2>
+          <p className="text-navy-600 text-lg max-w-2xl mx-auto">
+            Every Ability module is a one-time purchase. You own it. It runs in your Google Workspace. No recurring fees, no lock-in, no surprise price hikes.
+          </p>
+        </motion.div>
+
+        {/* 3-Step Journey */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 bg-gold/20 text-gold px-4 py-2 rounded-full text-sm font-bold mb-4">
-              <FiCode className="w-4 h-4" /> Google Apps Script
-            </div>
-            <h3 className="text-3xl font-serif text-cream mb-2">
-              Custom Google Sheets Automation
-            </h3>
-            <p className="text-cream/60">
-              One-off projects built to your exact specifications. No subscriptions. No monthly fees.
-            </p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {steps.map((step, i) => (
+              <div
+                key={i}
+                className="relative bg-white rounded-2xl p-8 shadow-lg border border-gold/10"
+              >
+                <div className="absolute -top-4 left-8 bg-gold text-navy-900 w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                  {step.number}
+                </div>
+                <div className="mt-4">
+                  <div className="w-12 h-12 bg-gold/20 rounded-xl flex items-center justify-center mb-4">
+                    <step.icon className="w-6 h-6 text-gold" />
+                  </div>
+                  <h3 className="text-xl font-bold text-navy-900 mb-2">{step.title}</h3>
+                  <p className="text-navy-600 text-sm leading-relaxed">{step.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
+        </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6 mb-10">
-            {scriptPackages.map((pkg, i) => (
+        {/* Product Modules */}
+        <div className="mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h3 className="text-2xl md:text-3xl font-serif text-navy-900 mb-2">
+              Ability Modules
+            </h3>
+            <p className="text-navy-600">One-time purchase. Yours forever.</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {products.map((product, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
-                className={`relative rounded-2xl p-8 border-2 transition-all duration-500 ${
-                  pkg.popular
-                    ? 'bg-gradient-to-b from-gold/20 to-navy-800 border-gold shadow-2xl scale-105'
-                    : 'bg-navy-800/50 border-gold/20 hover:border-gold/40'
-                }`}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className={`bg-white rounded-2xl p-6 shadow-lg border-2 ${product.accent} ${
+                  product.popular ? 'scale-105 shadow-2xl' : ''
+                } transition-all duration-300`}
               >
-                {pkg.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-navy-900 px-5 py-1.5 rounded-full text-sm font-bold flex items-center gap-1.5 shadow-lg">
-                    <FiStar className="w-4 h-4" />
-                    MOST POPULAR
-                  </div>
-                )}
-
-                <div className="w-14 h-14 bg-gold/20 rounded-xl flex items-center justify-center mb-4">
-                  <pkg.icon className="w-7 h-7 text-gold" />
-                </div>
-
-                <h4 className="text-xl font-bold text-cream mb-2">{pkg.name}</h4>
-                <div className="text-3xl font-bold text-gold mb-3">{pkg.price}</div>
-                <p className="text-cream/60 text-sm mb-6">{pkg.description}</p>
-
-                <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-cream/70">
-                      <FiCheck className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                {pkg.name === 'Free Audit' ? (
-                  <a
-                    href="https://wa.me/27728393087"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center py-3 rounded-xl font-bold bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-all duration-300"
-                  >
-                    Book Free Audit
-                  </a>
-                ) : (
-                  <a
-                    href="https://wa.me/27728393087"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-center py-3 rounded-xl font-bold bg-gold text-navy-900 hover:bg-[#c4a030] transition-all duration-300"
-                  >
-                    Get Quote
-                  </a>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <a
-              href="https://wa.me/27728393087"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
-            >
-              WhatsApp Me → +27 72 839 3087
-            </a>
-          </div>
-        </motion.div>
-
-        {/* ── VA RETAINERS ── */}
-        <div className="mb-20">
-          <div className="text-center mb-10">
-            <h3 className="text-2xl font-serif text-cream mb-2">
-              Virtual Assistant Retainers
-            </h3>
-            <p className="text-cream/60">Ongoing support for businesses that need consistent help</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {vaPlans.map((plan, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i*0.15, duration: 0.6 }} viewport={{ once: true }}
-                className={`relative rounded-2xl p-8 border-2 ${plan.accent} ${
-                  plan.popular
-                    ? 'bg-gradient-to-b from-gold/20 to-navy-800 shadow-2xl scale-105'
-                    : 'bg-navy-800/50 shadow-lg hover:shadow-xl'
-                } transition-all duration-500 backdrop-blur-sm`}>
-
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-navy-900 px-5 py-1.5 rounded-full text-sm font-bold flex items-center gap-1.5 shadow-lg">
-                    <FiStar className="w-4 h-4" />
+                {product.popular && (
+                  <div className="bg-gold text-navy-900 text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
                     Most Popular
                   </div>
                 )}
-
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-cream mb-2">{plan.name}</h3>
-                  <p className="text-gold-light text-sm font-medium">{plan.hours}</p>
-                </div>
-
-                <div className="mb-2">
-                  <span className="text-4xl font-bold text-gold">{plan.price}</span>
-                  <span className="text-cream/50 text-lg">{plan.period}</span>
-                </div>
-
-                <p className="text-cream/60 text-sm mb-8 leading-relaxed">
-                  {plan.description}
+                <h4 className="text-xl font-bold text-navy-900 mb-1">{product.name}</h4>
+                <p className="text-xs text-gold font-semibold uppercase tracking-wider mb-3">
+                  {product.tagline}
                 </p>
-
-                <ul className="space-y-4 mb-10">
-                  {plan.features.map((feature, j) => (
-                    <li key={j} className="flex items-start gap-3 text-sm text-cream/80">
-                      <FiCheck className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
+                <div className="text-3xl font-bold text-navy-900 mb-2">{product.price}</div>
+                <p className="text-sm text-navy-600 mb-6 leading-relaxed">{product.description}</p>
+                <ul className="space-y-2 mb-6">
+                  {product.features.map((feature, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-navy-700">
+                      <FiCheck className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
-
-                <a href="#contact" className={`block text-center py-4 rounded-xl font-bold transition-all duration-300 ${plan.buttonClass}`}>
+                <a
+                  href={ORDER_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block text-center py-3 rounded-xl font-bold transition-all duration-300 ${
+                    product.popular
+                      ? 'bg-navy-900 text-gold hover:bg-navy-800'
+                      : 'bg-gold/10 text-navy-900 border border-gold/30 hover:bg-gold/20'
+                  }`}
+                >
                   <span className="flex items-center justify-center gap-2">
-                    {plan.popular ? 'Book Discovery Call' : 'Request Proposal'}
+                    {product.cta}
                     <FiArrowRight className="w-4 h-4" />
                   </span>
                 </a>
@@ -524,28 +266,96 @@ export default function Pricing() {
           </div>
         </div>
 
-        {/* Additional Rates */}
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
-          className="bg-gradient-to-r from-gold/20 via-gold/10 to-gold/20 rounded-3xl p-10 border border-gold/20">
-          <h3 className="text-2xl font-bold text-cream mb-8 text-center">
-            Additional Services & Custom Rates
-          </h3>
-          <div className="grid md:grid-cols-4 gap-6">
-            {additionalRates.map((rate, i) => (
-              <div key={i} className="bg-navy-800/80 rounded-2xl p-6 text-center border border-gold/10 hover:border-gold/30 transition-colors">
-                <p className="text-sm text-cream/50 mb-2">{rate.service}</p>
-                <p className="text-2xl font-bold text-gold">{rate.rate}</p>
-              </div>
+        {/* Embedded Operations Support */}
+        <div className="mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h3 className="text-2xl md:text-3xl font-serif text-navy-900 mb-2">
+              Embedded Operations Support
+            </h3>
+            <p className="text-navy-600">
+              For businesses that need an operations engineer on retainer, not just a system.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {retainerTiers.map((tier, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className={`bg-white rounded-2xl p-8 shadow-lg border-2 ${
+                  tier.popular ? 'border-gold scale-105 shadow-2xl' : 'border-gold/10'
+                } transition-all duration-300`}
+              >
+                {tier.popular && (
+                  <div className="bg-gold text-navy-900 text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
+                    Most Popular
+                  </div>
+                )}
+                <h4 className="text-2xl font-bold text-navy-900 mb-1">{tier.name}</h4>
+                <p className="text-sm text-gold font-semibold mb-2">{tier.hours}</p>
+                <div className="text-4xl font-bold text-navy-900 mb-2">{tier.price}</div>
+                <p className="text-sm text-navy-600 mb-6 leading-relaxed">{tier.description}</p>
+                <ul className="space-y-3 mb-8">
+                  {tier.features.map((feature, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-navy-700">
+                      <FiCheck className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={ORDER_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block text-center py-4 rounded-xl font-bold transition-all duration-300 ${
+                    tier.popular
+                      ? 'bg-navy-900 text-gold hover:bg-navy-800'
+                      : 'bg-gold/10 text-navy-900 border border-gold/30 hover:bg-gold/20'
+                  }`}
+                >
+                  <span className="flex items-center justify-center gap-2">
+                    {tier.cta}
+                    <FiArrowRight className="w-4 h-4" />
+                  </span>
+                </a>
+              </motion.div>
             ))}
           </div>
+        </div>
 
-          <div className="mt-10 text-center">
-            <p className="text-cream/60 mb-6">
-              All projects scoped individually. No hidden fees — ever.
+        {/* Comparison Note */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-navy-900 rounded-2xl p-8 md:p-12 text-center"
+        >
+          <div className="max-w-2xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-serif text-cream mb-4">
+              The Real Comparison
+            </h3>
+            <p className="text-cream/70 mb-6 leading-relaxed">
+              A HubSpot subscription starts at R1,200/month and scales to R12,000+/month. 
+              That is R14,400 to R144,000 over a year. And you still do not own anything.
             </p>
-            <a href="#contact" className="btn-gold inline-block">
-              Book Discovery Call
-            </a>
+            <p className="text-cream/70 mb-8 leading-relaxed">
+              Our most comprehensive module costs R499 once. Your entire operational infrastructure 
+              can be built for less than two months of mid-tier SaaS. And it is yours forever.
+            </p>
+            <div className="flex items-center justify-center gap-2 text-gold font-bold">
+              <FiShield className="w-5 h-5" />
+              <span>Own your systems. Own your data. Own your future.</span>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -1,9 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiCheckCircle, FiShoppingCart } from 'react-icons/fi'
-
-const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
+import { FiCheckCircle, FiArrowRight } from 'react-icons/fi'
 
 export default function About() {
   return (
@@ -15,11 +13,11 @@ export default function About() {
           className="text-center mb-20">
           <p className="text-gold-dark font-bold tracking-widest uppercase text-sm mb-4">About</p>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-navy-900 mb-6">
-            Who Is <span className="text-gold-dark">Dandelion</span> Creations?
+            The Engineer Behind <span className="text-gold-dark">the Systems</span>
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto rounded-full"></div>
           <p className="text-xl text-navy-600 max-w-2xl mx-auto mt-6">
-            A one-woman powerhouse combining virtual assistance expertise with technical automation mastery
+            Operational experience and technical precision, combined in one person — so nothing gets lost in translation between &quot;what the business needs&quot; and &quot;what gets built.&quot;
           </p>
         </motion.div>
 
@@ -34,29 +32,33 @@ export default function About() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-navy-900">Simone Theron</h3>
-                    <p className="text-gold-dark text-sm">Founder & Lead Developer</p>
+                    <p className="text-gold-dark text-sm">Founder & Lead Operations Engineer</p>
                   </div>
                 </div>
                 <p className="text-navy-600 leading-relaxed mb-4">
-                  I started Dandelion Creations to solve a problem I saw every day: brilliant business owners 
-                  drowning in admin work instead of growing their companies.
+                  I started Dandelion Creations after watching the same pattern repeat across every business I worked with: capable owners, buried not by lack of effort, but by systems that were never actually designed — just accumulated, one spreadsheet and one workaround at a time.
                 </p>
                 <p className="text-navy-600 leading-relaxed">
-                  With a background in operations management and a passion for Google Apps Script automation, 
-                  I build systems that save hundreds of hours annually. My AbilitySuite™ products are trusted 
-                  by South African businesses who value efficiency and precision.
+                  My background is in operations management. My discipline is Google Apps Script engineering. Together, that means I don&apos;t just automate a task — I diagnose why the process broke down in the first place, then build the version that doesn&apos;t. Every system I deploy is trusted by South African businesses who&apos;ve decided that &quot;good enough&quot; isn&apos;t.
                 </p>
               </div>
             </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="space-y-6">
-            {[
-              { title: 'Virtual Assistant Excellence', desc: '5+ years managing calendars, emails, travel, and client communications for executives and entrepreneurs.' },
-              { title: 'Technical Automation', desc: 'Custom Google Apps Script solutions that transform spreadsheets into powerful business applications.' },
-              { title: 'AbilitySuite™ Products', desc: '12 ready-made Google Sheets templates for CRM, invoicing, inventory, content planning, and more.' },
-              { title: 'South African Focus', desc: 'Built specifically for SA businesses — FNB integration, SARS-compliant reports, local pricing (ZAR).' },
-            ].map((item, i) => (
+            {[{
+              title: 'Operational Fluency',
+              desc: 'Years spent inside the actual day-to-day of running a business, not just observing it from the outside.'
+            }, {
+              title: 'Engineering Discipline',
+              desc: 'Custom Google Apps Script systems, built to the operation, not adapted from a template.'
+            }, {
+              title: 'The AbilitySuite™ Ecosystem',
+              desc: 'A modular architecture of purpose-built systems, deployable individually or combined as your operation scales.'
+            }, {
+              title: 'Built for This Market',
+              desc: 'SARS-compliant reporting, local banking integration, ZAR pricing — engineered for South African operational reality, not adapted from a US product.'
+            }].map((item, i) => (
               <div key={i} className="flex gap-4">
                 <div className="w-8 h-8 bg-gold/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                   <FiCheckCircle className="w-4 h-4 text-gold-dark" />
@@ -69,12 +71,10 @@ export default function About() {
             ))}
 
             <a
-              href={ORDER_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#products"
               className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-6 py-3 rounded-lg font-semibold transition-all duration-300 mt-4"
             >
-              <FiShoppingCart /> Explore AbilitySuite™ Products
+              <FiArrowRight /> Explore the AbilitySuite™ Ecosystem
             </a>
           </motion.div>
         </div>

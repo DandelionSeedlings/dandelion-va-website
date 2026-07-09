@@ -13,13 +13,13 @@ const playfair = Playfair_Display({
 
 export const metadata = {
   metadataBase: new URL('https://dandelioncreations.co.za'),
-  title: 'Dandelion Creations VA | Premium Virtual Assistant & Automation Services',
-  description: 'High-level virtual assistant and technical automation services for businesses ready to scale. From R5,000/month. Based in Pretoria, South Africa.',
-  keywords: 'virtual assistant, VA South Africa, Google Apps Script, automation, social media management, admin support, Pretoria VA',
+  title: 'Dandelion Creations | Operations Engineering & Automation Systems',
+  description: 'Custom automated systems built inside Google Workspace — precise, permanent, and engineered for how your business actually runs. No subscriptions. No bloated platforms. South African businesses only.',
+  keywords: 'operations engineering, Google Apps Script, business automation, systems architecture, South Africa, SARS compliance, no subscription software, Pretoria',
   authors: [{ name: 'Simone Theron' }],
   openGraph: {
-    title: 'Dandelion Creations VA',
-    description: 'Premium Virtual Assistant & Technical Automation Services',
+    title: 'Dandelion Creations — Operations Engineering Studio',
+    description: 'Custom automated systems for businesses ready to run on clarity, not chaos.',
     type: 'website',
     url: 'https://dandelioncreations.co.za',
   },

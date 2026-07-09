@@ -61,12 +61,12 @@ export default function Roadmap() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-gold font-script text-2xl mb-2 block">What's Next</span>
+          <span className="text-gold font-bold tracking-widest uppercase text-sm mb-4 block">What's Next</span>
           <h2 className="text-4xl md:text-5xl font-serif text-navy-900 mb-4">
-            Coming Soon
+            The Ecosystem Is Still Expanding
           </h2>
           <p className="text-navy-600 text-lg max-w-2xl mx-auto">
-            The AbilitySuite™ roadmap. We're building the tools South African businesses actually need.
+            Every new Ability module goes through the same discipline as the ones already deployed — engineered around a real operational gap, not built because it seemed marketable. Here's what's in development.
           </p>
         </motion.div>
 
@@ -130,7 +130,7 @@ export default function Roadmap() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-navy-900 hover:bg-navy-800 text-gold px-8 py-4 rounded-lg font-bold transition-all duration-300"
           >
-            <FaCheckCircle /> Join the Waitlist via WhatsApp
+            <FaCheckCircle /> Request Early Access via WhatsApp
           </a>
         </motion.div>
       </div>

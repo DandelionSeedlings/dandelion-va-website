@@ -20,24 +20,25 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'About', href: '#about' },
+    { name: 'Why Us', href: '#why-us' },
     { name: 'Services', href: '#services' },
-    { name: 'Products', href: '#products' },
+    { name: 'Systems', href: '#products' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'Portfolio', href: '#portfolio' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '#contact' },
-    { name: 'Resellers', href: '#resellers' },
+    { name: 'Partner Program', href: '#resellers' },
   ]
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-500 ${
+      className={`fixed left-1/2 top-4 z-50 w-[calc(100%-1.5rem)] max-w-7xl -translate-x-1/2 rounded-sm border transition-all duration-500 ${
         scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
-          : 'bg-[#0a1628]/90 backdrop-blur-md py-4'
+          ? 'border-white/35 bg-white/90 py-3 shadow-2xl shadow-navy-900/12 backdrop-blur-2xl'
+          : 'border-white/20 bg-[#0a1628]/48 py-3 shadow-2xl shadow-black/20 backdrop-blur-2xl'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-5 lg:px-6">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
@@ -61,7 +62,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-8 items-center">
+          <div className="hidden md:flex gap-5 lg:gap-7 items-center">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -83,7 +84,7 @@ export default function Navbar() {
               }`}
             >
               <span className="flex items-center gap-1">
-                ✦ Free CRM
+                ✦ Start Free
               </span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
             </a>
@@ -92,7 +93,7 @@ export default function Navbar() {
               href={ORDER_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#D4AF37] text-[#0a1628] px-6 py-2.5 rounded-sm font-semibold text-sm tracking-wide hover:bg-[#c4a030] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/20 flex items-center gap-2"
+              className="bg-[#D4AF37] text-[#0a1628] px-5 py-2.5 rounded-sm font-semibold text-sm tracking-wide hover:bg-[#c4a030] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/20 flex items-center gap-2"
             >
               <FiShoppingCart size={16} />
               Order Now
@@ -114,7 +115,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden mt-4 bg-white rounded-lg shadow-xl p-6 space-y-4 border border-gray-100">
+          <div className="md:hidden mt-4 rounded-sm bg-white/95 shadow-xl p-6 space-y-4 border border-white/70 backdrop-blur-xl">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -133,7 +134,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(false)}
             >
               <span className="flex items-center gap-2">
-                ✦ Get Connectability Free
+                ✦ Start Free
               </span>
             </a>
 

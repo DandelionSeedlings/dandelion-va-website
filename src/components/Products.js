@@ -27,7 +27,7 @@ const floatingSeeds = Array.from({ length: 8 }, (_, i) => ({
 const productCategories = [
   {
     id: 'client-management',
-    title: 'Client Management',
+    title: 'Relationship Systems',
     icon: FaUsers,
     color: 'text-gold',
     bgColor: 'bg-navy-900/50',
@@ -36,7 +36,7 @@ const productCategories = [
   },
   {
     id: 'financial-operations',
-    title: 'Financial Operations',
+    title: 'Financial Infrastructure',
     icon: FaMoneyBillWave,
     color: 'text-gold',
     bgColor: 'bg-navy-900/50',
@@ -45,7 +45,7 @@ const productCategories = [
   },
   {
     id: 'inventory',
-    title: 'Inventory',
+    title: 'Supply & Stock Control',
     icon: FaBoxes,
     color: 'text-gold',
     bgColor: 'bg-navy-900/50',
@@ -54,7 +54,7 @@ const productCategories = [
   },
   {
     id: 'people-time',
-    title: 'People & Time',
+    title: 'Workforce Systems',
     icon: FaClock,
     color: 'text-gray-400',
     bgColor: 'bg-navy-800/50',
@@ -63,7 +63,7 @@ const productCategories = [
   },
   {
     id: 'quick-solutions',
-    title: 'Quick Solutions',
+    title: 'Rapid Deployment Tools',
     icon: FaEye,
     color: 'text-gold',
     bgColor: 'bg-navy-900/50',
@@ -72,7 +72,7 @@ const productCategories = [
   },
   {
     id: 'growth-branding',
-    title: 'Growth & Branding',
+    title: 'Growth Engineering',
     icon: FaBullhorn,
     color: 'text-gold',
     bgColor: 'bg-navy-900/50',
@@ -81,7 +81,7 @@ const productCategories = [
   },
   {
     id: 'custom',
-    title: 'Custom',
+    title: 'Bespoke Builds',
     icon: FaCogs,
     color: 'text-gold',
     bgColor: 'bg-navy-900/50',
@@ -97,8 +97,8 @@ const products = [
     subtitle: 'CRM Mini',
     price: 0,
     priceLabel: 'FREE',
-    description: 'Client tracking foundations for front-facing sales and administrative workflows.',
-    tagline: 'Cultivating client connections from the very first touch.',
+    description: 'The relationship-tracking layer every operation needs before it can scale — deployed free, upgraded when you\'re ready.',
+    tagline: 'The foundation layer for every client relationship you\'ll ever manage.',
     icon: FaUsers,
     color: 'from-emerald-500 to-teal-600',
     badge: 'FREE',
@@ -113,7 +113,7 @@ const products = [
     subtitle: 'CRM Pro',
     price: 499,
     priceLabel: 'R499',
-    description: 'Advanced sales pipelines, relationship metrics, and growth tracking for account managers.',
+    description: 'A full pipeline architecture — deal stages, relationship metrics, and growth tracking — engineered for teams that have outgrown a contact list.',
     tagline: 'Expanding your reach with systematic precision.',
     icon: FaUsers,
     color: 'from-blue-500 to-indigo-600',
@@ -146,7 +146,7 @@ const products = [
     price: 299,
     priceLabel: 'R299',
     description: 'Marketing calendars, content scheduling, and social media production workflows.',
-    tagline: 'Putting your brand in front of the right audience, consistently.',
+    tagline: 'Content operations, engineered for consistency, not luck.',
     icon: FaCalendarAlt,
     color: 'from-violet-500 to-purple-600',
     badge: null,
@@ -193,7 +193,7 @@ const products = [
     subtitle: 'Income & Expenses',
     price: 799,
     priceLabel: 'R799',
-    description: 'Automated banking ledger and CSV data importing for business owners and accountants.',
+    description: 'Real-time financial visibility, without a bookkeeper re-entering your data by hand.',
     tagline: 'Unlocking real-time financial clarity at a glance.',
     icon: FaChartLine,
     color: 'from-rose-500 to-pink-600',
@@ -324,14 +324,14 @@ export default function Products() {
   const buildOrderUrl = (product, code) => {
     const base = product.orderUrl || ORDER_FORM_URL;
     const params = new URLSearchParams();
-    
+
     if (!product.orderUrl) {
       params.set('product', product.name + ' — ' + product.subtitle);
     }
     if (code && code.trim()) {
       params.set('partner', code.trim().toUpperCase());
     }
-    
+
     const query = params.toString();
     return query ? `${base}?${query}` : base;
   };
@@ -378,22 +378,7 @@ export default function Products() {
         ))}
       </div>
 
-      <style jsx>{`
-        @keyframes float-seed-products {
-          0%, 100% {
-            transform: translate(0, 0) rotate(0deg);
-          }
-          25% {
-            transform: translate(12px, -18px) rotate(4deg);
-          }
-          50% {
-            transform: translate(-8px, -28px) rotate(-2deg);
-          }
-          75% {
-            transform: translate(15px, -12px) rotate(6deg);
-          }
-        }
-      `}</style>
+      <style jsx>{`\n        @keyframes float-seed-products {\n          0%, 100% {\n            transform: translate(0, 0) rotate(0deg);\n          }\n          25% {\n            transform: translate(12px, -18px) rotate(4deg);\n          }\n          50% {\n            transform: translate(-8px, -28px) rotate(-2deg);\n          }\n          75% {\n            transform: translate(15px, -12px) rotate(6deg);\n          }\n        }\n      `}</style>
 
       <div className="container-max relative z-10">
         {/* Section Header */}
@@ -404,13 +389,18 @@ export default function Products() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="text-gold font-script text-2xl mb-2 block">Digital Products</span>
+          <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">Engineered Systems</p>
           <h2 className="text-4xl md:text-5xl font-serif text-navy-900 mb-4">
             AbilitySuite™
           </h2>
           <p className="text-navy-600 text-lg max-w-2xl mx-auto">
-            Professional Google Sheets templates that automate your business.
-            No subscriptions. No monthly fees. Yours forever.
+            A Modular Operations Architecture
+          </p>
+          <p className="text-navy-500 text-base max-w-3xl mx-auto mt-4">
+            Each Ability is a purpose-engineered automation solving one operational problem precisely — deployed inside your existing Google Workspace, owned outright, and built to interoperate as your business scales. This isn&apos;t a bundle of templates. It&apos;s infrastructure, assembled module by module, exactly to the shape of your operation.
+          </p>
+          <p className="text-gold-dark font-bold text-sm mt-4">
+            No subscriptions. No rented software. Build it once, and it&apos;s yours — permanently.
           </p>
         </motion.div>
 
@@ -431,7 +421,7 @@ export default function Products() {
                 </div>
                 <div>
                   <h3 className="text-navy-900 font-bold text-lg">Have a Partner Code?</h3>
-                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid product.</p>
+                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid module.</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 w-full md:w-auto">
@@ -507,7 +497,7 @@ export default function Products() {
                       {/* Card Body */}
                       <div className="p-6">
                         <p className="text-navy-600 text-sm mb-4 leading-relaxed">{product.description}</p>
-                        <p className="text-navy-400 text-xs italic mb-4">"{product.tagline}"</p>
+                        <p className="text-navy-400 text-xs italic mb-4">&quot;{product.tagline}&quot;</p>
 
                         <div className="flex items-center justify-between">
                           <div>
@@ -522,13 +512,13 @@ export default function Products() {
                           </div>
                           {product.available ? (
                             <span className="text-emerald-500 text-sm font-medium flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                              <FaArrowRight size={14} /> {product.price === 0 && !product.orderUrl ? 'Get Free' : 'Order Now'}
+                              <FaArrowRight size={14} /> {product.price === 0 && !product.orderUrl ? 'Get Free' : 'Deploy Now'}
                             </span>
                           ) : (
                             <span className="text-gray-400 text-sm font-medium">Coming Soon</span>
                           )}
                         </div>
-                        
+
                         {globalPartnerCode.trim() && product.price > 0 && (
                           <p className="text-emerald-600 text-xs mt-2 font-medium">
                             <FaTag className="inline mr-1" size={10} />
@@ -553,9 +543,9 @@ export default function Products() {
           className="bg-white/60 backdrop-blur-md rounded-2xl shadow-xl border border-gold/20 p-8 md:p-12 mb-16"
         >
           <div className="text-center mb-10">
-            <span className="text-gold font-script text-xl mb-2 block">Not Sure Which Financial Tool?</span>
+            <span className="text-gold font-script text-xl mb-2 block">Two Financial Systems. Two Different Jobs.</span>
             <h3 className="text-3xl font-serif text-navy-900 mb-3">ReceiptSnap vs Payability</h3>
-            <p className="text-navy-600 max-w-xl mx-auto">Both handle money, but solve completely different problems. Here's how to choose.</p>
+            <p className="text-navy-600 max-w-xl mx-auto">Both handle money, but solve completely different problems. Here&apos;s how to choose.</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -640,7 +630,7 @@ export default function Products() {
               The Simple Rule
             </p>
             <p className="text-navy-600 text-sm max-w-2xl mx-auto">
-              <strong>Buy ReceiptSnap</strong> if you spend money and need to prove it. <strong>Buy Payability</strong> if you earn money and need to collect it. Many businesses use both — they're designed to work together inside the same Google Workspace.
+              <strong>ReceiptSnap</strong> governs what leaves your business. <strong>Payability</strong> governs what comes back in. Most operations eventually need both — they&apos;re built to run side by side inside the same Workspace.
             </p>
           </div>
         </motion.div>
@@ -655,17 +645,17 @@ export default function Products() {
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/5 rounded-full blur-3xl"></div>
-          
+
           <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="inline-block bg-gold/20 text-gold px-4 py-1.5 rounded-full text-sm font-bold mb-4 border border-gold/30">
-                Premium Upsell
+                Custom Engineering
               </span>
               <h3 className="text-3xl md:text-4xl font-serif font-bold mb-4">
-                Want Your Own Branded System?
+                Every Module, Rebuilt as Yours.
               </h3>
               <p className="text-cream/80 text-lg mb-6 leading-relaxed">
-                Adaptability is our white-label setup service. We take any AbilitySuite™ product, rebrand it with your colors, logo, and business name, and deliver it as your own custom tool.
+                Adaptability is where engineering becomes bespoke. We take any Ability module and rebuild it entirely around your identity — your colors, your logo, your business name, on every sheet — and hand it back as a system that looks, and functions, like it was built from scratch for you alone.
               </p>
               <div className="bg-white/10 rounded-xl p-6 border border-white/10 mb-6 backdrop-blur-sm">
                 <p className="text-gold font-bold mb-2">Example:</p>
@@ -673,7 +663,7 @@ export default function Products() {
                   Scalability (CRM Pro) + Adaptability White-Label = <span className="text-gold font-bold">Your own custom CRM</span> for just <span className="text-gold font-bold">R1,498 total</span>
                 </p>
                 <p className="text-cream/60 text-xs mt-2">
-                  That's R499 for the product + R999 for the white-label setup. You get a fully branded system that looks like it was built just for you.
+                  That&apos;s R499 for the module + R999 for the white-label setup. You get a fully branded system that looks like it was built just for you.
                 </p>
               </div>
               <ul className="space-y-3 mb-8">
@@ -700,7 +690,7 @@ export default function Products() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
               >
-                <FaShoppingCart /> Order Adaptability — {globalPartnerCode.trim() ? formatPrice(discountedPrice(999)) : 'R999'}
+                <FaShoppingCart /> Commission Adaptability — {globalPartnerCode.trim() ? formatPrice(discountedPrice(999)) : 'R999'}
               </a>
               {globalPartnerCode.trim() && (
                 <p className="text-emerald-400 text-sm mt-2">
@@ -759,13 +749,13 @@ export default function Products() {
           className="bg-white/60 backdrop-blur-md rounded-2xl p-8 text-center border border-gold/20 shadow-lg"
         >
           <h3 className="text-2xl font-serif text-navy-900 mb-4">
-            Ready to Automate Your Business?
+            Ready to Deploy Your Infrastructure?
           </h3>
           <p className="text-navy-600 max-w-lg mx-auto mb-6">
-            Select your products, fill in your details, and pay via bank transfer or QR code.
+            Select your modules, fill in your details, and pay via bank transfer or QR code.
             Your license keys are delivered within 24 hours.
           </p>
-          
+
           {globalPartnerCode.trim() && (
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-600 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-emerald-500/30">
               <FaTag size={12} /> Partner code <span className="uppercase">{globalPartnerCode}</span> active — 10% off at checkout
@@ -774,12 +764,12 @@ export default function Products() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <a
-              href={buildOrderUrl({ name: 'Multiple Products', subtitle: 'Custom Order', price: 0, orderUrl: null }, globalPartnerCode)}
+              href={buildOrderUrl({ name: 'Multiple Modules', subtitle: 'Custom Order', price: 0, orderUrl: null }, globalPartnerCode)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
             >
-              <FaShoppingCart /> Order Now — One Form, Everything You Need
+              <FaShoppingCart /> Deploy Now — One Form, Everything You Need
             </a>
           </div>
 
@@ -812,7 +802,7 @@ export default function Products() {
 
             <div className="p-6">
               <p className="text-navy-700 mb-4">{selectedProduct.description}</p>
-              <p className="text-navy-400 text-sm italic mb-6">"{selectedProduct.tagline}"</p>
+              <p className="text-navy-400 text-sm italic mb-6">&quot;{selectedProduct.tagline}&quot;</p>
 
               <h4 className="font-bold text-navy-900 mb-3">Features:</h4>
               <ul className="space-y-2 mb-6">
@@ -881,11 +871,11 @@ export default function Products() {
                   rel="noopener noreferrer"
                   className="block w-full bg-gold hover:bg-[#c4a030] text-navy-900 text-center py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2"
                 >
-                  <FaShoppingCart /> Order {selectedProduct.name}
+                  <FaShoppingCart /> Deploy {selectedProduct.name}
                 </a>
               )}
               <p className="text-center text-navy-400 text-xs mt-3">
-                You can add more products in the order form
+                You can add more modules in the order form
               </p>
             </div>
           </motion.div>

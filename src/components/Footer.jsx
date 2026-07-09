@@ -64,7 +64,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Premium Virtual Assistant & Technical Automation services for businesses ready to scale. 
+              Operations engineering and embedded systems support for businesses ready to run on clarity, not chaos.
               BCEA-exempt independent contractor.
             </p>
             {/* Social Links */}
@@ -100,10 +100,10 @@ export default function Footer() {
           <div>
             <h4 className="font-serif text-lg text-white mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              {['About', 'Services', 'Pricing', 'Portfolio', 'Blog', 'Contact'].map((link) => (
+              {['About', 'Why Us', 'Services', 'Pricing', 'Portfolio', 'Blog', 'Contact'].map((link) => (
                 <li key={link}>
                   <a
-                    href={link === 'Blog' ? '/blog' : `#${link.toLowerCase()}`}
+                    href={link === 'Blog' ? '/blog' : `#${link.toLowerCase().replace(' ', '-')}`}
                     className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm"
                   >
                     {link}
@@ -117,7 +117,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm flex items-center gap-2"
                 >
-                  <FiShoppingCart size={14} /> Order Products
+                  <FiShoppingCart size={14} /> Deploy Modules
                 </a>
               </li>
             </ul>
@@ -125,7 +125,7 @@ export default function Footer() {
 
           {/* Products */}
           <div>
-            <h4 className="font-serif text-lg text-white mb-6">AbilitySuite™ Products</h4>
+            <h4 className="font-serif text-lg text-white mb-6">AbilitySuite™ Modules</h4>
             <ul className="space-y-3">
               {[
                 { name: 'CRM Mini (FREE)', ability: 'CRM Mini', href: 'https://dandelioncreations.co.za/get-connectability', isExternal: true },
@@ -186,7 +186,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 bg-[#D4AF37] text-[#0a1628] px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#c4a030] transition-all duration-300"
             >
-              <FiShoppingCart size={16} /> Order Now
+              <FiShoppingCart size={16} /> Deploy Now
             </a>
 
             {partnerCode && (
@@ -201,10 +201,10 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              &copy; {new Date().getFullYear()} Dandelion Creations VA. All rights reserved.
+              &copy; {new Date().getFullYear()} Dandelion Creations. All rights reserved.
             </p>
             <p className="text-gray-600 text-xs">
-              AbilitySuite™ — 12 Business Automation Tools. Crafted with precision for businesses that value excellence.
+              AbilitySuite™ — a modular operations architecture, engineered for businesses that value precision over noise.
             </p>
           </div>
         </div>
