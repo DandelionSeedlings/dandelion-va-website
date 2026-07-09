@@ -97,7 +97,7 @@ const products = [
     subtitle: 'CRM Mini',
     price: 0,
     priceLabel: 'FREE',
-    description: 'The relationship-tracking layer every operation needs before it can scale &mdash; deployed free, upgraded when you\'re ready.',
+    description: 'The relationship-tracking layer every operation needs before it can scale \u2014 deployed free, upgraded when you\'re ready.',
     tagline: 'The foundation layer for every client relationship you\'ll ever manage.',
     icon: FaUsers,
     color: 'from-emerald-500 to-teal-600',
@@ -113,7 +113,7 @@ const products = [
     subtitle: 'CRM Pro',
     price: 499,
     priceLabel: 'R499',
-    description: 'A full pipeline architecture &mdash; deal stages, relationship metrics, and growth tracking &mdash; engineered for teams that have outgrown a contact list.',
+    description: 'A full pipeline architecture \u2014 deal stages, relationship metrics, and growth tracking \u2014 engineered for teams that have outgrown a contact list.',
     tagline: 'Expanding your reach with systematic precision.',
     icon: FaUsers,
     color: 'from-blue-500 to-indigo-600',
@@ -412,14 +412,14 @@ export default function Products() {
             A Modular Operations Architecture
           </p>
           <p className="text-navy-500 text-base max-w-3xl mx-auto mt-4">
-            Each Ability is a purpose-engineered automation solving one operational problem precisely &mdash; deployed inside your existing Google Workspace, owned outright, and built to interoperate as your business scales. This isn&apos;t a bundle of templates. It&apos;s infrastructure, assembled module by module, exactly to the shape of your operation.
+            Each Ability is a purpose-engineered automation solving one operational problem precisely \u2014 deployed inside your existing Google Workspace, owned outright, and built to interoperate as your business scales. This isn&apos;t a bundle of templates. It&apos;s infrastructure, assembled module by module, exactly to the shape of your operation.
           </p>
           <p className="text-gold-dark font-bold text-sm mt-4">
-            No subscriptions. No rented software. Build it once, and it&apos;s yours &mdash; permanently.
+            No subscriptions. No rented software. Build it once, and it&apos;s yours \u2014 permanently.
           </p>
         </motion.div>
 
-        {/* Partner Code Banner */}
+        {/* Referral Code Banner */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -436,7 +436,7 @@ export default function Products() {
                 </div>
                 <div>
                   <h3 className="text-navy-900 font-bold text-lg">Have a Referral Code?</h3>
-                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid module. This is a customer discount — separate from the <a href="#resellers" className="text-gold underline hover:no-underline">Partner Program</a> where you earn by reselling.</p>
+                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid module. This is a customer discount \u2014 separate from the <a href="#resellers" className="text-gold underline hover:no-underline">Partner Program</a> where you earn by reselling.</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 w-full md:w-auto">
@@ -460,7 +460,7 @@ export default function Products() {
           </div>
         </motion.div>
 
-        {/* Category Grouped Products */}
+        {/* Category Grouped Products - with Pricing-style cards */}
         <div className="space-y-16 mb-16">
           {productCategories.map((category) => {
             const categoryProducts = category.products.map(id => getProductById(id)).filter(Boolean);
@@ -481,8 +481,8 @@ export default function Products() {
                   <div className="h-px flex-1 bg-gold/20" />
                 </div>
 
-                {/* Products Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Products Grid - PRICING-STYLE CARDS */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {categoryProducts.map((product, index) => (
                     <motion.div
                       key={product.id}
@@ -490,57 +490,64 @@ export default function Products() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.05 }}
-                      className={`group bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border transition-all duration-300 ${
-                        product.available 
-                          ? 'border-transparent hover:border-gold/40 hover:shadow-xl hover:-translate-y-2 hover:shadow-gold/10 cursor-pointer' 
-                          : 'border-gray-200 opacity-70 cursor-not-allowed'
-                      }`}
-                      onClick={() => product.orderUrl ? window.open(buildOrderUrl(product, globalPartnerCode), '_blank') : openModal(product)}
+                      className={`bg-white rounded-2xl p-6 shadow-lg border-2 ${product.available ? 'border-transparent hover:border-gold/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300' : 'border-gray-200 opacity-70'} ${product.popular ? 'scale-105 shadow-2xl' : ''}`}
                     >
-                      {/* Card Header */}
-                      <div className={`bg-gradient-to-r ${product.color} p-6 text-white relative`}>
-                        {product.badge && (
-                          <span className={`absolute top-4 right-4 ${product.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg`}>
-                            {product.badge}
-                          </span>
-                        )}
-                        <product.icon className="w-10 h-10 mb-3 opacity-90" />
-                        <h3 className="text-xl font-bold">{product.name}</h3>
-                        <p className="text-white/80 text-sm">{product.subtitle}</p>
-                      </div>
-
-                      {/* Card Body */}
-                      <div className="p-6">
-                        <p className="text-navy-600 text-sm mb-4 leading-relaxed">{product.description}</p>
-                        <p className="text-navy-400 text-xs italic mb-4">&quot;{product.tagline}&quot;</p>
-
-                        <div className="flex items-center justify-between">
-                          <div>
-                            {globalPartnerCode.trim() && product.price > 0 ? (
-                              <div className="flex items-center gap-2">
-                                <span className="text-lg text-navy-400 line-through">{product.priceLabel}</span>
-                                <span className="text-2xl font-bold text-emerald-600">{formatPrice(discountedPrice(product.price))}</span>
-                              </div>
-                            ) : (
-                              <div className="text-2xl font-bold text-gold">{product.priceLabel}</div>
-                            )}
-                          </div>
-                          {product.available ? (
-                            <span className="text-emerald-500 text-sm font-medium flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                              <FaArrowRight size={14} /> {product.price === 0 && !product.orderUrl ? 'Get Free' : 'Deploy Now'}
-                            </span>
-                          ) : (
-                            <span className="text-gray-400 text-sm font-medium">Coming Soon</span>
-                          )}
+                      {product.popular && (
+                        <div className="bg-gold text-navy-900 text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
+                          Most Popular
                         </div>
-
-                        {globalPartnerCode.trim() && product.price > 0 && (
-                          <p className="text-emerald-600 text-xs mt-2 font-medium">
-                            <FaTag className="inline mr-1" size={10} />
-                            Partner code applied &mdash; 10% off
-                          </p>
+                      )}
+                      {product.badge && !product.popular && (
+                        <div className={`${product.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4`}>
+                          {product.badge}
+                        </div>
+                      )}
+                      <h4 className="text-xl font-bold text-navy-900 mb-1">{product.name}</h4>
+                      <p className="text-xs text-gold font-semibold uppercase tracking-wider mb-3">
+                        {product.subtitle}
+                      </p>
+                      <div className="text-3xl font-bold text-navy-900 mb-2">
+                        {globalPartnerCode.trim() && product.price > 0 ? (
+                          <div className="flex items-center gap-2">
+                            <span className="text-lg text-navy-400 line-through">{product.priceLabel}</span>
+                            <span className="text-emerald-600">{formatPrice(discountedPrice(product.price))}</span>
+                          </div>
+                        ) : (
+                          product.priceLabel
                         )}
                       </div>
+                      <p className="text-sm text-navy-600 mb-4 leading-relaxed">{product.description}</p>
+                      <ul className="space-y-2 mb-6">
+                        {product.features.map((feature, j) => (
+                          <li key={j} className="flex items-start gap-2 text-sm text-navy-700">
+                            <FaCheckCircle className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <a
+                        href={product.available ? (product.orderUrl || buildOrderUrl(product, globalPartnerCode)) : '#products'}
+                        target={product.available ? "_blank" : "_self"}
+                        rel={product.available ? "noopener noreferrer" : ""}
+                        className={`block text-center py-3 rounded-xl font-bold transition-all duration-300 ${
+                          !product.available
+                            ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                            : product.popular
+                              ? 'bg-navy-900 text-gold hover:bg-navy-800'
+                              : 'bg-gold/10 text-navy-900 border border-gold/30 hover:bg-gold/20'
+                        }`}
+                      >
+                        <span className="flex items-center justify-center gap-2">
+                          {product.available ? (product.price === 0 && !product.orderUrl ? 'Get Free' : 'Deploy Now') : 'Coming Soon'}
+                          {product.available && <FaArrowRight className="w-4 h-4" />}
+                        </span>
+                      </a>
+                      {globalPartnerCode.trim() && product.price > 0 && product.available && (
+                        <p className="text-emerald-600 text-xs mt-2 font-medium text-center">
+                          <FaTag className="inline mr-1" size={10} />
+                          Referral code applied \u2014 10% off
+                        </p>
+                      )}
                     </motion.div>
                   ))}
                 </div>
@@ -573,7 +580,7 @@ export default function Products() {
                 <div>
                   <h4 className="text-xl font-bold text-navy-900">ReceiptSnap</h4>
                   <p className="text-amber-600 font-bold">
-                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(299)) : 'R299'} &mdash; One Time
+                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(299)) : 'R299'} \u2014 One Time
                     {globalPartnerCode.trim() && <span className="text-navy-400 text-sm line-through ml-2">R299</span>}
                   </p>
                 </div>
@@ -610,13 +617,13 @@ export default function Products() {
                 <div>
                   <h4 className="text-xl font-bold text-navy-900">Payability</h4>
                   <p className="text-cyan-600 font-bold">
-                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(499)) : 'R499'} &mdash; One Time
+                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(499)) : 'R499'} \u2014 One Time
                     {globalPartnerCode.trim() && <span className="text-navy-400 text-sm line-through ml-2">R499</span>}
                   </p>
                 </div>
               </div>
               <p className="text-navy-600 mb-6 text-sm leading-relaxed">
-                <strong>You sell things and need to get paid.</strong> Payability is a full accounts receivable system &mdash; generate branded PDF invoices, track payments, send reminders, and know exactly who owes you what.
+                <strong>You sell things and need to get paid.</strong> Payability is a full accounts receivable system \u2014 generate branded PDF invoices, track payments, send reminders, and know exactly who owes you what.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center gap-2 text-sm text-navy-700">
@@ -634,7 +641,7 @@ export default function Products() {
               </ul>
               <div className="bg-white/80 rounded-lg p-4 border border-cyan-100">
                 <p className="text-xs text-navy-500 font-medium">Best for:</p>
-                <p className="text-sm text-navy-700">Service businesses, agencies, consultants &mdash; anyone who invoices clients and needs cash flow visibility.</p>
+                <p className="text-sm text-navy-700">Service businesses, agencies, consultants \u2014 anyone who invoices clients and needs cash flow visibility.</p>
               </div>
             </div>
           </div>
@@ -645,7 +652,7 @@ export default function Products() {
               The Simple Rule
             </p>
             <p className="text-navy-600 text-sm max-w-2xl mx-auto">
-              <strong>ReceiptSnap</strong> governs what leaves your business. <strong>Payability</strong> governs what comes back in. Most operations eventually need both &mdash; they&apos;re built to run side by side inside the same Workspace.
+              <strong>ReceiptSnap</strong> governs what leaves your business. <strong>Payability</strong> governs what comes back in. Most operations eventually need both \u2014 they&apos;re built to run side by side inside the same Workspace.
             </p>
           </div>
         </motion.div>
@@ -670,7 +677,7 @@ export default function Products() {
                 Every Module, Rebuilt as Yours.
               </h3>
               <p className="text-cream/80 text-lg mb-6 leading-relaxed">
-                Adaptability is where engineering becomes bespoke. We take any Ability module and rebuild it entirely around your identity &mdash; your colors, your logo, your business name, on every sheet &mdash; and hand it back as a system that looks, and functions, like it was built from scratch for you alone.
+                Adaptability is where engineering becomes bespoke. We take any Ability module and rebuild it entirely around your identity \u2014 your colors, your logo, your business name, on every sheet \u2014 and hand it back as a system that looks, and functions, like it was built from scratch for you alone.
               </p>
               <div className="bg-white/10 rounded-xl p-6 border border-white/10 mb-6 backdrop-blur-sm">
                 <p className="text-gold font-bold mb-2">Example:</p>
@@ -705,11 +712,11 @@ export default function Products() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
               >
-                <FaShoppingCart /> Commission Adaptability &mdash; {globalPartnerCode.trim() ? formatPrice(discountedPrice(999)) : 'R999'}
+                <FaShoppingCart /> Commission Adaptability \u2014 {globalPartnerCode.trim() ? formatPrice(discountedPrice(999)) : 'R999'}
               </a>
               {globalPartnerCode.trim() && (
                 <p className="text-emerald-400 text-sm mt-2">
-                  <FaTag className="inline mr-1" size={10} /> Partner code applied &mdash; 10% off
+                  <FaTag className="inline mr-1" size={10} /> Referral code applied \u2014 10% off
                 </p>
               )}
             </div>
@@ -748,7 +755,7 @@ export default function Products() {
                   </div>
                 </div>
                 <p className="text-center text-cream/40 text-xs mt-4">
-                  * Visual mockup &mdash; actual branding uses your real assets
+                  * Visual mockup \u2014 actual branding uses your real assets
                 </p>
               </div>
             </div>
@@ -773,7 +780,7 @@ export default function Products() {
 
           {globalPartnerCode.trim() && (
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-600 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-emerald-500/30">
-              <FaTag size={12} /> Partner code <span className="uppercase">{globalPartnerCode}</span> active &mdash; 10% off at checkout
+              <FaTag size={12} /> Referral code <span className="uppercase">{globalPartnerCode}</span> active \u2014 10% off at checkout
             </div>
           )}
 
@@ -784,14 +791,14 @@ export default function Products() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
             >
-              <FaShoppingCart /> Deploy Now &mdash; One Form, Everything You Need
+              <FaShoppingCart /> Deploy Now \u2014 One Form, Everything You Need
             </a>
           </div>
 
           {!globalPartnerCode.trim() && (
             <p className="text-navy-400 text-sm">
               <FaTag className="inline mr-1" size={10} />
-              Have a partner code? <button onClick={() => document.querySelector('input[placeholder*="PARTNER"]').scrollIntoView({ behavior: 'smooth' })} className="text-gold underline hover:no-underline">Enter it above</button> for 10% off.
+              Have a referral code? <button onClick={() => document.querySelector('input[placeholder*="PARTNER"]').scrollIntoView({ behavior: 'smooth' })} className="text-gold underline hover:no-underline">Enter it above</button> for 10% off.
             </p>
           )}
         </motion.div>
@@ -845,14 +852,14 @@ export default function Products() {
                 <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center gap-2">
                   <FaTag className="text-emerald-500" size={14} />
                   <span className="text-emerald-700 text-sm font-medium">
-                    Partner code <span className="font-bold uppercase">{globalPartnerCode}</span> applied &mdash; 10% off
+                    Referral code <span className="font-bold uppercase">{globalPartnerCode}</span> applied \u2014 10% off
                   </span>
                 </div>
               )}
 
               {/* Partner Code Input in Modal */}
               <div className="mb-6">
-                <label className="text-navy-600 text-sm font-medium mb-2 block">Partner Code (optional)</label>
+                <label className="text-navy-600 text-sm font-medium mb-2 block">Referral Code (optional)</label>
                 <div className="relative">
                   <FaTag className="absolute left-3 top-1/2 -translate-y-1/2 text-navy-400 w-4 h-4" />
                   <input
