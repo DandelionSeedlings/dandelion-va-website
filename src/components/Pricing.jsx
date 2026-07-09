@@ -29,15 +29,15 @@ const steps = [
 const products = [
   {
     name: 'Connectability',
-    tagline: 'Staff & Student Management',
-    price: 'R499',
-    description: 'Complete people-tracking infrastructure for schools, academies, and training centres.',
+    tagline: 'CRM Mini',
+    price: 0,
+    priceLabel: 'FREE',
+    description: 'The relationship-tracking layer every operation needs before it can scale — deployed free, upgraded when you\'re ready.',
     features: [
-      'Staff & student database',
-      'QR check-in/out system',
-      'Automated WhatsApp alerts',
-      'Digital sign-in sheets',
-      'Emergency contact management',
+      'Contact management',
+      'Lead tracking',
+      'Basic pipeline',
+      'Email integration',
       'One-time purchase',
     ],
     cta: 'Get Connectability',
@@ -45,55 +45,206 @@ const products = [
     accent: 'border-emerald-500/30',
   },
   {
-    name: 'Marketability',
-    tagline: 'Social Media Command Centre',
-    price: 'R499',
-    description: 'The full content pipeline from idea to published post, with approval workflows and analytics.',
+    name: 'Scalability',
+    tagline: 'CRM Pro',
+    price: 499,
+    priceLabel: 'R499',
+    description: 'A full pipeline architecture — deal stages, relationship metrics, and growth tracking — engineered for teams that have outgrown a contact list.',
     features: [
-      'Content calendar & scheduler',
-      'Multi-platform publishing',
-      'Approval workflows',
-      'Hashtag & trend tracking',
-      'Performance analytics',
+      'Full pipeline tracking',
+      'Deal management',
+      'Team collaboration',
+      'Growth analytics',
       'One-time purchase',
     ],
-    cta: 'Get Marketability',
+    cta: 'Get Scalability',
     popular: true,
-    accent: 'border-gold',
-  },
-  {
-    name: 'Payability',
-    tagline: 'Invoice & Revenue Intelligence',
-    price: 'R499',
-    description: 'Automated invoicing, payment tracking, and revenue dashboards that keep cash flow visible.',
-    features: [
-      'Automated invoice generation',
-      'Payment reminder system',
-      'Revenue dashboard',
-      'Client portal',
-      'PDF export & email delivery',
-      'One-time purchase',
-    ],
-    cta: 'Get Payability',
-    popular: false,
-    accent: 'border-violet-500/30',
+    accent: 'border-blue-500/30',
   },
   {
     name: 'ReceiptSnap',
-    tagline: 'Expense Capture & Tracking',
-    price: 'R299',
-    description: 'Snap receipts with your phone. Automatic categorisation, tax-ready reports, and SARS compliance.',
+    tagline: 'Receipt Tracker',
+    price: 299,
+    priceLabel: 'R299',
+    description: 'Snap photos of receipts, automatically extract data with AI, and export clean CSV files for your bookkeepers.',
     features: [
-      'Camera receipt capture',
-      'Auto-categorisation',
-      'Tax-ready reports',
-      'SARS-compliant exports',
-      'Mileage & expense tracking',
+      'AI OCR extraction',
+      'Auto-categorization',
+      'CSV export',
+      'Cloud storage',
       'One-time purchase',
     ],
     cta: 'Get ReceiptSnap',
     popular: false,
-    accent: 'border-blue-500/30',
+    accent: 'border-amber-500/30',
+  },
+  {
+    name: 'Visibility',
+    tagline: 'Content Planner',
+    price: 299,
+    priceLabel: 'R299',
+    description: 'Marketing calendars, content scheduling, and social media production workflows.',
+    features: [
+      'Content calendar',
+      'Social scheduling',
+      'Post tracking',
+      'Campaign planning',
+      'One-time purchase',
+    ],
+    cta: 'Get Visibility',
+    popular: false,
+    accent: 'border-violet-500/30',
+  },
+  {
+    name: 'Payability',
+    tagline: 'Invoice Sorter Pro',
+    price: 499,
+    priceLabel: 'R499',
+    description: 'Automated accounts receivable workflows to track billing cycles and optimize collections.',
+    features: [
+      'PDF generation',
+      'Email sending',
+      'Payment tracking',
+      'VAT reports',
+      'One-time purchase',
+    ],
+    cta: 'Get Payability',
+    popular: false,
+    accent: 'border-cyan-500/30',
+  },
+  {
+    name: 'Availability',
+    tagline: 'Stock & Supplier Pro',
+    price: 499,
+    priceLabel: 'R499',
+    description: 'Comprehensive inventory control, procurement tracking, and supply chain management.',
+    features: [
+      'Inventory tracking',
+      'Supplier management',
+      'Stock alerts',
+      'Reorder automation',
+      'One-time purchase',
+    ],
+    cta: 'Get Availability',
+    popular: false,
+    accent: 'border-sky-500/30',
+  },
+  {
+    name: 'Profitability',
+    tagline: 'Income & Expenses',
+    price: 799,
+    priceLabel: 'R799',
+    description: 'Real-time financial visibility, without a bookkeeper re-entering your data by hand.',
+    features: [
+      'Banking ledger',
+      'CSV import',
+      'Profit/loss reports',
+      'Category tracking',
+      'One-time purchase',
+    ],
+    cta: 'Get Profitability',
+    popular: false,
+    accent: 'border-rose-500/30',
+  },
+  {
+    name: 'Marketability',
+    tagline: 'SMM & Web Framework',
+    price: 0,
+    priceLabel: 'Request Quote',
+    description: 'Tiered digital strategies, social media management intake, and fast GitHub/Vercel website launch workflows.',
+    features: [
+      'Strategy intake',
+      'Social media management',
+      'Website launch',
+      'Conversion tracking',
+    ],
+    cta: 'Request Quote',
+    popular: false,
+    accent: 'border-violet-500/30',
+  },
+  {
+    name: 'Promotability',
+    tagline: 'Corporate Swag Tracker',
+    price: 0,
+    priceLabel: 'Request Quote',
+    description: 'Visual proofing, local South African supplier directory linking, and markup calculators for physical branded merchandise.',
+    features: [
+      'Visual proofing',
+      'Supplier directory',
+      'Markup calculator',
+      'Order tracking',
+    ],
+    cta: 'Request Quote',
+    popular: false,
+    accent: 'border-pink-500/30',
+  },
+  {
+    name: 'Trackability',
+    tagline: 'Time & Payroll',
+    price: 499,
+    priceLabel: 'R499',
+    description: 'Kiosk QR check-in/out interfaces and automated backend PDF payslip generators for HR managers.',
+    features: [
+      'QR check-in/out',
+      'Payslip generation',
+      'Attendance tracking',
+      'HR reporting',
+    ],
+    cta: 'Coming Soon',
+    popular: false,
+    accent: 'border-gray-400/30',
+    comingSoon: true,
+  },
+  {
+    name: 'Mini Cash-Up',
+    tagline: 'Daily Cash Reconciliation',
+    price: 499,
+    priceLabel: 'R499',
+    description: 'Lightweight daily cash-up tool for retail and hospitality businesses. Reconcile tills, track floats, and spot discrepancies in minutes.',
+    features: [
+      'Daily till reconciliation',
+      'Float tracking',
+      'Discrepancy alerts',
+      'End-of-day reports',
+    ],
+    cta: 'Coming Soon',
+    popular: false,
+    accent: 'border-teal-400/30',
+    comingSoon: true,
+  },
+  {
+    name: 'CV/Portfolio Builder',
+    tagline: 'Professional Document Generator',
+    price: 0,
+    priceLabel: 'R299–R999',
+    description: 'Generate polished CVs, portfolios, and proposal documents from your Google Sheets data. Perfect for freelancers and agencies.',
+    features: [
+      'Template library',
+      'Auto-populate from Sheets',
+      'PDF export',
+      'Branded styling',
+    ],
+    cta: 'Coming Soon',
+    popular: false,
+    accent: 'border-indigo-400/30',
+    comingSoon: true,
+  },
+  {
+    name: 'Adaptability',
+    tagline: 'Done-With-You Setup',
+    price: 999,
+    priceLabel: 'R999',
+    description: 'The core onboarding engine and developer configuration block built for white-label reseller buyers.',
+    features: [
+      '30-min video setup',
+      'Data import',
+      'Branding config',
+      'Personal walkthrough',
+      'One-time purchase',
+    ],
+    cta: 'Get Adaptability',
+    popular: false,
+    accent: 'border-gold/30',
   },
 ]
 
@@ -222,21 +373,26 @@ export default function Pricing() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
+                transition={{ duration: 0.6, delay: i * 0.05 }}
                 className={`bg-white rounded-2xl p-6 shadow-lg border-2 ${product.accent} ${
                   product.popular ? 'scale-105 shadow-2xl' : ''
-                } transition-all duration-300`}
+                } transition-all duration-300 ${product.comingSoon ? 'opacity-70' : ''}`}
               >
                 {product.popular && (
                   <div className="bg-gold text-navy-900 text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
                     Most Popular
                   </div>
                 )}
+                {product.comingSoon && (
+                  <div className="bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
+                    Coming Soon
+                  </div>
+                )}
                 <h4 className="text-xl font-bold text-navy-900 mb-1">{product.name}</h4>
                 <p className="text-xs text-gold font-semibold uppercase tracking-wider mb-3">
                   {product.tagline}
                 </p>
-                <div className="text-3xl font-bold text-navy-900 mb-2">{product.price}</div>
+                <div className="text-3xl font-bold text-navy-900 mb-2">{product.priceLabel}</div>
                 <p className="text-sm text-navy-600 mb-6 leading-relaxed">{product.description}</p>
                 <ul className="space-y-2 mb-6">
                   {product.features.map((feature, j) => (
@@ -247,18 +403,20 @@ export default function Pricing() {
                   ))}
                 </ul>
                 <a
-                  href={ORDER_FORM_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={product.comingSoon ? '#products' : ORDER_FORM_URL}
+                  target={product.comingSoon ? '_self' : '_blank'}
+                  rel={product.comingSoon ? '' : 'noopener noreferrer'}
                   className={`block text-center py-3 rounded-xl font-bold transition-all duration-300 ${
-                    product.popular
-                      ? 'bg-navy-900 text-gold hover:bg-navy-800'
-                      : 'bg-gold/10 text-navy-900 border border-gold/30 hover:bg-gold/20'
+                    product.comingSoon
+                      ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                      : product.popular
+                        ? 'bg-navy-900 text-gold hover:bg-navy-800'
+                        : 'bg-gold/10 text-navy-900 border border-gold/30 hover:bg-gold/20'
                   }`}
                 >
                   <span className="flex items-center justify-center gap-2">
                     {product.cta}
-                    <FiArrowRight className="w-4 h-4" />
+                    {!product.comingSoon && <FiArrowRight className="w-4 h-4" />}
                   </span>
                 </a>
               </motion.div>

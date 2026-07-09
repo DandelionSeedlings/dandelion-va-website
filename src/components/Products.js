@@ -435,8 +435,8 @@ export default function Products() {
                   <FaPercentage className="w-6 h-6 text-gold" />
                 </div>
                 <div>
-                  <h3 className="text-navy-900 font-bold text-lg">Have a Partner Code?</h3>
-                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid module.</p>
+                  <h3 className="text-navy-900 font-bold text-lg">Have a Referral Code?</h3>
+                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid module. This is a customer discount — separate from the <a href="#resellers" className="text-gold underline hover:no-underline">Partner Program</a> where you earn by reselling.</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 w-full md:w-auto">
