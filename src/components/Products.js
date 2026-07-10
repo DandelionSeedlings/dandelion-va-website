@@ -136,6 +136,7 @@ const products = [
     badge: 'NEW',
     badgeColor: 'bg-amber-500',
     available: true,
+    orderUrl: '/receiptsnap',
     features: ['AI OCR extraction', 'Auto-categorization', 'CSV export', 'Cloud storage'],
     category: 'quick-solutions'
   },
@@ -347,6 +348,19 @@ export default function Products() {
     return 'R' + price.toLocaleString('en-ZA');
   };
 
+  const getButtonText = (product) => {
+    if (!product.available) return 'Coming Soon';
+    if (product.price === 0 && !product.orderUrl) return 'Get Free';
+    if (product.orderUrl && product.orderUrl.startsWith('/')) return 'Learn More';
+    return 'Deploy Now';
+  };
+
+  const getButtonTarget = (product) => {
+    if (!product.available) return '_self';
+    if (product.orderUrl && product.orderUrl.startsWith('/')) return '_self';
+    return '_blank';
+  };
+
   return (
     <section id="products" className="section-padding bg-cream relative overflow-hidden">
       {/* Floating Dandelion Seeds Background */}
@@ -527,8 +541,8 @@ export default function Products() {
                       </ul>
                       <a
                         href={product.available ? (product.orderUrl || buildOrderUrl(product, globalPartnerCode)) : '#products'}
-                        target={product.available ? "_blank" : "_self"}
-                        rel={product.available ? "noopener noreferrer" : ""}
+                        target={getButtonTarget(product)}
+                        rel={product.available && !product.orderUrl?.startsWith('/') ? "noopener noreferrer" : ""}
                         className={`block text-center py-3 rounded-xl font-bold transition-all duration-300 ${
                           !product.available
                             ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
@@ -538,7 +552,7 @@ export default function Products() {
                         }`}
                       >
                         <span className="flex items-center justify-center gap-2">
-                          {product.available ? (product.price === 0 && !product.orderUrl ? 'Get Free' : 'Deploy Now') : 'Coming Soon'}
+                          {getButtonText(product)}
                           {product.available && <FaArrowRight className="w-4 h-4" />}
                         </span>
                       </a>
@@ -602,10 +616,16 @@ export default function Products() {
                   <FaCheckCircle className="text-amber-500 flex-shrink-0" size={14} /> Export CSV for your accountant
                 </li>
               </ul>
-              <div className="bg-white/80 rounded-lg p-4 border border-amber-100">
+              <div className="bg-white/80 rounded-lg p-4 border border-amber-100 mb-4">
                 <p className="text-xs text-navy-500 font-medium">Best for:</p>
                 <p className="text-sm text-navy-700">Freelancers, small businesses, anyone who needs to track expenses and stay SARS-compliant.</p>
               </div>
+              <a
+                href="/receiptsnap"
+                className="block w-full text-center py-3 rounded-xl font-bold bg-amber-500 hover:bg-amber-600 text-white transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <FaArrowRight /> Learn More About ReceiptSnap
+              </a>
             </div>
 
             {/* Payability */}
@@ -639,10 +659,18 @@ export default function Products() {
                   <FaCheckCircle className="text-cyan-500 flex-shrink-0" size={14} /> VAT reports & monthly summaries
                 </li>
               </ul>
-              <div className="bg-white/80 rounded-lg p-4 border border-cyan-100">
+              <div className="bg-white/80 rounded-lg p-4 border border-cyan-100 mb-4">
                 <p className="text-xs text-navy-500 font-medium">Best for:</p>
                 <p className="text-sm text-navy-700">Service businesses, agencies, consultants — anyone who invoices clients and needs cash flow visibility.</p>
               </div>
+              <a
+                href={buildOrderUrl({ name: 'Payability', subtitle: 'Invoice Sorter Pro', price: 499, orderUrl: null }, globalPartnerCode)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center py-3 rounded-xl font-bold bg-cyan-500 hover:bg-cyan-600 text-white transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <FaShoppingCart /> Deploy Payability
+              </a>
             </div>
           </div>
 
@@ -885,6 +913,13 @@ export default function Products() {
                   className="block w-full bg-emerald-500 hover:bg-emerald-600 text-white text-center py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <FaArrowRight /> Get Connectability Free
+                </a>
+              ) : selectedProduct.orderUrl && selectedProduct.orderUrl.startsWith('/') ? (
+                <a
+                  href={selectedProduct.orderUrl}
+                  className="block w-full bg-gold hover:bg-[#c4a030] text-navy-900 text-center py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <FaArrowRight /> Learn More
                 </a>
               ) : (
                 <a
