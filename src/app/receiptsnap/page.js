@@ -1,14 +1,53 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, useInView, animate } from 'framer-motion'
 import Link from 'next/link'
 import { 
   FaReceipt, FaCamera, FaBrain, FaFileCsv, FaCloud, 
   FaCheckCircle, FaArrowRight, FaShoppingCart, FaShieldAlt,
-  FaMobileAlt, FaWhatsapp
+  FaMobileAlt, FaWhatsapp, FaClock, FaBolt, FaFileInvoiceDollar
 } from 'react-icons/fa'
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbyUAtVX_pKihPq2iBqb_bq4ctso-v8z52YHHlSX3TflJaz_DlaMsTq8FUSoCw7hmQqPNw/exec'
+
+// Floating seed positions, matching the pattern used on the homepage Hero
+const seeds = Array.from({ length: 10 }, (_, i) => ({
+  id: i,
+  left: `${4 + (i * 9) % 92}%`,
+  top: `${6 + (i * 11) % 82}%`,
+  size: 20 + (i % 5) * 10,
+  delay: i * 0.6,
+  duration: 15 + (i % 4) * 3,
+  opacity: 0.12 + (i % 3) * 0.06,
+  rotation: (i * 41) % 360
+}))
+
+const impactStats = [
+  { icon: FaClock, value: 208, suffix: '+', label: 'Hours reclaimed per year, per business' },
+  { icon: FaBolt, value: 3, suffix: 's', label: 'For AI to read and categorize a receipt' },
+  { icon: FaFileInvoiceDollar, value: 100, suffix: '%', label: 'SARS-ready, every export' },
+]
+
+function AnimatedCounter({ value, suffix = '', duration = 1.6 }) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const [display, setDisplay] = useState(0)
+
+  useEffect(() => {
+    if (!isInView) return
+    const controls = animate(0, value, {
+      duration,
+      ease: 'easeOut',
+      onUpdate: (v) => setDisplay(Math.round(v)),
+    })
+    return () => controls.stop()
+  }, [isInView, value, duration])
+
+  return (
+    <span ref={ref}>{display}{suffix}</span>
+  )
+}
 
 const features = [
   {
@@ -48,16 +87,83 @@ const faqs = [
 ]
 
 export default function ReceiptSnapPage() {
+  const [showSticky, setShowSticky] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setShowSticky(window.scrollY > 640)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <div className="min-h-screen bg-[#F5F1E8]">
       {/* Navbar spacer */}
       <div className="h-20" />
 
+      {/* Sticky CTA bar — appears after scrolling past the hero */}
+      <motion.div
+        initial={{ y: -80, opacity: 0 }}
+        animate={showSticky ? { y: 0, opacity: 1 } : { y: -80, opacity: 0 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="fixed top-0 left-0 right-0 z-40 bg-[#0a1628]/95 backdrop-blur-md border-b border-[#D4AF37]/20"
+        style={{ pointerEvents: showSticky ? 'auto' : 'none' }}
+      >
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <FaReceipt className="text-[#D4AF37] hidden sm:block" />
+            <span className="text-white font-bold text-sm sm:text-base">ReceiptSnap</span>
+            <span className="text-gray-400 text-sm hidden sm:inline">— R299, once</span>
+          </div>
+          <a
+            href={`${ORDER_FORM_URL}?product=ReceiptSnap`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] px-4 py-2 rounded-lg font-bold text-sm transition-all duration-300 flex items-center gap-2 flex-shrink-0"
+          >
+            <FaShoppingCart size={14} /> Deploy Now
+          </a>
+        </div>
+      </motion.div>
+
       {/* Hero */}
       <section className="relative bg-[#0a1628] pt-16 pb-24 px-4 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-[#D4AF37] rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-56 h-56 bg-[#D4AF37] rounded-full blur-3xl" />
+          <motion.div
+            className="absolute top-20 left-10 w-72 h-72 bg-[#D4AF37] rounded-full blur-3xl"
+            animate={{ x: [0, 20, 0], y: [0, -15, 0] }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.div
+            className="absolute bottom-10 right-10 w-56 h-56 bg-[#D4AF37] rounded-full blur-3xl"
+            animate={{ x: [0, -15, 0], y: [0, 20, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </div>
+
+        {/* Floating dandelion seeds */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {seeds.map((seed) => (
+            <div
+              key={seed.id}
+              className="absolute"
+              style={{
+                left: seed.left,
+                top: seed.top,
+                width: `${seed.size}px`,
+                height: `${seed.size}px`,
+                opacity: seed.opacity,
+                animation: `receiptsnap-float-seed ${seed.duration}s ease-in-out ${seed.delay}s infinite`,
+              }}
+            >
+              <img
+                src="/images/dandelion-seed.png"
+                alt=""
+                className="w-full h-full"
+                style={{ transform: `rotate(${seed.rotation}deg)`, filter: 'brightness(0) invert(1)' }}
+                draggable={false}
+              />
+            </div>
+          ))}
         </div>
         
         <div className="max-w-6xl mx-auto relative z-10 text-center">
@@ -104,6 +210,30 @@ export default function ReceiptSnapPage() {
               <span className="flex items-center gap-2"><FaCheckCircle className="text-emerald-400" /> SARS-compliant exports</span>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Impact Stats — animated count-up */}
+      <section className="py-14 px-4 bg-[#0a1628] border-t border-[#D4AF37]/10">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {impactStats.map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.12, duration: 0.5 }}
+              className="text-center"
+            >
+              <div className="w-12 h-12 bg-[#D4AF37]/15 rounded-xl flex items-center justify-center mx-auto mb-3 border border-[#D4AF37]/20">
+                <stat.icon className="text-[#D4AF37]" size={20} />
+              </div>
+              <div className="text-4xl font-bold text-[#D4AF37] mb-1">
+                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+              </div>
+              <p className="text-gray-400 text-sm max-w-[220px] mx-auto">{stat.label}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -155,25 +285,37 @@ export default function ReceiptSnapPage() {
             <p className="text-gray-600">From chaos to organized, in the time it takes to take a photo.</p>
           </motion.div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="bg-white rounded-2xl p-8 shadow-lg border border-[#D4AF37]/10 text-center relative"
-              >
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-[#D4AF37] rounded-full flex items-center justify-center text-[#0a1628] font-bold text-lg">
-                  {step.num}
-                </div>
-                <div className="mt-4">
-                  <h3 className="text-xl font-bold text-[#0a1628] mb-2">{step.title}</h3>
-                  <p className="text-gray-600 text-sm">{step.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="relative">
+            {/* Animated connecting line — desktop only */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: 'easeOut', delay: 0.3 }}
+              style={{ transformOrigin: 'left' }}
+              className="hidden md:block absolute top-5 left-[16.5%] right-[16.5%] h-0.5 bg-gradient-to-r from-[#D4AF37]/70 via-[#D4AF37]/40 to-[#D4AF37]/70 -z-0"
+            />
+            <div className="grid md:grid-cols-3 gap-8 relative">
+              {steps.map((step, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.15 }}
+                  whileHover={{ y: -6 }}
+                  className="bg-white rounded-2xl p-8 shadow-lg border border-[#D4AF37]/10 text-center relative transition-shadow duration-300 hover:shadow-xl hover:shadow-[#D4AF37]/10"
+                >
+                  <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-[#D4AF37] rounded-full flex items-center justify-center text-[#0a1628] font-bold text-lg ring-4 ring-[#F5F1E8]">
+                    {step.num}
+                  </div>
+                  <div className="mt-4">
+                    <h3 className="text-xl font-bold text-[#0a1628] mb-2">{step.title}</h3>
+                    <p className="text-gray-600 text-sm">{step.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -274,7 +416,11 @@ export default function ReceiptSnapPage() {
               recurring fees. No renewal date. No data lock-in.
             </p>
             
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto border border-white/10 mb-10">
+            <motion.div
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.25 }}
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto border border-white/10 mb-10 hover:border-[#D4AF37]/40 hover:shadow-2xl hover:shadow-[#D4AF37]/10 transition-all duration-300"
+            >
               <div className="text-5xl font-bold text-[#D4AF37] mb-2">R299</div>
               <p className="text-gray-400 text-sm mb-6">One-time purchase • Instant license delivery</p>
               
@@ -296,7 +442,7 @@ export default function ReceiptSnapPage() {
                   <FaShoppingCart /> Deploy ReceiptSnap Now
                 </span>
               </a>
-            </div>
+            </motion.div>
             
             <div className="flex items-center justify-center gap-2 text-gray-400 text-sm">
               <FaWhatsapp className="text-emerald-400" />
