@@ -14,37 +14,37 @@ const features = [
   {
     icon: FaCamera,
     title: 'Snap Any Receipt',
-    desc: 'Take a photo with your phone. Paper, email screenshot, or PDF — ReceiptSnap handles them all.'
+    desc: 'Photograph it with your phone. Paper, email screenshot, or PDF — the system handles all of them the same way.'
   },
   {
     icon: FaBrain,
     title: 'AI Reads Everything',
-    desc: 'Groq AI automatically extracts date, vendor, amount, and VAT. No typing. No spreadsheets.'
+    desc: 'Groq AI extracts date, vendor, amount, and VAT automatically. No typing. No spreadsheets. No manual re-entry.'
   },
   {
     icon: FaFileCsv,
     title: 'SARS-Ready CSV Export',
-    desc: 'Download clean expense reports your accountant will actually thank you for.'
+    desc: 'A clean, structured expense report your accountant can work from directly — engineered for South African compliance, not adapted from a US template.'
   },
   {
     icon: FaCloud,
     title: 'Organized in Your Drive',
-    desc: 'Every receipt stores in your own Google Drive, categorized and searchable forever.'
+    desc: 'Every receipt stores in your own Google Drive, categorized and searchable — permanently, and entirely under your control.'
   }
 ]
 
 const steps = [
   { num: '1', title: 'Snap', desc: 'Photograph any receipt with your phone' },
-  { num: '2', title: 'Extract', desc: 'AI reads the data in under 3 seconds' },
-  { num: '3', title: 'Export', desc: 'Download CSV or view in your Sheets dashboard' }
+  { num: '2', title: 'Extract', desc: 'AI reads the data in under 3 seconds — no manual entry' },
+  { num: '3', title: 'Export', desc: 'A clean CSV, ready for your accountant, or your Sheets dashboard' }
 ]
 
 const faqs = [
-  { q: 'Do I need a special phone?', a: 'Any smartphone works. iPhone, Android, Samsung — if it has a camera, it works.' },
-  { q: 'Is my data safe?', a: 'Everything lives in your own Google Drive and Sheets. We never host or see your data.' },
-  { q: 'What about VAT?', a: 'ReceiptSnap extracts VAT amounts where visible and tags expenses by category for easy SARS filing.' },
-  { q: 'Can I use it for multiple businesses?', a: 'Each license covers one Google account. Buy additional licenses for separate businesses.' },
-  { q: 'What if I need help?', a: 'WhatsApp support at +27 72 839 3087. Most issues resolved in minutes.' }
+  { q: 'Do I need a special phone?', a: 'Any smartphone works. iPhone, Android, Samsung — if it has a camera, it\u2019s already capable enough.' },
+  { q: 'Is my data safe?', a: 'Everything lives in your own Google Drive and Sheets. We never host it, and we never see it — it\u2019s your infrastructure, not ours.' },
+  { q: 'What about VAT?', a: 'ReceiptSnap extracts VAT amounts where visible and tags every expense by category, so SARS filing is a formality, not a project.' },
+  { q: 'Can I use it for multiple businesses?', a: 'Each license covers one Google account. For separate businesses, deploy a separate license.' },
+  { q: 'What if I need help?', a: 'WhatsApp support at +27 72 839 3087. Most issues get resolved in minutes, not ticket queues.' }
 ]
 
 export default function ReceiptSnapPage() {
@@ -71,13 +71,14 @@ export default function ReceiptSnapPage() {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Stop Losing Receipts.<br />
-              <span className="text-[#D4AF37]">Start Claiming Tax.</span>
+              Receipt Chaos,<br />
+              <span className="text-[#D4AF37]">Engineered Out.</span>
             </h1>
             
             <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-              ReceiptSnap uses AI to read, categorize, and store every receipt you photograph. 
-              Built for South African business owners who need SARS-compliant records without the admin headache.
+              Every receipt captured, categorized, and export-ready — automatically. Built for 
+              South African business owners who need SARS-compliant records without the admin 
+              headache of building them by hand.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -87,20 +88,20 @@ export default function ReceiptSnapPage() {
                 rel="noopener noreferrer"
                 className="bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/30 flex items-center gap-2"
               >
-                <FaShoppingCart /> Get ReceiptSnap — R299
+                <FaShoppingCart /> Deploy ReceiptSnap — R299
               </a>
               <a 
                 href="#how-it-works"
                 className="text-white/70 hover:text-white px-8 py-4 rounded-xl font-semibold transition-all flex items-center gap-2 border border-white/20 hover:border-white/40"
               >
-                See How It Works <FaArrowRight />
+                See How It's Engineered <FaArrowRight />
               </a>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-6 text-gray-400 text-sm">
               <span className="flex items-center gap-2"><FaCheckCircle className="text-emerald-400" /> Works on any phone</span>
-              <span className="flex items-center gap-2"><FaCheckCircle className="text-emerald-400" /> Google Sheets based</span>
-              <span className="flex items-center gap-2"><FaCheckCircle className="text-emerald-400" /> SARS compliant exports</span>
+              <span className="flex items-center gap-2"><FaCheckCircle className="text-emerald-400" /> Runs inside Google Sheets</span>
+              <span className="flex items-center gap-2"><FaCheckCircle className="text-emerald-400" /> SARS-compliant exports</span>
             </div>
           </motion.div>
         </div>
@@ -116,15 +117,15 @@ export default function ReceiptSnapPage() {
             className="text-center mb-10"
           >
             <h2 className="text-3xl font-bold text-[#0a1628] mb-3">Sound Familiar?</h2>
-            <p className="text-gray-600">If any of these hurt, ReceiptSnap was built for you.</p>
+            <p className="text-gray-600">If any of these are true, this is a design failure, not a discipline problem — and it's exactly what ReceiptSnap was engineered to fix.</p>
           </motion.div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              'Shoeboxes full of crumpled receipts?',
-              'Hours typing data into spreadsheets?',
-              'Missing VAT claims at tax time?',
-              'No proof when SARS asks questions?'
+              'A shoebox of crumpled receipts you keep meaning to sort?',
+              'Hours lost typing the same data into a spreadsheet, one line at a time?',
+              'VAT claims quietly missed because the receipt never made it into the system?',
+              'No real proof ready the moment SARS asks a question?'
             ].map((point, i) => (
               <motion.div
                 key={i}
@@ -150,8 +151,8 @@ export default function ReceiptSnapPage() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">How It Works</h2>
-            <p className="text-gray-600">From chaos to organized in 30 seconds.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">How It's Engineered</h2>
+            <p className="text-gray-600">From chaos to organized, in the time it takes to take a photo.</p>
           </motion.div>
           
           <div className="grid md:grid-cols-3 gap-8">
@@ -187,7 +188,7 @@ export default function ReceiptSnapPage() {
             className="text-center mb-10"
           >
             <h2 className="text-3xl font-bold text-[#0a1628] mb-3">See It In Action</h2>
-            <p className="text-gray-600">30 seconds from photo to organized data.</p>
+            <p className="text-gray-600">From photo to organized, exported data — watch the whole process.</p>
           </motion.div>
           
           <div className="bg-[#0a1628] rounded-2xl overflow-hidden shadow-2xl aspect-video relative">
@@ -225,7 +226,7 @@ export default function ReceiptSnapPage() {
             className="text-center mb-14"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">What You Get</h2>
-            <p className="text-gray-600">Everything you need to never lose a receipt again.</p>
+            <p className="text-gray-600">A complete system for never losing track of a receipt again — engineered once, running permanently.</p>
           </motion.div>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -260,16 +261,17 @@ export default function ReceiptSnapPage() {
             viewport={{ once: true }}
           >
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-emerald-500/30">
-              <FaShieldAlt /> One Payment. Yours Forever.
+              <FaShieldAlt /> One Payment. Owned Forever.
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              R299 Once.<br />Not R299/Month.
+              R299 Once.<br />Not R299 a Month.
             </h2>
             
             <p className="text-gray-300 text-lg max-w-xl mx-auto mb-10">
-              Other receipt apps charge monthly subscriptions. ReceiptSnap is a one-time purchase 
-              that lives in your Google Workspace. No recurring fees. No data lock-in.
+              Other receipt apps rent you efficiency, one subscription at a time. ReceiptSnap is 
+              engineered once and deployed permanently inside your own Google Workspace. No 
+              recurring fees. No renewal date. No data lock-in.
             </p>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto border border-white/10 mb-10">
@@ -279,9 +281,9 @@ export default function ReceiptSnapPage() {
               <ul className="text-left space-y-3 mb-8 text-gray-300 text-sm">
                 <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> AI receipt extraction</li>
                 <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> Unlimited receipts</li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> CSV export for SARS</li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> Google Drive storage</li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> Lifetime access</li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> SARS-ready CSV export</li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> Google Drive storage — yours, not ours</li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> Lifetime access, zero renewals</li>
               </ul>
               
               <a
@@ -291,7 +293,7 @@ export default function ReceiptSnapPage() {
                 className="block w-full bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/30"
               >
                 <span className="flex items-center justify-center gap-2">
-                  <FaShoppingCart /> Buy ReceiptSnap Now
+                  <FaShoppingCart /> Deploy ReceiptSnap Now
                 </span>
               </a>
             </div>
@@ -338,7 +340,7 @@ export default function ReceiptSnapPage() {
       <section className="py-16 px-4 bg-[#F5F1E8] border-t border-[#D4AF37]/10">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0a1628] mb-6">
-            Ready to Ditch the Shoebox?
+            Ready to Engineer the Shoebox Out of Your Life?
           </h2>
           <a
             href={`${ORDER_FORM_URL}?product=ReceiptSnap`}
@@ -346,10 +348,10 @@ export default function ReceiptSnapPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/30"
           >
-            <FaShoppingCart /> Get ReceiptSnap — R299
+            <FaShoppingCart /> Deploy ReceiptSnap — R299
           </a>
           <p className="text-gray-400 text-sm mt-4">
-            Or <Link href="/" className="text-[#D4AF37] underline hover:no-underline">browse all products</Link>
+            Or <Link href="/" className="text-[#D4AF37] underline hover:no-underline">explore the full AbilitySuite™ ecosystem</Link>
           </p>
         </div>
       </section>
