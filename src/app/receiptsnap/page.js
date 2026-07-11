@@ -11,16 +11,16 @@ import {
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbyUAtVX_pKihPq2iBqb_bq4ctso-v8z52YHHlSX3TflJaz_DlaMsTq8FUSoCw7hmQqPNw/exec'
 
-// Floating seed positions, matching the pattern used on the homepage Hero
-const seeds = Array.from({ length: 10 }, (_, i) => ({
+// Floating seed positions — MORE seeds, BIGGER, MORE movement
+const seeds = Array.from({ length: 20 }, (_, i) => ({
   id: i,
-  left: `${4 + (i * 9) % 92}%`,
-  top: `${6 + (i * 11) % 82}%`,
-  size: 20 + (i % 5) * 10,
-  delay: i * 0.6,
-  duration: 15 + (i % 4) * 3,
-  opacity: 0.12 + (i % 3) * 0.06,
-  rotation: (i * 41) % 360
+  left: `${3 + (i * 5) % 94}%`,
+  top: `${4 + (i * 7) % 88}%`,
+  size: 28 + (i % 6) * 14,
+  delay: i * 0.4,
+  duration: 12 + (i % 5) * 4,
+  opacity: 0.08 + (i % 4) * 0.08,
+  rotation: (i * 37) % 360
 }))
 
 const impactStats = [
@@ -130,17 +130,17 @@ export default function ReceiptSnapPage() {
         <div className="absolute inset-0 opacity-10">
           <motion.div
             className="absolute top-20 left-10 w-72 h-72 bg-[#D4AF37] rounded-full blur-3xl"
-            animate={{ x: [0, 20, 0], y: [0, -15, 0] }}
+            animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
             transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           />
           <motion.div
             className="absolute bottom-10 right-10 w-56 h-56 bg-[#D4AF37] rounded-full blur-3xl"
-            animate={{ x: [0, -15, 0], y: [0, 20, 0] }}
+            animate={{ x: [0, -20, 0], y: [0, 25, 0] }}
             transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           />
         </div>
 
-        {/* Floating dandelion seeds */}
+        {/* Floating dandelion seeds — MORE, BIGGER, MORE MOVEMENT */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {seeds.map((seed) => (
             <div
