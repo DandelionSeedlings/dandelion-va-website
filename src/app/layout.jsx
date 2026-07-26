@@ -13,12 +13,12 @@ const playfair = Playfair_Display({
 
 export const metadata = {
   metadataBase: new URL('https://dandelioncreations.co.za'),
-  title: 'Dandelion Creations | Operations Engineering & Automation Systems',
+  title: 'Dandelion Creations OS | Operations Engineering & Automation Systems',
   description: 'Custom automated systems built inside Google Workspace — precise, permanent, and engineered for how your business actually runs. No subscriptions. No bloated platforms. South African businesses only.',
   keywords: 'operations engineering, Google Apps Script, business automation, systems architecture, South Africa, SARS compliance, no subscription software, Pretoria',
   authors: [{ name: 'Simone Theron' }],
   openGraph: {
-    title: 'Dandelion Creations — Operations Engineering Studio',
+    title: 'Dandelion Creations OS — Operations Engineering Studio',
     description: 'Custom automated systems for businesses ready to run on clarity, not chaos.',
     type: 'website',
     url: 'https://dandelioncreations.co.za',

@@ -96,7 +96,7 @@ export default function Hero() {
               </h1>
 
               <p className="text-xl text-navy-600 mb-10 max-w-lg leading-relaxed">
-                Dandelion Creations designs and builds custom automated systems inside Google Workspace &mdash; precise, permanent, and built around how your business actually runs. No subscriptions. No bloated platforms. No admin chaos. Just infrastructure that works.
+                Dandelion Creations OS designs and builds custom automated systems inside Google Workspace &mdash; precise, permanent, and built around how your business actually runs. No subscriptions. No bloated platforms. No admin chaos. Just infrastructure that works.
               </p>
 
               <p className="text-lg text-navy-500 mb-10 max-w-lg leading-relaxed italic">

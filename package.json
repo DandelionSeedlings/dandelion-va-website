@@ -1,7 +1,7 @@
 {
-  "name": "dandelion-creations-va",
+  "name": "dandelion-creations-os",
   "version": "3.0.0",
-  "description": "Dandelion Creations VA - Premium Virtual Assistant & Technical Automation",
+  "description": "Dandelion Creations OS - Operations Engineering & Business Systems Automation",
   "private": true,
   "scripts": {
     "dev": "next dev",

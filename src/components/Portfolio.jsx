@@ -28,8 +28,8 @@ const caseStudies = [
     image: '/portfolio/the-wilds.jpg',
   },
   {
-    client: 'Dandelion Creations',
-    industry: 'Creative Agency',
+    client: 'Dandelion Creations OS',
+    industry: 'Operations Engineering',
     label: 'Breakdown',
     problem: 'Social media chaos, no content calendar, inconsistent posting.',
     system: 'Marketability',
