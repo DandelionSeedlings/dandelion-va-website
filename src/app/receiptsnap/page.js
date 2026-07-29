@@ -11,7 +11,7 @@ import {
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbyUAtVX_pKihPq2iBqb_bq4ctso-v8z52YHHlSX3TflJaz_DlaMsTq8FUSoCw7hmQqPNw/exec'
 
-// Floating seed positions — MORE seeds, BIGGER, MORE movement
+// Floating seed positions
 const seeds = Array.from({ length: 20 }, (_, i) => ({
   id: i,
   left: `${3 + (i * 5) % 94}%`,
@@ -79,8 +79,8 @@ const steps = [
 ]
 
 const faqs = [
-  { q: 'Do I need a special phone?', a: 'Any smartphone works. iPhone, Android, Samsung — if it has a camera, it\u2019s already capable enough.' },
-  { q: 'Is my data safe?', a: 'Everything lives in your own Google Drive and Sheets. We never host it, and we never see it — it\u2019s your infrastructure, not ours.' },
+  { q: 'Do I need a special phone?', a: 'Any smartphone works. iPhone, Android, Samsung — if it has a camera, it’s already capable enough.' },
+  { q: 'Is my data safe?', a: 'Everything lives in your own Google Drive and Sheets. We never host it, and we never see it — it’s your infrastructure, not ours.' },
   { q: 'What about VAT?', a: 'ReceiptSnap extracts VAT amounts where visible and tags every expense by category, so SARS filing is a formality, not a project.' },
   { q: 'Can I use it for multiple businesses?', a: 'Each license covers one Google account. For separate businesses, deploy a separate license.' },
   { q: 'What if I need help?', a: 'WhatsApp support at +27 72 839 3087. Most issues get resolved in minutes, not ticket queues.' }
@@ -100,7 +100,7 @@ export default function ReceiptSnapPage() {
       {/* Navbar spacer */}
       <div className="h-20" />
 
-      {/* Sticky CTA bar — appears after scrolling past the hero */}
+      {/* Sticky CTA bar */}
       <motion.div
         initial={{ y: -80, opacity: 0 }}
         animate={showSticky ? { y: 0, opacity: 1 } : { y: -80, opacity: 0 }}
@@ -140,7 +140,6 @@ export default function ReceiptSnapPage() {
           />
         </div>
 
-        {/* Floating dandelion seeds — MORE, BIGGER, MORE MOVEMENT */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {seeds.map((seed) => (
             <div
@@ -165,7 +164,7 @@ export default function ReceiptSnapPage() {
             </div>
           ))}
         </div>
-        
+
         <div className="max-w-6xl mx-auto relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -175,18 +174,18 @@ export default function ReceiptSnapPage() {
             <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-amber-500/30">
               <FaReceipt /> R299 Once-Off • No Monthly Fees
             </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+
+            <h1 className="font-display text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Receipt Chaos,<br />
               <span className="text-[#D4AF37]">Engineered Out.</span>
             </h1>
-            
+
             <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
               Every receipt captured, categorized, and export-ready — automatically. Built for 
               South African business owners who need SARS-compliant records without the admin 
               headache of building them by hand.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <a
                 href={`${ORDER_FORM_URL}?product=ReceiptSnap`}
@@ -200,7 +199,7 @@ export default function ReceiptSnapPage() {
                 href="#how-it-works"
                 className="text-white/70 hover:text-white px-8 py-4 rounded-xl font-semibold transition-all flex items-center gap-2 border border-white/20 hover:border-white/40"
               >
-                See How It's Engineered <FaArrowRight />
+                See How It’s Engineered <FaArrowRight />
               </a>
             </div>
 
@@ -213,7 +212,7 @@ export default function ReceiptSnapPage() {
         </div>
       </section>
 
-      {/* Impact Stats — animated count-up */}
+      {/* Impact Stats */}
       <section className="py-14 px-4 bg-[#0a1628] border-t border-[#D4AF37]/10">
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
           {impactStats.map((stat, i) => (
@@ -246,10 +245,10 @@ export default function ReceiptSnapPage() {
             viewport={{ once: true }}
             className="text-center mb-10"
           >
-            <h2 className="text-3xl font-bold text-[#0a1628] mb-3">Sound Familiar?</h2>
-            <p className="text-gray-600">If any of these are true, this is a design failure, not a discipline problem — and it's exactly what ReceiptSnap was engineered to fix.</p>
+            <h2 className="font-display text-3xl font-bold text-[#0a1628] mb-3">Sound Familiar?</h2>
+            <p className="text-gray-600">If any of these are true, this is a design failure, not a discipline problem — and it’s exactly what ReceiptSnap was engineered to fix.</p>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               'A shoebox of crumpled receipts you keep meaning to sort?',
@@ -281,12 +280,11 @@ export default function ReceiptSnapPage() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">How It's Engineered</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">How It’s Engineered</h2>
             <p className="text-gray-600">From chaos to organized, in the time it takes to take a photo.</p>
           </motion.div>
-          
+
           <div className="relative">
-            {/* Animated connecting line — desktop only */}
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -310,7 +308,7 @@ export default function ReceiptSnapPage() {
                     {step.num}
                   </div>
                   <div className="mt-4">
-                    <h3 className="text-xl font-bold text-[#0a1628] mb-2">{step.title}</h3>
+                    <h3 className="font-display text-xl font-bold text-[#0a1628] mb-2">{step.title}</h3>
                     <p className="text-gray-600 text-sm">{step.desc}</p>
                   </div>
                 </motion.div>
@@ -329,10 +327,10 @@ export default function ReceiptSnapPage() {
             viewport={{ once: true }}
             className="text-center mb-10"
           >
-            <h2 className="text-3xl font-bold text-[#0a1628] mb-3">See It In Action</h2>
+            <h2 className="font-display text-3xl font-bold text-[#0a1628] mb-3">See It In Action</h2>
             <p className="text-gray-600">From photo to organized, exported data — watch the whole process.</p>
           </motion.div>
-          
+
           <div className="bg-[#0a1628] rounded-2xl overflow-hidden shadow-2xl aspect-video relative">
             <iframe 
               className="absolute inset-0 w-full h-full"
@@ -343,7 +341,7 @@ export default function ReceiptSnapPage() {
               allowFullScreen
             />
           </div>
-          
+
           <div className="mt-6 text-center">
             <a 
               href="https://youtu.be/9H25AjnPQdA" 
@@ -367,10 +365,10 @@ export default function ReceiptSnapPage() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">What You Get</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">What You Get</h2>
             <p className="text-gray-600">A complete system for never losing track of a receipt again — engineered once, running permanently.</p>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             {features.map((feature, i) => (
               <motion.div
@@ -405,17 +403,17 @@ export default function ReceiptSnapPage() {
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-emerald-500/30">
               <FaShieldAlt /> One Payment. Owned Forever.
             </div>
-            
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">
               R299 Once.<br />Not R299 a Month.
             </h2>
-            
+
             <p className="text-gray-300 text-lg max-w-xl mx-auto mb-10">
               Other receipt apps rent you efficiency, one subscription at a time. ReceiptSnap is 
               engineered once and deployed permanently inside your own Google Workspace. No 
               recurring fees. No renewal date. No data lock-in.
             </p>
-            
+
             <motion.div
               whileHover={{ y: -4 }}
               transition={{ duration: 0.25 }}
@@ -423,7 +421,7 @@ export default function ReceiptSnapPage() {
             >
               <div className="text-5xl font-bold text-[#D4AF37] mb-2">R299</div>
               <p className="text-gray-400 text-sm mb-6">One-time purchase • Instant license delivery</p>
-              
+
               <ul className="text-left space-y-3 mb-8 text-gray-300 text-sm">
                 <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> AI receipt extraction</li>
                 <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> Unlimited receipts</li>
@@ -431,7 +429,7 @@ export default function ReceiptSnapPage() {
                 <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> Google Drive storage — yours, not ours</li>
                 <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> Lifetime access, zero renewals</li>
               </ul>
-              
+
               <a
                 href={`${ORDER_FORM_URL}?product=ReceiptSnap`}
                 target="_blank"
@@ -443,7 +441,7 @@ export default function ReceiptSnapPage() {
                 </span>
               </a>
             </motion.div>
-            
+
             <div className="flex items-center justify-center gap-2 text-gray-400 text-sm">
               <FaWhatsapp className="text-emerald-400" />
               <span>Questions? WhatsApp <a href="https://wa.me/27728393087" className="text-[#D4AF37] hover:underline">+27 72 839 3087</a></span>
@@ -461,9 +459,9 @@ export default function ReceiptSnapPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-[#0a1628] mb-3">Common Questions</h2>
+            <h2 className="font-display text-3xl font-bold text-[#0a1628] mb-3">Common Questions</h2>
           </motion.div>
-          
+
           <div className="space-y-4">
             {faqs.map((faq, i) => (
               <motion.div
@@ -485,7 +483,7 @@ export default function ReceiptSnapPage() {
       {/* Final CTA */}
       <section className="py-16 px-4 bg-[#F5F1E8] border-t border-[#D4AF37]/10">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#0a1628] mb-6">
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-[#0a1628] mb-6">
             Ready to Engineer the Shoebox Out of Your Life?
           </h2>
           <a
@@ -502,10 +500,10 @@ export default function ReceiptSnapPage() {
         </div>
       </section>
 
-      {/* Simple Footer */}
+      {/* Footer */}
       <footer className="bg-[#0a1628] py-8 px-4 text-center">
         <p className="text-gray-400 text-sm">
-          © 2026 Dandelion Creations. All rights reserved.
+          © 2026 Dandelion Creations OS. All rights reserved.
         </p>
         <p className="text-gray-500 text-xs mt-2">
           dandelioncreations.co.za • dandelioncreat@outlook.com
