@@ -11,24 +11,34 @@ export default function Home() {
   return (
     <main className="overflow-hidden bg-[#0a1628]">
       <Navbar />
-      <Header />
 
-      <section id="services">
-        <Differentiators />
+      {/* Home anchor — the navbar "Home" link scrolls here */}
+      <section id="hero">
+        <Header />
       </section>
 
+      {/* No ID needed — this is visual, not a nav destination */}
+      <Differentiators />
+
+      {/* Products anchor — navbar "Products" link */}
       <section id="products">
         <FlagshipProducts />
       </section>
 
-      <section id="about">
+      {/* How It Works anchor — navbar "How It Works" link */}
+      <section id="process">
         <ProcessSteps />
       </section>
 
+      {/* Portfolio anchor — navbar "Portfolio" link */}
       <section id="portfolio">
         <PortfolioTeaser />
       </section>
 
+      {/* About anchor — if you have an About section, add it here */}
+      {/* <section id="about"><About /></section> */}
+
+      {/* Contact anchor — navbar "Contact" link */}
       <section id="contact">
         <Contact />
       </section>
