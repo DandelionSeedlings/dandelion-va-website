@@ -119,6 +119,7 @@ const products = [
     color: 'from-blue-500 to-indigo-600',
     badge: 'POPULAR',
     badgeColor: 'bg-blue-500',
+    popular: true,
     available: true,
     features: ['Full pipeline tracking', 'Deal management', 'Team collaboration', 'Growth analytics'],
     category: 'client-management'
@@ -392,7 +393,7 @@ export default function Products() {
         ))}
       </div>
 
-      <style>{`
+      <style jsx global>{`
         @keyframes float-seed-products {
           0%, 100% {
             transform: translate(0, 0) rotate(0deg);
@@ -419,7 +420,7 @@ export default function Products() {
           className="text-center mb-12"
         >
           <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">Engineered Systems</p>
-          <h2 className="text-4xl md:text-5xl font-serif text-navy-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-navy-900 mb-4">
             AbilitySuite&trade;
           </h2>
           <p className="text-navy-600 text-lg max-w-2xl mx-auto">
@@ -580,7 +581,7 @@ export default function Products() {
         >
           <div className="text-center mb-10">
             <span className="text-gold font-script text-xl mb-2 block">Two Financial Systems. Two Different Jobs.</span>
-            <h3 className="text-3xl font-serif text-navy-900 mb-3">ReceiptSnap vs Payability</h3>
+            <h3 className="text-3xl font-bold tracking-tight text-navy-900 mb-3">ReceiptSnap vs Payability</h3>
             <p className="text-navy-600 max-w-xl mx-auto">Both handle money, but solve completely different problems. Here&apos;s how to choose.</p>
           </div>
 
@@ -701,7 +702,7 @@ export default function Products() {
               <span className="inline-block bg-gold/20 text-gold px-4 py-1.5 rounded-full text-sm font-bold mb-4 border border-gold/30">
                 Custom Engineering
               </span>
-              <h3 className="text-3xl md:text-4xl font-serif font-bold mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
                 Every Module, Rebuilt as Yours.
               </h3>
               <p className="text-cream/80 text-lg mb-6 leading-relaxed">
@@ -798,7 +799,7 @@ export default function Products() {
           transition={{ duration: 0.5 }}
           className="bg-white/60 backdrop-blur-md rounded-2xl p-8 text-center border border-gold/20 shadow-lg"
         >
-          <h3 className="text-2xl font-serif text-navy-900 mb-4">
+          <h3 className="text-2xl font-bold tracking-tight text-navy-900 mb-4">
             Ready to Deploy Your Infrastructure?
           </h3>
           <p className="text-navy-600 max-w-lg mx-auto mb-6">

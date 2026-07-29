@@ -1,204 +1,154 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiArrowRight, FiCheckCircle, FiShoppingCart, FiCode } from 'react-icons/fi'
+import { FiArrowRight, FiPlay } from 'react-icons/fi'
 
-const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
+const diagnosticLines = [
+  { text: 'Scanning business operations...', color: 'text-gray-400' },
+  { text: 'Manual admin detected: ~4 hrs/week', color: 'text-amber-400' },
+  { text: 'Duplicate data entry detected', color: 'text-amber-400' },
+  { text: 'Missed follow-ups detected', color: 'text-amber-400' },
+  { text: 'Root cause identified', color: 'text-emerald-400' },
+  { text: 'Structure is the strategy.', color: 'text-white font-bold' },
+]
 
-export default function Hero() {
-  // Seed positions with varied sizes and rotations
-  const seeds = Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    left: `${3 + (i * 8) % 94}%`,
-    top: `${5 + (i * 9) % 85}%`,
-    size: 24 + (i % 6) * 12,
-    delay: i * 0.7,
-    duration: 14 + (i % 5) * 4,
-    opacity: 0.25 + (i % 3) * 0.15,
-    rotation: (i * 37) % 360
-  }))
-
+export default function TerminalHero() {
   return (
-    <>
-      <style>{`
-        @keyframes float-seed {
-          0%, 100% {
-            transform: translate(0, 0) rotate(0deg);
-          }
-          25% {
-            transform: translate(15px, -20px) rotate(5deg);
-          }
-          50% {
-            transform: translate(-10px, -35px) rotate(-3deg);
-          }
-          75% {
-            transform: translate(20px, -15px) rotate(8deg);
-          }
-        }
-      `}</style>
-      <section className="relative min-h-screen flex items-center bg-gradient-to-br from-cream via-gold-pale/30 to-cream pt-24 overflow-hidden">
-        {/* Floating Dandelion Seeds using actual image */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {seeds.map((seed) => (
-            <div
-              key={seed.id}
-              className="absolute"
-              style={{
-                left: seed.left,
-                top: seed.top,
-                width: `${seed.size}px`,
-                height: `${seed.size}px`,
-                opacity: seed.opacity,
-                animation: `float-seed ${seed.duration}s ease-in-out ${seed.delay}s infinite`,
-              }}
+    <section className="relative min-h-screen bg-[#0a1628] pt-32 pb-20 px-4 overflow-hidden flex items-center">
+      {/* Depth: gradient base instead of flat color */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0d1f3a] via-[#0a1628] to-[#081224]" />
+      
+      {/* Depth: large ambient gold glow behind center */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-[#D4AF37]/[0.04] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-24 right-32 w-72 h-72 bg-[#D4AF37]/[0.06] rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-24 left-20 w-96 h-96 bg-emerald-500/[0.03] rounded-full blur-3xl pointer-events-none" />
+      
+      {/* Depth: film grain noise overlay */}
+      <div 
+        className="absolute inset-0 opacity-[0.035] pointer-events-none mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* Depth: subtle grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(212,175,55,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(212,175,55,0.025)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10 w-full">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold mb-8 border border-emerald-500/20"
             >
-              <img
-                src="/images/dandelion-seed.png"
-                alt=""
-                className="w-full h-full"
-                style={{
-                  transform: `rotate(${seed.rotation}deg)`,
-                  filter: 'drop-shadow(0 2px 4px rgba(201,162,39,0.2))'
-                }}
-                draggable={false}
-              />
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              SYSTEM STATUS: DIAGNOSING
+            </motion.div>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.08] mb-8 tracking-tight">
+              Business systems<br />
+              that actually<br />
+              <span className="text-[#D4AF37] drop-shadow-[0_0_35px_rgba(212,175,55,0.25)]">
+                make sense.
+              </span>
+            </h1>
+
+            <p className="text-lg text-gray-300/90 leading-relaxed mb-10 max-w-xl">
+              We diagnose the root cause of business chaos and engineer it out, permanently, 
+              inside the Google Workspace you already use. No subscriptions. No bloated platforms.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-xl hover:shadow-[#D4AF37]/25"
+              >
+                Get Your Business Diagnosed
+                <FiArrowRight />
+              </a>
+              <a
+                href="#products"
+                className="inline-flex items-center justify-center gap-2 text-white/80 hover:text-white px-8 py-4 rounded-xl font-semibold transition-all border border-white/15 hover:border-[#D4AF37]/40 hover:bg-white/[0.03]"
+              >
+                <FiPlay className="text-[#D4AF37]" />
+                See The Systems
+              </a>
             </div>
-          ))}
-        </div>
+          </motion.div>
 
-        {/* Decorative elements */}
-        <div className="absolute top-40 right-20 w-96 h-96 bg-gold/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-10 w-72 h-72 bg-navy-900/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-gold/10 rounded-full"></div>
-
-        <div className="container-max px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9 }}>
-
-              {/* Tagline */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-                className="inline-flex items-center gap-2 bg-gold/20 text-navy-900 px-5 py-2.5 rounded-full text-sm font-bold mb-4 border border-gold/30">
-                <FiCheckCircle className="w-4 h-4 text-gold-dark" />
-                Engineered Clarity for Growing Businesses
-              </motion.div>
-
-              {/* Google Apps Script Badge */}
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-                className="inline-flex items-center gap-2 bg-navy-900 text-gold px-5 py-2.5 rounded-full text-sm font-bold mb-6 border border-gold/30">
-                <FiCode className="w-4 h-4" />
-                Google Apps Script Developer
-              </motion.div>
-
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-navy-900 leading-tight mb-6">
-                Your Business Doesn&apos;t Need{' '}
-                <span className="text-gold-dark">More Software.</span>{' '}
-                It Needs <span className="font-script text-navy-700">Better Engineering.</span>
-              </h1>
-
-              <p className="text-xl text-navy-600 mb-10 max-w-lg leading-relaxed">
-                Dandelion Creations OS designs and builds custom automated systems inside Google Workspace &mdash; precise, permanent, and built around how your business actually runs. No subscriptions. No bloated platforms. No admin chaos. Just infrastructure that works.
-              </p>
-
-              <p className="text-lg text-navy-500 mb-10 max-w-lg leading-relaxed italic">
-                Most businesses aren&apos;t short on data. They&apos;re short on structure. We build the structure.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <a href="#products" className="btn-navy inline-flex items-center justify-center gap-2 text-lg">
-                  <FiArrowRight className="w-5 h-5" />
-                  View the AbilitySuite&trade; Ecosystem
-                </a>
-                <a href="https://dandelioncreations.co.za/get-connectability" target="_blank" rel="noopener noreferrer" className="btn-outline inline-flex items-center justify-center gap-2 text-lg border-emerald-500 text-emerald-600 hover:bg-emerald-50">
-                  <FiCheckCircle className="w-5 h-5" />
-                  Try Connectability Free
-                </a>
+          {/* Right Content - Terminal Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative"
+          >
+            {/* Glow behind terminal */}
+            <div className="absolute -inset-3 bg-gradient-to-r from-[#D4AF37]/15 to-emerald-500/5 rounded-3xl blur-2xl opacity-70" />
+            
+            <div className="relative bg-[#0c1e36] rounded-2xl border border-[#D4AF37]/15 shadow-2xl shadow-black/40 overflow-hidden">
+              {/* Terminal Header */}
+              <div className="flex items-center gap-3 px-5 py-4 border-b border-white/[0.06] bg-[#0a1628]/60">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-amber-400/80" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                </div>
+                <span className="text-xs text-gray-500 font-mono ml-2">diagnostic.sh</span>
               </div>
 
-              <div className="flex gap-10">
-                {[{v:'500+',l:'Hours Reclaimed'},{v:'14',l:'Systems Deployed'},{v:'50+',l:'Businesses Running on Our Systems'}].map((s,i) => (
-                  <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 + i*0.15 }}>
-                    <p className="text-3xl font-bold text-gold-dark">{s.v}</p>
-                    <p className="text-sm text-navy-500">{s.l}</p>
+              {/* Terminal Body */}
+              <div className="p-6 md:p-8 font-mono text-sm md:text-base leading-loose space-y-3">
+                {diagnosticLines.map((line, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.9 + i * 0.12 }}
+                    className="flex items-start gap-3"
+                  >
+                    <span className="text-[#D4AF37] flex-shrink-0 select-none">{'>'}</span>
+                    <span className={line.color}>{line.text}</span>
                   </motion.div>
                 ))}
-              </div>
-            </motion.div>
-
-            {/* Stats/Results Visual */}
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.3 }}
-              className="relative hidden lg:block">
-              <div className="relative w-full max-w-lg mx-auto">
-                {/* Decorative frame */}
-                <div className="absolute -inset-4 bg-gradient-to-br from-gold/20 to-navy-900/10 rounded-[2.5rem] rotate-1"></div>
-                <div className="absolute -inset-4 bg-gradient-to-br from-navy-900/10 to-gold/15 rounded-[2.5rem] -rotate-1"></div>
-
-                {/* Stats Card */}
-                <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl border border-gold/10 p-8">
-                  <div className="text-center mb-8">
-                    <p className="text-navy-900 font-bold text-lg mb-1">Trusted by South African Businesses</p>
-                    <div className="w-16 h-0.5 bg-gold mx-auto"></div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-6">
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }} 
-                      animate={{ opacity: 1, y: 0 }} 
-                      transition={{ delay: 0.8 }}
-                      className="bg-navy-900 rounded-xl p-5 text-center">
-                      <p className="text-3xl font-bold text-gold">500+</p>
-                      <p className="text-sm text-cream/70 mt-1">Hours Reclaimed</p>
-                    </motion.div>
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }} 
-                      animate={{ opacity: 1, y: 0 }} 
-                      transition={{ delay: 1.0 }}
-                      className="bg-gold-pale rounded-xl p-5 text-center border border-gold/20">
-                      <p className="text-3xl font-bold text-navy-900">14</p>
-                      <p className="text-sm text-navy-600 mt-1">Systems Deployed</p>
-                    </motion.div>
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }} 
-                      animate={{ opacity: 1, y: 0 }} 
-                      transition={{ delay: 1.2 }}
-                      className="bg-gold-pale rounded-xl p-5 text-center border border-gold/20">
-                      <p className="text-3xl font-bold text-navy-900">50+</p>
-                      <p className="text-sm text-navy-600 mt-1">Businesses Running on Our Systems</p>
-                    </motion.div>
-                    <motion.div 
-                      initial={{ opacity: 0, y: 20 }} 
-                      animate={{ opacity: 1, y: 0 }} 
-                      transition={{ delay: 1.4 }}
-                      className="bg-navy-900 rounded-xl p-5 text-center">
-                      <p className="text-3xl font-bold text-gold">100%</p>
-                      <p className="text-sm text-cream/70 mt-1">Fully Owned Infrastructure</p>
-                    </motion.div>
-                  </div>
-
-                  <div className="mt-6 pt-6 border-t border-gold/10">
-                    <div className="flex items-center justify-center gap-2 text-sm text-navy-600">
-                      <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                      <span>Currently accepting new clients</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating badge */}
-                <motion.div className="absolute -bottom-4 -right-4 bg-navy-900 p-4 rounded-xl shadow-xl border border-gold/30"
-                  animate={{ y: [0, -8, 0] }} transition={{ duration: 4, repeat: Infinity }}>
-                  <p className="font-bold text-gold">AbilitySuite&trade;</p>
-                  <p className="text-xs text-cream/70">14 Business Systems</p>
+                
+                {/* Blinking cursor */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2.2 }}
+                  className="flex items-center gap-3"
+                >
+                  <span className="text-[#D4AF37] select-none">{'>'}</span>
+                  <span className="w-2 h-5 bg-[#D4AF37] animate-pulse rounded-sm" />
                 </motion.div>
               </div>
-            </motion.div>
-          </div>
-        </div>
+            </div>
 
-        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2" animate={{ y: [0, 12, 0] }} transition={{ duration: 2.5, repeat: Infinity }}>
-          <div className="w-7 h-12 border-2 border-gold/40 rounded-full flex justify-center pt-2">
-            <div className="w-1.5 h-3 bg-gold rounded-full"></div>
-          </div>
-        </motion.div>
-      </section>
-    </>
+            {/* Floating status badge */}
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-5 -left-5 bg-[#0a1628] border border-[#D4AF37]/20 rounded-xl px-4 py-3 shadow-xl"
+            >
+              <div className="flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
+                <span className="text-xs text-gray-300 font-medium">No subscriptions detected</span>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   )
 }

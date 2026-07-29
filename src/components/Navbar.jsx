@@ -11,9 +11,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -26,16 +24,16 @@ export default function Navbar() {
     { name: 'Pricing', href: '#pricing' },
     { name: 'Portfolio', href: '#portfolio' },
     { name: 'Blog', href: '/blog' },
+    { name: 'Partner', href: '#resellers' },
     { name: 'Contact', href: '#contact' },
-    { name: 'Partner Program', href: '#resellers' },
   ]
 
   return (
     <nav
-      className={`fixed left-1/2 top-4 z-50 w-[calc(100%-1.5rem)] max-w-7xl -translate-x-1/2 rounded-sm border transition-all duration-500 ${
+      className={`fixed left-1/2 top-4 z-50 w-[calc(100%-1.5rem)] max-w-7xl -translate-x-1/2 rounded-xl border transition-all duration-500 ${
         scrolled
-          ? 'border-white/35 bg-[#0a1628]/95 py-3 shadow-2xl shadow-navy-900/12 backdrop-blur-2xl'
-          : 'border-white/20 bg-[#0a1628] py-3 shadow-2xl shadow-black/20'
+          ? 'border-[#D4AF37]/25 bg-[#0a1628]/95 py-2.5 shadow-2xl shadow-black/40 backdrop-blur-2xl'
+          : 'border-white/10 bg-[#0a1628]/70 py-3 shadow-lg backdrop-blur-md'
       }`}
     >
       <div className="px-4 sm:px-5 lg:px-6">
@@ -45,10 +43,10 @@ export default function Navbar() {
             <img
               src="/images/logo-icon.png?v=2"
               alt="Dandelion Creations"
-              className="w-10 h-10 object-contain"
+              className="w-9 h-9 object-contain"
             />
             <div className="hidden sm:block">
-              <p className="font-serif text-xl tracking-wide text-white transition-colors duration-300">
+              <p className="text-lg tracking-wide text-white font-bold transition-colors duration-300">
                 Dandelion
               </p>
               <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D4AF37]">
@@ -58,26 +56,31 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-5 lg:gap-7 items-center">
+          <div className="hidden lg:flex gap-5 xl:gap-6 items-center">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="font-medium text-sm tracking-wide text-white/90 hover:text-[#D4AF37] transition-colors duration-300 relative group"
+                className="font-medium text-[13px] tracking-wide text-white/70 hover:text-[#D4AF37] transition-colors duration-300 relative group"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D4AF37] group-hover:w-full transition-all duration-300"></span>
               </a>
             ))}
+            
+            <div className="h-5 w-px bg-white/10" />
+            
             <a
               href="https://dandelioncreations.co.za/get-connectability"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-sm tracking-wide text-emerald-400 hover:text-emerald-300 transition-colors duration-300 relative group"
+              className="font-medium text-[13px] tracking-wide text-emerald-400 hover:text-emerald-300 transition-colors duration-300 relative group flex items-center gap-1.5"
             >
-              <span className="flex items-center gap-1">
-                ✦ Start Free
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
               </span>
+              Start Free
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
             </a>
 
@@ -85,58 +88,61 @@ export default function Navbar() {
               href={ORDER_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#D4AF37] text-[#0a1628] px-5 py-2.5 rounded-sm font-semibold text-sm tracking-wide hover:bg-[#c4a030] transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/20 flex items-center gap-2"
+              className="bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] px-4 py-2 rounded-lg font-bold text-[13px] tracking-wide transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/20 flex items-center gap-2"
             >
-              <FiShoppingCart size={16} />
-              Order Now
+              <FiShoppingCart size={14} />
+              Order
             </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors duration-300"
+            className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors duration-300"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+            {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden mt-4 rounded-sm bg-[#0a1628] shadow-xl p-6 space-y-4 border border-white/10">
+          <div className="lg:hidden mt-4 rounded-xl bg-[#0a1628] shadow-2xl p-5 space-y-1 border border-white/10">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="block text-white font-medium hover:text-[#D4AF37] transition-colors py-2"
+                className="block text-white/80 font-medium hover:text-[#D4AF37] transition-colors py-2.5 px-2 rounded-lg hover:bg-white/5"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
               </a>
             ))}
-            <a
-              href="https://dandelioncreations.co.za/get-connectability"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-emerald-400 font-medium hover:text-emerald-300 transition-colors py-2"
-              onClick={() => setIsOpen(false)}
-            >
-              <span className="flex items-center gap-2">
-                ✦ Start Free
-              </span>
-            </a>
-
-            <a
-              href={ORDER_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block bg-[#D4AF37] text-[#0a1628] text-center px-6 py-3 rounded-sm font-semibold hover:bg-[#c4a030] transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              <span className="flex items-center justify-center gap-2">
-                <FiShoppingCart size={16} /> Order Now
-              </span>
-            </a>
+            <div className="border-t border-white/10 my-2 pt-2">
+              <a
+                href="https://dandelioncreations.co.za/get-connectability"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-emerald-400 font-medium hover:text-emerald-300 transition-colors py-2.5 px-2"
+                onClick={() => setIsOpen(false)}
+              >
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                </span>
+                Start Free
+              </a>
+              <a
+                href={ORDER_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-[#D4AF37] text-[#0a1628] text-center px-6 py-3 rounded-lg font-bold hover:bg-[#c4a030] transition-colors mt-2"
+                onClick={() => setIsOpen(false)}
+              >
+                <span className="flex items-center justify-center gap-2">
+                  <FiShoppingCart size={16} /> Order Now
+                </span>
+              </a>
+            </div>
           </div>
         )}
       </div>
