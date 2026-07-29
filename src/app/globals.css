@@ -13,7 +13,7 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 { @apply font-serif font-bold; }
+h1, h2, h3, h4, h5, h6 { @apply font-display font-bold; }
 
 .font-script { font-family: 'Dancing Script', cursive; }
 
@@ -61,8 +61,26 @@ h1, h2, h3, h4, h5, h6 { @apply font-serif font-bold; }
   box-shadow: 0 0 60px rgba(201, 162, 39, 0.25);
 }
 
-/* ReceiptSnap landing page — floating dandelion seed animation (ENHANCED) */
+/* ReceiptSnap landing page — floating dandelion seed animation */
 @keyframes receiptsnap-float-seed {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(18px, -22px) rotate(8deg); }
+  40% { transform: translate(-14px, -32px) rotate(-5deg); }
+  60% { transform: translate(22px, -14px) rotate(10deg); }
+  80% { transform: translate(-10px, -26px) rotate(-7deg); }
+}
+
+/* ConnectAbility landing page — floating dandelion seed animation */
+@keyframes connectability-float-seed {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(18px, -22px) rotate(8deg); }
+  40% { transform: translate(-14px, -32px) rotate(-5deg); }
+  60% { transform: translate(22px, -14px) rotate(10deg); }
+  80% { transform: translate(-10px, -26px) rotate(-7deg); }
+}
+
+/* Bookability landing page — floating dandelion seed animation */
+@keyframes bookability-float-seed {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
   20% { transform: translate(18px, -22px) rotate(8deg); }
   40% { transform: translate(-14px, -32px) rotate(-5deg); }

@@ -11,6 +11,9 @@ export default async function sitemap() {
     '/blog',
     '/contact',
     '/resellers',
+    '/bookability',
+    '/receiptsnap',
+    '/connectability',
   ]
 
   return routes.map((route) => ({
