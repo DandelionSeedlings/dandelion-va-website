@@ -17,14 +17,9 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Why Us', href: '#why-us' },
-    { name: 'Services', href: '#services' },
     { name: 'Systems', href: '#products' },
     { name: 'Pricing', href: '#pricing' },
-    { name: 'Portfolio', href: '#portfolio' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Partner', href: '#resellers' },
     { name: 'Contact', href: '#contact' },
   ]
 
@@ -49,23 +44,25 @@ export default function Navbar() {
     >
       <div className="px-4 sm:px-5 lg:px-6">
         <div className="flex justify-between items-center">
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <img
               src="/images/logo-icon.png?v=2"
               alt="Dandelion Creations"
               className="w-9 h-9 object-contain"
             />
-            <div className="hidden sm:block leading-none">
-              <p className="text-[15px] tracking-wide text-white font-bold transition-colors duration-300">
-                Dandelion Creations
+            <div className="hidden sm:block leading-tight">
+              <p className="text-[15px] tracking-wide text-white font-bold">
+                Dandelion
               </p>
-              <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-[#D4AF37] mt-0.5">
-                OS
+              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#D4AF37]">
+                Creations OS
               </p>
             </div>
           </Link>
 
-          <div className="hidden lg:flex gap-5 xl:gap-6 items-center">
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex gap-6 xl:gap-7 items-center">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -105,6 +102,7 @@ export default function Navbar() {
             </a>
           </div>
 
+          {/* Mobile Menu Button */}
           <button
             className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors duration-300"
             onClick={() => setIsOpen(!isOpen)}
@@ -113,6 +111,7 @@ export default function Navbar() {
           </button>
         </div>
 
+        {/* Mobile Menu */}
         {isOpen && (
           <div className="lg:hidden mt-4 rounded-xl bg-[#0a1628] shadow-2xl shadow-black/40 p-5 space-y-1 border border-white/10">
             {navLinks.map((link) => (
