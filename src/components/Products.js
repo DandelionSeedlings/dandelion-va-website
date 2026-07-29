@@ -8,7 +8,7 @@ import {
   FaCalendarAlt, FaBullhorn, FaTshirt, FaClock,
   FaBuilding, FaCogs, FaReceipt, FaArrowRight,
   FaBalanceScale, FaMoneyBillWave, FaCalculator,
-  FaTag, FaPercentage
+  FaTag, FaPercentage, FaBookOpen
 } from 'react-icons/fa';
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec';
@@ -32,7 +32,7 @@ const productCategories = [
     color: 'text-gold',
     bgColor: 'bg-navy-900',
     borderColor: 'border-gold/30',
-    products: ['connectability', 'scalability']
+    products: ['connectability', 'scalability', 'bookability']
   },
   {
     id: 'financial-operations',
@@ -122,6 +122,22 @@ const products = [
     popular: true,
     available: true,
     features: ['Full pipeline tracking', 'Deal management', 'Team collaboration', 'Growth analytics'],
+    category: 'client-management'
+  },
+  {
+    id: 'bookability',
+    name: 'Bookability',
+    subtitle: 'Appointment Scheduler',
+    price: 499,
+    priceLabel: 'R499',
+    description: 'Client self-booking with automated confirmations, calendar sync, and reminder workflows — no more back-and-forth scheduling.',
+    tagline: 'Let clients book themselves while you focus on delivering.',
+    icon: FaBookOpen,
+    color: 'from-rose-400 to-pink-500',
+    badge: null,
+    badgeColor: '',
+    available: true,
+    features: ['Self-service booking page', 'Automated email/SMS confirmations', 'Calendar integration', 'Reminder workflows'],
     category: 'client-management'
   },
   {
