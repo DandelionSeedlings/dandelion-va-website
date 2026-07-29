@@ -30,7 +30,6 @@ export default function Navbar() {
     if (href.startsWith('#')) {
       e.preventDefault()
       if (!isHome) {
-        // On sub-pages, navigate to home page with hash
         window.location.href = '/' + href
         return
       }
@@ -42,6 +41,9 @@ export default function Navbar() {
     }
   }
 
+  // KEY FIX: Force dark background on non-home pages so white text is readable
+  const isDark = scrolled || !isHome
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -51,7 +53,7 @@ export default function Navbar() {
     >
       <div
         className={`flex items-center justify-between rounded-2xl border px-5 py-3 md:px-8 md:py-3.5 transition-all duration-500 ${
-          scrolled
+          isDark
             ? 'border-white/[0.12] bg-[#0a1628]/85 shadow-[0_10px_40px_rgba(0,0,0,0.4)] backdrop-blur-[20px]'
             : 'border-white/[0.08] bg-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.2)] backdrop-blur-[18px]'
         }`}
