@@ -76,8 +76,8 @@ const steps = [
 ]
 
 const faqs = [
-  { q: 'Do I need a special phone?', a: 'Any smartphone works. iPhone, Android, Samsung — if it has a camera, it\u2019s already capable enough.' },
-  { q: 'Is my data safe?', a: 'Everything lives in your own Google Drive and Sheets. We never host it, and we never see it — it\u2019s your infrastructure, not ours.' },
+  { q: 'Do I need a special phone?', a: 'Any smartphone works. iPhone, Android, Samsung — if it has a camera, it’s already capable enough.' },
+  { q: 'Is my data safe?', a: 'Everything lives in your own Google Drive and Sheets. We never host it, and we never see it — it’s your infrastructure, not ours.' },
   { q: 'What about VAT?', a: 'ReceiptSnap extracts VAT amounts where visible and tags every expense by category, so SARS filing is a formality, not a project.' },
   { q: 'Can I use it for multiple businesses?', a: 'Each license covers one Google account. For separate businesses, deploy a separate license.' },
   { q: 'What if I need help?', a: 'WhatsApp support at +27 72 839 3087. Most issues get resolved in minutes, not ticket queues.' }
@@ -107,7 +107,7 @@ export default function ReceiptSnapPage() {
           <div className="flex items-center gap-3">
             <FaReceipt className="text-[#D4AF37] hidden sm:block" />
             <span className="text-white font-bold text-sm sm:text-base">ReceiptSnap</span>
-            <span className="text-gray-400 text-sm hidden sm:inline">\u2014 R299, once</span>
+            <span className="text-gray-400 text-sm hidden sm:inline">— R299, once</span>
           </div>
           <a
             href={`${ORDER_FORM_URL}?product=ReceiptSnap`}
@@ -158,7 +158,7 @@ export default function ReceiptSnapPage() {
             </div>
           ))}
         </div>
-        
+
         <div className="max-w-6xl mx-auto relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -166,20 +166,20 @@ export default function ReceiptSnapPage() {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-amber-500/30">
-              <FaReceipt /> R299 Once-Off \u2022 No Monthly Fees
+              <FaReceipt /> R299 Once-Off • No Monthly Fees
             </div>
-            
+
             <h1 className="font-display text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Receipt Chaos,<br />
               <span className="text-[#D4AF37]">Engineered Out.</span>
             </h1>
-            
+
             <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-              Every receipt captured, categorized, and export-ready \u2014 automatically. Built for 
+              Every receipt captured, categorized, and export-ready — automatically. Built for 
               South African business owners who need SARS-compliant records without the admin 
               headache of building them by hand.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <a
                 href={`${ORDER_FORM_URL}?product=ReceiptSnap`}
@@ -187,13 +187,13 @@ export default function ReceiptSnapPage() {
                 rel="noopener noreferrer"
                 className="bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/30 flex items-center gap-2"
               >
-                <FaShoppingCart /> Deploy ReceiptSnap \u2014 R299
+                <FaShoppingCart /> Deploy ReceiptSnap — R299
               </a>
               <a 
                 href="#how-it-works"
                 className="text-white/70 hover:text-white px-8 py-4 rounded-xl font-semibold transition-all flex items-center gap-2 border border-white/20 hover:border-white/40"
               >
-                See How It\u2019s Engineered <FaArrowRight />
+                See How It’s Engineered <FaArrowRight />
               </a>
             </div>
 
@@ -238,9 +238,9 @@ export default function ReceiptSnapPage() {
             className="text-center mb-10"
           >
             <h2 className="font-display text-3xl font-bold text-[#0a1628] mb-3">Sound Familiar?</h2>
-            <p className="text-gray-600">If any of these are true, this is a design failure, not a discipline problem \u2014 and it\u2019s exactly what ReceiptSnap was engineered to fix.</p>
+            <p className="text-gray-600">If any of these are true, this is a design failure, not a discipline problem — and it’s exactly what ReceiptSnap was engineered to fix.</p>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               'A shoebox of crumpled receipts you keep meaning to sort?',
@@ -271,10 +271,10 @@ export default function ReceiptSnapPage() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">How It\u2019s Engineered</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">How It’s Engineered</h2>
             <p className="text-gray-600">From chaos to organized, in the time it takes to take a photo.</p>
           </motion.div>
-          
+
           <div className="relative">
             <motion.div
               initial={{ scaleX: 0 }}
@@ -318,20 +318,20 @@ export default function ReceiptSnapPage() {
             className="text-center mb-10"
           >
             <h2 className="font-display text-3xl font-bold text-[#0a1628] mb-3">See It In Action</h2>
-            <p className="text-gray-600">From photo to organized, exported data \u2014 watch the whole process.</p>
+            <p className="text-gray-600">From photo to organized, exported data — watch the whole process.</p>
           </motion.div>
-          
+
           <div className="bg-[#0a1628] rounded-2xl overflow-hidden shadow-2xl aspect-video relative">
             <iframe 
               className="absolute inset-0 w-full h-full"
               src="https://www.youtube.com/embed/9H25AjnPQdA" 
-              title="ReceiptSnap Demo \u2014 AI Receipt Tracker for South African Businesses"
+              title="ReceiptSnap Demo — AI Receipt Tracker for South African Businesses"
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen
             />
           </div>
-          
+
           <div className="mt-6 text-center">
             <a 
               href="https://youtu.be/9H25AjnPQdA" 
@@ -355,9 +355,9 @@ export default function ReceiptSnapPage() {
             className="text-center mb-14"
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">What You Get</h2>
-            <p className="text-gray-600">A complete system for never losing track of a receipt again \u2014 engineered once, running permanently.</p>
+            <p className="text-gray-600">A complete system for never losing track of a receipt again — engineered once, running permanently.</p>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             {features.map((feature, i) => (
               <motion.div
@@ -389,7 +389,7 @@ export default function ReceiptSnapPage() {
           >
             <h2 className="font-display text-3xl font-bold text-[#0a1628] mb-3">Questions? Answered.</h2>
           </motion.div>
-          
+
           <div className="space-y-4">
             {faqs.map((faq, i) => (
               <motion.div
@@ -427,7 +427,7 @@ export default function ReceiptSnapPage() {
               rel="noopener noreferrer"
               className="bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/30 inline-flex items-center gap-2"
             >
-              <FaShoppingCart /> Deploy ReceiptSnap \u2014 R299
+              <FaShoppingCart /> Deploy ReceiptSnap — R299
             </a>
             <div className="mt-6 flex items-center justify-center gap-2 text-gray-400 text-sm">
               <FaShieldAlt className="text-emerald-400" />

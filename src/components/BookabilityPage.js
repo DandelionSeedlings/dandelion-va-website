@@ -6,14 +6,11 @@ import Link from 'next/link'
 import {
   FaCalendarCheck, FaQrcode, FaLock, FaEnvelope, FaWhatsapp,
   FaUserCheck, FaClock, FaBan, FaShieldAlt, FaShoppingCart,
-  FaArrowRight, FaCheckCircle, FaMobileAlt, FaSyncAlt,
-  FaExclamationTriangle, FaCalendarTimes, FaReply,
-  FaReceipt
+  FaArrowRight, FaCheckCircle
 } from 'react-icons/fa'
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
-// Floating seed positions
 const seeds = Array.from({ length: 20 }, (_, i) => ({
   id: i,
   left: `${3 + (i * 5) % 94}%`,
@@ -26,7 +23,7 @@ const seeds = Array.from({ length: 20 }, (_, i) => ({
 }))
 
 const impactStats = [
-  { icon: FaCalendarTimes, value: 0, suffix: '', label: 'Double-bookings ever again' },
+  { icon: FaBan, value: 0, suffix: '', label: 'Double-bookings ever again' },
   { icon: FaClock, value: 3, suffix: 's', label: 'For a client to book a slot' },
   { icon: FaShieldAlt, value: 100, suffix: '%', label: 'PIN-protected admin control' },
 ]
@@ -109,10 +106,8 @@ export default function BookabilityPage() {
 
   return (
     <div className="min-h-screen bg-[#F5F1E8]">
-      {/* Navbar spacer */}
       <div className="h-20" />
 
-      {/* Sticky CTA bar */}
       <motion.div
         initial={{ y: -80, opacity: 0 }}
         animate={showSticky ? { y: 0, opacity: 1 } : { y: -80, opacity: 0 }}
@@ -137,7 +132,6 @@ export default function BookabilityPage() {
         </div>
       </motion.div>
 
-      {/* Hero */}
       <section className="relative bg-[#0a1628] pt-16 pb-24 px-4 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <motion.div
@@ -152,7 +146,6 @@ export default function BookabilityPage() {
           />
         </div>
 
-        {/* Floating dandelion seeds */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {seeds.map((seed) => (
             <div
@@ -210,6 +203,7 @@ export default function BookabilityPage() {
               </a>
               <a
                 href="#how-it-works"
+                onClick={(e) => { e.preventDefault(); document.querySelector('#how-it-works')?.scrollIntoView({ behavior: 'smooth' }) }}
                 className="text-white/70 hover:text-white px-8 py-4 rounded-xl font-semibold transition-all flex items-center gap-2 border border-white/20 hover:border-white/40"
               >
                 See How It Works <FaArrowRight />
@@ -225,7 +219,6 @@ export default function BookabilityPage() {
         </div>
       </section>
 
-      {/* Impact Stats */}
       <section className="py-14 px-4 bg-[#0a1628] border-t border-[#D4AF37]/10">
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
           {impactStats.map((stat, i) => (
@@ -249,7 +242,6 @@ export default function BookabilityPage() {
         </div>
       </section>
 
-      {/* Pain Points */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -284,7 +276,6 @@ export default function BookabilityPage() {
         </div>
       </section>
 
-      {/* How It Works */}
       <section id="how-it-works" className="py-20 px-4 bg-[#F5F1E8]">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -331,7 +322,6 @@ export default function BookabilityPage() {
         </div>
       </section>
 
-      {/* Features */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -367,7 +357,6 @@ export default function BookabilityPage() {
         </div>
       </section>
 
-      {/* Price & CTA */}
       <section className="py-24 px-4 bg-[#0a1628]">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div
@@ -426,7 +415,6 @@ export default function BookabilityPage() {
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-3xl mx-auto">
           <motion.div
@@ -456,7 +444,6 @@ export default function BookabilityPage() {
         </div>
       </section>
 
-      {/* Final CTA */}
       <section className="py-16 px-4 bg-[#F5F1E8] border-t border-[#D4AF37]/10">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0a1628] mb-6">
@@ -476,7 +463,6 @@ export default function BookabilityPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-[#0a1628] py-8 px-4 text-center">
         <p className="text-gray-400 text-sm">
           © 2026 Dandelion Creations OS. All rights reserved.
@@ -486,7 +472,6 @@ export default function BookabilityPage() {
         </p>
       </footer>
 
-      {/* KEY FIX: @keyframes wrapped in <style jsx global> */}
       <style jsx global>{`
         @keyframes bookability-float-seed {
           0%, 100% { transform: translate(0, 0) rotate(0deg); }
