@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FiSearch, FiMap, FiClock, FiPenTool, FiCpu, FiCheckCircle, FiRocket, FiHeart } from 'react-icons/fi'
+import { FiSearch, FiMap, FiClock, FiPenTool, FiCpu, FiCheckCircle, FiSend, FiHeart } from 'react-icons/fi'
 
 const steps = [
   {
@@ -44,7 +44,7 @@ const steps = [
     num: '07',
     title: 'Launch & Train',
     desc: 'We launch your system and empower your team to use it with confidence. Documentation included, confusion excluded.',
-    icon: FiRocket,
+    icon: FiSend,
   },
   {
     num: '08',
@@ -70,11 +70,9 @@ const item = {
 export default function ProcessSteps() {
   return (
     <section id="process" className="py-24 px-4 bg-white relative overflow-hidden">
-      {/* Subtle background accent */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
 
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +91,6 @@ export default function ProcessSteps() {
           </p>
         </motion.div>
 
-        {/* Steps Grid */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -107,7 +104,6 @@ export default function ProcessSteps() {
               variants={item}
               className="group relative"
             >
-              {/* Number + Icon */}
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 bg-[#D4AF37]/10 rounded-xl flex items-center justify-center border border-[#D4AF37]/20 group-hover:bg-[#D4AF37]/20 transition-colors duration-300">
                   <step.icon className="text-[#D4AF37]" size={20} />
@@ -117,7 +113,6 @@ export default function ProcessSteps() {
                 </span>
               </div>
 
-              {/* Content */}
               <h3 className="text-lg font-bold text-[#0a1628] mb-2 group-hover:text-[#D4AF37] transition-colors duration-300">
                 {step.title}
               </h3>
@@ -125,7 +120,6 @@ export default function ProcessSteps() {
                 {step.desc}
               </p>
 
-              {/* Connector line (desktop only, between cards) */}
               {i < steps.length - 1 && i % 4 !== 3 && (
                 <div className="hidden lg:block absolute top-6 -right-4 w-8 h-px bg-gradient-to-r from-[#D4AF37]/20 to-transparent" />
               )}
@@ -133,7 +127,6 @@ export default function ProcessSteps() {
           ))}
         </motion.div>
 
-        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
