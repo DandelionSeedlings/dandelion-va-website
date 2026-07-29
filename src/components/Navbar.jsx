@@ -28,6 +28,17 @@ export default function Navbar() {
     { name: 'Contact', href: '#contact' },
   ]
 
+  const handleClick = (e, href) => {
+    if (href.startsWith('#')) {
+      e.preventDefault()
+      const target = document.querySelector(href)
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        setIsOpen(false)
+      }
+    }
+  }
+
   return (
     <nav
       className={`fixed left-1/2 top-4 z-50 w-[calc(100%-1.5rem)] max-w-7xl -translate-x-1/2 rounded-xl border transition-all duration-500 ${
@@ -38,29 +49,28 @@ export default function Navbar() {
     >
       <div className="px-4 sm:px-5 lg:px-6">
         <div className="flex justify-between items-center">
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <img
               src="/images/logo-icon.png?v=2"
               alt="Dandelion Creations"
               className="w-9 h-9 object-contain"
             />
-            <div className="hidden sm:block">
-              <p className="text-lg tracking-wide text-white font-bold transition-colors duration-300">
-                Dandelion
+            <div className="hidden sm:block leading-none">
+              <p className="text-[15px] tracking-wide text-white font-bold transition-colors duration-300">
+                Dandelion Creations
               </p>
-              <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D4AF37]">
-                Creations
+              <p className="text-[10px] font-bold tracking-[0.35em] uppercase text-[#D4AF37] mt-0.5">
+                OS
               </p>
             </div>
           </Link>
 
-          {/* Desktop Menu */}
           <div className="hidden lg:flex gap-5 xl:gap-6 items-center">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleClick(e, link.href)}
                 className="font-medium text-[13px] tracking-wide text-white/70 hover:text-[#D4AF37] transition-colors duration-300 relative group"
               >
                 {link.name}
@@ -95,7 +105,6 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors duration-300"
             onClick={() => setIsOpen(!isOpen)}
@@ -104,15 +113,14 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden mt-4 rounded-xl bg-[#0a1628] shadow-2xl p-5 space-y-1 border border-white/10">
+          <div className="lg:hidden mt-4 rounded-xl bg-[#0a1628] shadow-2xl shadow-black/40 p-5 space-y-1 border border-white/10">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleClick(e, link.href)}
                 className="block text-white/80 font-medium hover:text-[#D4AF37] transition-colors py-2.5 px-2 rounded-lg hover:bg-white/5"
-                onClick={() => setIsOpen(false)}
               >
                 {link.name}
               </a>
@@ -123,7 +131,6 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-emerald-400 font-medium hover:text-emerald-300 transition-colors py-2.5 px-2"
-                onClick={() => setIsOpen(false)}
               >
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -136,7 +143,6 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block bg-[#D4AF37] text-[#0a1628] text-center px-6 py-3 rounded-lg font-bold hover:bg-[#c4a030] transition-colors mt-2"
-                onClick={() => setIsOpen(false)}
               >
                 <span className="flex items-center justify-center gap-2">
                   <FiShoppingCart size={16} /> Order Now

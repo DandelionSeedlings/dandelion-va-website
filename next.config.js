@@ -5,7 +5,6 @@ const nextConfig = {
     remotePatterns: [{ protocol: 'https', hostname: '**' }]
   },
   reactStrictMode: true,
-
   async redirects() {
     return [
       {
