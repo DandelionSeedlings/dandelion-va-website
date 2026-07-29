@@ -1,16 +1,11 @@
 'use client'
-// Homepage - force redeploy v2
 
 import Navbar from '../components/Navbar'
-import Hero from '../components/Hero'
-import About from '../components/About'
-import WhyUs from '../components/WhyUs'
-import Services from '../components/Services'
-import Products from '../components/Products'
-import Pricing from '../components/Pricing'
-import ResellerSection from '../components/ResellerSection'
-import Roadmap from '../components/Roadmap'
-import Portfolio from '../components/Portfolio'
+import TerminalHero from '../components/TerminalHero'
+import Differentiators from '../components/Differentiators'
+import FlagshipProducts from '../components/FlagshipProducts'
+import ProcessSteps from '../components/ProcessSteps'
+import PortfolioTeaser from '../components/PortfolioTeaser'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 
@@ -18,15 +13,11 @@ export default function Home() {
   return (
     <main className="overflow-hidden bg-cream">
       <Navbar />
-      <Hero />
-      <About />
-      <WhyUs />
-      <Services />
-      <Products />
-      <Pricing />
-      <ResellerSection />
-      <Roadmap />
-      <Portfolio />
+      <TerminalHero />
+      <Differentiators />
+      <FlagshipProducts />
+      <ProcessSteps />
+      <PortfolioTeaser />
       <Contact />
       <Footer />
     </main>
