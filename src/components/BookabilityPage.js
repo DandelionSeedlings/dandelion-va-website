@@ -485,6 +485,17 @@ export default function BookabilityPage() {
           dandelioncreations.co.za • dandelioncreat@outlook.com
         </p>
       </footer>
+
+      {/* KEY FIX: @keyframes wrapped in <style jsx global> */}
+      <style jsx global>{`
+        @keyframes bookability-float-seed {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          20% { transform: translate(18px, -22px) rotate(8deg); }
+          40% { transform: translate(-14px, -32px) rotate(-5deg); }
+          60% { transform: translate(12px, -18px) rotate(6deg); }
+          80% { transform: translate(-8px, -28px) rotate(-3deg); }
+        }
+      `}</style>
     </div>
   )
 }

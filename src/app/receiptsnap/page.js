@@ -6,12 +6,11 @@ import Link from 'next/link'
 import { 
   FaReceipt, FaCamera, FaBrain, FaFileCsv, FaCloud, 
   FaCheckCircle, FaArrowRight, FaShoppingCart, FaShieldAlt,
-  FaMobileAlt, FaWhatsapp, FaClock, FaBolt, FaFileInvoiceDollar
+  FaWhatsapp, FaClock, FaBolt, FaFileInvoiceDollar
 } from 'react-icons/fa'
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbyUAtVX_pKihPq2iBqb_bq4ctso-v8z52YHHlSX3TflJaz_DlaMsTq8FUSoCw7hmQqPNw/exec'
 
-// Floating seed positions
 const seeds = Array.from({ length: 20 }, (_, i) => ({
   id: i,
   left: `${3 + (i * 5) % 94}%`,
@@ -44,9 +43,7 @@ function AnimatedCounter({ value, suffix = '', duration = 1.6 }) {
     return () => controls.stop()
   }, [isInView, value, duration])
 
-  return (
-    <span ref={ref}>{display}{suffix}</span>
-  )
+  return <span ref={ref}>{display}{suffix}</span>
 }
 
 const features = [
@@ -79,8 +76,8 @@ const steps = [
 ]
 
 const faqs = [
-  { q: 'Do I need a special phone?', a: 'Any smartphone works. iPhone, Android, Samsung — if it has a camera, it’s already capable enough.' },
-  { q: 'Is my data safe?', a: 'Everything lives in your own Google Drive and Sheets. We never host it, and we never see it — it’s your infrastructure, not ours.' },
+  { q: 'Do I need a special phone?', a: 'Any smartphone works. iPhone, Android, Samsung — if it has a camera, it\u2019s already capable enough.' },
+  { q: 'Is my data safe?', a: 'Everything lives in your own Google Drive and Sheets. We never host it, and we never see it — it\u2019s your infrastructure, not ours.' },
   { q: 'What about VAT?', a: 'ReceiptSnap extracts VAT amounts where visible and tags every expense by category, so SARS filing is a formality, not a project.' },
   { q: 'Can I use it for multiple businesses?', a: 'Each license covers one Google account. For separate businesses, deploy a separate license.' },
   { q: 'What if I need help?', a: 'WhatsApp support at +27 72 839 3087. Most issues get resolved in minutes, not ticket queues.' }
@@ -97,10 +94,8 @@ export default function ReceiptSnapPage() {
 
   return (
     <div className="min-h-screen bg-[#F5F1E8]">
-      {/* Navbar spacer */}
       <div className="h-20" />
 
-      {/* Sticky CTA bar */}
       <motion.div
         initial={{ y: -80, opacity: 0 }}
         animate={showSticky ? { y: 0, opacity: 1 } : { y: -80, opacity: 0 }}
@@ -112,7 +107,7 @@ export default function ReceiptSnapPage() {
           <div className="flex items-center gap-3">
             <FaReceipt className="text-[#D4AF37] hidden sm:block" />
             <span className="text-white font-bold text-sm sm:text-base">ReceiptSnap</span>
-            <span className="text-gray-400 text-sm hidden sm:inline">— R299, once</span>
+            <span className="text-gray-400 text-sm hidden sm:inline">\u2014 R299, once</span>
           </div>
           <a
             href={`${ORDER_FORM_URL}?product=ReceiptSnap`}
@@ -125,7 +120,6 @@ export default function ReceiptSnapPage() {
         </div>
       </motion.div>
 
-      {/* Hero */}
       <section className="relative bg-[#0a1628] pt-16 pb-24 px-4 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <motion.div
@@ -164,7 +158,7 @@ export default function ReceiptSnapPage() {
             </div>
           ))}
         </div>
-
+        
         <div className="max-w-6xl mx-auto relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -172,20 +166,20 @@ export default function ReceiptSnapPage() {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-400 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-amber-500/30">
-              <FaReceipt /> R299 Once-Off • No Monthly Fees
+              <FaReceipt /> R299 Once-Off \u2022 No Monthly Fees
             </div>
-
+            
             <h1 className="font-display text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               Receipt Chaos,<br />
               <span className="text-[#D4AF37]">Engineered Out.</span>
             </h1>
-
+            
             <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-              Every receipt captured, categorized, and export-ready — automatically. Built for 
+              Every receipt captured, categorized, and export-ready \u2014 automatically. Built for 
               South African business owners who need SARS-compliant records without the admin 
               headache of building them by hand.
             </p>
-
+            
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <a
                 href={`${ORDER_FORM_URL}?product=ReceiptSnap`}
@@ -193,13 +187,13 @@ export default function ReceiptSnapPage() {
                 rel="noopener noreferrer"
                 className="bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/30 flex items-center gap-2"
               >
-                <FaShoppingCart /> Deploy ReceiptSnap — R299
+                <FaShoppingCart /> Deploy ReceiptSnap \u2014 R299
               </a>
               <a 
                 href="#how-it-works"
                 className="text-white/70 hover:text-white px-8 py-4 rounded-xl font-semibold transition-all flex items-center gap-2 border border-white/20 hover:border-white/40"
               >
-                See How It’s Engineered <FaArrowRight />
+                See How It\u2019s Engineered <FaArrowRight />
               </a>
             </div>
 
@@ -212,7 +206,6 @@ export default function ReceiptSnapPage() {
         </div>
       </section>
 
-      {/* Impact Stats */}
       <section className="py-14 px-4 bg-[#0a1628] border-t border-[#D4AF37]/10">
         <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6">
           {impactStats.map((stat, i) => (
@@ -236,7 +229,6 @@ export default function ReceiptSnapPage() {
         </div>
       </section>
 
-      {/* Pain Points */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -246,9 +238,9 @@ export default function ReceiptSnapPage() {
             className="text-center mb-10"
           >
             <h2 className="font-display text-3xl font-bold text-[#0a1628] mb-3">Sound Familiar?</h2>
-            <p className="text-gray-600">If any of these are true, this is a design failure, not a discipline problem — and it’s exactly what ReceiptSnap was engineered to fix.</p>
+            <p className="text-gray-600">If any of these are true, this is a design failure, not a discipline problem \u2014 and it\u2019s exactly what ReceiptSnap was engineered to fix.</p>
           </motion.div>
-
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               'A shoebox of crumpled receipts you keep meaning to sort?',
@@ -271,7 +263,6 @@ export default function ReceiptSnapPage() {
         </div>
       </section>
 
-      {/* How It Works */}
       <section id="how-it-works" className="py-20 px-4 bg-[#F5F1E8]">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -280,10 +271,10 @@ export default function ReceiptSnapPage() {
             viewport={{ once: true }}
             className="text-center mb-14"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">How It’s Engineered</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">How It\u2019s Engineered</h2>
             <p className="text-gray-600">From chaos to organized, in the time it takes to take a photo.</p>
           </motion.div>
-
+          
           <div className="relative">
             <motion.div
               initial={{ scaleX: 0 }}
@@ -318,7 +309,6 @@ export default function ReceiptSnapPage() {
         </div>
       </section>
 
-      {/* Video Section */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -328,20 +318,20 @@ export default function ReceiptSnapPage() {
             className="text-center mb-10"
           >
             <h2 className="font-display text-3xl font-bold text-[#0a1628] mb-3">See It In Action</h2>
-            <p className="text-gray-600">From photo to organized, exported data — watch the whole process.</p>
+            <p className="text-gray-600">From photo to organized, exported data \u2014 watch the whole process.</p>
           </motion.div>
-
+          
           <div className="bg-[#0a1628] rounded-2xl overflow-hidden shadow-2xl aspect-video relative">
             <iframe 
               className="absolute inset-0 w-full h-full"
               src="https://www.youtube.com/embed/9H25AjnPQdA" 
-              title="ReceiptSnap Demo — AI Receipt Tracker for South African Businesses"
+              title="ReceiptSnap Demo \u2014 AI Receipt Tracker for South African Businesses"
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen
             />
           </div>
-
+          
           <div className="mt-6 text-center">
             <a 
               href="https://youtu.be/9H25AjnPQdA" 
@@ -356,7 +346,6 @@ export default function ReceiptSnapPage() {
         </div>
       </section>
 
-      {/* Features */}
       <section className="py-20 px-4 bg-[#F5F1E8]">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -366,9 +355,9 @@ export default function ReceiptSnapPage() {
             className="text-center mb-14"
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0a1628] mb-3">What You Get</h2>
-            <p className="text-gray-600">A complete system for never losing track of a receipt again — engineered once, running permanently.</p>
+            <p className="text-gray-600">A complete system for never losing track of a receipt again \u2014 engineered once, running permanently.</p>
           </motion.div>
-
+          
           <div className="grid md:grid-cols-2 gap-6">
             {features.map((feature, i) => (
               <motion.div
@@ -377,91 +366,30 @@ export default function ReceiptSnapPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-sm border border-[#D4AF37]/10"
+                className="bg-white rounded-2xl p-8 shadow-lg border border-[#D4AF37]/10 hover:shadow-xl hover:shadow-[#D4AF37]/10 transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl flex items-center justify-center text-white flex-shrink-0">
-                  <feature.icon size={20} />
+                <div className="w-12 h-12 bg-[#D4AF37]/15 rounded-xl flex items-center justify-center mb-4 border border-[#D4AF37]/20">
+                  <feature.icon className="text-[#D4AF37]" size={24} />
                 </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#0a1628] mb-1">{feature.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
-                </div>
+                <h3 className="font-display text-xl font-bold text-[#0a1628] mb-2">{feature.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Price & CTA */}
-      <section className="py-24 px-4 bg-[#0a1628]">
-        <div className="max-w-3xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-emerald-500/30">
-              <FaShieldAlt /> One Payment. Owned Forever.
-            </div>
-
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">
-              R299 Once.<br />Not R299 a Month.
-            </h2>
-
-            <p className="text-gray-300 text-lg max-w-xl mx-auto mb-10">
-              Other receipt apps rent you efficiency, one subscription at a time. ReceiptSnap is 
-              engineered once and deployed permanently inside your own Google Workspace. No 
-              recurring fees. No renewal date. No data lock-in.
-            </p>
-
-            <motion.div
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.25 }}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto border border-white/10 mb-10 hover:border-[#D4AF37]/40 hover:shadow-2xl hover:shadow-[#D4AF37]/10 transition-all duration-300"
-            >
-              <div className="text-5xl font-bold text-[#D4AF37] mb-2">R299</div>
-              <p className="text-gray-400 text-sm mb-6">One-time purchase • Instant license delivery</p>
-
-              <ul className="text-left space-y-3 mb-8 text-gray-300 text-sm">
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> AI receipt extraction</li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> Unlimited receipts</li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> SARS-ready CSV export</li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> Google Drive storage — yours, not ours</li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-[#D4AF37]" /> Lifetime access, zero renewals</li>
-              </ul>
-
-              <a
-                href={`${ORDER_FORM_URL}?product=ReceiptSnap`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/30"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  <FaShoppingCart /> Deploy ReceiptSnap Now
-                </span>
-              </a>
-            </motion.div>
-
-            <div className="flex items-center justify-center gap-2 text-gray-400 text-sm">
-              <FaWhatsapp className="text-emerald-400" />
-              <span>Questions? WhatsApp <a href="https://wa.me/27728393087" className="text-[#D4AF37] hover:underline">+27 72 839 3087</a></span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FAQ */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-10"
           >
-            <h2 className="font-display text-3xl font-bold text-[#0a1628] mb-3">Common Questions</h2>
+            <h2 className="font-display text-3xl font-bold text-[#0a1628] mb-3">Questions? Answered.</h2>
           </motion.div>
-
+          
           <div className="space-y-4">
             {faqs.map((faq, i) => (
               <motion.div
@@ -469,46 +397,55 @@ export default function ReceiptSnapPage() {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="bg-[#F5F1E8] rounded-xl p-6"
+                transition={{ delay: i * 0.08 }}
+                className="bg-[#F5F1E8] rounded-xl p-6 border border-[#D4AF37]/10"
               >
                 <h3 className="font-bold text-[#0a1628] mb-2">{faq.q}</h3>
-                <p className="text-gray-600 text-sm">{faq.a}</p>
+                <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-16 px-4 bg-[#F5F1E8] border-t border-[#D4AF37]/10">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-[#0a1628] mb-6">
-            Ready to Engineer the Shoebox Out of Your Life?
-          </h2>
-          <a
-            href={`${ORDER_FORM_URL}?product=ReceiptSnap`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/30"
+      <section className="py-20 px-4 bg-[#0a1628]">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
-            <FaShoppingCart /> Deploy ReceiptSnap — R299
-          </a>
-          <p className="text-gray-400 text-sm mt-4">
-            Or <Link href="/" className="text-[#D4AF37] underline hover:no-underline">explore the full AbilitySuite™ ecosystem</Link>
-          </p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
+              Stop Drowning in Receipts
+            </h2>
+            <p className="text-gray-300 mb-8 max-w-xl mx-auto">
+              One payment. Permanent organization. No monthly subscription. No hidden fees.
+            </p>
+            <a
+              href={`${ORDER_FORM_URL}?product=ReceiptSnap`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/30 inline-flex items-center gap-2"
+            >
+              <FaShoppingCart /> Deploy ReceiptSnap \u2014 R299
+            </a>
+            <div className="mt-6 flex items-center justify-center gap-2 text-gray-400 text-sm">
+              <FaShieldAlt className="text-emerald-400" />
+              <span>Secure payment via bank transfer or SnapScan</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-[#0a1628] py-8 px-4 text-center">
-        <p className="text-gray-400 text-sm">
-          © 2026 Dandelion Creations OS. All rights reserved.
-        </p>
-        <p className="text-gray-500 text-xs mt-2">
-          dandelioncreations.co.za • dandelioncreat@outlook.com
-        </p>
-      </footer>
+      <style jsx global>{`
+        @keyframes receiptsnap-float-seed {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          20% { transform: translate(18px, -22px) rotate(8deg); }
+          40% { transform: translate(-14px, -32px) rotate(-5deg); }
+          60% { transform: translate(12px, -18px) rotate(6deg); }
+          80% { transform: translate(-8px, -28px) rotate(-3deg); }
+        }
+      `}</style>
     </div>
   )
 }
