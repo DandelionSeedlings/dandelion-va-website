@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
@@ -16,6 +17,8 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+  const isHome = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30)
@@ -26,6 +29,11 @@ export default function Navbar() {
   const handleClick = (e, href) => {
     if (href.startsWith('#')) {
       e.preventDefault()
+      if (!isHome) {
+        // On sub-pages, navigate to home page with hash
+        window.location.href = '/' + href
+        return
+      }
       const target = document.querySelector(href)
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -39,9 +47,7 @@ export default function Navbar() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
-      className={`fixed right-4 left-4 z-50 mx-auto max-w-7xl transition-all duration-500 ${
-        scrolled ? 'top-2' : 'top-4 sm:top-5'
-      }`}
+      className="fixed right-4 left-4 z-50 mx-auto max-w-7xl transition-all duration-500 top-4 sm:top-5"
     >
       <div
         className={`flex items-center justify-between rounded-2xl border px-5 py-3 md:px-8 md:py-3.5 transition-all duration-500 ${
@@ -69,8 +75,8 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link.name}
-              href={link.href}
-              onClick={(e) => handleClick(e, link.href)}
+              href={isHome ? link.href : '/' + link.href}
+              onClick={(e) => isHome && handleClick(e, link.href)}
               className="text-[13px] font-medium tracking-wide text-white/70 hover:text-white transition-colors duration-300 relative group"
             >
               {link.name}
@@ -79,8 +85,8 @@ export default function Navbar() {
           ))}
 
           <a
-            href="#contact"
-            onClick={(e) => handleClick(e, '#contact')}
+            href={isHome ? '#contact' : '/#contact'}
+            onClick={(e) => isHome && handleClick(e, '#contact')}
             className="ml-1 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] to-[#b8941f] px-5 md:px-6 py-2 md:py-2.5 text-[12px] md:text-[13px] font-bold text-[#0a1628] shadow-[0_0_20px_rgba(212,175,55,0.12)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_rgba(212,175,55,0.25)]"
           >
             Book a Consultation
@@ -115,16 +121,22 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <a
                   key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleClick(e, link.href)}
+                  href={isHome ? link.href : '/' + link.href}
+                  onClick={(e) => {
+                    if (isHome) handleClick(e, link.href)
+                    setIsOpen(false)
+                  }}
                   className="block py-2.5 px-3 text-[14px] text-white/80 font-medium hover:text-[#D4AF37] hover:bg-white/5 rounded-lg transition-colors"
                 >
                   {link.name}
                 </a>
               ))}
               <a
-                href="#contact"
-                onClick={(e) => handleClick(e, '#contact')}
+                href={isHome ? '#contact' : '/#contact'}
+                onClick={(e) => {
+                  if (isHome) handleClick(e, '#contact')
+                  setIsOpen(false)
+                }}
                 className="mt-3 block text-center rounded-full bg-gradient-to-r from-[#D4AF37] to-[#b8941f] px-6 py-3 text-sm font-bold text-[#0a1628]"
               >
                 Book a Consultation
