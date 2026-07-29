@@ -2,26 +2,26 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { FiMenu, FiX, FiShoppingCart } from 'react-icons/fi'
+import { motion, AnimatePresence } from 'framer-motion'
 
-const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
+const navLinks = [
+  { name: 'Home', href: '#hero' },
+  { name: 'Services', href: '#services' },
+  { name: 'Products', href: '#products' },
+  { name: 'Portfolio', href: '#portfolio' },
+  { name: 'About', href: '#about' },
+  { name: 'Contact', href: '#contact' },
+]
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
+    const handleScroll = () => setScrolled(window.scrollY > 30)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const navLinks = [
-    { name: 'Systems', href: '#products' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '#contact' },
-  ]
 
   const handleClick = (e, href) => {
     if (href.startsWith('#')) {
@@ -35,122 +35,104 @@ export default function Navbar() {
   }
 
   return (
-    <nav
-      className={`fixed left-1/2 top-4 z-50 w-[calc(100%-1.5rem)] max-w-7xl -translate-x-1/2 rounded-xl border transition-all duration-500 ${
-        scrolled
-          ? 'border-[#D4AF37]/25 bg-[#0a1628]/95 py-2.5 shadow-2xl shadow-black/40 backdrop-blur-2xl'
-          : 'border-white/10 bg-[#0a1628]/70 py-3 shadow-lg backdrop-blur-md'
+    <motion.nav
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+      className={`fixed right-4 left-4 z-50 mx-auto max-w-7xl transition-all duration-500 ${
+        scrolled ? 'top-2' : 'top-4 sm:top-5'
       }`}
     >
-      <div className="px-4 sm:px-5 lg:px-6">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <img
-              src="/images/logo-icon.png?v=2"
-              alt="Dandelion Creations"
-              className="w-9 h-9 object-contain"
-            />
-            <div className="hidden sm:block leading-tight">
-              <p className="text-[15px] tracking-wide text-white font-bold">
-                Dandelion
-              </p>
-              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#D4AF37]">
-                Creations OS
-              </p>
-            </div>
-          </Link>
+      <div
+        className={`flex items-center justify-between rounded-2xl border px-5 py-3 md:px-8 md:py-3.5 transition-all duration-500 ${
+          scrolled
+            ? 'border-white/[0.12] bg-[#0a1628]/85 shadow-[0_10px_40px_rgba(0,0,0,0.4)] backdrop-blur-[20px]'
+            : 'border-white/[0.08] bg-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.2)] backdrop-blur-[18px]'
+        }`}
+      >
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2.5 shrink-0">
+          <img
+            src="/images/logo-icon.png?v=2"
+            alt="Dandelion Creations"
+            className="h-7 w-7 md:h-8 md:w-8 object-contain"
+          />
+          <img
+            src="/images/DC-logo-text.png"
+            alt="Dandelion Creations OS"
+            className="h-5 md:h-6 w-auto object-contain hidden sm:block"
+          />
+        </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex gap-6 xl:gap-7 items-center">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleClick(e, link.href)}
-                className="font-medium text-[13px] tracking-wide text-white/70 hover:text-[#D4AF37] transition-colors duration-300 relative group"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D4AF37] group-hover:w-full transition-all duration-300"></span>
-              </a>
-            ))}
-            
-            <div className="h-5 w-px bg-white/10" />
-            
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center gap-7 xl:gap-8">
+          {navLinks.map((link) => (
             <a
-              href="https://dandelioncreations.co.za/get-connectability"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-[13px] tracking-wide text-emerald-400 hover:text-emerald-300 transition-colors duration-300 relative group flex items-center gap-1.5"
+              key={link.name}
+              href={link.href}
+              onClick={(e) => handleClick(e, link.href)}
+              className="text-[13px] font-medium tracking-wide text-white/70 hover:text-white transition-colors duration-300 relative group"
             >
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-              </span>
-              Start Free
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
+              {link.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#D4AF37] group-hover:w-full transition-all duration-300" />
             </a>
+          ))}
 
-            <a
-              href={ORDER_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#D4AF37] hover:bg-[#c4a030] text-[#0a1628] px-4 py-2 rounded-lg font-bold text-[13px] tracking-wide transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/20 flex items-center gap-2"
-            >
-              <FiShoppingCart size={14} />
-              Order
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors duration-300"
-            onClick={() => setIsOpen(!isOpen)}
+          <a
+            href="#contact"
+            onClick={(e) => handleClick(e, '#contact')}
+            className="ml-1 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] to-[#b8941f] px-5 md:px-6 py-2 md:py-2.5 text-[12px] md:text-[13px] font-bold text-[#0a1628] shadow-[0_0_20px_rgba(212,175,55,0.12)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_rgba(212,175,55,0.25)]"
           >
-            {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
-          </button>
+            Book a Consultation
+          </a>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Toggle */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+          ) : (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+          )}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
         {isOpen && (
-          <div className="lg:hidden mt-4 rounded-xl bg-[#0a1628] shadow-2xl shadow-black/40 p-5 space-y-1 border border-white/10">
-            {navLinks.map((link) => (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden mt-3 rounded-2xl border border-white/[0.12] bg-[#0a1628]/95 backdrop-blur-[20px] p-5 shadow-[0_10px_40px_rgba(0,0,0,0.3)]"
+          >
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => handleClick(e, link.href)}
+                  className="block py-2.5 px-3 text-[14px] text-white/80 font-medium hover:text-[#D4AF37] hover:bg-white/5 rounded-lg transition-colors"
+                >
+                  {link.name}
+                </a>
+              ))}
               <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleClick(e, link.href)}
-                className="block text-white/80 font-medium hover:text-[#D4AF37] transition-colors py-2.5 px-2 rounded-lg hover:bg-white/5"
+                href="#contact"
+                onClick={(e) => handleClick(e, '#contact')}
+                className="mt-3 block text-center rounded-full bg-gradient-to-r from-[#D4AF37] to-[#b8941f] px-6 py-3 text-sm font-bold text-[#0a1628]"
               >
-                {link.name}
-              </a>
-            ))}
-            <div className="border-t border-white/10 my-2 pt-2">
-              <a
-                href="https://dandelioncreations.co.za/get-connectability"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-emerald-400 font-medium hover:text-emerald-300 transition-colors py-2.5 px-2"
-              >
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                </span>
-                Start Free
-              </a>
-              <a
-                href={ORDER_FORM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block bg-[#D4AF37] text-[#0a1628] text-center px-6 py-3 rounded-lg font-bold hover:bg-[#c4a030] transition-colors mt-2"
-              >
-                <span className="flex items-center justify-center gap-2">
-                  <FiShoppingCart size={16} /> Order Now
-                </span>
+                Book a Consultation
               </a>
             </div>
-          </div>
+          </motion.div>
         )}
-      </div>
-    </nav>
+      </AnimatePresence>
+    </motion.nav>
   )
 }

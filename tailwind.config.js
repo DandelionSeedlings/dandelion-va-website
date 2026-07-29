@@ -30,7 +30,7 @@ module.exports = {
         'display': ['var(--font-display)', 'Georgia', 'serif'],
         'serif': ['var(--font-display)', 'Georgia', 'serif'],
         'script': ['"Dancing Script"', 'cursive'],
-        'sans': ['var(--font-inter)', 'Lato', 'sans-serif'],
+        'sans': ['var(--font-poppins)', 'var(--font-inter)', 'Lato', 'system-ui', 'sans-serif'],
         'mono': ['var(--font-mono)', 'Consolas', 'monospace'],
       },
     },

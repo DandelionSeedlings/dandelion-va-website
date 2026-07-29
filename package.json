@@ -10,9 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "framer-motion": "^10.16.0",
+    "framer-motion": "^10.18.0",
     "gray-matter": "^4.0.3",
-    "hls.js": "^1.6.0",
+    "hls.js": "^1.6.16",
     "next": "^16.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

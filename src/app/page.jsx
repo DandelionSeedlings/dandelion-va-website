@@ -1,7 +1,5 @@
-'use client'
-
 import Navbar from '../components/Navbar'
-import TerminalHero from '../components/TerminalHero'
+import Header from '../components/Header'
 import Differentiators from '../components/Differentiators'
 import FlagshipProducts from '../components/FlagshipProducts'
 import ProcessSteps from '../components/ProcessSteps'
@@ -11,14 +9,30 @@ import Footer from '../components/Footer'
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-cream">
+    <main className="overflow-hidden bg-[#0a1628]">
       <Navbar />
-      <TerminalHero />
-      <Differentiators />
-      <FlagshipProducts />
-      <ProcessSteps />
-      <PortfolioTeaser />
-      <Contact />
+      <Header />
+
+      <section id="services">
+        <Differentiators />
+      </section>
+
+      <section id="products">
+        <FlagshipProducts />
+      </section>
+
+      <section id="about">
+        <ProcessSteps />
+      </section>
+
+      <section id="portfolio">
+        <PortfolioTeaser />
+      </section>
+
+      <section id="contact">
+        <Contact />
+      </section>
+
       <Footer />
     </main>
   )

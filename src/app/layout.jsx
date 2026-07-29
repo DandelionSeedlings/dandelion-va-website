@@ -1,4 +1,4 @@
-import { Inter, Sora, JetBrains_Mono } from 'next/font/google'
+import { Inter, Sora, JetBrains_Mono, Poppins } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({ 
@@ -14,6 +14,12 @@ const sora = Sora({
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
+})
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-poppins',
 })
 
 export const metadata = {
@@ -32,7 +38,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${sora.variable} ${jetbrainsMono.variable} ${poppins.variable}`}>
       <head>
         <link rel="icon" href="/images/logo-icon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/images/logo-icon.png" />

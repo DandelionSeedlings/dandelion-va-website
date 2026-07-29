@@ -52,15 +52,6 @@ h1, h2, h3, h4, h5, h6 { @apply font-display font-bold; }
   @apply bg-gold/10 backdrop-blur-md border border-gold/30;
 }
 
-/* Gold glow effects */
-.glow-gold {
-  box-shadow: 0 0 40px rgba(201, 162, 39, 0.15);
-}
-
-.glow-gold-strong {
-  box-shadow: 0 0 60px rgba(201, 162, 39, 0.25);
-}
-
 /* ReceiptSnap landing page — floating dandelion seed animation */
 @keyframes receiptsnap-float-seed {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
