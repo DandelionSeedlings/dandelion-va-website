@@ -1,25 +1,10 @@
-export default async function sitemap() {
-  const baseUrl = 'https://dandelioncreations.co.za'
-
-  const routes = [
-    '',
-    '/about',
-    '/services',
-    '/products',
-    '/pricing',
-    '/portfolio',
-    '/blog',
-    '/contact',
-    '/resellers',
-    '/bookability',
-    '/receiptsnap',
-    '/connectability',
+export default function sitemap() {
+  const base = 'https://www.dandelioncreations.co.za'
+  return [
+    { url: base + '/', lastModified: new Date() },
+    { url: base + '/receiptsnap', lastModified: new Date() },
+    { url: base + '/connectability', lastModified: new Date() },
+    { url: base + '/bookability', lastModified: new Date() },
+    { url: base + '/embeddedsupport', lastModified: new Date() },
   ]
-
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: 'weekly',
-    priority: route === '' ? 1.0 : 0.8,
-  }))
 }

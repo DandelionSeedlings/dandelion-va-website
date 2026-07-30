@@ -10,7 +10,6 @@ const navLinks = [
   { name: 'Products', href: '#products' },
   { name: 'How It Works', href: '#process' },
   { name: 'Portfolio', href: '#portfolio' },
-  { name: 'About', href: '#about' },
   { name: 'Contact', href: '#contact' },
 ]
 
@@ -41,7 +40,6 @@ export default function Navbar() {
     }
   }
 
-  // KEY FIX: Force dark background on non-home pages so white text is readable
   const isDark = scrolled || !isHome
 
   return (
@@ -58,21 +56,11 @@ export default function Navbar() {
             : 'border-white/[0.08] bg-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.2)] backdrop-blur-[18px]'
         }`}
       >
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <img
-            src="/images/logo-icon.png?v=2"
-            alt="Dandelion Creations"
-            className="h-7 w-7 md:h-8 md:w-8 object-contain"
-          />
-          <img
-            src="/images/DC-logo-text.png"
-            alt="Dandelion Creations OS"
-            className="h-5 md:h-6 w-auto object-contain hidden sm:block"
-          />
+          <img src="/images/logo-icon.png?v=2" alt="Dandelion Creations" className="h-7 w-7 md:h-8 md:w-8 object-contain" />
+          <img src="/images/DC-logo-text.png" alt="Dandelion Creations OS" className="h-5 md:h-6 w-auto object-contain hidden sm:block" />
         </Link>
 
-        {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-7 xl:gap-8">
           {navLinks.map((link) => (
             <a
@@ -85,7 +73,6 @@ export default function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#D4AF37] group-hover:w-full transition-all duration-300" />
             </a>
           ))}
-
           <a
             href={isHome ? '#contact' : '/#contact'}
             onClick={(e) => isHome && handleClick(e, '#contact')}
@@ -95,7 +82,6 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
@@ -109,7 +95,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
