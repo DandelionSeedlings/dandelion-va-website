@@ -36,10 +36,10 @@ const services = [
     items: ['SEO Optimization', 'Email Campaigns', 'Lead Generation', 'Analytics Setup']
   },
   {
-    title: 'Data Security',
-    desc: 'Enterprise-grade security practices to protect your business data.',
+    title: 'Brand & Rebranding',
+    desc: 'Visual identity refreshes and full rebrands that make your business look as professional as it actually is.',
     icon: FiShield,
-    items: ['Secure Data Handling', 'Backup Solutions', 'Access Control', 'Compliance Support']
+    items: ['Logo & Visual Identity', 'Brand Guidelines', 'Marketing Collateral', 'Social Media Rebrand', 'Website Refresh Direction']
   }
 ]
 
@@ -183,10 +183,10 @@ export default function EmbeddedSupportPage() {
                 The Engineer Behind the Support
               </h2>
               <p className="text-[#0a1628]/70 text-lg leading-relaxed mb-4">
-                Before I was building systems, I was a teacher. I know what it feels like to have evenings swallowed by work that should have been simpler. I also know what it feels like when someone finally hands you a process that actually works — the relief, the space, the breath.
+                I've worn a lot of hats over the years — corporate banking, classrooms, coffee shops, admin offices, and now building systems for business owners. The pattern was always the same: the businesses that thrived weren't the ones working hardest; they were the ones with systems that actually matched how real people work.
               </p>
               <p className="text-[#0a1628]/70 text-lg leading-relaxed">
-                That's what I want for every business I work with. Not just efficiency. Peace of mind. Someone who actually cares whether your Tuesday goes smoothly.
+                I know what it feels like to have evenings swallowed by tasks that should have taken minutes. I also know the exact relief when someone finally hands you a process that works — the space, the breath, the quiet win. That's what I build now. And when a system isn't the right fix, I step in and do the work myself. Not just efficiency. Peace of mind. Someone who actually cares whether your Tuesday goes smoothly.
               </p>
             </div>
           </motion.div>
@@ -276,6 +276,58 @@ export default function EmbeddedSupportPage() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* Industries We Serve */}
+      <section className="py-20 px-4 bg-[#F5F1E8]">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <p className="text-[#D4AF37] font-bold tracking-widest uppercase text-sm mb-4">Who We Help</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-4">Industries We Serve</h2>
+            <p className="text-[#0a1628]/60 max-w-xl mx-auto">
+              Deep experience in sectors where presentation, consistency, and client trust matter most.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+          >
+            {[
+              'Yoga Studios',
+              'Personal Fitness',
+              'Beauty Salons',
+              'Wellness Studios',
+              'Supermarkets',
+              'Pharmacies'
+            ].map((industry, i) => (
+              <motion.div
+                key={i}
+                variants={item}
+                className="bg-white rounded-xl p-5 text-center border border-[#D4AF37]/10 hover:border-[#D4AF37]/30 hover:shadow-md transition-all"
+              >
+                <p className="font-semibold text-[#0a1628] text-sm">{industry}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center text-gray-500 text-sm mt-8"
+          >
+            Not listed? <a href="https://wa.me/27728393087" className="text-[#D4AF37] hover:underline">Reach out</a> — most industries share the same operational pain points.
+          </motion.p>
         </div>
       </section>
 
