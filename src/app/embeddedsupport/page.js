@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { FiCode, FiZap, FiSmartphone, FiFileText, FiTrendingUp, FiShield, FiArrowRight, FiCheck, FiMessageCircle } from 'react-icons/fi'
+import Navbar from '@/components/Navbar'
 
 const services = [
   {
@@ -80,6 +81,7 @@ const item = {
 export default function EmbeddedSupportPage() {
   return (
     <div className="min-h-screen bg-[#0a1628]">
+      <Navbar />
       <div className="h-20" />
 
       {/* Hero — Personal, Warm */}
