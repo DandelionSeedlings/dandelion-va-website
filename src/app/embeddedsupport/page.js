@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { FiCode, FiZap, FiSmartphone, FiFileText, FiTrendingUp, FiShield, FiArrowRight, FiCheck, FiMessageCircle } from 'react-icons/fi'
-import Navbar from '@/components/Navbar'
+import Navbar from '../../components/Navbar'
 
 const services = [
   {
