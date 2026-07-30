@@ -279,7 +279,7 @@ export default function EmbeddedSupportPage() {
         </div>
       </section>
 
-      {/* Industries We Serve */}
+      {/* Businesses We've Supported */}
       <section className="py-20 px-4 bg-[#F5F1E8]">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -288,10 +288,10 @@ export default function EmbeddedSupportPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <p className="text-[#D4AF37] font-bold tracking-widest uppercase text-sm mb-4">Who We Help</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-4">Industries We Serve</h2>
+            <p className="text-[#D4AF37] font-bold tracking-widest uppercase text-sm mb-4">Track Record</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-4">Businesses We've Supported</h2>
             <p className="text-[#0a1628]/60 max-w-xl mx-auto">
-              Deep experience in sectors where presentation, consistency, and client trust matter most.
+              Real businesses, real results — from wellness studios and beauty salons to engineering firms and retail.
             </p>
           </motion.div>
 
@@ -300,7 +300,7 @@ export default function EmbeddedSupportPage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
           >
             {[
               'Yoga Studios',
@@ -308,14 +308,15 @@ export default function EmbeddedSupportPage() {
               'Beauty Salons',
               'Wellness Studios',
               'Supermarkets',
-              'Pharmacies'
-            ].map((industry, i) => (
+              'Pharmacies',
+              'Machine Control & Surveying'
+            ].map((business, i) => (
               <motion.div
                 key={i}
                 variants={item}
                 className="bg-white rounded-xl p-5 text-center border border-[#D4AF37]/10 hover:border-[#D4AF37]/30 hover:shadow-md transition-all"
               >
-                <p className="font-semibold text-[#0a1628] text-sm">{industry}</p>
+                <p className="font-semibold text-[#0a1628] text-sm">{business}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -326,7 +327,7 @@ export default function EmbeddedSupportPage() {
             viewport={{ once: true }}
             className="text-center text-gray-500 text-sm mt-8"
           >
-            Not listed? <a href="https://wa.me/27728393087" className="text-[#D4AF37] hover:underline">Reach out</a> — most industries share the same operational pain points.
+            Your sector not here? <a href="https://wa.me/27728393087" className="text-[#D4AF37] hover:underline">Reach out</a> — most operational pain points look the same across industries.
           </motion.p>
         </div>
       </section>
