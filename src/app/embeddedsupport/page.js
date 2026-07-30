@@ -84,9 +84,11 @@ export default function EmbeddedSupportPage() {
 
       {/* Hero — Personal, Warm */}
       <section className="relative pt-16 pb-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-[#D4AF37] rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-56 h-56 bg-[#D4AF37] rounded-full blur-3xl" />
+        {/* Deep ambient background that matches the photo's navy tone */}
+        <div className="absolute inset-0 bg-[#0a1628]" />
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0f1f35] rounded-full blur-[120px] translate-x-1/3 -translate-y-1/4" />
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#0d1a2d] rounded-full blur-[100px] -translate-x-1/4 translate-y-1/4" />
         </div>
 
         <div className="max-w-5xl mx-auto relative z-10">
@@ -129,20 +131,24 @@ export default function EmbeddedSupportPage() {
               </div>
             </div>
 
-            {/* Hero Photo */}
+            {/* Hero Photo — Casual navy-background image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="absolute -inset-4 bg-gradient-to-br from-[#D4AF37]/20 to-transparent rounded-[2rem] rotate-2" />
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10">
+              {/* Glow that bleeds from the image into the page background */}
+              <div className="absolute -inset-6 bg-gradient-to-br from-[#0f1f35] via-[#0a1628] to-[#0a1628] rounded-[2.5rem] blur-2xl opacity-80" />
+              <div className="absolute -inset-1 bg-gradient-to-br from-[#D4AF37]/15 via-transparent to-[#D4AF37]/5 rounded-[2rem]" />
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/5 shadow-2xl shadow-black/40">
                 <img
                   src="/images/simone-hero.png"
                   alt="Simone Theron, Founder of Dandelion Creations OS"
                   className="w-full h-full object-cover"
                 />
+                {/* Bottom fade so the photo melts into the section below */}
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0a1628] to-transparent" />
               </div>
             </motion.div>
           </motion.div>
@@ -150,8 +156,11 @@ export default function EmbeddedSupportPage() {
       </section>
 
       {/* The Story — With Photo */}
-      <section className="py-20 px-4 bg-[#F5F1E8]">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-20 px-4 bg-[#F5F1E8] relative overflow-hidden">
+        {/* Subtle texture */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #0a1628 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+        
+        <div className="max-w-5xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -159,12 +168,14 @@ export default function EmbeddedSupportPage() {
             transition={{ duration: 0.6 }}
             className="grid md:grid-cols-2 gap-10 items-center"
           >
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden border border-[#D4AF37]/10 shadow-lg">
+            <div className="aspect-[3/4] rounded-2xl overflow-hidden border border-[#D4AF37]/10 shadow-xl relative group">
               <img
                 src="/images/simone-story.png"
                 alt="Simone Theron"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
+              {/* Soft warm overlay that ties into the cream background */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#F5F1E8]/20 via-transparent to-[#D4AF37]/10 mix-blend-multiply" />
             </div>
             <div className="text-left">
               <p className="text-[#D4AF37] font-bold tracking-widest uppercase text-sm mb-4">Why I Do This</p>
@@ -183,8 +194,12 @@ export default function EmbeddedSupportPage() {
       </section>
 
       {/* Workspace / Behind the Scenes */}
-      <section className="py-16 px-4 bg-[#0a1628]">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-16 px-4 bg-[#0a1628] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0f1f35] rounded-full blur-[150px]" />
+        </div>
+
+        <div className="max-w-4xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -202,19 +217,20 @@ export default function EmbeddedSupportPage() {
                 Whether it's a custom Google Apps Script automation or hands-on admin support, the approach is the same: diagnose the root cause, engineer the fix, and make sure it actually works when nobody's watching.
               </p>
             </div>
-            <div className="order-1 md:order-2 aspect-square rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+            <div className="order-1 md:order-2 aspect-square rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 relative group">
               <img
                 src="/images/workspace.png"
                 alt="Dandelion Creations workspace"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/60 via-transparent to-transparent" />
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Services */}
-      <section id="services" className="py-24 px-4 bg-white">
+      <section id="services" className="py-24 px-4 bg-white relative">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -264,8 +280,13 @@ export default function EmbeddedSupportPage() {
       </section>
 
       {/* How It Works — 3 Steps */}
-      <section className="py-20 px-4 bg-[#0a1628]">
-        <div className="max-w-4xl mx-auto">
+      <section className="py-20 px-4 bg-[#0a1628] relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#0f1f35] rounded-full blur-[120px] opacity-40" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#0d1a2d] rounded-full blur-[120px] opacity-40" />
+        </div>
+
+        <div className="max-w-4xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -289,11 +310,14 @@ export default function EmbeddedSupportPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.12 }}
-                className="text-center"
+                className="text-center relative"
               >
                 <span className="text-5xl font-bold text-[#D4AF37]/20">{step.num}</span>
                 <h3 className="text-xl font-bold text-white mt-2 mb-2">{step.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+                {i < 2 && (
+                  <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-px bg-gradient-to-r from-[#D4AF37]/20 to-transparent" />
+                )}
               </motion.div>
             ))}
           </div>
@@ -301,7 +325,7 @@ export default function EmbeddedSupportPage() {
       </section>
 
       {/* Pricing */}
-      <section className="py-24 px-4 bg-[#F5F1E8]">
+      <section className="py-24 px-4 bg-[#F5F1E8] relative">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -322,8 +346,13 @@ export default function EmbeddedSupportPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`rounded-2xl p-8 border ${i === 1 ? 'bg-[#0a1628] border-[#D4AF37]/50 ring-2 ring-[#D4AF37]/20' : 'bg-white border-[#D4AF37]/10'}`}
+                className={`rounded-2xl p-8 border ${i === 1 ? 'bg-[#0a1628] border-[#D4AF37]/50 ring-2 ring-[#D4AF37]/20 relative overflow-hidden' : 'bg-white border-[#D4AF37]/10'}`}
               >
+                {i === 1 && (
+                  <div className="absolute top-0 right-0 bg-[#D4AF37] text-[#0a1628] text-xs font-bold px-3 py-1 rounded-bl-xl">
+                    POPULAR
+                  </div>
+                )}
                 <h3 className={`text-lg font-bold mb-1 ${i === 1 ? 'text-[#D4AF37]' : 'text-[#0a1628]'}`}>{tier.name}</h3>
                 <p className={`text-sm mb-4 ${i === 1 ? 'text-gray-400' : 'text-gray-500'}`}>{tier.hours}</p>
                 <div className={`text-4xl font-bold mb-2 ${i === 1 ? 'text-white' : 'text-[#0a1628]'}`}>{tier.price}<span className="text-sm font-normal opacity-60">/mo</span></div>
@@ -349,9 +378,15 @@ export default function EmbeddedSupportPage() {
         </div>
       </section>
 
-      {/* Final CTA — With Casual Photo */}
-      <section className="py-20 px-4 bg-[#0a1628]">
-        <div className="max-w-5xl mx-auto">
+      {/* Final CTA — With Bronze Suit Photo */}
+      <section className="py-20 px-4 bg-[#0a1628] relative overflow-hidden">
+        {/* Background ambient that matches the bronze suit photo */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 right-0 w-[700px] h-[700px] bg-[#0f1f35] rounded-full blur-[140px] translate-x-1/4 -translate-y-1/2" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#1a1205] rounded-full blur-[100px] opacity-30" />
+        </div>
+
+        <div className="max-w-5xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -376,19 +411,27 @@ export default function EmbeddedSupportPage() {
               </a>
               <p className="text-gray-500 text-sm mt-4">I reply personally. Usually within the hour.</p>
             </div>
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-lg">
-              <img
-                src="/images/simone-casual.png"
-                alt="Simone Theron"
-                className="w-full h-full object-cover"
-              />
+            
+            {/* Bronze suit photo — dark background blends seamlessly */}
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-br from-[#0f1f35]/50 via-transparent to-[#0a1628] rounded-[2rem] blur-xl" />
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/5 shadow-2xl shadow-black/40">
+                <img
+                  src="/images/simone-casual.png"
+                  alt="Simone Theron"
+                  className="w-full h-full object-cover"
+                />
+                {/* Top and bottom fades for seamless section blending */}
+                <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#0a1628] to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0a1628] to-transparent" />
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Simple Footer */}
-      <footer className="bg-[#0a1628] py-10 px-4 border-t border-white/10">
+      <footer className="bg-[#0a1628] py-10 px-4 border-t border-white/10 relative z-10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-500 text-sm">© 2026 Dandelion Creations OS. All rights reserved.</p>
           <div className="flex gap-6 text-sm">
