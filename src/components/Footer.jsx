@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { FiMail, FiPhone, FiMapPin, FiFacebook, FiInstagram, FiLinkedin, FiShoppingCart } from 'react-icons/fi'
+import Link from 'next/link'
+import { FiMail, FiPhone, FiMapPin, FiFacebook, FiInstagram, FiLinkedin, FiShoppingCart, FiExternalLink } from 'react-icons/fi'
 
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
@@ -9,7 +10,6 @@ export default function Footer() {
   const [partnerCode, setPartnerCode] = useState('')
 
   useEffect(() => {
-    // Check URL params first
     const urlParams = new URLSearchParams(window.location.search)
     const codeFromUrl = urlParams.get('partner')
     if (codeFromUrl) {
@@ -17,7 +17,6 @@ export default function Footer() {
       localStorage.setItem('dc_partner_code', codeFromUrl.toUpperCase())
       return
     }
-    // Fall back to localStorage
     const codeFromStorage = localStorage.getItem('dc_partner_code')
     if (codeFromStorage) {
       setPartnerCode(codeFromStorage)
@@ -39,7 +38,6 @@ export default function Footer() {
   return (
     <footer className="bg-[#0a1628] text-white pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="lg:col-span-1">
@@ -54,12 +52,12 @@ export default function Footer() {
                 }}
               />
               <div className="hidden w-12 h-12 rounded-full bg-[#D4AF37] items-center justify-center">
-                <span className="text-[#0a1628] font-serif font-bold text-lg">DC</span>
+                <span className="text-[#0a1628] font-bold text-lg">DC</span>
               </div>
               <div>
-                <p className="font-serif text-lg tracking-wide text-white">Dandelion</p>
+                <p className="text-lg tracking-wide text-white font-bold">Dandelion</p>
                 <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#D4AF37]">
-                  Creations
+                  Creations OS
                 </p>
               </div>
             </div>
@@ -67,7 +65,6 @@ export default function Footer() {
               Operations engineering and embedded systems support for businesses ready to run on clarity, not chaos.
               BCEA-exempt independent contractor.
             </p>
-            {/* Social Links */}
             <div className="flex gap-4">
               <a
                 href="https://www.facebook.com/DandelionCreations01"
@@ -98,18 +95,38 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-serif text-lg text-white mb-6">Quick Links</h4>
+            <h4 className="text-lg text-white mb-6 font-bold">Quick Links</h4>
             <ul className="space-y-3">
-              {['About', 'Why Us', 'Services', 'Pricing', 'Portfolio', 'Blog', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a
-                    href={link === 'Blog' ? '/blog' : `#${link.toLowerCase().replace(' ', '-')}`}
-                    className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link href="/" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/#products" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm">
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link href="/#process" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm">
+                  How It Works
+                </Link>
+              </li>
+              <li>
+                <Link href="/#portfolio" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm">
+                  Portfolio
+                </Link>
+              </li>
+              <li>
+                <Link href="/#contact" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/embeddedsupport" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm">
+                  Embedded Support
+                </Link>
+              </li>
               <li>
                 <a
                   href={buildOrderUrl()}
@@ -123,35 +140,80 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Products */}
+          {/* AbilitySuite Modules */}
           <div>
-            <h4 className="font-serif text-lg text-white mb-6">AbilitySuite™ Modules</h4>
+            <h4 className="text-lg text-white mb-6 font-bold">AbilitySuite™ Modules</h4>
             <ul className="space-y-3">
-              {[
-                { name: 'CRM Mini (FREE)', ability: 'CRM Mini', href: 'https://dandelioncreations.co.za/get-connectability', isExternal: true },
-                { name: 'ReceiptSnap — R299', ability: 'Receipt Tracker', href: buildOrderUrl('ReceiptSnap', 'Receipt Tracker'), isExternal: false },
-                { name: 'Content Planner — R299', ability: 'Content Planner', href: buildOrderUrl('Visibility', 'Content Planner'), isExternal: false },
-                { name: 'CRM Pro — R499', ability: 'CRM Pro', href: buildOrderUrl('Scalability', 'CRM Pro'), isExternal: false },
-                { name: 'Invoice Sorter — R499', ability: 'Invoice Sorter', href: buildOrderUrl('Payability', 'Invoice Sorter'), isExternal: false },
-                { name: 'Stock & Supplier — R499', ability: 'Stock & Supplier', href: buildOrderUrl('Availability', 'Stock & Supplier'), isExternal: false },
-              ].map((product) => (
-                <li key={product.name}>
-                  <a
-                    href={product.href}
-                    target={product.isExternal ? '_blank' : '_blank'}
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm"
-                  >
-                    {product.name}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/connectability"
+                  className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm flex items-center gap-2"
+                >
+                  ConnectAbility <span className="text-emerald-400 text-xs font-bold">FREE</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/receiptsnap"
+                  className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm"
+                >
+                  ReceiptSnap — R299
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/bookability"
+                  className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm"
+                >
+                  Bookability — R499
+                </Link>
+              </li>
+              <li>
+                <a
+                  href={buildOrderUrl('Visibility', 'Content Planner')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm flex items-center gap-1"
+                >
+                  Content Planner — R299 <FiExternalLink size={10} />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={buildOrderUrl('Scalability', 'CRM Pro')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm flex items-center gap-1"
+                >
+                  CRM Pro — R499 <FiExternalLink size={10} />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={buildOrderUrl('Payability', 'Invoice Sorter')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm flex items-center gap-1"
+                >
+                  Invoice Sorter — R499 <FiExternalLink size={10} />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={buildOrderUrl('Availability', 'Stock & Supplier')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm flex items-center gap-1"
+                >
+                  Stock & Supplier — R499 <FiExternalLink size={10} />
+                </a>
+              </li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-serif text-lg text-white mb-6">Get In Touch</h4>
+            <h4 className="text-lg text-white mb-6 font-bold">Get In Touch</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <FiMail className="text-[#D4AF37] mt-1 flex-shrink-0" size={18} />
@@ -179,7 +241,6 @@ export default function Footer() {
               </li>
             </ul>
 
-            {/* Order CTA */}
             <a
               href={buildOrderUrl()}
               target="_blank"
@@ -201,7 +262,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              &copy; {new Date().getFullYear()} Dandelion Creations. All rights reserved.
+              &copy; {new Date().getFullYear()} Dandelion Creations OS. All rights reserved.
             </p>
             <p className="text-gray-600 text-xs">
               AbilitySuite™ — a modular operations architecture, engineered for businesses that value precision over noise.
