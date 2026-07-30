@@ -10,6 +10,7 @@ const navLinks = [
   { name: 'Products', href: '#products' },
   { name: 'How It Works', href: '#process' },
   { name: 'Portfolio', href: '#portfolio' },
+  { name: 'Support', href: '/embeddedsupport' },
   { name: 'Contact', href: '#contact' },
 ]
 
