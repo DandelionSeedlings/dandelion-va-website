@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fa'
 
 // Replace with your deployed ConnectAbility Apps Script Web App URL (the /exec link)
-const CONNECTABILITY_FORM_URL = 'https://script.google.com/macros/s/AKfycbzkHf2dewT5AC2bAMvWtTQbUux4BMF8mwKNVGfv6uo5m2sGaWZHvB5xkXurz2-Lyg7M/exec'
+const CONNECTABILITY_FORM_URL = 'https://script.google.com/macros/s/AKfycbz3VCljSxG-fQsIcdr5Z0D4_BfrpVV6CTeTFLibw0BjFGpklhe6recnTJiwa4JnSI0/exec'
 const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbyUAtVX_pKihPq2iBqb_bq4ctso-v8z52YHHlSX3TflJaz_DlaMsTq8FUSoCw7hmQqPNw/exec'
 
 // Floating seed positions — same pattern as ReceiptSnap page
