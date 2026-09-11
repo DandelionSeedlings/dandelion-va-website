@@ -42,6 +42,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/images/logo-icon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/images/logo-icon.png" />
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Alex+Brush&display=swap" rel="stylesheet" />
       </head>
       <body className="font-sans antialiased">{children}</body>
     </html>
