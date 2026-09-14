@@ -22,7 +22,7 @@ export default function WishesNav() {
           <img
             src="/images/wishes/flower-mark.png"
             alt="Dandelion Wishes"
-            className="w-14 h-14 object-contain"
+            className="w-9 h-9 object-contain"
           />
           <span className="text-[#8B7355] text-xl" style={{ fontFamily: "'Alex Brush', cursive" }}>
             Dandelion Wishes
@@ -32,9 +32,7 @@ export default function WishesNav() {
           carried on a wish, sealed in a vow
         </span>
         <a
-          href="https://wa.me/27728393087"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/wishes/start"
           className="text-sm px-5 py-2.5 rounded-full border border-[#A8B89C] text-[#7C8B68] hover:bg-[#A8B89C]/10 transition-colors"
         >
           Start your invitation

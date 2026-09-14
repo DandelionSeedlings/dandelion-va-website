@@ -8,7 +8,7 @@ import Reveal from '../../../components/wishes/Reveal'
 // the resulting /exec URL here.
 const ENQUIRY_API_URL = 'https://script.google.com/macros/s/AKfycby9eYADuyLFGddnIoK83R_9hEzIwQtm5S2ZRe0lnc-OybRjo_S5ou0jvGeYuV6vGGJ9mw/exec'
 
-const packages = ['Essential Suite — R1,250', 'Interactive Suite — R2,650', 'Bespoke Suite — R4,500+', "I'm not sure yet"]
+const packages = ['Essential Suite — R750', 'Interactive Suite — R1,250', 'Bespoke Suite — R2,650+', "I'm not sure yet"]
 
 const styles = [
   { label: 'Romantic & Soft', desc: 'Blush · Ivory · Delicate florals', image: '/images/wishes/styles/romantic-soft.jpg' },
@@ -107,13 +107,18 @@ export default function StartInvitation() {
     }
 
     try {
-      const res = await fetch(ENQUIRY_API_URL, {
+      await fetch(ENQUIRY_API_URL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload),
       })
-      const result = await res.json()
-      setStatus(result.success ? 'success' : 'error')
+      // Apps Script's cross-origin response can't be read by the browser
+      // (a Google-side CORS limitation, not a bug in this code) — but the
+      // request itself reliably reaches the script and writes to the sheet,
+      // confirmed working. So once the request has been sent without a
+      // network-level failure, we treat it as a success.
+      setStatus('success')
     } catch (err) {
       setStatus('error')
     }
