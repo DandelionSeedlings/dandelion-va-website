@@ -28,7 +28,23 @@ export default function InvitationTemplate({ theme, content }) {
     <div style={{ background: c.bg, color: c.muted }}>
       <EnvelopeIntro coupleNames={content.coupleNames} onOpen={() => setOpened(true)} theme={theme} />
 
-      <div className="text-white text-center text-xs py-2 px-4" style={{ background: c.accent }}>
+      <div
+        className="text-center text-xs py-2 px-4"
+        style={{
+          background: '#4b3b32',
+          color: '#fffaf5',
+          fontWeight: 700,
+          letterSpacing: '0.08em',
+          opacity: 1,
+          filter: 'none',
+          WebkitFilter: 'none',
+          backdropFilter: 'none',
+          textShadow: 'none',
+          lineHeight: 1.6,
+          position: 'relative',
+          zIndex: 120,
+        }}
+      >
         This is a template preview — styled with example details so you can see what your own
         invitation could look like.
       </div>
