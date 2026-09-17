@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 import EnvelopeIntro from './EnvelopeIntro'
@@ -11,6 +11,32 @@ import {
   CoastalCornerShell, CoastalSeaglassImg, CoastalDividerImg, CoastalQuoteMark,
   CoastalGalleryFrame, DriftingCoastalAccent,
 } from './WishesDecor'
+
+// Counts down to content.weddingDateISO. Returns null until the date has
+// parsed on the client (avoids a server/client mismatch flash), and null
+// forever if weddingDateISO is missing or invalid — callers should treat
+// null as "don't render the countdown" rather than guess.
+function useCountdown(isoString) {
+  const [time, setTime] = useState(null)
+  useEffect(() => {
+    if (!isoString) return
+    const target = new Date(isoString)
+    if (Number.isNaN(target.getTime())) return
+    const tick = () => {
+      const diff = Math.max(0, target - new Date())
+      const d = Math.floor(diff / 86400000)
+      const h = Math.floor((diff % 86400000) / 3600000)
+      const m = Math.floor((diff % 3600000) / 60000)
+      const s = Math.floor((diff % 60000) / 1000)
+      const pad = (n) => String(n).padStart(2, '0')
+      setTime({ d, h: pad(h), m: pad(m), s: pad(s) })
+    }
+    tick()
+    const id = setInterval(tick, 1000)
+    return () => clearInterval(id)
+  }, [isoString])
+  return time
+}
 
 /**
  * Reusable invitation engine. One component, skinned by `theme` (colors,
@@ -25,6 +51,7 @@ export default function InvitationTemplate({ theme, content }) {
   const c = theme.colors
   const [opened, setOpened] = useState(false)
   const [guestName, setGuestName] = useState('')
+  const countdown = useCountdown(content.weddingDateISO)
 
   const rsvpWaLink = `https://wa.me/${content.rsvpWaNumber}?text=${encodeURIComponent(
     `Hi! It's ${guestName || '[your name]'} — RSVPing for ${content.coupleNames}'s wedding. `
@@ -79,6 +106,16 @@ export default function InvitationTemplate({ theme, content }) {
           </h1>
           <p className="text-xs tracking-[3px] uppercase mb-3">{content.weddingDateLong}</p>
           <p className="text-lg italic" style={{ fontFamily: theme.serifFont }}>{content.tagline}</p>
+          {countdown && (
+            <div className="flex justify-center gap-4 sm:gap-6 mt-8">
+              {[['d', 'days'], ['h', 'hrs'], ['m', 'min'], ['s', 'sec']].map(([key, label]) => (
+                <div key={key} className="text-center">
+                  <p className="text-2xl sm:text-3xl" style={{ fontFamily: theme.serifFont }}>{countdown[key]}</p>
+                  <p className="text-[10px] uppercase tracking-wide opacity-80">{label}</p>
+                </div>
+              ))}
+            </div>
+          )}
           <a href="#rsvp" className="inline-block mt-8 px-8 py-3.5 rounded-full font-medium" style={{ background: c.soft, color: c.ink }}>
             RSVP
           </a>
@@ -209,7 +246,16 @@ export default function InvitationTemplate({ theme, content }) {
               <div className="w-8 h-px mx-auto my-3" style={{ background: c.soft }} />
               <p className="text-2xl italic mb-3" style={{ fontFamily: theme.serifFont, color: c.accent }}>{content.ceremony.time}</p>
               <p className="text-sm" style={{ color: c.ink }}>{content.ceremony.venue}</p>
-              <p className="text-xs opacity-60">{content.ceremony.location}</p>
+              <p className="text-xs opacity-60 mb-3">{content.ceremony.location}</p>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${content.ceremony.venue} ${content.ceremony.location || ''}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs underline"
+                style={{ color: c.accent }}
+              >
+                Get directions →
+              </a>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
@@ -222,7 +268,16 @@ export default function InvitationTemplate({ theme, content }) {
               <p className="text-sm font-medium" style={{ color: c.ink }}>Reception</p>
               <div className="w-8 h-px mx-auto my-3" style={{ background: c.soft }} />
               <p className="text-2xl italic mb-3" style={{ fontFamily: theme.serifFont, color: c.accent }}>{content.reception.time}</p>
-              <p className="text-sm" style={{ color: c.ink }}>{content.reception.venue}</p>
+              <p className="text-sm mb-3" style={{ color: c.ink }}>{content.reception.venue}</p>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${content.reception.venue} ${content.ceremony.location || ''}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs underline"
+                style={{ color: c.accent }}
+              >
+                Get directions →
+              </a>
             </div>
           </Reveal>
         </div>

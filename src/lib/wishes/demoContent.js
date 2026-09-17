@@ -8,6 +8,7 @@
 const baseContent = {
   coupleNames: 'Emma & James',
   weddingDateLong: '14 February 2027',
+  weddingDateISO: '2027-02-14T15:00:00',
   tagline: 'Two hearts. One journey. A lifetime together.',
   heroVideoSrc: '/videos/wishes/hero-veil.mp4',
   heroVideoPoster: '/videos/wishes/hero-veil-poster.jpg',
@@ -74,6 +75,7 @@ export function buildDemoContent(styleKey) {
       ...content,
       coupleNames: 'Mark & Sammy',
       weddingDateLong: '28 March 2027',
+      weddingDateISO: '2027-03-28T15:00:00',
       rsvpDeadline: '28 February 2027',
       // Emma & James's baseContent.rsvpUrl points at their actual live RSVP
       // sheet — never inherit that here. Mark & Sammy need their own
