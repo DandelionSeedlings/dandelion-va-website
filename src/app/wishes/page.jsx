@@ -1,18 +1,34 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import WishesNav from '../../components/wishes/WishesNav'
 import WishesFooter from '../../components/wishes/WishesFooter'
 import Reveal from '../../components/wishes/Reveal'
 import PricingCard from '../../components/wishes/PricingCard'
-import { GoldDividerImg, SignatureSeedImg } from '../../components/wishes/WishesDecor'
 
 const WA_LINK = 'https://wa.me/27728393087'
 const EMAIL = 'mailto:dandelioncreat@outlook.com'
+const WEDDING_TARGET = new Date('2027-02-14T15:00:00')
 
-// Move the date OUTSIDE the component so it's stable
-const WEDDING_DATE = new Date('2027-02-14T15:00:00')
+function useCountdown(target) {
+  const [time, setTime] = useState({ d: '--', h: '--', m: '--', s: '--' })
+  useEffect(() => {
+    const tick = () => {
+      const diff = Math.max(0, target - new Date())
+      const d = Math.floor(diff / 86400000)
+      const h = Math.floor((diff % 86400000) / 3600000)
+      const m = Math.floor((diff % 3600000) / 60000)
+      const s = Math.floor((diff % 60000) / 1000)
+      const pad = (n) => String(n).padStart(2, '0')
+      setTime({ d, h: pad(h), m: pad(m), s: pad(s) })
+    }
+    tick()
+    const id = setInterval(tick, 1000)
+    return () => clearInterval(id)
+  }, [target])
+  return time
+}
 
 const features = [
   { title: 'RSVP built right in', desc: 'Guests respond in seconds, no separate app or form link.' },
@@ -54,36 +70,23 @@ const faqs = [
   { q: 'Can I use my own domain?', a: 'Yes, optional — or use the free Dandelion Wishes link.' },
 ]
 
-const portfolioPlaceholders = [
-  { names: 'Emma & James', style: 'Garden romantic, sage and blush' },
-  { names: 'Aisha & Daniel', style: 'Modern minimalist, champagne and ivory' },
+const portfolioExamples = [
+  {
+    names: 'Emma & James',
+    style: 'Botanical — eucalyptus, sage & natural textures',
+    image: '/images/wishes/styles/botanical.jpg',
+    href: '/wishes/demo/botanical',
+  },
+  {
+    names: 'Mark & Sammy',
+    style: 'Coastal Minimalist — sea glass, Langebaan beach wedding',
+    image: '/videos/wishes/hero-waves-poster.jpg',
+    href: '/wishes/demo/coastal-minimal',
+  },
 ]
 
-function useCountdown(target) {
-  const [time, setTime] = useState({ d: '--', h: '--', m: '--', s: '--' })
-  
-  useEffect(() => {
-    const tick = () => {
-      const diff = Math.max(0, target - new Date())
-      const d = Math.floor(diff / 86400000)
-      const h = Math.floor((diff % 86400000) / 3600000)
-      const m = Math.floor((diff % 3600000) / 60000)
-      const s = Math.floor((diff % 60000) / 1000)
-      const pad = (n) => String(n).padStart(2, '0')
-      setTime({ d, h: pad(h), m: pad(m), s: pad(s) })
-    }
-    
-    tick() // Initial call
-    const id = setInterval(tick, 1000)
-    return () => clearInterval(id)
-  }, [target]) // target is now stable (WEDDING_DATE never changes)
-  
-  return time
-}
-
 export default function WishesPage() {
-  // Use the constant - no new Date() created every render
-  const cd = useCountdown(WEDDING_DATE)
+  const cd = useCountdown(WEDDING_TARGET)
 
   return (
     <>
@@ -92,12 +95,23 @@ export default function WishesPage() {
       {/* Hero */}
       <section id="top" className="relative min-h-[92vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <video autoPlay muted loop playsInline preload="auto" poster="/videos/wishes/hero-veil-poster.jpg" className="w-full h-full object-cover">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/videos/wishes/hero-veil-poster.jpg"
+            className="w-full h-full object-cover"
+          >
             <source src="/videos/wishes/hero-veil.mp4" type="video/mp4" />
           </video>
           <div
             className="absolute inset-0"
-            style={{ background: 'linear-gradient(180deg, rgba(250,246,240,0.15) 0%, rgba(250,246,240,0.55) 55%, rgba(250,246,240,0.92) 100%)' }}
+            style={{
+              background:
+                'linear-gradient(180deg, rgba(250,246,240,0.15) 0%, rgba(250,246,240,0.55) 55%, rgba(250,246,240,0.92) 100%)',
+            }}
           />
         </div>
 
@@ -107,35 +121,60 @@ export default function WishesPage() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-10 max-w-3xl mx-auto text-center px-8 py-24"
         >
-          <p className="uppercase tracking-[3px] text-xs mb-5 text-[#8B7355]">Hand-designed digital invitations</p>
-          <h1 className="text-5xl md:text-6xl leading-[1.1] mb-6 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+          <p className="uppercase tracking-[3px] text-xs mb-5 text-[#8B7355]">
+            Hand-designed digital invitations
+          </p>
+          <h1
+            className="text-5xl md:text-6xl leading-[1.1] mb-6 text-[#5C4A3A]"
+            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          >
             Your love story,
             <br />
             beautifully told
-            <span className="text-4xl" style={{ fontFamily: "'Alex Brush', cursive", color: '#B87D7D' }}> — </span>
+            <span className="text-4xl" style={{ fontFamily: "'Alex Brush', cursive", color: '#B87D7D' }}>
+              {' '}
+              —{' '}
+            </span>
             <br />
-            <span className="italic" style={{ color: '#6b7859' }}>before it&apos;s even happened.</span>
+            <span className="italic" style={{ color: '#6b7859' }}>
+              before it&apos;s even happened.
+            </span>
           </h1>
           <p className="max-w-md mx-auto leading-relaxed mb-9 text-[15px] text-[#3A3A3A]/85">
             One link. Every detail your guests need — RSVP, map, music, and more — held in one
             beautiful page, designed just for the two of you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <a href="#how" className="px-8 py-4 rounded-full text-white font-medium shadow-lg transition-transform hover:-translate-y-0.5"
-              style={{ background: '#7C8B68', boxShadow: '0 10px 25px -8px rgba(124,139,104,0.5)' }}>
+            <a
+              href="#how"
+              className="px-8 py-4 rounded-full text-white font-medium shadow-lg transition-transform hover:-translate-y-0.5"
+              style={{ background: '#7C8B68', boxShadow: '0 10px 25px -8px rgba(124,139,104,0.5)' }}
+            >
               See how it works
             </a>
-            <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
+            <a
+              href={WA_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 rounded-full font-medium border transition-transform hover:-translate-y-0.5"
-              style={{ borderColor: '#8B7355', color: '#8B7355', background: 'rgba(255,255,255,0.5)' }}>
-              WhatsApp
+              style={{ borderColor: '#8B7355', color: '#8B7355', background: 'rgba(255,255,255,0.5)' }}
+            >
+               WhatsApp
             </a>
           </div>
-          <p className="text-sm text-[#8B7355]">From R750 per wedding · one payment, no subscriptions</p>
+          <p className="text-sm text-[#8B7355]">From R1,250 per wedding · one payment, no subscriptions</p>
         </motion.div>
 
-        <div className="absolute z-10 hidden sm:flex gap-4 px-5 py-3 rounded-2xl"
-          style={{ bottom: 36, right: 36, background: 'rgba(255,255,255,0.55)', backdropFilter: 'blur(10px)', boxShadow: '0 15px 35px -12px rgba(139,115,85,0.3)' }}>
+        <div
+          className="absolute z-10 hidden sm:flex gap-4 px-5 py-3 rounded-2xl"
+          style={{
+            bottom: 36,
+            right: 36,
+            background: 'rgba(255,255,255,0.55)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 15px 35px -12px rgba(139,115,85,0.3)',
+          }}
+        >
           <div><p className="text-lg text-[#7C8B68]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{cd.d}</p><p className="text-[10px] uppercase tracking-wide text-[#8B7355]">days</p></div>
           <div><p className="text-lg text-[#7C8B68]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{cd.h}</p><p className="text-[10px] uppercase tracking-wide text-[#8B7355]">hrs</p></div>
           <div><p className="text-lg text-[#7C8B68]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{cd.m}</p><p className="text-[10px] uppercase tracking-wide text-[#8B7355]">min</p></div>
@@ -159,9 +198,18 @@ export default function WishesPage() {
             app to download, no account to make. Just open the link and everything&apos;s there.
           </p>
           <div className="grid sm:grid-cols-3 gap-8 text-left">
-            <div><p className="font-medium text-[#7C8B68] mb-1">Opens on any phone</p><p className="text-sm text-[#3A3A3A]/70">No app required.</p></div>
-            <div><p className="font-medium text-[#7C8B68] mb-1">RSVPs come to you</p><p className="text-sm text-[#3A3A3A]/70">Tracked automatically, no spreadsheet chasing.</p></div>
-            <div><p className="font-medium text-[#7C8B68] mb-1">Yours to keep</p><p className="text-sm text-[#3A3A3A]/70">A lasting page to look back on.</p></div>
+            <div>
+              <p className="font-medium text-[#7C8B68] mb-1">Opens on any phone</p>
+              <p className="text-sm text-[#3A3A3A]/70">No app required.</p>
+            </div>
+            <div>
+              <p className="font-medium text-[#7C8B68] mb-1">RSVPs come to you</p>
+              <p className="text-sm text-[#3A3A3A]/70">Tracked automatically, no spreadsheet chasing.</p>
+            </div>
+            <div>
+              <p className="font-medium text-[#7C8B68] mb-1">Yours to keep</p>
+              <p className="text-sm text-[#3A3A3A]/70">A lasting page to look back on.</p>
+            </div>
           </div>
         </Reveal>
       </section>
@@ -175,7 +223,9 @@ export default function WishesPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((s, i) => (
               <Reveal key={s.n} delay={i * 0.1} className="text-center">
-                <div className="w-10 h-10 rounded-full bg-[#E8C4C4]/50 text-[#8B7355] flex items-center justify-center mx-auto mb-3 font-medium">{s.n}</div>
+                <div className="w-10 h-10 rounded-full bg-[#E8C4C4]/50 text-[#8B7355] flex items-center justify-center mx-auto mb-3 font-medium">
+                  {s.n}
+                </div>
                 <p className="font-medium text-[#5C4A3A] mb-1">{s.title}</p>
                 <p className="text-sm text-[#3A3A3A]/70">{s.desc}</p>
               </Reveal>
@@ -193,7 +243,10 @@ export default function WishesPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((f, i) => (
               <Reveal key={f.title} delay={i * 0.06}>
-                <motion.div whileHover={{ y: -4 }} className="border border-[#E8C4C4]/40 rounded-2xl p-6 bg-[#FAF6F0] h-full">
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  className="border border-[#E8C4C4]/40 rounded-2xl p-6 bg-[#FAF6F0] h-full"
+                >
                   <p className="font-medium text-[#5C4A3A] mb-1">{f.title}</p>
                   <p className="text-sm text-[#3A3A3A]/70">{f.desc}</p>
                 </motion.div>
@@ -208,31 +261,64 @@ export default function WishesPage() {
         <div className="max-w-6xl mx-auto">
           <Reveal className="text-center mb-3">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Packages</h2>
-            <GoldDividerImg width={140} center className="mt-3" />
           </Reveal>
-          <p className="text-center text-sm text-[#A8B89C] mb-14 mt-4">One payment per wedding. No subscriptions, ever.</p>
+          <p className="text-center text-sm text-[#A8B89C] mb-14">
+            One payment per wedding. No subscriptions, ever.
+          </p>
           <div className="grid md:grid-cols-3 gap-7">
             <Reveal delay={0}>
-              <PricingCard tier="Essential Suite" price="R750" note="once-off" features={[
-                'Custom single-page mobile invite', 'Digital RSVP form + plus-ones', 'Live sync to Google Sheets',
-                'Maps & Waze directions', 'Standard web address', 'WhatsApp save-the-date image',
-              ]} />
+              <PricingCard
+                tier="Essential Suite"
+                price="R1,250"
+                note="once-off"
+                features={[
+                  'Custom single-page mobile invite',
+                  'Digital RSVP form + plus-ones',
+                  'Live sync to Google Sheets',
+                  'Maps & Waze directions',
+                  'Standard web address',
+                  'WhatsApp save-the-date image',
+                ]}
+              />
             </Reveal>
             <Reveal delay={0.12}>
-              <PricingCard dark featured tier="Interactive Suite" price="R1,250" note="once-off" features={[
-                'Everything in Essential', 'Custom .co.za domain, 12 months', 'Live countdown timer',
-                'Photo gallery, up to 15 photos', 'Song requests on RSVP', 'Add to Calendar, one tap', 'Animated WhatsApp invite',
-              ]} />
+              <PricingCard
+                dark
+                featured
+                tier="Interactive Suite"
+                price="R2,650"
+                note="once-off"
+                features={[
+                  'Everything in Essential',
+                  'Custom .co.za domain, 12 months',
+                  'Live countdown timer',
+                  'Photo gallery, up to 15 photos',
+                  'Song requests on RSVP',
+                  'Add to Calendar, one tap',
+                  'Animated WhatsApp invite',
+                ]}
+              />
             </Reveal>
             <Reveal delay={0.24}>
-              <PricingCard tier="Bespoke Suite" price="R2,650+" note="custom experience" features={[
-                'Everything in Interactive', 'Free Flip-to-Invite save-the-date', 'Live QR guest photo album',
-                'Extended 18-month hosting', 'Multi-page: story, itinerary, FAQs', 'Multi-day event RSVPs', 'Auto WhatsApp/email confirmations',
-              ]} />
+              <PricingCard
+                tier="Bespoke Suite"
+                price="R4,500+"
+                note="custom experience"
+                features={[
+                  'Everything in Interactive',
+                  'Free Flip-to-Invite save-the-date',
+                  'Live QR guest photo album',
+                  'Extended 18-month hosting',
+                  'Multi-page: story, itinerary, FAQs',
+                  'Multi-day event RSVPs',
+                  'Auto WhatsApp/email confirmations',
+                ]}
+              />
             </Reveal>
           </div>
           <p className="text-center text-sm mt-10 text-[#A8B89C]">
-            Flip-to-Invite Save-the-Date — <span className="line-through opacity-60">R250</span> free for a limited time on all packages
+            Flip-to-Invite Save-the-Date — <span className="line-through opacity-60">R250</span> free
+            for a limited time on all packages
           </p>
         </div>
       </section>
@@ -249,10 +335,15 @@ export default function WishesPage() {
           <div className="grid sm:grid-cols-2 gap-5">
             {extras.map((e, i) => (
               <Reveal key={e.name} delay={i * 0.05}>
-                <motion.div whileHover={{ y: -3 }} className="rounded-2xl p-6 bg-white flex items-center justify-between gap-4 h-full"
-                  style={{ boxShadow: '0 12px 28px -14px rgba(139,115,85,0.18)' }}>
+                <motion.div
+                  whileHover={{ y: -3 }}
+                  className="rounded-2xl p-6 bg-white flex items-center justify-between gap-4 h-full"
+                  style={{ boxShadow: '0 12px 28px -14px rgba(139,115,85,0.18)' }}
+                >
                   <div>
-                    <p className="font-medium text-[#5C4A3A] mb-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem' }}>{e.name}</p>
+                    <p className="font-medium text-[#5C4A3A] mb-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem' }}>
+                      {e.name}
+                    </p>
                     <p className="text-sm text-[#3A3A3A]/70">{e.desc}</p>
                   </div>
                   {e.promo ? (
@@ -279,15 +370,32 @@ export default function WishesPage() {
             </h2>
           </Reveal>
           <div className="grid sm:grid-cols-2 gap-8">
-            {portfolioPlaceholders.map((p, i) => (
+            {portfolioExamples.map((p, i) => (
               <Reveal key={p.names} delay={i * 0.1}>
-                <div className="rounded-2xl overflow-hidden border border-[#E8C4C4]/40">
-                  <div className="aspect-[4/3] bg-[#E8C4C4]/20 flex items-center justify-center text-sm text-[#A8B89C]">Preview coming soon</div>
+                <a
+                  href={p.href}
+                  className="block rounded-2xl overflow-hidden border border-[#E8C4C4]/40 group"
+                >
+                  <div className="aspect-[4/3] relative overflow-hidden">
+                    <img
+                      src={p.image}
+                      alt={`${p.names} — ${p.style}`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div
+                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ background: 'rgba(58,58,58,0.45)' }}
+                    >
+                      <span className="text-white text-sm px-5 py-2.5 rounded-full border border-white/70">
+                        View live invitation →
+                      </span>
+                    </div>
+                  </div>
                   <div className="p-5">
                     <p className="font-medium text-[#5C4A3A]">{p.names}</p>
                     <p className="text-sm text-[#3A3A3A]/70">{p.style}</p>
                   </div>
-                </div>
+                </a>
               </Reveal>
             ))}
           </div>
@@ -298,15 +406,21 @@ export default function WishesPage() {
       <section className="py-20 px-6" style={{ background: '#F3ECE3' }}>
         <div className="max-w-4xl mx-auto">
           <Reveal className="text-center mb-4">
-            <h2 className="text-2xl mb-3 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>A few of our favourites</h2>
+            <h2 className="text-2xl mb-3 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              A few of our favourites
+            </h2>
             <p className="text-sm max-w-md mx-auto text-[#3A3A3A]/65">
-              Florists, venues, and boutiques we&apos;d personally recommend — added as we come across people worth vouching for.
+              Florists, venues, and boutiques we&apos;d personally recommend — added as we come
+              across people worth vouching for.
             </p>
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
             {vendorCategories.map((v, i) => (
               <Reveal key={v.label} delay={i * 0.05}>
-                <div className="rounded-2xl p-6 text-center h-full" style={{ background: 'rgba(255,255,255,0.6)', border: '1px dashed #D4C4A0' }}>
+                <div
+                  className="rounded-2xl p-6 text-center h-full"
+                  style={{ background: 'rgba(255,255,255,0.6)', border: '1px dashed #D4C4A0' }}
+                >
                   <p className="text-2xl mb-2">{v.icon}</p>
                   <p className="text-lg mb-1 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{v.label}</p>
                   <p className="text-xs text-[#A8B89C]">Recommendations coming soon</p>
@@ -319,34 +433,49 @@ export default function WishesPage() {
 
       {/* FAQ */}
       <section className="py-20 px-6">
-        <Reveal className="text-center mb-10">
-          <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Questions</h2>
-        </Reveal>
-        <div className="max-w-2xl mx-auto space-y-6">
-          {faqs.map((f, i) => (
-            <Reveal key={f.q} delay={i * 0.05}>
-              <div>
-                <p className="font-medium text-[#5C4A3A] mb-1">{f.q}</p>
-                <p className="text-sm text-[#3A3A3A]/70">{f.a}</p>
-              </div>
-            </Reveal>
-          ))}
+        <div className="max-w-2xl mx-auto">
+          <Reveal className="text-center mb-10">
+            <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Questions</h2>
+          </Reveal>
+          <div className="space-y-6">
+            {faqs.map((f, i) => (
+              <Reveal key={f.q} delay={i * 0.05}>
+                <div>
+                  <p className="font-medium text-[#5C4A3A] mb-1">{f.q}</p>
+                  <p className="text-sm text-[#3A3A3A]/70">{f.a}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Closing CTA */}
-      <section className="py-28 px-6 text-center relative overflow-hidden" style={{ background: 'linear-gradient(160deg,#7C8B68,#5C6B4E)' }}>
-        <SignatureSeedImg size={100} style={{ top: 20, right: 24, opacity: 0.15 }} />
-        <SignatureSeedImg size={70} style={{ bottom: 20, left: 20, opacity: 0.12 }} />
+      <section
+        className="py-28 px-6 text-center relative overflow-hidden"
+        style={{ background: 'linear-gradient(160deg,#7C8B68,#5C6B4E)' }}
+      >
         <Reveal>
-          <p className="script text-4xl mb-4 text-white opacity-90" style={{ fontFamily: "'Alex Brush', cursive" }}>seal it with a vow</p>
-          <h2 className="text-3xl mb-3 text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Ready to make it official?</h2>
+          <p className="text-4xl mb-4 text-white opacity-90" style={{ fontFamily: "'Alex Brush', cursive" }}>
+            seal it with a vow
+          </p>
+          <h2 className="text-3xl mb-3 text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+            Ready to make it official?
+          </h2>
           <p className="mb-9 text-white opacity-80">Tell me about your day — I&apos;ll take it from there.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/wishes/start" className="px-8 py-4 rounded-full font-medium" style={{ background: '#FAF6F0', color: '#5C4A3A' }}>
+            <a
+              href="/wishes/start"
+              className="px-8 py-4 rounded-full font-medium"
+              style={{ background: '#FAF6F0', color: '#5C4A3A' }}
+            >
               Start Your Invitation
             </a>
-            <a href={EMAIL} className="px-8 py-4 rounded-full font-medium text-white" style={{ border: '1px solid rgba(255,255,255,0.5)' }}>
+            <a
+              href={EMAIL}
+              className="px-8 py-4 rounded-full font-medium text-white"
+              style={{ border: '1px solid rgba(255,255,255,0.5)' }}
+            >
               Email instead
             </a>
           </div>
