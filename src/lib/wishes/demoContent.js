@@ -28,11 +28,11 @@ const baseContent = {
   ceremony: { time: '15:00', venue: 'Willow Creek Estate', location: 'Pretoria, South Africa' },
   reception: { time: '17:00', venue: 'Willow Creek Estate' },
   schedule: [
-    { time: '15:00', label: 'Wedding Ceremony' },
-    { time: '16:00', label: 'Canapés & Champagne' },
-    { time: '17:30', label: 'Reception & Dinner' },
-    { time: '19:30', label: 'First Dance & Celebrations' },
-    { time: '23:30', label: 'Last Dance' },
+    { time: '15:00', label: 'Wedding Ceremony', icon: 'ceremony' },
+    { time: '16:00', label: 'Canapés & Champagne', icon: 'cocktail' },
+    { time: '17:30', label: 'Reception & Dinner', icon: 'reception' },
+    { time: '19:30', label: 'First Dance & Celebrations', icon: 'party' },
+    { time: '23:30', label: 'Last Dance', icon: 'party' },
   ],
   rsvpDeadline: '14 January 2027',
   rsvpUrl: 'https://script.google.com/macros/s/AKfycbyDhgT4SAax1aO-wYa7vkbDCp0Z7nKhR7vhz1ige0k9S7dh55JMi2m09vQ_aYc1gtsn/exec',
@@ -64,8 +64,37 @@ const storyImageByStyle = {
 }
 
 export function buildDemoContent(styleKey) {
-  return {
+  const content = {
     ...baseContent,
     storyImage: storyImageByStyle[styleKey] || storyImageByStyle['romantic-soft'],
   }
+
+  if (styleKey === 'coastal-minimal') {
+    return {
+      ...content,
+      coupleNames: 'Mark & Sammy',
+      weddingDateLong: '28 March 2027',
+      rsvpDeadline: '28 February 2027',
+      // Emma & James's baseContent.rsvpUrl points at their actual live RSVP
+      // sheet — never inherit that here. Mark & Sammy need their own
+      // Sheet + Apps Script deployment (same pattern as every other
+      // wedding) before this can be a real URL. Until then, empty string
+      // tells InvitationTemplate to show "coming soon" instead of a live
+      // (wrong) form.
+      rsvpUrl: '',
+      storyImage: '/images/wishes/demo-coastal/beach-1.jpg',
+      heroVideoSrc: '/videos/wishes/hero-waves.mp4',
+      heroVideoPoster: '/videos/wishes/hero-waves-poster.jpg',
+      ceremony: { time: content.ceremony.time, venue: 'Langebaan Beachfront', location: 'Langebaan, Western Cape' },
+      reception: { time: content.reception.time, venue: 'Langebaan Beachfront' },
+      galleryImages: [
+        '/images/wishes/demo-coastal/beach-1.jpg',
+        '/images/wishes/demo-coastal/beach-2.jpg',
+        '/images/wishes/demo-coastal/beach-3.jpg',
+        '/images/wishes/demo-coastal/beach-4.jpg',
+      ],
+    }
+  }
+
+  return content
 }

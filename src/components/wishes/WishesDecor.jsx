@@ -150,13 +150,193 @@ export function DriftingSignatureSeed({ size = 90, style = {}, opacity = 0.9, du
   )
 }
 
-// Botanical-theme-only corner accent — pass a numbered variant (1 or 2)
+// Botanical-theme-only corner accent — pass a numbered variant (1 or 2).
+// Upgraded to the illustrated eucalyptus corner pack (was corner-sprig-1/2).
 export function BotanicalCornerSprig({ variant = 1, size = 130, style = {}, opacity = 0.85 }) {
+  const src = variant === 2
+    ? '/images/wishes/decorations/botanical/eucalyptus-corner-right.png'
+    : '/images/wishes/decorations/botanical/eucalyptus-corner-left.png'
   return (
     <img
-      src={`/images/wishes/decorations/corner-sprig-${variant}.png`}
+      src={src}
       alt=""
       style={{ width: size, height: size, objectFit: 'contain', position: 'absolute', opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+/* ============================================================
+   BOTANICAL-THEME-ONLY (eucalyptus pack). These have no universal
+   equivalent — only rendered when theme.showBotanicalAccents is true.
+   ============================================================ */
+
+// Richer botanical-only divider, used in place of GoldDividerImg
+// wherever the botanical theme wants its own signature divider.
+export function EucalyptusDividerImg({ width = 200, opacity = 0.9, className = '', center = false, style = {} }) {
+  return (
+    <img
+      src="/images/wishes/decorations/botanical/eucalyptus-divider.png"
+      alt=""
+      className={className}
+      style={{ width, height: 'auto', display: 'block', margin: center ? '0 auto' : '0', opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+// Wreath/crest monogram frame — a soft background accent, e.g. behind a heading
+export function EucalyptusWreathImg({ size = 220, style = {}, opacity = 0.9 }) {
+  return (
+    <img
+      src="/images/wishes/decorations/botanical/eucalyptus-wreath.png"
+      alt=""
+      style={{ width: size, height: size, objectFit: 'contain', position: 'absolute', opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+// Arch-shaped frame overlay for the Our Story photo
+export function EucalyptusArchFrame({ style = {}, opacity = 1 }) {
+  return (
+    <img
+      src="/images/wishes/decorations/botanical/eucalyptus-arch-frame.png"
+      alt=""
+      style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', inset: 0, opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+// Gallery photo frame overlay — 'square' or 'portrait'
+export function EucalyptusGalleryFrame({ shape = 'square', style = {}, opacity = 1 }) {
+  const src = shape === 'portrait'
+    ? '/images/wishes/decorations/botanical/eucalyptus-frame-portrait.png'
+    : '/images/wishes/decorations/botanical/eucalyptus-frame-square.png'
+  return (
+    <img
+      src={src}
+      alt=""
+      style={{ width: '100%', height: '100%', objectFit: 'fill', position: 'absolute', inset: 0, opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+// Decorative quote mark for the story text block
+export function EucalyptusQuoteMark({ size = 40, style = {}, opacity = 0.6 }) {
+  return (
+    <img
+      src="/images/wishes/decorations/botanical/eucalyptus-quote-mark.png"
+      alt=""
+      style={{ width: size, height: size, objectFit: 'contain', opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+// Order of the Day icon set — pass one of the SCHEDULE_ICON_KEYS.
+// `pack` selects which theme's icon folder to pull from — each theme's
+// icon set lives in its own decorations/<pack>/ folder even when the
+// underlying artwork started from the same generic icon shapes.
+const SCHEDULE_ICON_FILES = {
+  ceremony: 'icon-ceremony.png',
+  cocktail: 'icon-cocktail.png',
+  reception: 'icon-reception.png',
+  cake: 'icon-cake.png',
+  party: 'icon-party.png',
+  shuttle: 'icon-shuttle.png',
+  dressCode: 'icon-dress-code.png',
+  gift: 'icon-gift.png',
+}
+export const SCHEDULE_ICON_KEYS = Object.keys(SCHEDULE_ICON_FILES)
+
+export function ScheduleIcon({ icon, pack = 'botanical', size = 22, style = {}, opacity = 0.9 }) {
+  const file = SCHEDULE_ICON_FILES[icon]
+  if (!file) return null
+  return (
+    <img
+      src={`/images/wishes/decorations/${pack}/${file}`}
+      alt=""
+      style={{ width: size, height: size, objectFit: 'contain', flexShrink: 0, opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+/* ============================================================
+   COASTAL-THEME-ONLY (Sea Glass pack, Mark & Sammy / Langebaan).
+   Only rendered when theme.showCoastalAccents is true. Background on
+   the source files was flattened white with no alpha — cleaned via a
+   chroma-key pass before landing here. The watercolor pieces (shell,
+   sea glass stone) may still show a very faint edge fringe up close;
+   fine at the sizes these render at, but flag it if a print version
+   is ever needed.
+   ============================================================ */
+
+export function CoastalCornerShell({ size = 130, style = {}, opacity = 0.9 }) {
+  return (
+    <img
+      src="/images/wishes/decorations/coastal/corner-shell.png"
+      alt=""
+      style={{ width: size, height: size, objectFit: 'contain', position: 'absolute', opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+export function CoastalSeaglassImg({ size = 90, style = {}, opacity = 0.85 }) {
+  return (
+    <img
+      src="/images/wishes/decorations/coastal/seaglass-accent.png"
+      alt=""
+      style={{ width: size, height: size, objectFit: 'contain', position: 'absolute', opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+export function CoastalDividerImg({ width = 180, opacity = 0.9, className = '', center = false, style = {} }) {
+  return (
+    <img
+      src="/images/wishes/decorations/coastal/divider-coastal.png"
+      alt=""
+      className={className}
+      style={{ width, height: 'auto', display: 'block', margin: center ? '0 auto' : '0', opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+export function CoastalQuoteMark({ size = 28, style = {}, opacity = 0.6 }) {
+  return (
+    <img
+      src="/images/wishes/decorations/coastal/quote-mark.png"
+      alt=""
+      style={{ width: size, height: size, objectFit: 'contain', opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+// Gallery photo frame overlay — 'square' or 'portrait'. Lives under
+// /optional/ in the asset pack since it wasn't wired in on the first pass.
+export function CoastalGalleryFrame({ shape = 'square', style = {}, opacity = 1 }) {
+  const src = shape === 'portrait'
+    ? '/images/wishes/decorations/coastal/optional/frame-gallery-portrait.png'
+    : '/images/wishes/decorations/coastal/optional/frame-gallery-square.png'
+  return (
+    <img
+      src={src}
+      alt=""
+      style={{ width: '100%', height: '100%', objectFit: 'fill', position: 'absolute', inset: 0, opacity, pointerEvents: 'none', ...style }}
+    />
+  )
+}
+
+// Drifting shell / sea-glass accent — the coastal equivalent of
+// DriftingSeed / DriftingSignatureSeed, for the Hero and Closing sections.
+export function DriftingCoastalAccent({ variant = 'shell', size = 70, style = {}, opacity = 0.5, duration = 15, delay = 0 }) {
+  const src = variant === 'seaglass'
+    ? '/images/wishes/decorations/coastal/seaglass-accent.png'
+    : '/images/wishes/decorations/coastal/corner-shell.png'
+  return (
+    <motion.img
+      src={src}
+      alt=""
+      style={{ position: 'absolute', objectFit: 'contain', opacity, pointerEvents: 'none', ...style, width: size, height: size }}
+      animate={{ y: [0, -14, 0, -8, 0], x: [0, 8, -4, 6, 0], rotate: [0, 5, -3, 4, 0] }}
+      transition={{ duration, delay, repeat: Infinity, ease: 'easeInOut' }}
     />
   )
 }

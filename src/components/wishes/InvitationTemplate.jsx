@@ -4,7 +4,13 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 import EnvelopeIntro from './EnvelopeIntro'
-import { SeedCluster, DriftingSeed, GoldDividerImg, GoldStarImg, DriftingSignatureSeed, BotanicalCornerSprig, PhotoFrame } from './WishesDecor'
+import {
+  SeedCluster, DriftingSeed, GoldDividerImg, GoldStarImg, DriftingSignatureSeed,
+  BotanicalCornerSprig, PhotoFrame, EucalyptusDividerImg, EucalyptusWreathImg,
+  EucalyptusGalleryFrame, EucalyptusQuoteMark, ScheduleIcon,
+  CoastalCornerShell, CoastalSeaglassImg, CoastalDividerImg, CoastalQuoteMark,
+  CoastalGalleryFrame, DriftingCoastalAccent,
+} from './WishesDecor'
 
 /**
  * Reusable invitation engine. One component, skinned by `theme` (colors,
@@ -26,25 +32,16 @@ export default function InvitationTemplate({ theme, content }) {
 
   return (
     <div style={{ background: c.bg, color: c.muted }}>
-      <EnvelopeIntro coupleNames={content.coupleNames} onOpen={() => setOpened(true)} theme={theme} />
+      <EnvelopeIntro
+        coupleNames={content.coupleNames}
+        onOpen={() => setOpened(true)}
+        theme={theme}
+        mode={theme.envelopeMode}
+        videoSrc={content.heroVideoSrc}
+        videoPoster={content.heroVideoPoster}
+      />
 
-      <div
-        className="text-center text-xs py-2 px-4"
-        style={{
-          background: '#4b3b32',
-          color: '#fffaf5',
-          fontWeight: 700,
-          letterSpacing: '0.08em',
-          opacity: 1,
-          filter: 'none',
-          WebkitFilter: 'none',
-          backdropFilter: 'none',
-          textShadow: 'none',
-          lineHeight: 1.6,
-          position: 'relative',
-          zIndex: 120,
-        }}
-      >
+      <div className="text-white text-center text-xs py-2 px-4" style={{ background: c.accent }}>
         This is a template preview — styled with example details so you can see what your own
         invitation could look like.
       </div>
@@ -62,8 +59,18 @@ export default function InvitationTemplate({ theme, content }) {
           </video>
           <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(58,58,58,0.35) 0%, rgba(58,58,58,0.55) 100%)' }} />
         </div>
-        <DriftingSeed color="#fff" size={70} style={{ top: 24, right: 30, opacity: 0.5 }} duration={16} />
-        <DriftingSeed color="#fff" size={44} style={{ bottom: 40, left: 24, opacity: 0.35 }} duration={13} delay={2} />
+        {theme.showDriftingSeeds && (
+          <>
+            <DriftingSeed color="#fff" size={70} style={{ top: 24, right: 30, opacity: 0.5 }} duration={16} />
+            <DriftingSeed color="#fff" size={44} style={{ bottom: 40, left: 24, opacity: 0.35 }} duration={13} delay={2} />
+          </>
+        )}
+        {theme.showCoastalAccents && (
+          <>
+            <DriftingCoastalAccent variant="shell" size={56} style={{ top: 28, right: 34, opacity: 0.4 }} duration={17} />
+            <DriftingCoastalAccent variant="seaglass" size={34} style={{ bottom: 44, left: 28, opacity: 0.35 }} duration={14} delay={2} />
+          </>
+        )}
         <div className="relative z-10 max-w-2xl mx-auto text-center px-6 text-white">
           <p className="text-sm opacity-90 mb-4">Together with their families, invite you to celebrate</p>
           <div className="w-16 h-px mx-auto mb-6" style={{ background: c.soft }} />
@@ -94,13 +101,33 @@ export default function InvitationTemplate({ theme, content }) {
               )}
             </div>
           </Reveal>
-          <Reveal delay={0.1}>
-            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>Our Story</p>
-            <h2 className="text-3xl mb-4 italic" style={{ fontFamily: theme.serifFont, color: c.ink }}>
-              Two people. One beautiful story.
-            </h2>
-            <GoldDividerImg width={140} className="mb-6" style={{ marginLeft: 0 }} />
-            <p className="leading-relaxed opacity-75">{content.storyText}</p>
+          <Reveal delay={0.1} className="relative">
+            {theme.showBotanicalAccents && (
+              <EucalyptusWreathImg size={200} style={{ top: -40, left: -30, opacity: 0.16, zIndex: 0 }} />
+            )}
+            {theme.showCoastalAccents && (
+              <CoastalSeaglassImg size={70} style={{ top: -20, left: -36, opacity: 0.5, zIndex: 0, transform: 'rotate(-8deg)' }} />
+            )}
+            <div className="relative" style={{ zIndex: 1 }}>
+              <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>Our Story</p>
+              <h2 className="text-3xl mb-4 italic" style={{ fontFamily: theme.serifFont, color: c.ink }}>
+                Two people. One beautiful story.
+              </h2>
+              {theme.showBotanicalAccents && (
+                <EucalyptusDividerImg width={160} className="mb-6" style={{ marginLeft: 0 }} />
+              )}
+              {theme.showCoastalAccents && (
+                <CoastalDividerImg width={140} className="mb-6" style={{ marginLeft: 0 }} />
+              )}
+              {!theme.showBotanicalAccents && !theme.showCoastalAccents && (
+                <GoldDividerImg width={140} className="mb-6" style={{ marginLeft: 0 }} />
+              )}
+              <div className="flex gap-2">
+                {theme.showBotanicalAccents && <EucalyptusQuoteMark size={28} style={{ marginTop: 2 }} />}
+                {theme.showCoastalAccents && <CoastalQuoteMark size={24} style={{ marginTop: 2 }} />}
+                <p className="leading-relaxed opacity-75">{content.storyText}</p>
+              </div>
+            </div>
           </Reveal>
         </div>
         <div className="max-w-3xl mx-auto mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6">
@@ -117,33 +144,55 @@ export default function InvitationTemplate({ theme, content }) {
       {/* Gallery */}
       {theme.showDriftingSeeds !== undefined && content.galleryImages?.length > 0 && (
         <section className="py-20 px-6 relative" style={{ background: c.bgAlt }}>
-          <SeedCluster color={c.soft} size={50} style={{ position: 'absolute', top: 20, right: 24, opacity: 0.4, display: theme.showBotanicalAccents ? 'none' : 'block' }} />
+          <SeedCluster color={c.soft} size={50} style={{ position: 'absolute', top: 20, right: 24, opacity: 0.4, display: (theme.showBotanicalAccents || theme.showCoastalAccents) ? 'none' : 'block' }} />
           {theme.showBotanicalAccents && (
             <BotanicalCornerSprig variant={1} size={90} style={{ top: 8, right: 12, opacity: 0.7 }} />
+          )}
+          {theme.showCoastalAccents && (
+            <CoastalCornerShell size={80} style={{ top: 8, right: 12, opacity: 0.75 }} />
           )}
           <Reveal className="text-center mb-12">
             <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>Our Gallery</p>
             <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Our Favourite Moments</h2>
           </Reveal>
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
-            <Reveal className="col-span-2 row-span-2">
+            <Reveal className="col-span-2 row-span-2 relative">
               <img src={content.galleryImages[0]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 300 }} />
+              {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="portrait" />}
+              {theme.showCoastalAccents && <CoastalGalleryFrame shape="portrait" />}
             </Reveal>
-            <Reveal delay={0.05}>
+            <Reveal delay={0.05} className="relative">
               <img src={content.galleryImages[1]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145 }} />
+              {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="square" />}
+              {theme.showCoastalAccents && <CoastalGalleryFrame shape="square" />}
             </Reveal>
-            <Reveal delay={0.1}>
+            <Reveal delay={0.1} className="relative">
               <img src={content.galleryImages[2]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145 }} />
+              {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="square" />}
+              {theme.showCoastalAccents && <CoastalGalleryFrame shape="square" />}
             </Reveal>
-            <Reveal delay={0.15} className="col-span-2">
+            <Reveal delay={0.15} className="col-span-2 relative">
               <img src={content.galleryImages[3]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145 }} />
+              {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="square" />}
+              {theme.showCoastalAccents && <CoastalGalleryFrame shape="square" />}
             </Reveal>
           </div>
         </section>
       )}
 
       {/* Details */}
-      <section className="py-20 px-6">
+      <section
+        className="py-20 px-6"
+        style={
+          theme.showCoastalAccents
+            ? {
+                backgroundImage: `linear-gradient(rgba(247,245,240,0.90), rgba(247,245,240,0.90)), url(${content.heroVideoPoster || '/videos/wishes/hero-waves-poster.jpg'})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }
+            : undefined
+        }
+      >
         <Reveal className="text-center mb-14">
           <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>The Day</p>
           <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Wedding Details</h2>
@@ -151,7 +200,11 @@ export default function InvitationTemplate({ theme, content }) {
         <div className="max-w-2xl mx-auto grid sm:grid-cols-2 gap-6">
           <Reveal>
             <div className="rounded-2xl p-8 text-center border h-full relative" style={{ background: c.bgAlt, borderColor: c.cardBorder }}>
-              <GoldStarImg size={16} style={{ top: 14, left: 16 }} />
+              {theme.showCoastalAccents ? (
+                <CoastalCornerShell size={38} style={{ top: 8, left: 10, opacity: 0.85 }} />
+              ) : (
+                <GoldStarImg size={16} style={{ top: 14, left: 16 }} />
+              )}
               <p className="text-sm font-medium" style={{ color: c.ink }}>Ceremony</p>
               <div className="w-8 h-px mx-auto my-3" style={{ background: c.soft }} />
               <p className="text-2xl italic mb-3" style={{ fontFamily: theme.serifFont, color: c.accent }}>{content.ceremony.time}</p>
@@ -161,7 +214,11 @@ export default function InvitationTemplate({ theme, content }) {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="rounded-2xl p-8 text-center border h-full relative" style={{ background: c.bgAlt, borderColor: c.cardBorder }}>
-              <GoldStarImg size={16} style={{ top: 14, left: 16 }} />
+              {theme.showCoastalAccents ? (
+                <CoastalCornerShell size={38} style={{ top: 8, left: 10, opacity: 0.85, transform: 'scaleX(-1)' }} />
+              ) : (
+                <GoldStarImg size={16} style={{ top: 14, left: 16 }} />
+              )}
               <p className="text-sm font-medium" style={{ color: c.ink }}>Reception</p>
               <div className="w-8 h-px mx-auto my-3" style={{ background: c.soft }} />
               <p className="text-2xl italic mb-3" style={{ fontFamily: theme.serifFont, color: c.accent }}>{content.reception.time}</p>
@@ -172,47 +229,72 @@ export default function InvitationTemplate({ theme, content }) {
       </section>
 
       {/* Order of the Day */}
-      <section className="py-20 px-6" style={{ background: c.bgAlt }}>
+      <section className="py-20 px-6 relative overflow-hidden" style={{ background: c.bgAlt }}>
+        {theme.showCoastalAccents && (
+          <CoastalCornerShell size={80} style={{ top: 0, right: 8, opacity: 0.3, transform: 'rotate(18deg)' }} />
+        )}
         <Reveal className="text-center mb-12">
           <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Order of the Day</h2>
         </Reveal>
         <div className="max-w-md mx-auto border-l pl-8 space-y-6" style={{ borderColor: c.soft }}>
           {content.schedule.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.06}>
-              <p style={{ color: c.muted }}>
-                <span className="italic" style={{ fontFamily: theme.serifFont, color: c.accent }}>{s.time}</span>
-                {' — '}{s.label}
-              </p>
+              <div className="flex items-center gap-3">
+                {theme.showBotanicalAccents && s.icon && <ScheduleIcon icon={s.icon} pack="botanical" size={22} />}
+                {theme.showCoastalAccents && s.icon && (
+                  <span
+                    className="flex items-center justify-center rounded-full flex-shrink-0"
+                    style={{ width: 40, height: 40, background: '#fff', boxShadow: '0 4px 12px -4px rgba(80,127,130,0.35)', border: `1px solid ${c.cardBorder}` }}
+                  >
+                    <ScheduleIcon icon={s.icon} pack="coastal" size={24} opacity={0.82} style={{ filter: 'brightness(0) saturate(100%)' }} />
+                  </span>
+                )}
+                <p style={{ color: c.muted }}>
+                  <span className="italic" style={{ fontFamily: theme.serifFont, color: c.accent }}>{s.time}</span>
+                  {' — '}{s.label}
+                </p>
+              </div>
             </Reveal>
           ))}
         </div>
       </section>
 
       {/* RSVP */}
-      <section id="rsvp" className="py-20 px-6" style={{ background: c.gradientDark }}>
+      <section id="rsvp" className="py-20 px-6 relative overflow-hidden" style={{ background: c.gradientDark }}>
+        {theme.showCoastalAccents && (
+          <DriftingCoastalAccent variant="seaglass" size={60} style={{ top: 20, left: 30, opacity: 0.2 }} duration={16} />
+        )}
         <Reveal className="max-w-2xl mx-auto text-center text-white mb-10">
           <h2 className="text-3xl mb-3" style={{ fontFamily: theme.serifFont }}>Will you celebrate with us?</h2>
           <p className="opacity-85 text-sm">Please let us know by {content.rsvpDeadline}.</p>
         </Reveal>
         <div className="max-w-md mx-auto">
           <div className="bg-white/95 rounded-2xl p-8 text-center">
-            <p className="text-sm mb-6" style={{ color: c.ink }}>
-              RSVP responses are tracked live in a private guest sheet, with an instant email
-              notification for every reply — no separate app, no spreadsheet chasing.
-            </p>
-            <a href={content.rsvpUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-block w-full px-8 py-3.5 rounded-full font-medium text-white" style={{ background: c.accent }}>
-              Open the RSVP form
-            </a>
-            <p className="text-xs mt-3 mb-5 opacity-60">
-              (Opens in a new tab — Google doesn&apos;t allow this form to be shown inline on
-              other sites, so on a real invitation it lives on its own page.)
-            </p>
-            <div className="flex items-center gap-3 my-5">
-              <div className="flex-1 h-px" style={{ background: c.cardBorder }} />
-              <span className="text-xs opacity-60">or, if you&apos;d rather</span>
-              <div className="flex-1 h-px" style={{ background: c.cardBorder }} />
-            </div>
+            {content.rsvpUrl ? (
+              <>
+                <p className="text-sm mb-6" style={{ color: c.ink }}>
+                  RSVP responses are tracked live in a private guest sheet, with an instant email
+                  notification for every reply — no separate app, no spreadsheet chasing.
+                </p>
+                <a href={content.rsvpUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-block w-full px-8 py-3.5 rounded-full font-medium text-white" style={{ background: c.accent }}>
+                  Open the RSVP form
+                </a>
+                <p className="text-xs mt-3 mb-5 opacity-60">
+                  (Opens in a new tab — Google doesn&apos;t allow this form to be shown inline on
+                  other sites, so on a real invitation it lives on its own page.)
+                </p>
+                <div className="flex items-center gap-3 my-5">
+                  <div className="flex-1 h-px" style={{ background: c.cardBorder }} />
+                  <span className="text-xs opacity-60">or, if you&apos;d rather</span>
+                  <div className="flex-1 h-px" style={{ background: c.cardBorder }} />
+                </div>
+              </>
+            ) : (
+              <p className="text-sm mb-6 italic opacity-70" style={{ color: c.ink }}>
+                Online RSVP form coming soon — for now, please RSVP on WhatsApp below.
+              </p>
+            )}
             <input type="text" placeholder="Your name" value={guestName} onChange={(e) => setGuestName(e.target.value)}
               className="w-full px-4 py-2.5 rounded-full border text-sm mb-3 text-center" style={{ borderColor: c.cardBorder }} />
             <a href={rsvpWaLink} target="_blank" rel="noopener noreferrer"
@@ -224,7 +306,10 @@ export default function InvitationTemplate({ theme, content }) {
       </section>
 
       {/* Our People */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 relative">
+        {theme.showCoastalAccents && (
+          <CoastalCornerShell size={70} style={{ top: 4, left: 16, opacity: 0.35, transform: 'rotate(-12deg)' }} />
+        )}
         <Reveal className="text-center mb-4">
           <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Our People</h2>
         </Reveal>
@@ -245,7 +330,10 @@ export default function InvitationTemplate({ theme, content }) {
       </section>
 
       {/* Gift Registry */}
-      <section className="py-20 px-6" style={{ background: c.bgAlt }}>
+      <section className="py-20 px-6 relative overflow-hidden" style={{ background: c.bgAlt }}>
+        {theme.showCoastalAccents && (
+          <DriftingCoastalAccent variant="shell" size={54} style={{ top: 16, right: 24, opacity: 0.3 }} duration={14} />
+        )}
         <Reveal className="text-center mb-10">
           <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Gift Registry</h2>
         </Reveal>
@@ -267,7 +355,10 @@ export default function InvitationTemplate({ theme, content }) {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 relative">
+        {theme.showCoastalAccents && (
+          <CoastalSeaglassImg size={50} style={{ top: 10, left: 24, opacity: 0.3 }} />
+        )}
         <Reveal className="text-center mb-10">
           <h2 className="text-2xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Quick Answers</h2>
         </Reveal>
@@ -285,8 +376,17 @@ export default function InvitationTemplate({ theme, content }) {
 
       {/* Closing */}
       <section className="py-24 px-6 text-center relative overflow-hidden" style={{ background: c.gradientDark }}>
-        <DriftingSignatureSeed size={90} style={{ top: 16, right: 20, opacity: 0.18 }} duration={15} />
-        <DriftingSignatureSeed size={60} style={{ bottom: 20, left: 24, opacity: 0.14 }} duration={12} delay={1.5} />
+        {theme.showCoastalAccents ? (
+          <>
+            <DriftingCoastalAccent variant="shell" size={80} style={{ top: 16, right: 20, opacity: 0.18 }} duration={15} />
+            <DriftingCoastalAccent variant="seaglass" size={50} style={{ bottom: 20, left: 24, opacity: 0.16 }} duration={12} delay={1.5} />
+          </>
+        ) : (
+          <>
+            <DriftingSignatureSeed size={90} style={{ top: 16, right: 20, opacity: 0.18 }} duration={15} />
+            <DriftingSignatureSeed size={60} style={{ bottom: 20, left: 24, opacity: 0.14 }} duration={12} delay={1.5} />
+          </>
+        )}
         <Reveal>
           <p className="text-white text-2xl mb-3" style={{ fontFamily: theme.serifFont }}>We can&apos;t wait to celebrate with you</p>
           <p className="text-white/70 italic mb-2" style={{ fontFamily: theme.serifFont }}>With love,</p>

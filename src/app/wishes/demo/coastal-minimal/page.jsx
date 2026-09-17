@@ -3,9 +3,9 @@ import { getTheme } from '../../../../lib/wishes/themes'
 import { buildDemoContent } from '../../../../lib/wishes/demoContent'
 
 export const metadata = {
-  title: 'Botanical — Dandelion Wishes Style Preview',
+  title: 'Coastal Minimalist — Dandelion Wishes Style Preview',
 }
 
-export default function BotanicalDemo() {
-  return <InvitationTemplate theme={getTheme('botanical')} content={buildDemoContent('botanical')} />
+export default function CoastalMinimalDemo() {
+  return <InvitationTemplate theme={getTheme('coastal-minimal')} content={buildDemoContent('coastal-minimal')} />
 }

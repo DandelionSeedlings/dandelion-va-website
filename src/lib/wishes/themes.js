@@ -22,8 +22,8 @@ export const themes = {
       cardBorder: '#E5DED2',
       gradientDark: 'linear-gradient(160deg,#8B7355,#5C4A3A)',
     },
-    scriptFont: "'Alex Brush', cursive",
-    serifFont: "'Cormorant Garamond', serif",
+    scriptFont: "var(--font-alex-brush), cursive",
+    serifFont: "var(--font-cormorant), serif",
     seedOpacity: 0.35,
     showDriftingSeeds: true,
     showBotanicalAccents: false,
@@ -43,8 +43,8 @@ export const themes = {
       cardBorder: '#DCE6D4',
       gradientDark: 'linear-gradient(160deg,#5F7355,#3E4A38)',
     },
-    scriptFont: "'Alex Brush', cursive",
-    serifFont: "'Cormorant Garamond', serif",
+    scriptFont: "var(--font-alex-brush), cursive",
+    serifFont: "var(--font-cormorant), serif",
     seedOpacity: 0.3,
     showDriftingSeeds: true,
     showBotanicalAccents: true,
@@ -64,8 +64,8 @@ export const themes = {
       cardBorder: '#E8DFC9',
       gradientDark: 'linear-gradient(160deg,#8B7355,#3A362E)',
     },
-    scriptFont: "'Alex Brush', cursive",
-    serifFont: "'Cormorant Garamond', serif",
+    scriptFont: "var(--font-alex-brush), cursive",
+    serifFont: "var(--font-cormorant), serif",
     seedOpacity: 0.22,
     showDriftingSeeds: false,
     showBotanicalAccents: false,
@@ -85,11 +85,39 @@ export const themes = {
       cardBorder: '#E0E0DA',
       gradientDark: 'linear-gradient(160deg,#3A3A3A,#1A1A1A)',
     },
-    scriptFont: "'Cormorant Garamond', serif",
-    serifFont: "'Cormorant Garamond', serif",
+    scriptFont: "var(--font-cormorant), serif",
+    serifFont: "var(--font-cormorant), serif",
     seedOpacity: 0,
     showDriftingSeeds: false,
     showBotanicalAccents: false,
+  },
+  'coastal-minimal': {
+    label: 'Coastal Minimalist',
+    // Sea Glass palette — commissioned for Mark & Sammy's Langebaan beach
+    // wedding, 28 March 2027. Hex values confirmed against their supplied
+    // palette reference card.
+    colors: {
+      bg: '#F7F5F0',
+      bgAlt: 'rgba(255,255,255,0.65)',
+      ink: '#31494B', // darker shade of Coastal Teal, kept for body-text contrast
+      muted: '#3A3A3A',
+      accent: '#507F82', // Coastal Teal
+      accentDark: '#31494B',
+      soft: '#B7DFC9', // Sea Glass
+      warm: '#A6B6A6', // Sage Mist
+      highlight: '#CFD0E5', // Morning Sky
+      cardBorder: '#E6D7C3', // Sand Dune
+      gradientDark: 'linear-gradient(160deg,#507F82,#31494B)',
+    },
+    scriptFont: "var(--font-alex-brush), cursive",
+    serifFont: "var(--font-cormorant), serif",
+    seedOpacity: 0,
+    showDriftingSeeds: false,
+    showBotanicalAccents: false,
+    showCoastalAccents: true,
+    // No illustrated envelope for this theme — it opens straight into the
+    // looping wave video instead (see EnvelopeIntro's `mode` prop).
+    envelopeMode: 'video',
   },
 }
 
