@@ -7,7 +7,7 @@ import EnvelopeIntro from './EnvelopeIntro'
 import {
   SeedCluster, DriftingSeed, GoldDividerImg, GoldStarImg, DriftingSignatureSeed,
   BotanicalCornerSprig, PhotoFrame, EucalyptusDividerImg, EucalyptusWreathImg,
-  EucalyptusGalleryFrame, EucalyptusQuoteMark, ScheduleIcon,
+  EucalyptusGalleryFrame, EucalyptusQuoteMark, ScheduleIcon, DriftingEucalyptusAccent,
   CoastalCornerShell, CoastalSeaglassImg, CoastalDividerImg, CoastalQuoteMark,
   CoastalGalleryFrame, DriftingCoastalAccent,
 } from './WishesDecor'
@@ -98,6 +98,12 @@ export default function InvitationTemplate({ theme, content }) {
             <DriftingCoastalAccent variant="seaglass" size={34} style={{ bottom: 44, left: 28, opacity: 0.35 }} duration={14} delay={2} />
           </>
         )}
+        {theme.showBotanicalAccents && (
+          <>
+            <DriftingEucalyptusAccent variant="right" size={110} style={{ top: 20, right: 24, opacity: 0.4 }} duration={17} />
+            <DriftingEucalyptusAccent variant="left" size={70} style={{ bottom: 36, left: 20, opacity: 0.3 }} duration={14} delay={2} />
+          </>
+        )}
         <div className="relative z-10 max-w-2xl mx-auto text-center px-6 text-white">
           <p className="text-sm opacity-90 mb-4">Together with their families, invite you to celebrate</p>
           <div className="w-16 h-px mx-auto mb-6" style={{ background: c.soft }} />
@@ -183,7 +189,7 @@ export default function InvitationTemplate({ theme, content }) {
         <section className="py-20 px-6 relative" style={{ background: c.bgAlt }}>
           <SeedCluster color={c.soft} size={50} style={{ position: 'absolute', top: 20, right: 24, opacity: 0.4, display: (theme.showBotanicalAccents || theme.showCoastalAccents) ? 'none' : 'block' }} />
           {theme.showBotanicalAccents && (
-            <BotanicalCornerSprig variant={1} size={90} style={{ top: 8, right: 12, opacity: 0.7 }} />
+            <BotanicalCornerSprig variant={1} size={260} style={{ top: -34, right: -34, opacity: 0.55 }} />
           )}
           {theme.showCoastalAccents && (
             <CoastalCornerShell size={80} style={{ top: 8, right: 12, opacity: 0.75 }} />
@@ -191,6 +197,28 @@ export default function InvitationTemplate({ theme, content }) {
           <Reveal className="text-center mb-12">
             <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>Our Gallery</p>
             <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Our Favourite Moments</h2>
+            {content.photoWallUrl && (
+              <div className="flex gap-3 justify-center mt-5">
+                <a
+                  href={`${content.photoWallUrl}?page=upload`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs px-5 py-2.5 rounded-full font-medium text-white"
+                  style={{ background: c.accent }}
+                >
+                  Add your photos 📸
+                </a>
+                <a
+                  href={`${content.photoWallUrl}?page=gallery`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs px-5 py-2.5 rounded-full font-medium border"
+                  style={{ borderColor: c.accent, color: c.accent }}
+                >
+                  View the live wall
+                </a>
+              </div>
+            )}
           </Reveal>
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
             <Reveal className="col-span-2 row-span-2 relative">

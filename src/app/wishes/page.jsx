@@ -6,6 +6,7 @@ import WishesNav from '../../components/wishes/WishesNav'
 import WishesFooter from '../../components/wishes/WishesFooter'
 import Reveal from '../../components/wishes/Reveal'
 import PricingCard from '../../components/wishes/PricingCard'
+import { GoldDividerImg, DriftingSignatureSeed, StarAccent } from '../../components/wishes/WishesDecor'
 
 const WA_LINK = 'https://wa.me/27728393087'
 const EMAIL = 'mailto:dandelioncreat@outlook.com'
@@ -123,6 +124,9 @@ export default function WishesPage() {
           />
         </div>
 
+        <DriftingSignatureSeed size={80} style={{ top: 60, right: 40, opacity: 0.4 }} duration={16} />
+        <DriftingSignatureSeed size={54} style={{ bottom: 80, left: 30, opacity: 0.3 }} duration={13} delay={2} />
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,6 +152,7 @@ export default function WishesPage() {
               before it&apos;s even happened.
             </span>
           </h1>
+          <GoldDividerImg width={120} center opacity={0.75} className="mb-7" />
           <p className="max-w-md mx-auto leading-relaxed mb-9 text-[15px] text-[#3A3A3A]/85">
             One link holds everything your guests need: RSVP, map, music, and more, all in one
             beautiful page, designed just for the two of you.
@@ -170,7 +175,11 @@ export default function WishesPage() {
                WhatsApp
             </a>
           </div>
-          <p className="text-sm text-[#8B7355]">From R1,250 per wedding · one payment, no subscriptions</p>
+          <p className="text-sm text-[#8B7355] flex items-center justify-center gap-2">
+            <StarAccent size={11} />
+            From R1,250 per wedding · one payment, no subscriptions
+            <StarAccent size={11} />
+          </p>
         </motion.div>
 
         <div
@@ -200,6 +209,7 @@ export default function WishesPage() {
           <h2 className="text-2xl mb-4 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             A single link. Everything your guests need.
           </h2>
+          <GoldDividerImg width={100} center opacity={0.7} className="mb-8" />
           <p className="text-[#3A3A3A]/80 leading-relaxed mb-10">
             Instead of paper, your invitation lives online, one elegant page your guests open on
             their phone. They RSVP right there. They see the map, the schedule, the dress code. No
@@ -227,6 +237,7 @@ export default function WishesPage() {
         <div className="max-w-4xl mx-auto">
           <Reveal className="text-center mb-12">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>How it works</h2>
+            <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((s, i) => (
@@ -247,6 +258,7 @@ export default function WishesPage() {
         <div className="max-w-4xl mx-auto">
           <Reveal className="text-center mb-12">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>What&apos;s included</h2>
+            <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((f, i) => (
@@ -269,6 +281,7 @@ export default function WishesPage() {
         <div className="max-w-6xl mx-auto">
           <Reveal className="text-center mb-3">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Packages</h2>
+            <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
           </Reveal>
           <p className="text-center text-sm text-[#A8B89C] mb-14">
             One payment per wedding. No subscriptions, ever.
@@ -336,6 +349,7 @@ export default function WishesPage() {
         <div className="max-w-4xl mx-auto">
           <Reveal className="text-center mb-4">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Optional extras</h2>
+            <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
           </Reveal>
           <p className="text-center text-sm mb-14 max-w-lg mx-auto text-[#3A3A3A]/70">
             Add any of these to any package. Pick only what your wedding actually needs.
@@ -401,6 +415,7 @@ export default function WishesPage() {
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
               Every invitation is different, because every couple is.
             </h2>
+            <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
           </Reveal>
           <div className="grid sm:grid-cols-2 gap-8">
             {portfolioExamples.map((p, i) => (
@@ -469,6 +484,7 @@ export default function WishesPage() {
         <div className="max-w-2xl mx-auto">
           <Reveal className="text-center mb-10">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Questions</h2>
+            <GoldDividerImg width={90} center opacity={0.65} className="mt-4 mb-2" />
           </Reveal>
           <div className="space-y-6">
             {faqs.map((f, i) => (
@@ -488,6 +504,8 @@ export default function WishesPage() {
         className="py-28 px-6 text-center relative overflow-hidden"
         style={{ background: 'linear-gradient(160deg,#7C8B68,#5C6B4E)' }}
       >
+        <DriftingSignatureSeed size={90} style={{ top: 24, right: 30, opacity: 0.18 }} duration={15} />
+        <DriftingSignatureSeed size={60} style={{ bottom: 30, left: 34, opacity: 0.14 }} duration={12} delay={1.5} />
         <Reveal>
           <p className="text-4xl mb-4 text-white opacity-90" style={{ fontFamily: "'Alex Brush', cursive" }}>
             seal it with a vow

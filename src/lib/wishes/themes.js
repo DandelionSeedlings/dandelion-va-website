@@ -46,7 +46,10 @@ export const themes = {
     scriptFont: "var(--font-alex-brush), cursive",
     serifFont: "var(--font-cormorant), serif",
     seedOpacity: 0.3,
-    showDriftingSeeds: true,
+    // The raw SVG dandelion-spoke drift doesn't sit well next to the
+    // illustrated eucalyptus artwork — InvitationTemplate shows a
+    // drifting eucalyptus sprig in its place when showBotanicalAccents.
+    showDriftingSeeds: false,
     showBotanicalAccents: true,
   },
   'timeless-classic': {
