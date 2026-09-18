@@ -87,6 +87,7 @@ export function buildDemoContent(styleKey) {
       storyImage: '/images/wishes/demo-coastal/beach-1.jpg',
       heroVideoSrc: '/videos/wishes/hero-waves.mp4',
       heroVideoPoster: '/videos/wishes/hero-waves-poster.jpg',
+      photoWallUrl: 'https://script.google.com/macros/s/AKfycbwDgtDpVXkH4vofVddBdIvtE1O1zeeSebBVWfxlzCCt7Ogz7uPxJCecLiMvIekkmE5LIA/exec',
       ceremony: { time: content.ceremony.time, venue: 'Langebaan Beachfront', location: 'Langebaan, Western Cape' },
       reception: { time: content.reception.time, venue: 'Langebaan Beachfront' },
       galleryImages: [

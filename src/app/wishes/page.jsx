@@ -41,13 +41,21 @@ const features = [
 
 const steps = [
   { n: '1', title: 'Tell me your story', desc: 'Your names, your colours, your photos, your vibe.' },
-  { n: '2', title: 'I design it, by hand', desc: 'No templates dropped in and reskinned — built to fit the two of you.' },
+  { n: '2', title: 'I design it, by hand', desc: 'No templates dropped in and reskinned. Built to fit the two of you.' },
   { n: '3', title: 'You review and refine', desc: 'We go back and forth until it feels exactly right.' },
   { n: '4', title: 'Your link goes live', desc: 'RSVPs, dietary notes, and song requests start rolling in automatically.' },
 ]
 
 const extras = [
-  { name: 'Interactive Guest Photo Album', desc: 'Guests scan a venue QR code; every photo lands in one shared gallery.', price: 'R350' },
+  {
+    name: 'Interactive Guest Photo Album',
+    desc: 'Guests scan a venue QR code, every photo lands in one shared live gallery.',
+    price: 'R350 with an invitation',
+    standalonePrice: 'R750 on its own',
+    demoHref: 'https://script.google.com/macros/s/AKfycbwDgtDpVXkH4vofVddBdIvtE1O1zeeSebBVWfxlzCCt7Ogz7uPxJCecLiMvIekkmE5LIA/exec?page=gallery',
+    qrImage: '/images/wishes/decorations/photo-album-qr.png',
+    qrHref: 'https://script.google.com/macros/s/AKfycbwDgtDpVXkH4vofVddBdIvtE1O1zeeSebBVWfxlzCCt7Ogz7uPxJCecLiMvIekkmE5LIA/exec?page=upload',
+  },
   { name: 'Flip-to-Invite Save-the-Date', desc: 'Goes live early with a teaser & countdown, flips to the full invite when ready.', price: 'R250', promo: 'Free for now' },
   { name: 'Custom .co.za Domain', desc: 'Standalone domain registration for Essential tier or solo buyers.', price: 'R250/yr' },
   { name: 'Extended 6-Month Hosting', desc: 'Keeps your site and photo gallery online for longer.', price: 'R200' },
@@ -63,23 +71,23 @@ const vendorCategories = [
 ]
 
 const faqs = [
-  { q: 'Do my guests need an app?', a: 'No — it opens like any webpage, right in their browser.' },
+  { q: 'Do my guests need an app?', a: 'No, it opens like any webpage, right in their browser.' },
   { q: 'Can I make changes after it\u2019s live?', a: 'Yes, within the revision window included in your package.' },
   { q: 'What if a guest doesn\u2019t have a smartphone?', a: 'We can add a simple printable card with the link and a QR code.' },
   { q: 'How do RSVPs reach me?', a: 'Automatically, in a live guest list you can check anytime.' },
-  { q: 'Can I use my own domain?', a: 'Yes, optional — or use the free Dandelion Wishes link.' },
+  { q: 'Can I use my own domain?', a: 'Yes, optional, or use the free Dandelion Wishes link.' },
 ]
 
 const portfolioExamples = [
   {
     names: 'Emma & James',
-    style: 'Botanical — eucalyptus, sage & natural textures',
+    style: 'Botanical: eucalyptus, sage & natural textures',
     image: '/images/wishes/styles/botanical.jpg',
     href: '/wishes/demo/botanical',
   },
   {
     names: 'Mark & Sammy',
-    style: 'Coastal Minimalist — sea glass, Langebaan beach wedding',
+    style: 'Coastal Minimalist: sea glass, Langebaan beach wedding',
     image: '/videos/wishes/hero-waves-poster.jpg',
     href: '/wishes/demo/coastal-minimal',
   },
@@ -133,7 +141,7 @@ export default function WishesPage() {
             beautifully told
             <span className="text-4xl" style={{ fontFamily: "'Alex Brush', cursive", color: '#B87D7D' }}>
               {' '}
-              —{' '}
+              ·{' '}
             </span>
             <br />
             <span className="italic" style={{ color: '#6b7859' }}>
@@ -141,7 +149,7 @@ export default function WishesPage() {
             </span>
           </h1>
           <p className="max-w-md mx-auto leading-relaxed mb-9 text-[15px] text-[#3A3A3A]/85">
-            One link. Every detail your guests need — RSVP, map, music, and more — held in one
+            One link holds everything your guests need: RSVP, map, music, and more, all in one
             beautiful page, designed just for the two of you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
@@ -193,7 +201,7 @@ export default function WishesPage() {
             A single link. Everything your guests need.
           </h2>
           <p className="text-[#3A3A3A]/80 leading-relaxed mb-10">
-            Instead of paper, your invitation lives online — one elegant page your guests open on
+            Instead of paper, your invitation lives online, one elegant page your guests open on
             their phone. They RSVP right there. They see the map, the schedule, the dress code. No
             app to download, no account to make. Just open the link and everything&apos;s there.
           </p>
@@ -317,7 +325,7 @@ export default function WishesPage() {
             </Reveal>
           </div>
           <p className="text-center text-sm mt-10 text-[#A8B89C]">
-            Flip-to-Invite Save-the-Date — <span className="line-through opacity-60">R250</span> free
+            Flip-to-Invite Save-the-Date: <span className="line-through opacity-60">R250</span> free
             for a limited time on all packages
           </p>
         </div>
@@ -330,7 +338,7 @@ export default function WishesPage() {
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Optional extras</h2>
           </Reveal>
           <p className="text-center text-sm mb-14 max-w-lg mx-auto text-[#3A3A3A]/70">
-            Add any of these to any package — pick only what your wedding actually needs.
+            Add any of these to any package. Pick only what your wedding actually needs.
           </p>
           <div className="grid sm:grid-cols-2 gap-5">
             {extras.map((e, i) => (
@@ -345,8 +353,33 @@ export default function WishesPage() {
                       {e.name}
                     </p>
                     <p className="text-sm text-[#3A3A3A]/70">{e.desc}</p>
+                    {e.demoHref && (
+                      <a
+                        href={e.demoHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs underline text-[#7C8B68] mt-1.5 inline-block"
+                      >
+                        See a live example →
+                      </a>
+                    )}
                   </div>
-                  {e.promo ? (
+                  {e.qrImage && (
+                    <a href={e.qrHref} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 text-center">
+                      <img
+                        src={e.qrImage}
+                        alt="Scan to try the guest photo album"
+                        className="w-16 h-16 rounded-lg border border-[#E5DED2]"
+                      />
+                      <p className="text-[10px] text-[#3A3A3A]/50 mt-1">Scan it</p>
+                    </a>
+                  )}
+                  {e.standalonePrice ? (
+                    <div className="text-right whitespace-nowrap">
+                      <p className="text-sm text-[#7C8B68]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{e.price}</p>
+                      <p className="text-xs text-[#3A3A3A]/60 mt-0.5">{e.standalonePrice}</p>
+                    </div>
+                  ) : e.promo ? (
                     <div className="text-right whitespace-nowrap">
                       <p className="text-xs line-through opacity-50">{e.price}</p>
                       <p className="text-lg text-[#7C8B68]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{e.promo}</p>
@@ -379,7 +412,7 @@ export default function WishesPage() {
                   <div className="aspect-[4/3] relative overflow-hidden">
                     <img
                       src={p.image}
-                      alt={`${p.names} — ${p.style}`}
+                      alt={`${p.names}: ${p.style}`}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div
@@ -410,7 +443,7 @@ export default function WishesPage() {
               A few of our favourites
             </h2>
             <p className="text-sm max-w-md mx-auto text-[#3A3A3A]/65">
-              Florists, venues, and boutiques we&apos;d personally recommend — added as we come
+              Florists, venues, and boutiques we&apos;d personally recommend, added as we come
               across people worth vouching for.
             </p>
           </Reveal>
@@ -462,7 +495,7 @@ export default function WishesPage() {
           <h2 className="text-3xl mb-3 text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             Ready to make it official?
           </h2>
-          <p className="mb-9 text-white opacity-80">Tell me about your day — I&apos;ll take it from there.</p>
+          <p className="mb-9 text-white opacity-80">Tell me about your day, and I&apos;ll take it from there.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/wishes/start"
