@@ -343,13 +343,10 @@ export function DriftingCoastalAccent({ variant = 'shell', size = 70, style = {}
 
 // Drifting eucalyptus sprig — the botanical equivalent of
 // DriftingCoastalAccent, used in place of the raw SVG dandelion drift.
-export function DriftingEucalyptusAccent({ variant = 'left', size = 90, style = {}, opacity = 0.5, duration = 15, delay = 0 }) {
-  const src = variant === 'right'
-    ? '/images/wishes/decorations/botanical/eucalyptus-corner-right.png'
-    : '/images/wishes/decorations/botanical/eucalyptus-corner-left.png'
+export function DriftingEucalyptusAccent({ size = 90, style = {}, opacity = 0.5, duration = 15, delay = 0 }) {
   return (
     <motion.img
-      src={src}
+      src="/images/wishes/decorations/botanical/eucalyptus-leaf-sprig.png"
       alt=""
       style={{ position: 'absolute', objectFit: 'contain', opacity, pointerEvents: 'none', ...style, width: size, height: size }}
       animate={{ y: [0, -12, 0, -6, 0], x: [0, 6, -4, 5, 0], rotate: [0, 4, -3, 3, 0] }}

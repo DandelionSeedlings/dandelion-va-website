@@ -100,8 +100,8 @@ export default function InvitationTemplate({ theme, content }) {
         )}
         {theme.showBotanicalAccents && (
           <>
-            <DriftingEucalyptusAccent variant="right" size={110} style={{ top: 20, right: 24, opacity: 0.4 }} duration={17} />
-            <DriftingEucalyptusAccent variant="left" size={70} style={{ bottom: 36, left: 20, opacity: 0.3 }} duration={14} delay={2} />
+            <DriftingEucalyptusAccent size={64} style={{ top: 20, right: 24, opacity: 0.4 }} duration={17} />
+            <DriftingEucalyptusAccent size={46} style={{ bottom: 36, left: 20, opacity: 0.3 }} duration={14} delay={2} />
           </>
         )}
         <div className="relative z-10 max-w-2xl mx-auto text-center px-6 text-white">
@@ -139,7 +139,7 @@ export default function InvitationTemplate({ theme, content }) {
               {theme.showBotanicalAccents && (
                 <>
                   <PhotoFrame variant={3} style={{ transform: 'rotate(-2deg)', margin: -14 }} />
-                  <BotanicalCornerSprig variant={2} size={110} style={{ bottom: -30, right: -30, transform: 'scaleX(-1)' }} />
+                  <BotanicalCornerSprig variant={2} size={110} style={{ bottom: -30, right: -30, transform: 'scaleY(-1)' }} />
                 </>
               )}
             </div>
@@ -189,7 +189,7 @@ export default function InvitationTemplate({ theme, content }) {
         <section className="py-20 px-6 relative" style={{ background: c.bgAlt }}>
           <SeedCluster color={c.soft} size={50} style={{ position: 'absolute', top: 20, right: 24, opacity: 0.4, display: (theme.showBotanicalAccents || theme.showCoastalAccents) ? 'none' : 'block' }} />
           {theme.showBotanicalAccents && (
-            <BotanicalCornerSprig variant={1} size={260} style={{ top: -34, right: -34, opacity: 0.55 }} />
+            <BotanicalCornerSprig variant={2} size={260} style={{ top: -34, right: -34, opacity: 0.55 }} />
           )}
           {theme.showCoastalAccents && (
             <CoastalCornerShell size={80} style={{ top: 8, right: 12, opacity: 0.75 }} />
