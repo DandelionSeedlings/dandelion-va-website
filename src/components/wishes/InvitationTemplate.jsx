@@ -47,11 +47,21 @@ function useCountdown(isoString) {
  * should render THIS component rather than copy-pasting the markup — fix a
  * bug or improve a section once here, and every invitation benefits.
  */
-export default function InvitationTemplate({ theme, content }) {
+export default function InvitationTemplate({ theme, content, showPreviewBanner = true }) {
   const c = theme.colors
   const [opened, setOpened] = useState(false)
   const [guestName, setGuestName] = useState('')
+  const [musicOpen, setMusicOpen] = useState(false)
   const countdown = useCountdown(content.weddingDateISO)
+
+  // Accepts a normal Spotify share link (open.spotify.com/track/...) and
+  // turns it into the embeddable player URL. We deliberately embed rather
+  // than host an audio file ourselves — that keeps this legally clean
+  // (streamed from Spotify under their terms) instead of us distributing
+  // a copyrighted track directly.
+  const spotifyEmbedUrl = content.spotifyTrackUrl
+    ? content.spotifyTrackUrl.split('?')[0].replace('open.spotify.com/track/', 'open.spotify.com/embed/track/')
+    : null
 
   const rsvpWaLink = `https://wa.me/${content.rsvpWaNumber}?text=${encodeURIComponent(
     `Hi! It's ${guestName || '[your name]'} — RSVPing for ${content.coupleNames}'s wedding. `
@@ -68,10 +78,38 @@ export default function InvitationTemplate({ theme, content }) {
         videoPoster={content.heroVideoPoster}
       />
 
-      <div className="text-white text-center text-xs py-2 px-4" style={{ background: c.accent }}>
-        This is a template preview — styled with example details so you can see what your own
-        invitation could look like.
-      </div>
+      {spotifyEmbedUrl && opened && (
+        <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
+          {musicOpen && (
+            <div className="mb-3 rounded-xl overflow-hidden shadow-2xl" style={{ width: 300 }}>
+              <iframe
+                title="Our song"
+                src={`${spotifyEmbedUrl}?utm_source=generator&theme=0`}
+                width="100%"
+                height="152"
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              />
+            </div>
+          )}
+          <button
+            onClick={() => setMusicOpen((v) => !v)}
+            aria-label={musicOpen ? 'Hide music player' : 'Play our song'}
+            className="w-14 h-14 rounded-full flex items-center justify-center text-white text-xl shadow-lg"
+            style={{ background: c.accent }}
+          >
+            {musicOpen ? '✕' : '♪'}
+          </button>
+        </div>
+      )}
+
+      {showPreviewBanner && (
+        <div className="text-white text-center text-xs py-2 px-4" style={{ background: c.accent }}>
+          This is a template preview — styled with example details so you can see what your own
+          invitation could look like.
+        </div>
+      )}
 
       {/* Hero */}
       <motion.section
@@ -342,6 +380,24 @@ export default function InvitationTemplate({ theme, content }) {
         </div>
       </section>
 
+      {/* Dress Code — only renders when content.dressCode is supplied */}
+      {content.dressCode && (
+        <section className="py-20 px-6" style={{ background: c.bgAlt }}>
+          <Reveal className="max-w-md mx-auto text-center">
+            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>What to Wear</p>
+            <h2 className="text-3xl mb-4" style={{ fontFamily: theme.serifFont, color: c.ink }}>Dress Code</h2>
+            <p className="text-xl italic mb-3" style={{ fontFamily: theme.serifFont, color: c.accent }}>{content.dressCode.title}</p>
+            {content.dressCode.blurb && <p className="text-sm opacity-75 mb-5">{content.dressCode.blurb}</p>}
+            {(content.dressCode.ladies || content.dressCode.gentlemen) && (
+              <div className="text-sm space-y-1" style={{ color: c.ink }}>
+                {content.dressCode.ladies && <p><span className="font-medium">Ladies:</span> {content.dressCode.ladies}</p>}
+                {content.dressCode.gentlemen && <p><span className="font-medium">Gentlemen:</span> {content.dressCode.gentlemen}</p>}
+              </div>
+            )}
+          </Reveal>
+        </section>
+      )}
+
       {/* RSVP */}
       <section id="rsvp" className="py-20 px-6 relative overflow-hidden" style={{ background: c.gradientDark }}>
         {theme.showCoastalAccents && (
@@ -387,6 +443,32 @@ export default function InvitationTemplate({ theme, content }) {
           </div>
         </div>
       </section>
+
+      {/* Accommodation — only renders when content.accommodationOptions is supplied */}
+      {content.accommodationOptions?.length > 0 && (
+        <section className="py-20 px-6">
+          <Reveal className="text-center mb-12">
+            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>Staying Over</p>
+            <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Accommodation</h2>
+          </Reveal>
+          <div className="max-w-3xl mx-auto grid sm:grid-cols-2 gap-6">
+            {content.accommodationOptions.map((a) => (
+              <Reveal key={a.name}>
+                <div className="rounded-2xl p-7 border h-full" style={{ background: c.bgAlt, borderColor: c.cardBorder }}>
+                  <p className="text-sm font-medium mb-1" style={{ color: c.ink }}>{a.name}</p>
+                  {a.note && <p className="text-sm opacity-70 mb-4">{a.note}</p>}
+                  {a.href && (
+                    <a href={a.href} target="_blank" rel="noopener noreferrer"
+                      className="inline-block text-sm px-5 py-2 rounded-full border" style={{ borderColor: c.accent, color: c.accent }}>
+                      Book here
+                    </a>
+                  )}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Our People */}
       <section className="py-20 px-6 relative">
@@ -456,6 +538,34 @@ export default function InvitationTemplate({ theme, content }) {
           ))}
         </div>
       </section>
+
+      {/* Need a Little Help — only renders when content.coordinators is supplied */}
+      {content.coordinators?.length > 0 && (
+        <section className="py-20 px-6" style={{ background: c.bgAlt }}>
+          <Reveal className="text-center mb-10">
+            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>Questions on the Day</p>
+            <h2 className="text-2xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Need a Little Help?</h2>
+          </Reveal>
+          <div className="max-w-md mx-auto space-y-4">
+            {content.coordinators.map((p) => (
+              <Reveal key={p.name}>
+                <div className="flex items-center justify-between rounded-xl p-4 bg-white/80 border" style={{ borderColor: c.cardBorder }}>
+                  <div>
+                    <p className="text-sm font-medium" style={{ color: c.ink }}>{p.name}</p>
+                    <p className="text-xs opacity-60">{p.role}{p.phone ? ` · ${p.phone}` : ''}</p>
+                  </div>
+                  {p.waLink && (
+                    <a href={p.waLink} target="_blank" rel="noopener noreferrer"
+                      className="text-xs px-4 py-2 rounded-full border" style={{ borderColor: c.accent, color: c.accent }}>
+                      WhatsApp
+                    </a>
+                  )}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Closing */}
       <section className="py-24 px-6 text-center relative overflow-hidden" style={{ background: c.gradientDark }}>
