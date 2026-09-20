@@ -14,9 +14,9 @@ export const theoneAndRaContent = {
   weddingDateISO: '2027-10-31T15:00:00', // TODO: 15:00 is a placeholder — swap once ceremony time is confirmed
 
   tagline: 'Two people. One beautiful story.', // TODO: swap for their own line if they want one
+  heroAccentText: 'Two hearts. One journey.', // floating script line over the hero photo — TODO: swap for their own if they want something different
 
-  heroVideoSrc: '/videos/wishes/hero-veil.mp4', // TODO: timeless-classic doesn't have its own hero video yet — reuse or source one for a barn/game-lodge setting
-  heroVideoPoster: '/videos/wishes/hero-veil-poster.jpg',
+  heroImage: '/images/wishes/clients/theone-and-ra/hero.jpg', // real photo of the couple, supplied by Theoné
 
   // Plays via the floating music button once the invite is open — needs
   // a normal Spotify share link (open.spotify.com/track/...), converted
@@ -32,13 +32,24 @@ export const theoneAndRaContent = {
     { label: 'The wedding', year: 'TODO' },
   ],
 
-  // TODO: real photos from the couple
+  storyImage: '/images/wishes/clients/theone-and-ra/story.jpg', // placeholder illustration — TODO: swap for a real photo
+
+  // TODO: real photos from the couple — these are placeholder illustrations for now
   galleryImages: [
-    '/images/wishes/demo/couple-1.jpg',
-    '/images/wishes/demo/couple-2.jpg',
-    '/images/wishes/demo/couple-5.jpg',
-    '/images/wishes/demo/couple-4.jpg',
+    '/images/wishes/clients/theone-and-ra/gallery-1.jpg',
+    '/images/wishes/clients/theone-and-ra/gallery-2.jpg',
+    '/images/wishes/clients/theone-and-ra/gallery-3.jpg',
+    '/images/wishes/clients/theone-and-ra/gallery-4.jpg',
   ],
+
+  // TODO: real photos — placeholders for the two banner columns either side of Order of the Day
+  orderOfDayImages: [
+    '/images/wishes/clients/theone-and-ra/banner-left.jpg',
+    '/images/wishes/clients/theone-and-ra/banner-right.jpg',
+  ],
+
+  // TODO: real photo — placeholder for the closing footer banner
+  footerImage: '/images/wishes/clients/theone-and-ra/gallery-4.jpg', // swapped from footer.jpg — that crop was too tight on faces to work at any aspect ratio
 
   ceremony: { time: 'TODO', venue: 'Indawo Game Lodge', location: 'Farm Witpunt, Ermelo, 2350' },
   reception: { time: 'TODO', venue: 'Indawo Game Lodge' },
@@ -75,6 +86,14 @@ export const theoneAndRaContent = {
   weddingParty: [
     { initial: '?', name: 'TODO', role: 'TODO', note: 'TODO' },
   ],
+
+  // New: Getting There section — quick logistics notes, remove to hide
+  gettingThere: {
+    notes: [
+      // 'TODO e.g. Free parking available',
+      // 'TODO e.g. Shuttle service (on request)',
+    ],
+  },
 
   registryLinks: [
     { label: 'TODO registry link', href: '#' },
