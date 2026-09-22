@@ -12,7 +12,7 @@ import { GoldDividerImg, StarAccent } from '../../../components/wishes/WishesDec
 // tell apart in the sheet.
 const ENQUIRY_API_URL = 'https://script.google.com/macros/s/AKfycby9eYADuyLFGddnIoK83R_9hEzIwQtm5S2ZRe0lnc-OybRjo_S5ou0jvGeYuV6vGGJ9mw/exec'
 
-const LIVE_EXAMPLE_GALLERY_URL = 'https://script.google.com/macros/s/AKfycbwDgtDpVXkH4vofVddBdIvtE1O1zeeSebBVWfxlzCCt7Ogz7uPxJCecLiMvIekkmE5LIA/exec?page=gallery'
+const LIVE_EXAMPLE_GALLERY_URL = 'https://script.google.com/macros/s/AKfycbz8DIz9vc3nTTey5hgxFjjx8aMC-a_-Ms4Sf3xHndQlYLYMhWsw4xRonTwOxYbxfU8z8A/exec'
 const PAYMENT_QR = '/images/wishes/decorations/photo-album-payment-qr.jpg'
 
 // Party/matric photo pack — placeholder imagery until real client photos
