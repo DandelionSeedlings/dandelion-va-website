@@ -15,6 +15,14 @@ const ENQUIRY_API_URL = 'https://script.google.com/macros/s/AKfycby9eYADuyLFGddn
 const LIVE_EXAMPLE_GALLERY_URL = 'https://script.google.com/macros/s/AKfycbwDgtDpVXkH4vofVddBdIvtE1O1zeeSebBVWfxlzCCt7Ogz7uPxJCecLiMvIekkmE5LIA/exec?page=gallery'
 const PAYMENT_QR = '/images/wishes/decorations/photo-album-payment-qr.jpg'
 
+// Party/matric photo pack — placeholder imagery until real client photos
+// come in from a matric client, the way theone-and-ra's real photos
+// eventually replaced the cartoon-collage placeholders there.
+const HERO_PHOTO_DANCING = '/images/wishes/party-album/hero-dancing.png'
+const HERO_PHOTO_PHOTOBOOTH = '/images/wishes/party-album/hero-photobooth.png'
+const SCATTER_PHOTO_PORTRAIT = '/images/wishes/party-album/scatter-portrait.png'
+const GALLERY_MOCKUP_PHONES = '/images/wishes/party-album/gallery-mockup.png'
+
 const eventTypes = ['Matric Farewell', 'Birthday Party', 'Corporate Event', 'Other Celebration']
 
 const steps = [
@@ -81,31 +89,53 @@ export default function PartyPhotoAlbumPage() {
       <WishesNav />
 
       {/* Hero */}
-      <section className="relative py-24 px-6 text-center overflow-hidden" style={{ background: 'linear-gradient(160deg,#7C8B68,#5C6B4E)' }}>
-        <Reveal className="max-w-2xl mx-auto relative z-10">
-          <p className="uppercase tracking-[3px] text-xs mb-5 text-white/70">Matric Farewells · Parties · Celebrations</p>
-          <h1 className="text-4xl md:text-5xl leading-[1.15] mb-6 text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-            Every phone in the room
-            <br />
-            becomes a photo booth.
-          </h1>
-          <p className="max-w-md mx-auto leading-relaxed mb-6 text-white/85">
-            One QR code. Every guest&apos;s photos land on one shared, live gallery, no group
-            chats, no waiting for someone to airdrop the good ones.
-          </p>
-          <p className="text-sm text-white/70 flex items-center justify-center gap-2 mb-9">
-            <StarAccent size={11} />
-            Launch special for matric farewells &amp; parties
-            <StarAccent size={11} />
-          </p>
-          <a
-            href="#order"
-            className="inline-block px-8 py-4 rounded-full font-medium shadow-lg transition-transform hover:-translate-y-0.5"
-            style={{ background: '#FAF6F0', color: '#5C4A3A' }}
-          >
-            Get the Special — R350
-          </a>
-        </Reveal>
+      <section className="relative py-24 px-6 overflow-hidden" style={{ background: 'linear-gradient(160deg,#7C8B68,#5C6B4E)' }}>
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
+          <Reveal className="text-center lg:text-left relative z-10">
+            <p className="uppercase tracking-[3px] text-xs mb-5 text-white/70">Matric Farewells · Parties · Celebrations</p>
+            <h1 className="text-4xl md:text-5xl leading-[1.15] mb-6 text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              Every phone in the room
+              <br />
+              becomes a photo booth.
+            </h1>
+            <p className="max-w-md mx-auto lg:mx-0 leading-relaxed mb-6 text-white/85">
+              One QR code. Every guest&apos;s photos land on one shared, live gallery, no group
+              chats, no waiting for someone to airdrop the good ones.
+            </p>
+            <p className="text-sm text-white/70 flex items-center justify-center lg:justify-start gap-2 mb-9">
+              <StarAccent size={11} />
+              Launch special for matric farewells &amp; parties
+              <StarAccent size={11} />
+            </p>
+            <a
+              href="#order"
+              className="inline-block px-8 py-4 rounded-full font-medium shadow-lg transition-transform hover:-translate-y-0.5"
+              style={{ background: '#FAF6F0', color: '#5C4A3A' }}
+            >
+              Get the Special — R350
+            </a>
+          </Reveal>
+
+          {/* Photo collage — two overlapping "tossed down" photos */}
+          <Reveal delay={0.15} className="relative z-10 mx-auto lg:mx-0" style={{ width: 280, height: 320 }}>
+            <motion.div
+              initial={{ rotate: -6 }}
+              whileInView={{ rotate: -6 }}
+              className="absolute top-0 left-0 rounded-lg overflow-hidden bg-white p-2 shadow-2xl"
+              style={{ width: 190, transform: 'rotate(-6deg)' }}
+            >
+              <img src={HERO_PHOTO_PHOTOBOOTH} alt="" className="w-full h-44 object-cover rounded" />
+            </motion.div>
+            <motion.div
+              initial={{ rotate: 5 }}
+              whileInView={{ rotate: 5 }}
+              className="absolute bottom-0 right-0 rounded-lg overflow-hidden bg-white p-2 shadow-2xl"
+              style={{ width: 190, transform: 'rotate(5deg)' }}
+            >
+              <img src={HERO_PHOTO_DANCING} alt="" className="w-full h-44 object-cover rounded" />
+            </motion.div>
+          </Reveal>
+        </div>
       </section>
 
       {/* How it works */}
@@ -115,35 +145,56 @@ export default function PartyPhotoAlbumPage() {
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>How it works</h2>
             <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-            {steps.map((s, i) => (
-              <Reveal key={s.n} delay={i * 0.1} className="text-center">
-                <div className="w-10 h-10 rounded-full bg-[#7C8B68]/15 text-[#7C8B68] flex items-center justify-center mx-auto mb-3 font-medium">
-                  {s.n}
-                </div>
-                <p className="font-medium text-[#5C4A3A] mb-1">{s.title}</p>
-                <p className="text-sm text-[#3A3A3A]/70">{s.desc}</p>
-              </Reveal>
-            ))}
+          <div className="grid md:grid-cols-[1fr_2fr] gap-10 items-center mt-12">
+            <Reveal className="hidden md:block mx-auto" style={{ width: 150 }}>
+              <div
+                className="rounded-lg overflow-hidden bg-white p-2 shadow-xl"
+                style={{ transform: 'rotate(-4deg)' }}
+              >
+                <img src={SCATTER_PHOTO_PORTRAIT} alt="" className="w-full h-40 object-cover rounded" />
+              </div>
+            </Reveal>
+            <div className="grid sm:grid-cols-2 gap-8">
+              {steps.map((s, i) => (
+                <Reveal key={s.n} delay={i * 0.1} className="text-center sm:text-left">
+                  <div className="w-10 h-10 rounded-full bg-[#7C8B68]/15 text-[#7C8B68] flex items-center justify-center mx-auto sm:mx-0 mb-3 font-medium">
+                    {s.n}
+                  </div>
+                  <p className="font-medium text-[#5C4A3A] mb-1">{s.title}</p>
+                  <p className="text-sm text-[#3A3A3A]/70">{s.desc}</p>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Live example */}
       <section className="py-20 px-6 bg-white/60">
-        <Reveal className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl mb-4 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-            See it working right now
-          </h2>
-          <p className="text-[#3A3A3A]/75 mb-6 max-w-md mx-auto">
-            This is a real, live gallery from a real event, same system, just branded for a
-            wedding. Yours gets your own colours and event name instead.
-          </p>
-          <a href={LIVE_EXAMPLE_GALLERY_URL} target="_blank" rel="noopener noreferrer"
-            className="inline-block text-sm px-6 py-3 rounded-full border border-[#7C8B68] text-[#7C8B68]">
-            View the live wall →
-          </a>
-        </Reveal>
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+          <Reveal>
+            <h2 className="text-2xl mb-4 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              See it working right now
+            </h2>
+            <p className="text-[#3A3A3A]/75 mb-6 max-w-md">
+              This is what it actually looks like on a guest&apos;s phone, upload on the left,
+              live wall on the right. Same system, just branded for a real event. Yours gets your
+              own colours and event name instead.
+            </p>
+            <a href={LIVE_EXAMPLE_GALLERY_URL} target="_blank" rel="noopener noreferrer"
+              className="inline-block text-sm px-6 py-3 rounded-full border border-[#7C8B68] text-[#7C8B68]">
+              View the live wall →
+            </a>
+          </Reveal>
+          <Reveal delay={0.1} className="flex justify-center">
+            <img
+              src={GALLERY_MOCKUP_PHONES}
+              alt="Upload and gallery screens on a phone"
+              className="w-full max-w-sm rounded-2xl"
+              style={{ boxShadow: '0 25px 50px -20px rgba(92,74,58,0.3)' }}
+            />
+          </Reveal>
+        </div>
       </section>
 
       {/* Pricing + Payment */}
