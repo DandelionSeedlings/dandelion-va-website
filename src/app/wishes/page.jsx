@@ -6,7 +6,6 @@ import WishesNav from '../../components/wishes/WishesNav'
 import WishesFooter from '../../components/wishes/WishesFooter'
 import Reveal from '../../components/wishes/Reveal'
 import PricingCard from '../../components/wishes/PricingCard'
-import { GoldDividerImg, DriftingSignatureSeed, StarAccent } from '../../components/wishes/WishesDecor'
 
 const WA_LINK = 'https://wa.me/27728393087'
 const EMAIL = 'mailto:dandelioncreat@outlook.com'
@@ -42,21 +41,20 @@ const features = [
 
 const steps = [
   { n: '1', title: 'Tell me your story', desc: 'Your names, your colours, your photos, your vibe.' },
-  { n: '2', title: 'I design it, by hand', desc: 'No templates dropped in and reskinned. Built to fit the two of you.' },
+  { n: '2', title: 'I design it, by hand', desc: 'No templates dropped in and reskinned — built to fit the two of you.' },
   { n: '3', title: 'You review and refine', desc: 'We go back and forth until it feels exactly right.' },
   { n: '4', title: 'Your link goes live', desc: 'RSVPs, dietary notes, and song requests start rolling in automatically.' },
 ]
 
+const memoryBloomSteps = [
+  { n: 'SCAN', title: 'One QR code', desc: 'At the venue, on a table, wherever guests will actually see it.' },
+  { n: 'SNAP', title: 'Guests take the shot', desc: 'Or choose one from their camera roll, no account or app needed.' },
+  { n: 'SHARE', title: 'It joins the wall', desc: 'Every photo from every guest lands in one shared, live gallery.' },
+  { n: 'BLOOM', title: 'Stays live for 30 days', desc: 'Everyone gets a full month to revisit and download their favourites.' },
+]
+
 const extras = [
-  {
-    name: 'Interactive Guest Photo Album',
-    desc: 'Guests scan a venue QR code, every photo lands in one shared live gallery.',
-    price: 'R350 with an invitation',
-    standalonePrice: 'R750 on its own',
-    demoHref: 'https://script.google.com/macros/s/AKfycbwDgtDpVXkH4vofVddBdIvtE1O1zeeSebBVWfxlzCCt7Ogz7uPxJCecLiMvIekkmE5LIA/exec?page=gallery',
-    qrImage: '/images/wishes/decorations/photo-album-qr.png',
-    qrHref: 'https://script.google.com/macros/s/AKfycbwDgtDpVXkH4vofVddBdIvtE1O1zeeSebBVWfxlzCCt7Ogz7uPxJCecLiMvIekkmE5LIA/exec?page=upload',
-  },
+  { name: 'MemoryBloom — Interactive Guest Photo Album', desc: 'Guests scan one QR code and upload unlimited photos to a shared live gallery. The album stays live for 30 days after the event.', price: 'R350' },
   { name: 'Flip-to-Invite Save-the-Date', desc: 'Goes live early with a teaser & countdown, flips to the full invite when ready.', price: 'R250', promo: 'Free for now' },
   { name: 'Custom .co.za Domain', desc: 'Standalone domain registration for Essential tier or solo buyers.', price: 'R250/yr' },
   { name: 'Extended 6-Month Hosting', desc: 'Keeps your site and photo gallery online for longer.', price: 'R200' },
@@ -72,26 +70,16 @@ const vendorCategories = [
 ]
 
 const faqs = [
-  { q: 'Do my guests need an app?', a: 'No, it opens like any webpage, right in their browser.' },
+  { q: 'Do my guests need an app?', a: 'No — it opens like any webpage, right in their browser.' },
   { q: 'Can I make changes after it\u2019s live?', a: 'Yes, within the revision window included in your package.' },
   { q: 'What if a guest doesn\u2019t have a smartphone?', a: 'We can add a simple printable card with the link and a QR code.' },
   { q: 'How do RSVPs reach me?', a: 'Automatically, in a live guest list you can check anytime.' },
-  { q: 'Can I use my own domain?', a: 'Yes, optional, or use the free Dandelion Wishes link.' },
+  { q: 'Can I use my own domain?', a: 'Yes, optional — or use the free Dandelion Wishes link.' },
 ]
 
-const portfolioExamples = [
-  {
-    names: 'Emma & James',
-    style: 'Botanical: eucalyptus, sage & natural textures',
-    image: '/images/wishes/styles/botanical.jpg',
-    href: '/wishes/demo/botanical',
-  },
-  {
-    names: 'Mark & Sammy',
-    style: 'Coastal Minimalist: sea glass, Langebaan beach wedding',
-    image: '/videos/wishes/hero-waves-poster.jpg',
-    href: '/wishes/demo/coastal-minimal',
-  },
+const portfolioPlaceholders = [
+  { names: 'Emma & James', style: 'Garden romantic, sage and blush' },
+  { names: 'Aisha & Daniel', style: 'Modern minimalist, champagne and ivory' },
 ]
 
 export default function WishesPage() {
@@ -124,9 +112,6 @@ export default function WishesPage() {
           />
         </div>
 
-        <DriftingSignatureSeed size={80} style={{ top: 60, right: 40, opacity: 0.4 }} duration={16} />
-        <DriftingSignatureSeed size={54} style={{ bottom: 80, left: 30, opacity: 0.3 }} duration={13} delay={2} />
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -145,16 +130,15 @@ export default function WishesPage() {
             beautifully told
             <span className="text-4xl" style={{ fontFamily: "'Alex Brush', cursive", color: '#B87D7D' }}>
               {' '}
-              ·{' '}
+              —{' '}
             </span>
             <br />
             <span className="italic" style={{ color: '#6b7859' }}>
               before it&apos;s even happened.
             </span>
           </h1>
-          <GoldDividerImg width={120} center opacity={0.75} className="mb-7" />
           <p className="max-w-md mx-auto leading-relaxed mb-9 text-[15px] text-[#3A3A3A]/85">
-            One link holds everything your guests need: RSVP, map, music, and more, all in one
+            One link. Every detail your guests need — RSVP, map, music, and more — held in one
             beautiful page, designed just for the two of you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
@@ -175,11 +159,7 @@ export default function WishesPage() {
                WhatsApp
             </a>
           </div>
-          <p className="text-sm text-[#8B7355] flex items-center justify-center gap-2">
-            <StarAccent size={11} />
-            From R1,250 per wedding · one payment, no subscriptions
-            <StarAccent size={11} />
-          </p>
+          <p className="text-sm text-[#8B7355]">From R1,250 per wedding · one payment, no subscriptions</p>
         </motion.div>
 
         <div
@@ -209,9 +189,8 @@ export default function WishesPage() {
           <h2 className="text-2xl mb-4 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             A single link. Everything your guests need.
           </h2>
-          <GoldDividerImg width={100} center opacity={0.7} className="mb-8" />
           <p className="text-[#3A3A3A]/80 leading-relaxed mb-10">
-            Instead of paper, your invitation lives online, one elegant page your guests open on
+            Instead of paper, your invitation lives online — one elegant page your guests open on
             their phone. They RSVP right there. They see the map, the schedule, the dress code. No
             app to download, no account to make. Just open the link and everything&apos;s there.
           </p>
@@ -237,7 +216,6 @@ export default function WishesPage() {
         <div className="max-w-4xl mx-auto">
           <Reveal className="text-center mb-12">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>How it works</h2>
-            <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((s, i) => (
@@ -258,7 +236,6 @@ export default function WishesPage() {
         <div className="max-w-4xl mx-auto">
           <Reveal className="text-center mb-12">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>What&apos;s included</h2>
-            <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
           </Reveal>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((f, i) => (
@@ -276,12 +253,77 @@ export default function WishesPage() {
         </div>
       </section>
 
+      {/* Meet MemoryBloom */}
+      <section className="py-20 px-6" style={{ background: '#F3ECE3' }}>
+        <div className="max-w-4xl mx-auto">
+          <Reveal className="text-center mb-4">
+            <p className="uppercase tracking-[3px] text-xs mb-4 text-[#8B7355]">Introducing</p>
+            <h2 className="text-3xl mb-3 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              Meet MemoryBloom 🌼
+            </h2>
+            <p className="text-[#3A3A3A]/75 max-w-lg mx-auto mb-2">
+              Because the best photos aren&apos;t always taken by the photographer.
+            </p>
+            <p className="text-[#3A3A3A]/75 max-w-lg mx-auto">
+              Your guests are already taking photos. Give those moments somewhere to bloom.
+            </p>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
+            {memoryBloomSteps.map((s, i) => (
+              <Reveal key={s.n} delay={i * 0.08}>
+                <div className="bg-white rounded-2xl p-6 h-full text-center" style={{ boxShadow: '0 12px 28px -16px rgba(139,115,85,0.2)' }}>
+                  <p
+                    className="text-xs tracking-[3px] mb-3"
+                    style={{ color: '#7C8B68', fontWeight: 600 }}
+                  >
+                    {s.n}
+                  </p>
+                  <p className="font-medium text-[#5C4A3A] mb-1">{s.title}</p>
+                  <p className="text-sm text-[#3A3A3A]/70">{s.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.2} className="mt-12 flex flex-wrap gap-3 justify-center">
+            {['Unlimited guest uploads', 'No app required', '30 days live'].map((b) => (
+              <span
+                key={b}
+                className="text-xs px-4 py-2 rounded-full"
+                style={{ background: 'rgba(124,139,104,0.12)', color: '#5C6B4E' }}
+              >
+                {b}
+              </span>
+            ))}
+          </Reveal>
+
+          <Reveal delay={0.25} className="text-center mt-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/wishes/party-photo-album"
+                className="inline-block px-8 py-3.5 rounded-full font-medium text-white"
+                style={{ background: '#7C8B68' }}
+              >
+                MemoryBloom — R350
+              </a>
+              <a
+                href="/wishes/party-photo-album#pricing"
+                className="inline-block px-8 py-3.5 rounded-full font-medium border"
+                style={{ borderColor: '#7C8B68', color: '#7C8B68', background: '#fff' }}
+              >
+                See a live demo
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Pricing */}
       <section id="pricing" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <Reveal className="text-center mb-3">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Packages</h2>
-            <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
           </Reveal>
           <p className="text-center text-sm text-[#A8B89C] mb-14">
             One payment per wedding. No subscriptions, ever.
@@ -313,7 +355,7 @@ export default function WishesPage() {
                   'Everything in Essential',
                   'Custom .co.za domain, 12 months',
                   'Live countdown timer',
-                  'Photo gallery, up to 15 photos',
+                  'MemoryBloom guest photo album, 30 days live',
                   'Song requests on RSVP',
                   'Add to Calendar, one tap',
                   'Animated WhatsApp invite',
@@ -328,7 +370,7 @@ export default function WishesPage() {
                 features={[
                   'Everything in Interactive',
                   'Free Flip-to-Invite save-the-date',
-                  'Live QR guest photo album',
+                  'MemoryBloom, unlimited uploads',
                   'Extended 18-month hosting',
                   'Multi-page: story, itinerary, FAQs',
                   'Multi-day event RSVPs',
@@ -338,7 +380,7 @@ export default function WishesPage() {
             </Reveal>
           </div>
           <p className="text-center text-sm mt-10 text-[#A8B89C]">
-            Flip-to-Invite Save-the-Date: <span className="line-through opacity-60">R250</span> free
+            Flip-to-Invite Save-the-Date — <span className="line-through opacity-60">R250</span> free
             for a limited time on all packages
           </p>
         </div>
@@ -349,10 +391,9 @@ export default function WishesPage() {
         <div className="max-w-4xl mx-auto">
           <Reveal className="text-center mb-4">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Optional extras</h2>
-            <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
           </Reveal>
           <p className="text-center text-sm mb-14 max-w-lg mx-auto text-[#3A3A3A]/70">
-            Add any of these to any package. Pick only what your wedding actually needs.
+            Add any of these to any package — pick only what your wedding actually needs.
           </p>
           <div className="grid sm:grid-cols-2 gap-5">
             {extras.map((e, i) => (
@@ -367,33 +408,8 @@ export default function WishesPage() {
                       {e.name}
                     </p>
                     <p className="text-sm text-[#3A3A3A]/70">{e.desc}</p>
-                    {e.demoHref && (
-                      <a
-                        href={e.demoHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs underline text-[#7C8B68] mt-1.5 inline-block"
-                      >
-                        See a live example →
-                      </a>
-                    )}
                   </div>
-                  {e.qrImage && (
-                    <a href={e.qrHref} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 text-center">
-                      <img
-                        src={e.qrImage}
-                        alt="Scan to try the guest photo album"
-                        className="w-16 h-16 rounded-lg border border-[#E5DED2]"
-                      />
-                      <p className="text-[10px] text-[#3A3A3A]/50 mt-1">Scan it</p>
-                    </a>
-                  )}
-                  {e.standalonePrice ? (
-                    <div className="text-right whitespace-nowrap">
-                      <p className="text-sm text-[#7C8B68]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{e.price}</p>
-                      <p className="text-xs text-[#3A3A3A]/60 mt-0.5">{e.standalonePrice}</p>
-                    </div>
-                  ) : e.promo ? (
+                  {e.promo ? (
                     <div className="text-right whitespace-nowrap">
                       <p className="text-xs line-through opacity-50">{e.price}</p>
                       <p className="text-lg text-[#7C8B68]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{e.promo}</p>
@@ -415,35 +431,19 @@ export default function WishesPage() {
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
               Every invitation is different, because every couple is.
             </h2>
-            <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
           </Reveal>
           <div className="grid sm:grid-cols-2 gap-8">
-            {portfolioExamples.map((p, i) => (
+            {portfolioPlaceholders.map((p, i) => (
               <Reveal key={p.names} delay={i * 0.1}>
-                <a
-                  href={p.href}
-                  className="block rounded-2xl overflow-hidden border border-[#E8C4C4]/40 group"
-                >
-                  <div className="aspect-[4/3] relative overflow-hidden">
-                    <img
-                      src={p.image}
-                      alt={`${p.names}: ${p.style}`}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div
-                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ background: 'rgba(58,58,58,0.45)' }}
-                    >
-                      <span className="text-white text-sm px-5 py-2.5 rounded-full border border-white/70">
-                        View live invitation →
-                      </span>
-                    </div>
+                <div className="rounded-2xl overflow-hidden border border-[#E8C4C4]/40">
+                  <div className="aspect-[4/3] bg-[#E8C4C4]/20 flex items-center justify-center text-sm text-[#A8B89C]">
+                    Preview coming soon
                   </div>
                   <div className="p-5">
                     <p className="font-medium text-[#5C4A3A]">{p.names}</p>
                     <p className="text-sm text-[#3A3A3A]/70">{p.style}</p>
                   </div>
-                </a>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -458,7 +458,7 @@ export default function WishesPage() {
               A few of our favourites
             </h2>
             <p className="text-sm max-w-md mx-auto text-[#3A3A3A]/65">
-              Florists, venues, and boutiques we&apos;d personally recommend, added as we come
+              Florists, venues, and boutiques we&apos;d personally recommend — added as we come
               across people worth vouching for.
             </p>
           </Reveal>
@@ -484,7 +484,6 @@ export default function WishesPage() {
         <div className="max-w-2xl mx-auto">
           <Reveal className="text-center mb-10">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Questions</h2>
-            <GoldDividerImg width={90} center opacity={0.65} className="mt-4 mb-2" />
           </Reveal>
           <div className="space-y-6">
             {faqs.map((f, i) => (
@@ -504,8 +503,6 @@ export default function WishesPage() {
         className="py-28 px-6 text-center relative overflow-hidden"
         style={{ background: 'linear-gradient(160deg,#7C8B68,#5C6B4E)' }}
       >
-        <DriftingSignatureSeed size={90} style={{ top: 24, right: 30, opacity: 0.18 }} duration={15} />
-        <DriftingSignatureSeed size={60} style={{ bottom: 30, left: 34, opacity: 0.14 }} duration={12} delay={1.5} />
         <Reveal>
           <p className="text-4xl mb-4 text-white opacity-90" style={{ fontFamily: "'Alex Brush', cursive" }}>
             seal it with a vow
@@ -513,15 +510,16 @@ export default function WishesPage() {
           <h2 className="text-3xl mb-3 text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             Ready to make it official?
           </h2>
-          <p className="mb-9 text-white opacity-80">Tell me about your day, and I&apos;ll take it from there.</p>
+          <p className="mb-9 text-white opacity-80">Tell me about your day — I&apos;ll take it from there.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/wishes/start"
-              className="px-8 py-4 rounded-full font-medium"
-              style={{ background: '#FAF6F0', color: '#5C4A3A' }}
-            >
-              Start Your Invitation
-            </a>
+             
+  href="/wishes/start"
+  className="px-8 py-4 rounded-full font-medium"
+  style={{ background: '#FAF6F0', color: '#5C4A3A' }}
+>
+  Start Your Invitation
+</a>
             <a
               href={EMAIL}
               className="px-8 py-4 rounded-full font-medium text-white"

@@ -11,11 +11,13 @@ const ENQUIRY_API_URL = 'https://script.google.com/macros/s/AKfycby9eYADuyLFGddn
 const LIVE_EXAMPLE_GALLERY_URL = 'https://script.google.com/macros/s/AKfycbwDgtDpVXkH4vofVddBdIvtE1O1zeeSebBVWfxlzCCt7Ogz7uPxJCecLiMvIekkmE5LIA/exec?page=gallery'
 const LIVE_EXAMPLE_QR = '/images/wishes/decorations/photo-album-qr.png'
 
+const differentiators = ['Unlimited guest uploads', 'No app required', '30 days live']
+
 const steps = [
-  { n: '01', title: 'Guests Scan', desc: 'Point phone camera at table card QR. Zero app downloads or sign-ups required.' },
-  { n: '02', title: 'Instant Upload', desc: 'Photos auto-compress client-side so uploads remain instant, even on crowded venue WiFi.' },
-  { n: '03', title: 'Wall Goes Live', desc: 'Images pulse onto the live display gallery within 12 seconds for everyone to enjoy.' },
-  { n: '04', title: 'High-Res Download', desc: 'Your private gallery remains active for 30 days post-wedding for full zip archive export.' },
+  { n: 'SCAN', title: 'Guests Scan', desc: 'Point phone camera at table card QR. Zero app downloads or sign-ups required.' },
+  { n: 'SNAP', title: 'Instant Upload', desc: 'Photos auto-compress client-side so uploads remain instant, even on crowded venue WiFi.' },
+  { n: 'SHARE', title: 'Wall Goes Live', desc: 'Images pulse onto the live display gallery within 12 seconds for everyone to enjoy.' },
+  { n: 'BLOOM', title: 'High-Res Download', desc: 'Your private gallery remains active for 30 days post-wedding for full zip archive export.' },
 ]
 
 const features = [
@@ -67,7 +69,7 @@ const productShowcases = [
     title: 'Zero App Downloads Required',
     tag: 'Guest Upload Flow',
     desc: '...',
-    imgSrc: '/images/wishes/previews/album-mobile-preview.png', // Changed from .jpg to .png
+    imgSrc: '/images/wishes/previews/album-mobile-preview.png',
     imgAlt: 'Guest mobile upload interface preview',
     badge: 'Mobile App View'
   },
@@ -77,7 +79,7 @@ const productShowcases = [
     title: 'Real-Time Reception Projection',
     tag: 'Live Gallery Screen',
     desc: 'Hook up any projector, venue TV, or iPad. As guests snap photos throughout the evening, images pulse onto the live wall every 12 seconds creating an interactive spectacle.',
-    imgSrc: '/images/wishes/previews/album-wall-preview.jpg',
+    imgSrc: '/images/wishes/previews/album-wall-preview.png',
     imgAlt: 'Live reception projection display gallery',
     badge: 'Projector & TV View'
   },
@@ -87,7 +89,7 @@ const productShowcases = [
     title: 'Complete Host Control',
     tag: 'Host Admin Suite',
     desc: 'Choose to auto-publish photos directly or keep moderation active. Your private host portal lets you or your maid of honor hide, approve, or delete photos with one tap.',
-    imgSrc: '/images/wishes/previews/album-mod-preview.jpg',
+    imgSrc: '/images/wishes/previews/album-mod-preview.png',
     imgAlt: 'Private photo album moderation portal',
     badge: 'Host Portal'
   },
@@ -97,7 +99,7 @@ const productShowcases = [
     title: 'Ready-to-Print QR Signage',
     tag: 'Printable PDF Suite',
     desc: 'Receive high-resolution, print-ready PDF files formatted for 5x7" frames or A5 table stands, seamlessly matching your chosen accent colors and typography.',
-    imgSrc: '/images/wishes/previews/album-signage-preview.jpg',
+    imgSrc: '/images/wishes/previews/album-signage-preview.png',
     imgAlt: 'Printable table sign with customized QR code',
     badge: 'Print Deliverable'
   }
@@ -147,7 +149,7 @@ export default function PhotoAlbumPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-    const payload = { ...form, enquiryType: 'photo-album-standalone', package: 'Standalone Photo Album (R750)' }
+    const payload = { ...form, enquiryType: 'photo-album-standalone', package: 'MemoryBloom — Standalone (R750)' }
     try {
       await fetch(ENQUIRY_API_URL, {
         method: 'POST',
@@ -176,7 +178,8 @@ export default function PhotoAlbumPage() {
               Your order is confirmed
             </h1>
             <p className="text-sm text-[#3A3A3A]/75 leading-relaxed mb-6">
-              I’m setting up your custom gallery and will be in touch within 24 hours with your live links, QR code, and matching printable table cards.
+              I’m setting up your MemoryBloom gallery and will be in touch within 24 hours with
+              your live links, QR code, and matching printable table cards.
             </p>
             <a href={LIVE_EXAMPLE_GALLERY_URL} target="_blank" rel="noreferrer" className="inline-block text-xs uppercase tracking-widest text-[#507F82] font-semibold border-b border-[#507F82]">
               Explore Demo Gallery
@@ -198,17 +201,27 @@ export default function PhotoAlbumPage() {
         <DriftingSignatureSeed size={60} style={{ bottom: '10%', left: '4%', opacity: 0.12 }} duration={14} delay={2} />
 
         <Reveal className="max-w-3xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs tracking-widest uppercase mb-8 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs tracking-widest uppercase mb-6 backdrop-blur-md">
             <StarAccent size={10} /> Dandelion Wishes Interactive Experience
           </div>
+
+          <p className="text-3xl mb-3 text-white" style={{ fontFamily: "'Alex Brush', cursive" }}>MemoryBloom 🌼</p>
 
           <h1 className="text-4xl sm:text-6xl leading-[1.1] mb-6 text-white font-normal" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             Don’t let the memories stay on their phones.
           </h1>
 
-          <p className="max-w-lg mx-auto text-base sm:text-lg leading-relaxed mb-10 text-white/85 font-light">
+          <p className="max-w-lg mx-auto text-base sm:text-lg leading-relaxed mb-8 text-white/85 font-light">
             One shared interactive album. Guests scan, upload, and watch your live reception wall fill up in real time—no apps or accounts required.
           </p>
+
+          <div className="flex flex-wrap gap-2 justify-center mb-10">
+            {differentiators.map((d) => (
+              <span key={d} className="text-xs px-3.5 py-1.5 rounded-full bg-white/15 text-white">
+                {d}
+              </span>
+            ))}
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
             <a
@@ -216,7 +229,7 @@ export default function PhotoAlbumPage() {
               className="w-full sm:w-auto px-8 py-4 rounded-full font-medium text-white shadow-xl transition-all duration-300 hover:scale-105"
               style={{ background: '#7C8B68', border: '1px solid rgba(255,255,255,0.3)' }}
             >
-              Order Your Album — R750
+              Get MemoryBloom — R750
             </a>
             <a
               href="#showcase"
@@ -380,14 +393,14 @@ export default function PhotoAlbumPage() {
 
             <Reveal delay={0.15}>
               <div className="space-y-6">
-                <p className="text-xs uppercase tracking-[3px] text-[#7C8B68] font-semibold">Step-by-Step Experience</p>
+                <p className="text-xs uppercase tracking-[3px] text-[#7C8B68] font-semibold">Scan. Snap. Share. Bloom. 🌼</p>
                 <h2 className="text-3xl text-[#5C4A3A] leading-snug" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   How your guests capture the night
                 </h2>
                 <div className="space-y-5 pt-2">
                   {steps.map((s) => (
                     <div key={s.n} className="flex gap-4 items-start">
-                      <span className="flex-shrink-0 w-8 h-8 rounded-full bg-[#507F82]/10 text-[#507F82] text-xs font-bold flex items-center justify-center border border-[#507F82]/20">
+                      <span className="flex-shrink-0 min-w-[3.5rem] px-2 h-8 rounded-full bg-[#507F82]/10 text-[#507F82] text-[10px] font-bold tracking-wide flex items-center justify-center border border-[#507F82]/20">
                         {s.n}
                       </span>
                       <div>
@@ -408,7 +421,7 @@ export default function PhotoAlbumPage() {
         <div className="max-w-4xl mx-auto">
           <Reveal className="text-center mb-14">
             <p className="text-xs uppercase tracking-[3px] text-[#507F82] mb-2 font-semibold">Simple Transparent Pricing</p>
-            <h2 className="text-3xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Select your option</h2>
+            <h2 className="text-3xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Select your MemoryBloom option</h2>
             <GoldDividerImg width={100} center opacity={0.6} className="mt-3" />
           </Reveal>
 
@@ -424,6 +437,7 @@ export default function PhotoAlbumPage() {
                   <p className="text-xs text-[#3A3A3A]/70 mb-6">Ideal if you already have printed invitations or are using another platform.</p>
                   <ul className="space-y-3 text-xs text-[#3A3A3A]/85 border-t border-[#E5DED2] pt-6">
                     <li className="flex gap-2.5 items-center"><span className="text-[#507F82]">✦</span>Branded to your color theme & names</li>
+                    <li className="flex gap-2.5 items-center"><span className="text-[#507F82]">✦</span>Unlimited guest uploads</li>
                     <li className="flex gap-2.5 items-center"><span className="text-[#507F82]">✦</span>Printable QR Table Card PDF included</li>
                     <li className="flex gap-2.5 items-center"><span className="text-[#507F82]">✦</span>Live wall auto-sync & moderation page</li>
                     <li className="flex gap-2.5 items-center"><span className="text-[#507F82]">✦</span>30 days post-wedding download access</li>
@@ -448,7 +462,7 @@ export default function PhotoAlbumPage() {
                   </div>
                   <p className="text-xs text-white/80 mb-6">Fully integrated directly inside your interactive digital invitation website.</p>
                   <ul className="space-y-3 text-xs text-white/90 border-t border-white/20 pt-6">
-                    <li className="flex gap-2.5 items-center"><span className="text-[#E8C4C4]">✦</span>Everything in Standalone Package</li>
+                    <li className="flex gap-2.5 items-center"><span className="text-[#E8C4C4]">✦</span>Everything in Standalone MemoryBloom</li>
                     <li className="flex gap-2.5 items-center"><span className="text-[#E8C4C4]">✦</span>Seamless theme match with your invite</li>
                     <li className="flex gap-2.5 items-center"><span className="text-[#E8C4C4]">✦</span>Linked directly on your digital RSVP hub</li>
                   </ul>
@@ -503,7 +517,7 @@ export default function PhotoAlbumPage() {
         <div className="max-w-xl mx-auto">
           <Reveal className="text-center mb-10">
             <h2 className="text-3xl mb-2 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-              Order Your Guest Photo Album
+              Order Your MemoryBloom Album
             </h2>
             <p className="text-xs text-[#3A3A3A]/70">
               Complete your details below. I’ll prepare your custom gallery and send your live links within 24 hours.

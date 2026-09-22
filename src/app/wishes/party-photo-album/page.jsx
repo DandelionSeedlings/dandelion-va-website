@@ -12,7 +12,7 @@ import { GoldDividerImg, StarAccent } from '../../../components/wishes/WishesDec
 // tell apart in the sheet.
 const ENQUIRY_API_URL = 'https://script.google.com/macros/s/AKfycby9eYADuyLFGddnIoK83R_9hEzIwQtm5S2ZRe0lnc-OybRjo_S5ou0jvGeYuV6vGGJ9mw/exec'
 
-const LIVE_EXAMPLE_GALLERY_URL = 'https://script.google.com/macros/s/AKfycbz8DIz9vc3nTTey5hgxFjjx8aMC-a_-Ms4Sf3xHndQlYLYMhWsw4xRonTwOxYbxfU8z8A/exec'
+const LIVE_EXAMPLE_GALLERY_URL = 'https://script.google.com/macros/s/AKfycbwDgtDpVXkH4vofVddBdIvtE1O1zeeSebBVWfxlzCCt7Ogz7uPxJCecLiMvIekkmE5LIA/exec?page=gallery'
 const PAYMENT_QR = '/images/wishes/decorations/photo-album-payment-qr.jpg'
 
 // Party/matric photo pack — placeholder imagery until real client photos
@@ -25,12 +25,14 @@ const GALLERY_MOCKUP_PHONES = '/images/wishes/party-album/gallery-mockup.png'
 
 const eventTypes = ['Matric Farewell', 'Birthday Party', 'Corporate Event', 'Other Celebration']
 
-const steps = [
-  { n: '1', title: 'Guests scan', desc: 'One QR code on the table or at the entrance, no app to download.' },
-  { n: '2', title: 'Photos upload', desc: 'Straight from their phone, resized automatically so it stays fast even on a packed dance floor.' },
-  { n: '3', title: 'Wall goes live', desc: 'Every photo lands on a shared gallery you can put up on a screen, live.' },
-  { n: '4', title: 'You keep them', desc: 'Your gallery stays live for 30 days afterward so everyone can grab their favourites.' },
+const memoryBloomSteps = [
+  { n: 'SCAN', title: 'One QR code', desc: 'On the table or at the entrance, no app to download.' },
+  { n: 'SNAP', title: 'Guests take the shot', desc: 'Or choose a favourite from their camera roll.' },
+  { n: 'SHARE', title: 'It joins the wall', desc: 'Every photo lands on one shared, live gallery instantly.' },
+  { n: 'BLOOM', title: 'Live for 30 days', desc: 'A full month to revisit and download every memory.' },
 ]
+
+const differentiators = ['Unlimited guest uploads', 'No app required', '30 days live']
 
 export default function PartyPhotoAlbumPage() {
   const [form, setForm] = useState({
@@ -43,7 +45,7 @@ export default function PartyPhotoAlbumPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-    const payload = { ...form, enquiryType: 'photo-album-standalone', package: 'Photo Album — Party Special (R350)' }
+    const payload = { ...form, enquiryType: 'photo-album-standalone', package: 'MemoryBloom — Party Special (R350)' }
     try {
       await fetch(ENQUIRY_API_URL, {
         method: 'POST',
@@ -70,8 +72,8 @@ export default function PartyPhotoAlbumPage() {
               Your order is in
             </h1>
             <p className="text-sm text-[#3A3A3A]/70 mb-2">
-              Once we can see your payment&apos;s gone through, we&apos;ll set up your gallery
-              and send your QR code and link within 24 hours.
+              Once we can see your payment&apos;s gone through, we&apos;ll set up your MemoryBloom
+              album and send your QR code and link within 24 hours.
             </p>
             <p className="text-sm text-[#3A3A3A]/70">
               Paid already? WhatsApp your proof of payment to{' '}
@@ -93,27 +95,35 @@ export default function PartyPhotoAlbumPage() {
         <div className="max-w-5xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
           <Reveal className="text-center lg:text-left relative z-10">
             <p className="uppercase tracking-[3px] text-xs mb-5 text-white/70">Matric Farewells · Parties · Celebrations</p>
+            <p className="text-3xl mb-2 text-white" style={{ fontFamily: "'Alex Brush', cursive" }}>MemoryBloom 🌼</p>
             <h1 className="text-4xl md:text-5xl leading-[1.15] mb-6 text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-              Every phone in the room
+              Every moment.
               <br />
-              becomes a photo booth.
+              One beautiful place.
             </h1>
-            <p className="max-w-md mx-auto lg:mx-0 leading-relaxed mb-6 text-white/85">
+            <p className="max-w-md mx-auto lg:mx-0 leading-relaxed mb-5 text-white/85">
               One QR code. Every guest&apos;s photos land on one shared, live gallery, no group
               chats, no waiting for someone to airdrop the good ones.
             </p>
-            <p className="text-sm text-white/70 flex items-center justify-center lg:justify-start gap-2 mb-9">
-              <StarAccent size={11} />
-              Launch special for matric farewells &amp; parties
-              <StarAccent size={11} />
-            </p>
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-9">
+              {differentiators.map((d) => (
+                <span key={d} className="text-xs px-3.5 py-1.5 rounded-full bg-white/15 text-white">
+                  {d}
+                </span>
+              ))}
+            </div>
             <a
               href="#order"
               className="inline-block px-8 py-4 rounded-full font-medium shadow-lg transition-transform hover:-translate-y-0.5"
               style={{ background: '#FAF6F0', color: '#5C4A3A' }}
             >
-              Get the Special — R350
+              Get MemoryBloom — R350
             </a>
+            <p className="text-sm text-white/70 flex items-center justify-center lg:justify-start gap-2 mt-4">
+              <StarAccent size={11} />
+              Launch special for matric farewells &amp; parties
+              <StarAccent size={11} />
+            </p>
           </Reveal>
 
           {/* Photo collage — two overlapping "tossed down" photos */}
@@ -138,12 +148,21 @@ export default function PartyPhotoAlbumPage() {
         </div>
       </section>
 
-      {/* How it works */}
+      {/* SCAN SNAP SHARE BLOOM */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <Reveal className="text-center mb-4">
-            <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>How it works</h2>
-            <GoldDividerImg width={90} center opacity={0.65} className="mt-4" />
+            <p className="text-2xl mb-3" style={{ fontFamily: "'Alex Brush', cursive", color: '#8B7355' }}>
+              The MemoryBloom promise
+            </p>
+            <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              Scan. Snap. Share. Bloom. 🌼
+            </h2>
+            <p className="text-sm text-[#3A3A3A]/70 max-w-md mx-auto mt-4">
+              No limits on how many photos your guests can contribute. No rushing to save
+              everything the next day. Just 30 days to relive, download and enjoy the memories.
+            </p>
+            <GoldDividerImg width={90} center opacity={0.65} className="mt-6" />
           </Reveal>
           <div className="grid md:grid-cols-[1fr_2fr] gap-10 items-center mt-12">
             <Reveal className="hidden md:block mx-auto" style={{ width: 150 }}>
@@ -155,11 +174,14 @@ export default function PartyPhotoAlbumPage() {
               </div>
             </Reveal>
             <div className="grid sm:grid-cols-2 gap-8">
-              {steps.map((s, i) => (
+              {memoryBloomSteps.map((s, i) => (
                 <Reveal key={s.n} delay={i * 0.1} className="text-center sm:text-left">
-                  <div className="w-10 h-10 rounded-full bg-[#7C8B68]/15 text-[#7C8B68] flex items-center justify-center mx-auto sm:mx-0 mb-3 font-medium">
+                  <p
+                    className="text-xs tracking-[3px] mb-2"
+                    style={{ color: '#7C8B68', fontWeight: 600 }}
+                  >
                     {s.n}
-                  </div>
+                  </p>
                   <p className="font-medium text-[#5C4A3A] mb-1">{s.title}</p>
                   <p className="text-sm text-[#3A3A3A]/70">{s.desc}</p>
                 </Reveal>
@@ -204,7 +226,8 @@ export default function PartyPhotoAlbumPage() {
             <p className="uppercase tracking-[2px] text-xs mb-2 text-[#A8B89C]">Launch Special</p>
             <p className="text-xs line-through opacity-50 mb-1">Usually R750</p>
             <p className="text-5xl mb-2 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>R350</p>
-            <p className="text-sm text-[#3A3A3A]/70 mb-8">For matric farewells, birthdays &amp; parties, for a limited time</p>
+            <p className="text-sm text-[#3A3A3A]/70 mb-2">For matric farewells, birthdays &amp; parties, for a limited time</p>
+            <p className="text-xs text-[#7C8B68] mb-8">Unlimited guest uploads · Live for 30 days</p>
           </Reveal>
           <Reveal delay={0.1}>
             <div className="bg-white rounded-2xl p-6 inline-block">
@@ -212,12 +235,12 @@ export default function PartyPhotoAlbumPage() {
               <p className="text-xs text-[#3A3A3A]/60 mt-3">Scan to pay R350</p>
             </div>
             <p className="text-xs text-[#3A3A3A]/70 mt-5 mb-3 max-w-xs mx-auto">
-              Paid? Send your proof of payment and we&apos;ll get your gallery set up within
-              24 hours.
+              Paid? Send your proof of payment and we&apos;ll get your MemoryBloom album set up
+              within 24 hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm mx-auto">
               <a
-                href={`https://wa.me/27728393087?text=${encodeURIComponent('Hi! Here is my proof of payment for the Photo Album special (R350).')}`}
+                href={`https://wa.me/27728393087?text=${encodeURIComponent('Hi! Here is my proof of payment for the MemoryBloom special (R350).')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 text-sm px-5 py-3 rounded-full font-medium text-white text-center"
@@ -226,7 +249,7 @@ export default function PartyPhotoAlbumPage() {
                 Send via WhatsApp
               </a>
               <a
-                href="mailto:dandelioncreat@outlook.com?subject=Proof%20of%20Payment%20%E2%80%94%20Photo%20Album%20Special&body=Hi%2C%20please%20find%20my%20proof%20of%20payment%20attached%20for%20the%20R350%20Photo%20Album%20special."
+                href="mailto:dandelioncreat@outlook.com?subject=Proof%20of%20Payment%20%E2%80%94%20MemoryBloom%20Special&body=Hi%2C%20please%20find%20my%20proof%20of%20payment%20attached%20for%20the%20R350%20MemoryBloom%20special."
                 className="flex-1 text-sm px-5 py-3 rounded-full font-medium border text-center"
                 style={{ borderColor: '#7C8B68', color: '#7C8B68' }}
               >
