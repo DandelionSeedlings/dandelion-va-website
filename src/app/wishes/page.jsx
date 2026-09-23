@@ -6,6 +6,7 @@ import WishesNav from '../../components/wishes/WishesNav'
 import WishesFooter from '../../components/wishes/WishesFooter'
 import Reveal from '../../components/wishes/Reveal'
 import PricingCard from '../../components/wishes/PricingCard'
+import { BloomIcon } from '../../components/wishes/WishesDecor'
 
 const WA_LINK = 'https://wa.me/27728393087'
 const EMAIL = 'mailto:dandelioncreat@outlook.com'
@@ -54,7 +55,7 @@ const memoryBloomSteps = [
 ]
 
 const extras = [
-  { name: 'MemoryBloom — Interactive Guest Photo Album', desc: 'Guests scan one QR code and upload unlimited photos to a shared live gallery. The album stays live for 30 days after the event.', price: 'R350' },
+  { name: 'MemoryBloom — Interactive Guest Photo Album', desc: 'Guests scan one QR code and upload unlimited photos to a shared live gallery. The album stays live for 30 days after the event.', price: 'R350', href: '/wishes/photo-album' },
   { name: 'Flip-to-Invite Save-the-Date', desc: 'Goes live early with a teaser & countdown, flips to the full invite when ready.', price: 'R250', promo: 'Free for now' },
   { name: 'Custom .co.za Domain', desc: 'Standalone domain registration for Essential tier or solo buyers.', price: 'R250/yr' },
   { name: 'Extended 6-Month Hosting', desc: 'Keeps your site and photo gallery online for longer.', price: 'R200' },
@@ -62,11 +63,53 @@ const extras = [
   { name: 'Welcome & Seating Board Bundle', desc: 'Print-ready A1/A2 graphics & QR boards for the venue entrance.', price: 'R550' },
 ]
 
+const stylePreviews = [
+  { label: 'Romantic & Soft', desc: 'Blush, ivory, delicate florals', image: '/images/wishes/styles/romantic-soft.jpg', href: '/wishes/demo/romantic-soft' },
+  { label: 'Botanical', desc: 'Sage, eucalyptus, natural textures', image: '/images/wishes/styles/botanical.jpg', href: '/wishes/demo/botanical' },
+  { label: 'Timeless & Classic', desc: 'Ivory, champagne, elegant type', image: '/images/wishes/styles/timeless-classic.jpg', href: '/wishes/demo/timeless-classic' },
+  { label: 'Modern & Minimal', desc: 'Clean lines, understated', image: '/images/wishes/styles/modern-minimal.jpg', href: '/wishes/demo/modern-minimal' },
+  { label: 'Coastal Minimalist', desc: 'Sea glass, sand, ocean air', image: '/images/wishes/demo-coastal/beach-1.jpg', href: '/wishes/demo/coastal-minimal' },
+]
+
 const vendorCategories = [
-  { icon: '🌸', label: 'Florists' },
-  { icon: '🏛️', label: 'Venues' },
-  { icon: '📷', label: 'Photographers' },
-  { icon: '👗', label: 'Bridal boutiques' },
+  {
+    icon: (
+      <svg className="w-6 h-6 mx-auto text-[#7C8B68]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="12" cy="12" r="2.6" />
+        <circle cx="12" cy="6" r="2.6" />
+        <circle cx="12" cy="18" r="2.6" />
+        <circle cx="6" cy="12" r="2.6" />
+        <circle cx="18" cy="12" r="2.6" />
+      </svg>
+    ),
+    label: 'Florists',
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6 mx-auto text-[#7C8B68]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6" />
+      </svg>
+    ),
+    label: 'Venues',
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6 mx-auto text-[#7C8B68]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+        <rect x="3" y="7" width="18" height="13" rx="2" />
+        <circle cx="12" cy="13.5" r="3.5" />
+        <path strokeLinecap="round" d="M8 7l1.4-2.5h5.2L16 7" />
+      </svg>
+    ),
+    label: 'Photographers',
+  },
+  {
+    icon: (
+      <svg className="w-6 h-6 mx-auto text-[#7C8B68]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 3l3 3 3-3 2 5-3 2 1 11H7l1-11-3-2z" />
+      </svg>
+    ),
+    label: 'Bridal boutiques',
+  },
 ]
 
 const faqs = [
@@ -75,11 +118,6 @@ const faqs = [
   { q: 'What if a guest doesn\u2019t have a smartphone?', a: 'We can add a simple printable card with the link and a QR code.' },
   { q: 'How do RSVPs reach me?', a: 'Automatically, in a live guest list you can check anytime.' },
   { q: 'Can I use my own domain?', a: 'Yes, optional — or use the free Dandelion Wishes link.' },
-]
-
-const portfolioPlaceholders = [
-  { names: 'Emma & James', style: 'Garden romantic, sage and blush' },
-  { names: 'Aisha & Daniel', style: 'Modern minimalist, champagne and ivory' },
 ]
 
 export default function WishesPage() {
@@ -258,9 +296,12 @@ export default function WishesPage() {
         <div className="max-w-4xl mx-auto">
           <Reveal className="text-center mb-4">
             <p className="uppercase tracking-[3px] text-xs mb-4 text-[#8B7355]">Introducing</p>
-            <h2 className="text-3xl mb-3 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-              Meet MemoryBloom 🌼
-            </h2>
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <BloomIcon size={24} style={{ color: '#5C4A3A' }} />
+              <h2 className="text-3xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                Meet MemoryBloom
+              </h2>
+            </div>
             <p className="text-[#3A3A3A]/75 max-w-lg mx-auto mb-2">
               Because the best photos aren&apos;t always taken by the photographer.
             </p>
@@ -298,17 +339,24 @@ export default function WishesPage() {
             ))}
           </Reveal>
 
-          <Reveal delay={0.25} className="text-center mt-12">
+          <Reveal delay={0.22} className="text-center mt-6">
+            <p className="text-sm text-[#3A3A3A]/70">
+              Usually <span className="line-through opacity-60">R750</span>{' '}
+              <span className="font-medium text-[#5C4A3A]">R350</span> — launch special, limited time
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.25} className="text-center mt-8">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/wishes/party-photo-album"
+                href="/wishes/photo-album"
                 className="inline-block px-8 py-3.5 rounded-full font-medium text-white"
                 style={{ background: '#7C8B68' }}
               >
-                MemoryBloom — R350
+                Get MemoryBloom — R350
               </a>
               <a
-                href="/wishes/party-photo-album#pricing"
+                href="/wishes/photo-album#showcase"
                 className="inline-block px-8 py-3.5 rounded-full font-medium border"
                 style={{ borderColor: '#7C8B68', color: '#7C8B68', background: '#fff' }}
               >
@@ -404,9 +452,15 @@ export default function WishesPage() {
                   style={{ boxShadow: '0 12px 28px -14px rgba(139,115,85,0.18)' }}
                 >
                   <div>
-                    <p className="font-medium text-[#5C4A3A] mb-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem' }}>
-                      {e.name}
-                    </p>
+                    {e.href ? (
+                      <a href={e.href} className="font-medium text-[#5C4A3A] mb-1 hover:underline block" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem' }}>
+                        {e.name}
+                      </a>
+                    ) : (
+                      <p className="font-medium text-[#5C4A3A] mb-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem' }}>
+                        {e.name}
+                      </p>
+                    )}
                     <p className="text-sm text-[#3A3A3A]/70">{e.desc}</p>
                   </div>
                   {e.promo ? (
@@ -424,26 +478,34 @@ export default function WishesPage() {
         </div>
       </section>
 
-      {/* Portfolio */}
+      {/* Style Previews */}
       <section className="bg-white/60 py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <Reveal className="text-center mb-12">
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="text-center mb-4">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-              Every invitation is different, because every couple is.
+              See it live before you say yes.
             </h2>
+            <p className="text-sm text-[#3A3A3A]/70 max-w-md mx-auto mt-3">
+              Five fully-built styles, ready to preview exactly as your guests would see them.
+            </p>
           </Reveal>
-          <div className="grid sm:grid-cols-2 gap-8">
-            {portfolioPlaceholders.map((p, i) => (
-              <Reveal key={p.names} delay={i * 0.1}>
-                <div className="rounded-2xl overflow-hidden border border-[#E8C4C4]/40">
-                  <div className="aspect-[4/3] bg-[#E8C4C4]/20 flex items-center justify-center text-sm text-[#A8B89C]">
-                    Preview coming soon
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+            {stylePreviews.map((p, i) => (
+              <Reveal key={p.label} delay={i * 0.06}>
+                <a href={p.href} className="block rounded-2xl overflow-hidden border border-[#E8C4C4]/40 bg-white group">
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={p.image}
+                      alt={p.label}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   </div>
                   <div className="p-5">
-                    <p className="font-medium text-[#5C4A3A]">{p.names}</p>
-                    <p className="text-sm text-[#3A3A3A]/70">{p.style}</p>
+                    <p className="font-medium text-[#5C4A3A]">{p.label}</p>
+                    <p className="text-sm text-[#3A3A3A]/70 mb-2">{p.desc}</p>
+                    <p className="text-xs text-[#7C8B68] group-hover:underline">View live preview →</p>
                   </div>
-                </div>
+                </a>
               </Reveal>
             ))}
           </div>
@@ -469,7 +531,7 @@ export default function WishesPage() {
                   className="rounded-2xl p-6 text-center h-full"
                   style={{ background: 'rgba(255,255,255,0.6)', border: '1px dashed #D4C4A0' }}
                 >
-                  <p className="text-2xl mb-2">{v.icon}</p>
+                  <div className="mb-2">{v.icon}</div>
                   <p className="text-lg mb-1 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{v.label}</p>
                   <p className="text-xs text-[#A8B89C]">Recommendations coming soon</p>
                 </div>
