@@ -7,21 +7,30 @@ const scriptFont = "var(--font-alex-brush), cursive"
 
 const ink = '#2C3A36'
 const blush = '#D9AA95'
+const gold = '#D4C4A0'
 const bg = '#FDF9F6'
 
-const ASSET_PATH = '/images/wishes/clients/theone-and-ra/save-the-date'
+const HERO_IMAGE = '/images/wishes/clients/theone-and-ra/hero.jpg'
+
+// The card opens on the English title screen, then dissolves into the
+// Afrikaans detail screen — a deliberate mix, not a language toggle.
+const DISSOLVE_AFTER_MS = 3200
+const DISSOLVE_DURATION_MS = 1200
+
+// Irregular vertical tear, roughly down the middle of the card, so the
+// photo looks hand-torn rather than cut with a ruler.
+const TORN_EDGE_CLIP =
+  'polygon(0% 0%, 47% 0%, 52% 6%, 46% 11%, 53% 17%, 45% 23%, 51% 29%, 44% 35%, 52% 41%, 46% 47%, 53% 53%, 45% 59%, 51% 65%, 44% 71%, 52% 77%, 46% 83%, 53% 89%, 47% 95%, 49% 100%, 0% 100%)'
 
 function useCountdown(isoString) {
   const [time, setTime] = useState(null)
 
   useEffect(() => {
     const target = new Date(isoString)
-
     if (Number.isNaN(target.getTime())) return
 
     const tick = () => {
       const diff = Math.max(0, target - new Date())
-
       setTime({
         d: Math.floor(diff / 86400000),
         h: String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0'),
@@ -30,95 +39,195 @@ function useCountdown(isoString) {
     }
 
     tick()
-
     const id = setInterval(tick, 60000)
-
     return () => clearInterval(id)
   }, [isoString])
 
   return time
 }
 
-// A soft, semi-opaque backdrop so text stays readable
-// over the busy leaf background.
-function TextPanel({ children, className = '' }) {
+function GoldLine() {
+  return <div style={{ height: 1, width: '100%', background: gold }} />
+}
+
+function TornPhoto() {
   return (
     <div
-      className={`inline-block rounded-2xl px-6 py-3 ${className}`}
-      style={{
-        background: 'rgba(253,249,246,0.82)',
-        backdropFilter: 'blur(2px)',
-      }}
+      className="relative h-full"
+      style={{ clipPath: TORN_EDGE_CLIP, filter: 'drop-shadow(2px 0 4px rgba(0,0,0,0.1))' }}
     >
-      {children}
+      <img src={HERO_IMAGE} alt="" className="w-full h-full object-cover" />
     </div>
   )
 }
 
+function CardFrame({ children }) {
+  return (
+    <div className="grid h-full" style={{ gridTemplateColumns: '48% 52%' }}>
+      <TornPhoto />
+      <div className="h-full flex flex-col justify-between" style={{ padding: '6cqw' }}>
+        {children}
+      </div>
+    </div>
+  )
+}
+
+// Screen 1 — the title card guests see first (image 23: SAVE / the / DATE).
+function TitleScreen() {
+  return (
+    <CardFrame>
+      <div>
+        <p
+          className="text-right"
+          style={{ fontFamily: serifFont, fontSize: '2.4cqw', letterSpacing: '0.05em', color: ink, opacity: 0.85 }}
+        >
+          21.11.2027
+        </p>
+        <div className="mt-2">
+          <GoldLine />
+        </div>
+      </div>
+
+      <div style={{ lineHeight: 0.95 }}>
+        <p className="uppercase" style={{ fontFamily: serifFont, fontSize: '9cqw', letterSpacing: '0.04em', color: ink }}>
+          SAVE
+        </p>
+        <p style={{ fontFamily: scriptFont, fontSize: '6.5cqw', color: ink, marginLeft: '8%' }}>the</p>
+        <p className="uppercase" style={{ fontFamily: serifFont, fontSize: '9cqw', letterSpacing: '0.04em', color: ink }}>
+          DATE
+        </p>
+      </div>
+
+      <div>
+        <GoldLine />
+        <p
+          className="text-right uppercase mt-2"
+          style={{ fontFamily: serifFont, fontSize: '1.7cqw', letterSpacing: '0.08em', color: ink, opacity: 0.85 }}
+        >
+          THEONÉ &amp; RA
+        </p>
+      </div>
+    </CardFrame>
+  )
+}
+
+// Screen 2 — the detail card it dissolves into (image 25: Afrikaans
+// message, countdown, and the note that the full invite follows).
+function DetailScreen({ countdown }) {
+  return (
+    <CardFrame>
+      <div>
+        <p
+          className="text-right"
+          style={{ fontFamily: serifFont, fontSize: '2.4cqw', letterSpacing: '0.05em', color: ink, opacity: 0.85 }}
+        >
+          21.11.2027
+        </p>
+        <div className="mt-2">
+          <GoldLine />
+        </div>
+      </div>
+
+      <div>
+        <p
+          style={{
+            fontFamily: serifFont,
+            fontSize: '4cqw',
+            fontVariant: 'small-caps',
+            letterSpacing: '0.03em',
+            color: ink,
+          }}
+        >
+          Ons gaan trou!
+        </p>
+        <p className="mt-4" style={{ fontFamily: serifFont, fontSize: '1.7cqw', color: ink, opacity: 0.85, maxWidth: '26ch' }}>
+          En ons hoop jy sal hierdie besondere dag saam met ons vier.
+        </p>
+        {countdown && (
+          <div className="flex gap-6 mt-4">
+            {[['d', 'dae'], ['h', 'ure'], ['m', 'min']].map(([key, label]) => (
+              <div key={key}>
+                <p style={{ fontFamily: serifFont, fontSize: '3cqw', color: ink }}>{countdown[key]}</p>
+                <p
+                  className="uppercase"
+                  style={{ fontFamily: serifFont, fontSize: '1.1cqw', letterSpacing: '0.08em', color: ink, opacity: 0.6 }}
+                >
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+        <p className="italic mt-4" style={{ fontFamily: serifFont, fontSize: '1.4cqw', color: ink, opacity: 0.7, maxWidth: '28ch' }}>
+          Die volledige uitnodiging met al die besonderhede volg binnekort.
+        </p>
+      </div>
+
+      <div>
+        <GoldLine />
+        <p
+          className="text-right uppercase mt-2"
+          style={{ fontFamily: serifFont, fontSize: '1.7cqw', letterSpacing: '0.08em', color: ink, opacity: 0.85 }}
+        >
+          THEONÉ &amp; RA
+        </p>
+      </div>
+    </CardFrame>
+  )
+}
+
 export default function TheoneAndRaSaveTheDate() {
-  const [phase, setPhase] = useState('closed') // closed -> opening -> open
+  const [dissolved, setDissolved] = useState(false)
   const [musicOpen, setMusicOpen] = useState(false)
-
-  // Same track as the main invitation.
-  const spotifyEmbedUrl =
-    'https://open.spotify.com/embed/track/4t6qMeHgbxWod2SLokiSQp'
-
-  // Updated wedding date
   const countdown = useCountdown('2027-11-21T15:00:00')
+  const spotifyEmbedUrl = 'https://open.spotify.com/embed/track/4t6qMeHgbxWod2SLokiSQp'
 
-  const handleTap = () => {
-    if (phase !== 'closed') return
-
-    setPhase('opening')
-
-    setTimeout(() => {
-      setPhase('open')
-    }, 700)
-  }
-
-  const envelopeSrc = {
-    closed: `${ASSET_PATH}/envelope-1-closed.png`,
-    opening: `${ASSET_PATH}/envelope-2-opening.png`,
-    open: `${ASSET_PATH}/envelope-3-open.png`,
-  }[phase]
+  useEffect(() => {
+    // People who've asked their browser to reduce motion land straight on
+    // the detail screen — no dissolve, just the final card.
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (prefersReducedMotion) {
+      setDissolved(true)
+      return
+    }
+    const id = setTimeout(() => setDissolved(true), DISSOLVE_AFTER_MS)
+    return () => clearTimeout(id)
+  }, [])
 
   return (
-    <div
-      className="min-h-screen relative overflow-hidden"
-      style={{ background: bg }}
-    >
-      {/* Top botanical background */}
-      <img
-        src={`${ASSET_PATH}/header-background.png`}
-        alt=""
-        className="absolute top-0 left-0 w-full opacity-60 pointer-events-none"
+    <div className="min-h-screen relative flex flex-col items-center justify-center px-4 py-10" style={{ background: bg }}>
+      <div
+        className="relative w-full overflow-hidden"
         style={{
-          height: 180,
-          objectFit: 'cover',
-          objectPosition: 'top',
+          containerType: 'inline-size',
+          width: 'min(94vw, 1000px)',
+          aspectRatio: '4 / 3.06',
+          background: bg,
+          boxShadow: '0 30px 60px -30px rgba(44,58,54,0.25)',
         }}
-      />
+      >
+        {/* Detail screen sits underneath, already at full opacity */}
+        <div className="absolute inset-0">
+          <DetailScreen countdown={countdown} />
+        </div>
 
-      {/* Bottom botanical background */}
-      <img
-        src={`${ASSET_PATH}/header-background.png`}
-        alt=""
-        className="absolute bottom-0 left-0 w-full opacity-60 pointer-events-none"
-        style={{
-          height: 180,
-          objectFit: 'cover',
-          objectPosition: 'bottom',
-          transform: 'rotate(180deg)',
-        }}
-      />
+        {/* Title screen sits on top and dissolves away */}
+        <div
+          className="absolute inset-0"
+          style={{
+            opacity: dissolved ? 0 : 1,
+            transition: `opacity ${DISSOLVE_DURATION_MS}ms ease`,
+            pointerEvents: dissolved ? 'none' : 'auto',
+          }}
+        >
+          <TitleScreen />
+        </div>
+      </div>
 
       {/* Floating record-player music button */}
       <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
         {musicOpen && (
-          <div
-            className="mb-3 rounded-xl overflow-hidden shadow-2xl"
-            style={{ width: 300 }}
-          >
+          <div className="mb-3 rounded-xl overflow-hidden shadow-2xl" style={{ width: 300 }}>
             <iframe
               title="Our song"
               src={`${spotifyEmbedUrl}?utm_source=generator&theme=0`}
@@ -130,19 +239,13 @@ export default function TheoneAndRaSaveTheDate() {
             />
           </div>
         )}
-
         <button
           onClick={() => setMusicOpen((v) => !v)}
-          aria-label={
-            musicOpen ? 'Hide music player' : 'Play our song'
-          }
+          aria-label={musicOpen ? 'Hide music player' : 'Play our song'}
           className="w-14 h-14 rounded-full relative shadow-lg"
           style={{
-            background:
-              'repeating-radial-gradient(circle at center, #232323 0px, #232323 2px, #3a3a3a 2px, #3a3a3a 4px)',
-            animation: musicOpen
-              ? 'spin 2.5s linear infinite'
-              : 'none',
+            background: 'repeating-radial-gradient(circle at center, #232323 0px, #232323 2px, #3a3a3a 2px, #3a3a3a 4px)',
+            animation: musicOpen ? 'spin 2.5s linear infinite' : 'none',
           }}
         >
           <span
@@ -160,217 +263,10 @@ export default function TheoneAndRaSaveTheDate() {
         </button>
       </div>
 
-      {/* Main Save the Date content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-16 min-h-screen flex flex-col justify-center">
-
-        {phase !== 'open' ? (
-          /*
-           * CLOSED / OPENING
-           * Envelope on the left, Save the Date introduction on the right.
-           */
-          <div className="grid sm:grid-cols-2 gap-10 items-center">
-
-            {/* Envelope */}
-            <div className="text-center order-2 sm:order-1">
-              <button
-                onClick={handleTap}
-                aria-label={
-                  phase === 'closed'
-                    ? 'Tap to open the Save the Date'
-                    : undefined
-                }
-                className="w-full block"
-                style={{
-                  cursor:
-                    phase === 'closed'
-                      ? 'pointer'
-                      : 'default',
-                  background: 'none',
-                  border: 'none',
-                  padding: 0,
-                }}
-              >
-                <img
-                  src={envelopeSrc}
-                  alt=""
-                  className="w-full h-auto"
-                  style={{
-                    filter:
-                      'drop-shadow(0 18px 32px rgba(44,58,54,0.18))',
-                  }}
-                />
-              </button>
-            </div>
-
-            {/* Intro text */}
-            <div className="text-center sm:text-left order-1 sm:order-2">
-              <TextPanel>
-                <p
-                  className="uppercase tracking-[3px] text-xs mb-2"
-                  style={{
-                    color: ink,
-                    opacity: 0.7,
-                  }}
-                >
-                  Save the Date
-                </p>
-
-                <h1
-                  className="text-4xl mb-3"
-                  style={{
-                    fontFamily: scriptFont,
-                    color: ink,
-                  }}
-                >
-                  Theoné &amp; Ra
-                </h1>
-
-                {phase === 'closed' && (
-                  <p
-                    className="text-xs uppercase tracking-[2px] animate-pulse"
-                    style={{
-                      color: ink,
-                      opacity: 0.6,
-                    }}
-                  >
-                    Tap the envelope to open
-                  </p>
-                )}
-              </TextPanel>
-            </div>
-          </div>
-        ) : (
-          /*
-           * OPEN
-           * This is the complete Save the Date.
-           *
-           * IMPORTANT:
-           * There is deliberately NO RSVP button
-           * and NO link to the full invitation.
-           */
-          <div className="grid sm:grid-cols-2 gap-10 items-center">
-
-            {/* Open envelope */}
-            <div className="text-center animate-[fadeIn_0.6s_ease-out]">
-              <img
-                src={envelopeSrc}
-                alt=""
-                className="w-full h-auto"
-                style={{
-                  filter:
-                    'drop-shadow(0 18px 32px rgba(44,58,54,0.18))',
-                }}
-              />
-            </div>
-
-            {/* Save the Date details */}
-            <div className="text-center sm:text-left animate-[fadeIn_0.8s_ease-out]">
-
-              {/* Names */}
-              <TextPanel className="mb-6">
-                <p
-                  className="uppercase tracking-[3px] text-xs mb-2"
-                  style={{
-                    color: ink,
-                    opacity: 0.7,
-                  }}
-                >
-                  Save the Date
-                </p>
-
-                <h1
-                  className="text-4xl"
-                  style={{
-                    fontFamily: scriptFont,
-                    color: ink,
-                  }}
-                >
-                  Theoné &amp; Ra
-                </h1>
-              </TextPanel>
-
-              {/* Date information */}
-              <TextPanel>
-
-                <p
-                  className="text-2xl mb-2"
-                  style={{
-                    fontFamily: serifFont,
-                    color: ink,
-                  }}
-                >
-                  21 November 2027
-                </p>
-
-                <p
-                  className="text-sm mb-6"
-                  style={{
-                    color: ink,
-                    opacity: 0.75,
-                  }}
-                >
-                  We&apos;re getting married, and we&apos;d love for you
-                  to be there.
-                  <br />
-                  The full invitation, with all the details, will
-                  follow.
-                </p>
-
-                {/* Countdown */}
-                {countdown && (
-                  <div className="flex justify-center sm:justify-start gap-6 mb-2">
-                    {[
-                      ['d', 'days'],
-                      ['h', 'hours'],
-                      ['m', 'minutes'],
-                    ].map(([k, l]) => (
-                      <div key={k}>
-                        <p
-                          className="text-2xl"
-                          style={{
-                            fontFamily: serifFont,
-                            color: ink,
-                          }}
-                        >
-                          {countdown[k]}
-                        </p>
-
-                        <p className="text-[10px] uppercase tracking-wide opacity-60">
-                          {l}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-              </TextPanel>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Animations */}
       <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(8px);
-          }
-
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
         @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-
-          to {
-            transform: rotate(360deg);
-          }
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
       `}</style>
     </div>
