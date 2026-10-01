@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { BloomIcon } from './WishesDecor'
 
 export default function WishesNav() {
   const [scrolled, setScrolled] = useState(false)
@@ -32,13 +31,12 @@ export default function WishesNav() {
         <span className="hidden lg:block text-xs italic text-[#A8B89C]">
           carried on a wish, sealed in a vow
         </span>
-        <div className="flex items-center gap-3 sm:gap-5">
+        <div className="flex items-center gap-3">
           <a
-            href="/wishes/photo-album"
-            className="hidden sm:flex items-center gap-1.5 text-sm text-[#7C8B68] hover:text-[#5C6B4E] transition-colors"
+            href="/wishes/wedding-bloom"
+            className="hidden sm:inline text-sm text-[#8B7355] hover:text-[#7C8B68] transition-colors"
           >
-            <BloomIcon size={16} />
-            MemoryBloom
+            The Wedding Bloom
           </a>
           <a
             href="/wishes/start"

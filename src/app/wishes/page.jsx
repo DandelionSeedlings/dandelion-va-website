@@ -54,6 +54,13 @@ const memoryBloomSteps = [
   { n: 'BLOOM', title: 'Stays live for 30 days', desc: 'Everyone gets a full month to revisit and download their favourites.' },
 ]
 
+const weddingBloomSteps = [
+  { n: 'PLAN', title: 'Your own planner', desc: 'A private Google Sheet, set up for your wedding on day one.' },
+  { n: 'TRACK', title: 'Budget, guests, suppliers', desc: 'Every number and every task in one place, always up to date.' },
+  { n: 'SEAT', title: 'Seating made simple', desc: 'Drag guests into tables, then print a seating sign with a QR code.' },
+  { n: 'KEEP', title: 'Yours, no subscription', desc: 'One payment, one copy, no monthly fee ever.' },
+]
+
 const extras = [
   { name: 'MemoryBloom — Interactive Guest Photo Album', desc: 'Guests scan one QR code and upload unlimited photos to a shared live gallery. The album stays live for 30 days after the event.', price: 'R350', href: '/wishes/photo-album' },
   { name: 'Flip-to-Invite Save-the-Date', desc: 'Goes live early with a teaser & countdown, flips to the full invite when ready.', price: 'R250', promo: 'Free for now' },
@@ -114,8 +121,8 @@ const vendorCategories = [
 
 const faqs = [
   { q: 'Do my guests need an app?', a: 'No — it opens like any webpage, right in their browser.' },
-  { q: 'Can I make changes after it\u2019s live?', a: 'Yes, within the revision window included in your package.' },
-  { q: 'What if a guest doesn\u2019t have a smartphone?', a: 'We can add a simple printable card with the link and a QR code.' },
+  { q: 'Can I make changes after it’s live?', a: 'Yes, within the revision window included in your package.' },
+  { q: 'What if a guest doesn’t have a smartphone?', a: 'We can add a simple printable card with the link and a QR code.' },
   { q: 'How do RSVPs reach me?', a: 'Automatically, in a live guest list you can check anytime.' },
   { q: 'Can I use my own domain?', a: 'Yes, optional — or use the free Dandelion Wishes link.' },
 ]
@@ -367,6 +374,78 @@ export default function WishesPage() {
         </div>
       </section>
 
+      {/* Meet The Wedding Bloom */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <Reveal className="text-center mb-4">
+            <p className="uppercase tracking-[3px] text-xs mb-4 text-[#8B7355]">Introducing</p>
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <BloomIcon size={24} style={{ color: '#5C4A3A' }} />
+              <h2 className="text-3xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                Meet The Wedding Bloom
+              </h2>
+            </div>
+            <p className="text-[#3A3A3A]/75 max-w-lg mx-auto mb-2">
+              Your invitation is only part of the day. This is everything behind it.
+            </p>
+            <p className="text-[#3A3A3A]/75 max-w-lg mx-auto">
+              A full wedding planner that lives in your own Google Sheet, built for budget, guests,
+              suppliers, seating and the day-of timeline, all in one place.
+            </p>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
+            {weddingBloomSteps.map((s, i) => (
+              <Reveal key={s.n} delay={i * 0.08}>
+                <div className="rounded-2xl p-6 h-full text-center" style={{ background: '#FAF6F0', boxShadow: '0 12px 28px -16px rgba(139,115,85,0.2)' }}>
+                  <p
+                    className="text-xs tracking-[3px] mb-3"
+                    style={{ color: '#7C8B68', fontWeight: 600 }}
+                  >
+                    {s.n}
+                  </p>
+                  <p className="font-medium text-[#5C4A3A] mb-1">{s.title}</p>
+                  <p className="text-sm text-[#3A3A3A]/70">{s.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.2} className="mt-12 flex flex-wrap gap-3 justify-center">
+            {['Budget & supplier tracker', 'Guest list & RSVP tracking', 'Seating sign with QR code', 'No subscription, ever'].map((b) => (
+              <span
+                key={b}
+                className="text-xs px-4 py-2 rounded-full"
+                style={{ background: 'rgba(124,139,104,0.12)', color: '#5C6B4E' }}
+              >
+                {b}
+              </span>
+            ))}
+          </Reveal>
+
+          <Reveal delay={0.25} className="text-center mt-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/wishes/wedding-bloom"
+                className="inline-block px-8 py-3.5 rounded-full font-medium text-white"
+                style={{ background: '#7C8B68' }}
+              >
+                Get The Wedding Bloom — R750
+              </a>
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-8 py-3.5 rounded-full font-medium border"
+                style={{ borderColor: '#7C8B68', color: '#7C8B68', background: '#fff' }}
+              >
+                Ask a question on WhatsApp
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Pricing */}
       <section id="pricing" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
@@ -575,7 +654,7 @@ export default function WishesPage() {
           <p className="mb-9 text-white opacity-80">Tell me about your day — I&apos;ll take it from there.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-             
+
   href="/wishes/start"
   className="px-8 py-4 rounded-full font-medium"
   style={{ background: '#FAF6F0', color: '#5C4A3A' }}
