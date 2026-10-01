@@ -14,10 +14,11 @@ const ASSET_PATH = '/images/wishes/clients/theone-and-ra/save-the-date'
 // Save the file Claude sent you as card-bg.png at this path.
 const CARD_BG = `${ASSET_PATH}/card-bg.png`
 
-// The card opens on the English title screen, then dissolves into the
-// Afrikaans detail screen — a deliberate mix, not a language toggle.
-const DISSOLVE_AFTER_MS = 3200
-const DISSOLVE_DURATION_MS = 1200
+// The card opens on the English title screen. Tapping "see more" fades
+// the title screen out completely, THEN fades the detail screen in —
+// sequential, not a crossfade, so the two never overlap on screen.
+const TITLE_FADE_MS = 700
+const DETAIL_FADE_MS = 900
 
 function useCountdown(isoString) {
   const [time, setTime] = useState(null)
@@ -88,30 +89,47 @@ function Names({ top = 86.3 }) {
   )
 }
 
-// Screen 1 — the title card guests see first: SAVE / the / DATE, drawn
-// right across the torn seam the way your mockup does it.
-function TitleScreen() {
+// Screen 1 — the title card guests see first: Save / the / Date, all in
+// the cursive script, drawn right across the torn seam the way your
+// mockup does it, with a prompt that moves on to the detail screen.
+function TitleScreen({ onSeeMore, fadingOut }) {
   return (
     <>
       <DateLabel />
       <GoldLine top={18.8} right={4.5} width={15} />
 
-      <Pos top={23.5} left={44.5}>
-        <p className="uppercase" style={{ fontFamily: serifFont, fontSize: '9.5cqw', letterSpacing: '0.04em', color: ink, margin: 0, lineHeight: 1 }}>
-          SAVE
-        </p>
+      <Pos top={25} left={43}>
+        <p style={{ fontFamily: scriptFont, fontSize: '8.5cqw', color: ink, margin: 0, lineHeight: 1 }}>Save</p>
       </Pos>
-      <Pos top={37.5} left={42}>
-        <p style={{ fontFamily: scriptFont, fontSize: '7cqw', color: ink, margin: 0, lineHeight: 1 }}>the</p>
+      <Pos top={40} left={41}>
+        <p style={{ fontFamily: scriptFont, fontSize: '6.5cqw', color: ink, margin: 0, lineHeight: 1 }}>the</p>
       </Pos>
-      <Pos top={58.5} left={44.5}>
-        <p className="uppercase" style={{ fontFamily: serifFont, fontSize: '9.5cqw', letterSpacing: '0.04em', color: ink, margin: 0, lineHeight: 1 }}>
-          DATE
-        </p>
+      <Pos top={57} left={43}>
+        <p style={{ fontFamily: scriptFont, fontSize: '8.5cqw', color: ink, margin: 0, lineHeight: 1 }}>Date</p>
       </Pos>
 
       <GoldLine top={81} right={4.5} width={27} />
       <Names />
+
+      <Pos top={92.5} left={0} width={100} textAlign="center">
+        <button
+          onClick={onSeeMore}
+          disabled={fadingOut}
+          className="uppercase animate-pulse"
+          style={{
+            fontFamily: serifFont,
+            fontSize: '1.3cqw',
+            letterSpacing: '0.12em',
+            color: ink,
+            opacity: 0.65,
+            background: 'none',
+            border: 'none',
+            cursor: fadingOut ? 'default' : 'pointer',
+          }}
+        >
+          Click here to see more ↓
+        </button>
+      </Pos>
     </>
   )
 }
@@ -164,22 +182,29 @@ function DetailScreen({ countdown }) {
 }
 
 export default function TheoneAndRaSaveTheDate() {
-  const [dissolved, setDissolved] = useState(false)
+  // 'title' -> 'fadingOut' (title fading to 0) -> 'detail' (title gone,
+  // detail now fading in). Sequential, so the two text layers never
+  // overlap on screen the way a crossfade would.
+  const [stage, setStage] = useState('title')
   const [musicOpen, setMusicOpen] = useState(false)
   const countdown = useCountdown('2027-11-21T15:00:00')
   const spotifyEmbedUrl = 'https://open.spotify.com/embed/track/4t6qMeHgbxWod2SLokiSQp'
 
-  useEffect(() => {
-    // People who've asked their browser to reduce motion land straight on
-    // the detail screen — no dissolve, just the final card.
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) {
-      setDissolved(true)
+  const prefersReducedMotion = () =>
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  const handleSeeMore = () => {
+    if (stage !== 'title') return
+    if (prefersReducedMotion()) {
+      setStage('detail')
       return
     }
-    const id = setTimeout(() => setDissolved(true), DISSOLVE_AFTER_MS)
-    return () => clearTimeout(id)
-  }, [])
+    setStage('fadingOut')
+    setTimeout(() => setStage('detail'), TITLE_FADE_MS)
+  }
+
+  const titleVisible = stage === 'title' || stage === 'fadingOut'
+  const detailVisible = stage === 'detail'
 
   return (
     <div className="min-h-screen relative flex flex-col items-center justify-center px-4 py-10" style={{ background: bg }}>
@@ -195,21 +220,29 @@ export default function TheoneAndRaSaveTheDate() {
         {/* Your artwork — photo, torn edge, and cream panel, no text */}
         <img src={CARD_BG} alt="" className="absolute inset-0 w-full h-full object-cover" />
 
-        {/* Detail screen sits underneath, already at full opacity */}
-        <div className="absolute inset-0">
-          <DetailScreen countdown={countdown} />
-        </div>
-
-        {/* Title screen sits on top and dissolves away */}
+        {/* Title screen: visible until "see more" is tapped, then fades
+            fully to 0 before the detail screen starts fading in. */}
         <div
           className="absolute inset-0"
           style={{
-            opacity: dissolved ? 0 : 1,
-            transition: `opacity ${DISSOLVE_DURATION_MS}ms ease`,
-            pointerEvents: dissolved ? 'none' : 'auto',
+            opacity: titleVisible && stage !== 'fadingOut' ? 1 : 0,
+            transition: `opacity ${TITLE_FADE_MS}ms ease`,
+            pointerEvents: stage === 'title' ? 'auto' : 'none',
           }}
         >
-          <TitleScreen />
+          <TitleScreen onSeeMore={handleSeeMore} fadingOut={stage === 'fadingOut'} />
+        </div>
+
+        {/* Detail screen: starts at opacity 0, only fades in once the
+            title screen has finished fading out. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            opacity: detailVisible ? 1 : 0,
+            transition: `opacity ${DETAIL_FADE_MS}ms ease`,
+          }}
+        >
+          <DetailScreen countdown={countdown} />
         </div>
       </div>
 
