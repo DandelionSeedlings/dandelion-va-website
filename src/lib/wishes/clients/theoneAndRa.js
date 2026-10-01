@@ -10,8 +10,8 @@
 export const theoneAndRaContent = {
   coupleNames: 'Theoné & Ra',
 
-  weddingDateLong: '31 October 2027',
-  weddingDateISO: '2027-10-31T15:00:00', // TODO: 15:00 is a placeholder — swap once ceremony time is confirmed
+  weddingDateLong: '21 November 2027',
+  weddingDateISO: '2027-11-21T15:00:00', // TODO: 15:00 is a placeholder — swap once ceremony time is confirmed
 
   tagline: 'Two people. One beautiful story.', // TODO: swap for their own line if they want one
   heroAccentText: 'Two hearts. One journey.', // floating script line over the hero photo — TODO: swap for their own if they want something different
