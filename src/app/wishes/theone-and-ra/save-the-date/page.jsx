@@ -240,6 +240,11 @@ export default function TheoneAndRaSaveTheDate() {
           style={{
             opacity: detailVisible ? 1 : 0,
             transition: `opacity ${DETAIL_FADE_MS}ms ease`,
+            // Invisible doesn't mean non-interactive — without this, this
+            // layer (it comes after the title layer in the markup, so it
+            // sits on top) swallows clicks meant for the title screen's
+            // button underneath it, even while opacity is 0.
+            pointerEvents: detailVisible ? 'auto' : 'none',
           }}
         >
           <DetailScreen countdown={countdown} />
