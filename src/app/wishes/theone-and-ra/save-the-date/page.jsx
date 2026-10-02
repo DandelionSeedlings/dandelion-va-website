@@ -95,22 +95,40 @@ function Names({ top = 95.8 }) {
   )
 }
 
-// Screen 1 — the title card guests see first: a single cursive "Save
-// the Date" wordmark, sitting in the cream panel below the photo, with
-// a prompt that moves on to the detail screen.
+// Screen 1 — the title card guests see first: just the big "SAVE the
+// DATE" wordmark, the couple's names, and a prompt that moves on to
+// the detail screen. No date here — that's saved for screen 2.
 function TitleScreen({ onSeeMore, fadingOut }) {
   return (
     <>
-      <DateLabel />
-      <GoldLine top={69.5} width={14} />
-
-      <Pos top={74}>
-        <p style={{ fontFamily: scriptFont, fontSize: '11cqw', color: ink, margin: 0, lineHeight: 1 }}>
-          Save the Date
+      <Pos top={64.5}>
+        <p
+          className="uppercase"
+          style={{ fontFamily: serifFont, fontWeight: 500, fontSize: '15cqw', letterSpacing: '0.1em', color: ink, margin: 0, lineHeight: 1 }}
+        >
+          Save
         </p>
       </Pos>
 
-      <Pos top={85.5}>
+      <Pos top={73.5}>
+        <p style={{ fontFamily: scriptFont, fontSize: '10cqw', color: ink, margin: 0, lineHeight: 1 }}>
+          the
+        </p>
+      </Pos>
+
+      <Pos top={80}>
+        <p
+          className="uppercase"
+          style={{ fontFamily: serifFont, fontWeight: 500, fontSize: '15cqw', letterSpacing: '0.1em', color: ink, margin: 0, lineHeight: 1 }}
+        >
+          Date
+        </p>
+      </Pos>
+
+      <GoldLine top={90.5} width={22} />
+      <Names top={93} />
+
+      <Pos top={97}>
         <button
           onClick={onSeeMore}
           disabled={fadingOut}
@@ -129,9 +147,6 @@ function TitleScreen({ onSeeMore, fadingOut }) {
           Click here to see more ↓
         </button>
       </Pos>
-
-      <GoldLine top={93.2} width={22} />
-      <Names />
     </>
   )
 }
