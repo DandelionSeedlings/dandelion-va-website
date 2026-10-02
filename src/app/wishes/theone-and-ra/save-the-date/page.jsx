@@ -212,7 +212,12 @@ export default function TheoneAndRaSaveTheDate() {
         className="relative w-full overflow-hidden"
         style={{
           containerType: 'inline-size',
-          width: 'min(94vw, 1000px)',
+          // Capped by width (94vw) AND by height (82vh, converted to the
+          // equivalent width for a 4:3 box) — without the height term, a
+          // tall narrow phone screen only ever hits the width cap and the
+          // card stays small, leaving the empty cream gap above and below
+          // you saw in the screenshot.
+          width: 'min(94vw, 109.3vh, 1000px)',
           aspectRatio: '4 / 3',
           boxShadow: '0 30px 60px -30px rgba(44,58,54,0.25)',
         }}
