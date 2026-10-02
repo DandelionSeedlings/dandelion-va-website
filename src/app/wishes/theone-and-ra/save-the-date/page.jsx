@@ -2,8 +2,15 @@
 
 import { useEffect, useState } from 'react'
 
-const serifFont = "var(--font-cormorant), serif"
-const scriptFont = "var(--font-alex-brush), cursive"
+// La Luxes Serif / La Luxes Script aren't on Google Fonts — they're a
+// paid font pack, so next/font/google can't pull them in the way
+// Cormorant/Alex Brush are loaded in layout.jsx. These variables name
+// them directly with the old fonts as a fallback, so nothing breaks
+// before the real files are wired up: once you send the .otf/.ttf
+// files, they get registered via next/font/local in layout.jsx under
+// these same family names and this page needs no further changes.
+const serifFont = "'La Luxes Serif', var(--font-cormorant), serif"
+const scriptFont = "'La Luxes Script', var(--font-alex-brush), cursive"
 
 const ink = '#2C3A36'
 const blush = '#D9AA95'
@@ -17,8 +24,14 @@ const CARD_BG = `${ASSET_PATH}/card-bg-mobile.png`
 // The card opens on the English title screen. Tapping "see more" fades
 // the title screen out completely, THEN fades the detail screen in —
 // sequential, not a crossfade, so the two never overlap on screen.
-const TITLE_FADE_MS = 700
-const DETAIL_FADE_MS = 900
+// Slower + ease-in-out than before so the dissolve reads as deliberate
+// rather than an abrupt cut.
+const TITLE_FADE_MS = 1400
+const DETAIL_FADE_MS = 1700
+
+// Soft halo behind any text that sits across the torn photo edge, so
+// it stays readable whether it's over the photo or the cream panel.
+const crossoverGlow = { textShadow: '0 0 18px rgba(253,249,246,0.9), 0 0 6px rgba(253,249,246,0.8)' }
 
 function useCountdown(isoString) {
   const [time, setTime] = useState(null)
@@ -75,10 +88,20 @@ function GoldLine({ top, width = 18 }) {
   )
 }
 
-function DateLabel({ top = 65.5 }) {
+function DateLabel({ top = 65.5, crossover = false }) {
   return (
     <Pos top={top}>
-      <p style={{ fontFamily: serifFont, fontSize: '3cqw', letterSpacing: '0.08em', color: ink, opacity: 0.85, margin: 0 }}>
+      <p
+        style={{
+          fontFamily: serifFont,
+          fontSize: '4.4cqw',
+          letterSpacing: '0.08em',
+          color: ink,
+          opacity: 0.9,
+          margin: 0,
+          ...(crossover ? crossoverGlow : {}),
+        }}
+      >
         21.11.2027
       </p>
     </Pos>
@@ -101,22 +124,25 @@ function Names({ top = 95.8 }) {
 function TitleScreen({ onSeeMore, fadingOut }) {
   return (
     <>
-      <Pos top={64.5}>
+      {/* "Save" sits right across the torn edge — the tear falls
+          between about 55% and 62% down the card, so this line
+          straddles it on purpose, the way your reference shows it. */}
+      <Pos top={53.5}>
         <p
           className="uppercase"
-          style={{ fontFamily: serifFont, fontWeight: 500, fontSize: '15cqw', letterSpacing: '0.1em', color: ink, margin: 0, lineHeight: 1 }}
+          style={{ fontFamily: serifFont, fontWeight: 500, fontSize: '15cqw', letterSpacing: '0.1em', color: ink, margin: 0, lineHeight: 1, ...crossoverGlow }}
         >
           Save
         </p>
       </Pos>
 
-      <Pos top={73.5}>
-        <p style={{ fontFamily: scriptFont, fontSize: '10cqw', color: ink, margin: 0, lineHeight: 1 }}>
+      <Pos top={62}>
+        <p style={{ fontFamily: scriptFont, fontSize: '10cqw', color: ink, margin: 0, lineHeight: 1, ...crossoverGlow }}>
           the
         </p>
       </Pos>
 
-      <Pos top={80}>
+      <Pos top={68.5}>
         <p
           className="uppercase"
           style={{ fontFamily: serifFont, fontWeight: 500, fontSize: '15cqw', letterSpacing: '0.1em', color: ink, margin: 0, lineHeight: 1 }}
@@ -125,10 +151,10 @@ function TitleScreen({ onSeeMore, fadingOut }) {
         </p>
       </Pos>
 
-      <GoldLine top={90.5} width={22} />
-      <Names top={93} />
+      <GoldLine top={79} width={22} />
+      <Names top={81.5} />
 
-      <Pos top={97}>
+      <Pos top={86}>
         <button
           onClick={onSeeMore}
           disabled={fadingOut}
@@ -157,28 +183,30 @@ function TitleScreen({ onSeeMore, fadingOut }) {
 function DetailScreen({ countdown }) {
   return (
     <>
-      <DateLabel />
-      <GoldLine top={69.5} width={14} />
+      {/* The date now crosses the torn edge too, same as "Save" on the
+          title screen. */}
+      <DateLabel top={55} crossover />
+      <GoldLine top={61.5} width={16} />
 
-      <Pos top={73.2}>
-        <p style={{ fontFamily: serifFont, fontSize: '5.2cqw', fontVariant: 'small-caps', letterSpacing: '0.03em', color: ink, margin: 0 }}>
+      <Pos top={64}>
+        <p style={{ fontFamily: serifFont, fontSize: '7.4cqw', fontVariant: 'small-caps', letterSpacing: '0.03em', color: ink, margin: 0 }}>
           Ons gaan trou!
         </p>
       </Pos>
 
-      <Pos top={78.2} left={8} width={84}>
-        <p style={{ fontFamily: serifFont, fontSize: '2.6cqw', color: ink, opacity: 0.85, margin: 0, lineHeight: 1.3 }}>
+      <Pos top={70.5} left={6} width={88}>
+        <p style={{ fontFamily: serifFont, fontSize: '3.6cqw', color: ink, opacity: 0.9, margin: 0, lineHeight: 1.3 }}>
           En ons hoop jy sal hierdie besondere dag saam met ons vier.
         </p>
       </Pos>
 
       {countdown && (
-        <Pos top={85}>
-          <div className="flex gap-7 justify-center">
+        <Pos top={78.5}>
+          <div className="flex gap-8 justify-center">
             {[['d', 'dae'], ['h', 'ure'], ['m', 'min']].map(([key, label]) => (
               <div key={key} className="text-center">
-                <p style={{ fontFamily: serifFont, fontSize: '4.4cqw', color: ink, margin: 0 }}>{countdown[key]}</p>
-                <p className="uppercase" style={{ fontFamily: serifFont, fontSize: '1.5cqw', letterSpacing: '0.08em', color: ink, opacity: 0.6, margin: 0 }}>
+                <p style={{ fontFamily: serifFont, fontSize: '7.5cqw', color: ink, margin: 0, lineHeight: 1 }}>{countdown[key]}</p>
+                <p className="uppercase" style={{ fontFamily: serifFont, fontSize: '1.8cqw', letterSpacing: '0.1em', color: ink, opacity: 0.65, margin: 0 }}>
                   {label}
                 </p>
               </div>
@@ -187,14 +215,14 @@ function DetailScreen({ countdown }) {
         </Pos>
       )}
 
-      <Pos top={91.3} left={6} width={88}>
-        <p className="italic" style={{ fontFamily: serifFont, fontSize: '2.1cqw', color: ink, opacity: 0.7, margin: 0, lineHeight: 1.3 }}>
+      <Pos top={89} left={5} width={90}>
+        <p className="italic" style={{ fontFamily: serifFont, fontSize: '2.8cqw', color: ink, opacity: 0.75, margin: 0, lineHeight: 1.3 }}>
           Die volledige uitnodiging met al die besonderhede volg binnekort.
         </p>
       </Pos>
 
-      <GoldLine top={96.3} width={22} />
-      <Names top={98.5} />
+      <GoldLine top={95} width={22} />
+      <Names top={97} />
     </>
   )
 }
