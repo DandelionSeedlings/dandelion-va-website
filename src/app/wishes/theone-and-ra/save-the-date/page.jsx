@@ -11,9 +11,8 @@ const bg = '#FDF9F6'
 
 const ASSET_PATH = '/images/wishes/clients/theone-and-ra/save-the-date'
 // Your new portrait export — photo on top, torn horizontal edge, cream
-// panel below, no text. Save the file Claude sent you as card-bg.png
-// (overwriting the old landscape one) at this path.
-const CARD_BG = `${ASSET_PATH}/card-bg.png`
+// panel below, no text.
+const CARD_BG = `${ASSET_PATH}/card-bg-mobile.png`
 
 // The card opens on the English title screen. Tapping "see more" fades
 // the title screen out completely, THEN fades the detail screen in —
