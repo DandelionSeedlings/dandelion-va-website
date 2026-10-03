@@ -17,9 +17,14 @@ const blush = '#D9AA95'
 const bg = '#FDF9F6'
 
 const ASSET_PATH = '/images/wishes/clients/theone-and-ra/save-the-date'
-// Your new portrait export — photo on top, torn horizontal edge, cream
-// panel below, no text.
+// Screen 1 (title) — photo on top, torn horizontal edge, cream panel
+// below, no text.
 const CARD_BG = `${ASSET_PATH}/card-bg-mobile.png`
+// Screen 2 (detail) — the plain, full-bleed photo (no tear, no cream
+// panel baked in — still saved as card-bg.png from earlier), washed
+// under a cream veil so the full card height is free for text instead
+// of being squeezed into the strip below the tear.
+const DETAIL_BG = `${ASSET_PATH}/card-bg.png`
 
 // The card opens on the English title screen. Tapping "see more" fades
 // the title screen out completely, THEN fades the detail screen in —
@@ -29,9 +34,10 @@ const CARD_BG = `${ASSET_PATH}/card-bg-mobile.png`
 const TITLE_FADE_MS = 1400
 const DETAIL_FADE_MS = 1700
 
-// Soft halo behind any text that sits across the torn photo edge, so
-// it stays readable whether it's over the photo or the cream panel.
-const crossoverGlow = { textShadow: '0 0 18px rgba(253,249,246,0.9), 0 0 6px rgba(253,249,246,0.8)' }
+// The graded cream scrim (added where the card is built) does the
+// real contrast work for text crossing the tear. This just adds a
+// small amount of extra crispness on top of it.
+const crossoverGlow = { textShadow: '0 1px 8px rgba(253,249,246,0.6)' }
 
 function useCountdown(isoString) {
   const [time, setTime] = useState(null)
@@ -80,10 +86,17 @@ function Pos({ top, left = 0, width = 100, textAlign = 'center', children, style
   )
 }
 
+// A bare hairline reads as a placeholder. A tiny diamond flanked by
+// two short strokes is the small ornamental touch actual wedding
+// stationery uses in its place.
 function GoldLine({ top, width = 18 }) {
   return (
     <Pos top={top} left={(100 - width) / 2} width={width}>
-      <div style={{ height: 1, background: '#D4C4A0' }} />
+      <div className="flex items-center justify-center gap-[0.6cqw]">
+        <div style={{ height: 1, flex: 1, background: 'linear-gradient(to left, #C9A66B, transparent)' }} />
+        <div style={{ width: '1.1cqw', height: '1.1cqw', background: '#C9A66B', transform: 'rotate(45deg)', flexShrink: 0 }} />
+        <div style={{ height: 1, flex: 1, background: 'linear-gradient(to right, #C9A66B, transparent)' }} />
+      </div>
     </Pos>
   )
 }
@@ -158,71 +171,80 @@ function TitleScreen({ onSeeMore, fadingOut }) {
         <button
           onClick={onSeeMore}
           disabled={fadingOut}
-          className="uppercase animate-pulse"
+          className="uppercase group"
           style={{
             fontFamily: serifFont,
             fontSize: '2cqw',
-            letterSpacing: '0.12em',
+            letterSpacing: '0.16em',
             color: ink,
-            opacity: 0.65,
+            opacity: 0.7,
             background: 'none',
-            border: 'none',
+            border: '1px solid rgba(44,58,54,0.3)',
+            borderRadius: '999px',
+            padding: '0.9cqw 3.4cqw',
             cursor: fadingOut ? 'default' : 'pointer',
+            transition: 'opacity 0.25s ease, transform 0.25s ease, border-color 0.25s ease',
           }}
+          onMouseEnter={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.borderColor = 'rgba(44,58,54,0.6)' }}
+          onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.7'; e.currentTarget.style.borderColor = 'rgba(44,58,54,0.3)' }}
         >
-          Click here to see more ↓
+          See more ⌄
         </button>
       </Pos>
     </>
   )
 }
 
-// Screen 2 — the detail card it dissolves into: Afrikaans message,
-// countdown, and the note that the full invite follows. Same vertical
-// stack, just denser since there's more to say.
+// Screen 2 — the detail card it dissolves into. This one now has the
+// whole card to work with (full-bleed washed photo behind it, no
+// tear/cream strip to squeeze into), so everything gets room to
+// breathe instead of stacking tight at the bottom.
 function DetailScreen({ countdown }) {
   return (
     <>
-      {/* The date now crosses the torn edge too, same as "Save" on the
-          title screen. */}
-      <DateLabel top={55} crossover />
-      <GoldLine top={61.5} width={16} />
+      <DateLabel top={13} />
+      <GoldLine top={19.5} width={16} />
 
-      <Pos top={64}>
-        <p style={{ fontFamily: serifFont, fontSize: '7.4cqw', fontVariant: 'small-caps', letterSpacing: '0.03em', color: ink, margin: 0 }}>
+      <Pos top={23.5}>
+        <p style={{ fontFamily: serifFont, fontSize: '8.6cqw', fontVariant: 'small-caps', letterSpacing: '0.03em', color: ink, margin: 0 }}>
           Ons gaan trou!
         </p>
       </Pos>
 
-      <Pos top={70.5} left={6} width={88}>
-        <p style={{ fontFamily: serifFont, fontSize: '3.6cqw', color: ink, opacity: 0.9, margin: 0, lineHeight: 1.3 }}>
+      <Pos top={32.5} left={8} width={84}>
+        <p style={{ fontFamily: serifFont, fontSize: '4.2cqw', color: ink, opacity: 0.9, margin: 0, lineHeight: 1.4 }}>
           En ons hoop jy sal hierdie besondere dag saam met ons vier.
         </p>
       </Pos>
 
       {countdown && (
-        <Pos top={78.5}>
-          <div className="flex gap-8 justify-center">
-            {[['d', 'dae'], ['h', 'ure'], ['m', 'min']].map(([key, label]) => (
-              <div key={key} className="text-center">
-                <p style={{ fontFamily: serifFont, fontSize: '7.5cqw', color: ink, margin: 0, lineHeight: 1 }}>{countdown[key]}</p>
-                <p className="uppercase" style={{ fontFamily: serifFont, fontSize: '1.8cqw', letterSpacing: '0.1em', color: ink, opacity: 0.65, margin: 0 }}>
-                  {label}
-                </p>
+        <Pos top={47}>
+          <div className="flex items-stretch justify-center">
+            {[['d', 'dae'], ['h', 'ure'], ['m', 'min']].map(([key, label], i) => (
+              <div key={key} className="flex items-center">
+                {i > 0 && <div style={{ width: 1, height: '8.8cqw', background: 'rgba(44,58,54,0.18)', margin: '0 3.6cqw' }} />}
+                <div className="text-center" style={{ minWidth: '15cqw' }}>
+                  <p style={{ fontFamily: serifFont, fontSize: '8.8cqw', color: ink, margin: 0, lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>
+                    {countdown[key]}
+                  </p>
+                  <p className="uppercase" style={{ fontFamily: serifFont, fontSize: '2cqw', letterSpacing: '0.18em', color: ink, opacity: 0.6, margin: 0, marginTop: '0.7cqw' }}>
+                    {label}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </Pos>
       )}
 
-      <Pos top={89} left={5} width={90}>
-        <p className="italic" style={{ fontFamily: serifFont, fontSize: '2.8cqw', color: ink, opacity: 0.75, margin: 0, lineHeight: 1.3 }}>
+      <Pos top={62} left={7} width={86}>
+        <p className="italic" style={{ fontFamily: serifFont, fontSize: '3.2cqw', color: ink, opacity: 0.75, margin: 0, lineHeight: 1.4 }}>
           Die volledige uitnodiging met al die besonderhede volg binnekort.
         </p>
       </Pos>
 
-      <GoldLine top={95} width={22} />
-      <Names top={97} />
+      <GoldLine top={91} width={22} />
+      <Names top={93.5} />
     </>
   )
 }
@@ -233,6 +255,14 @@ export default function TheoneAndRaSaveTheDate() {
   // overlap on screen the way a crossfade would.
   const [stage, setStage] = useState('title')
   const [musicOpen, setMusicOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  // A soft rise-and-fade on first paint, instead of the card just
+  // appearing — the one entrance animation guests actually see.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setMounted(true))
+    return () => cancelAnimationFrame(id)
+  }, [])
   const countdown = useCountdown('2027-11-21T15:00:00')
   const spotifyEmbedUrl = 'https://open.spotify.com/embed/track/4t6qMeHgbxWod2SLokiSQp'
 
@@ -265,11 +295,50 @@ export default function TheoneAndRaSaveTheDate() {
           // top/bottom margins.
           width: 'min(94vw, 486px)',
           aspectRatio: '1080 / 1920',
-          boxShadow: '0 30px 60px -30px rgba(44,58,54,0.25)',
+          borderRadius: 2,
+          boxShadow: '0 1px 0 rgba(255,255,255,0.6) inset, 0 40px 70px -25px rgba(44,58,54,0.4), 0 10px 25px -10px rgba(44,58,54,0.25)',
+          opacity: mounted ? 1 : 0,
+          transform: mounted ? 'translateY(0)' : 'translateY(10px)',
+          transition: 'opacity 900ms ease, transform 900ms ease',
         }}
       >
-        {/* Your artwork — photo, torn edge, and cream panel, no text */}
+        {/* Screen 1's artwork — photo, torn edge, and cream panel, no
+            text. Stays under everything; screen 2's background below
+            fades in on top of it and fully covers it once visible. */}
         <img src={CARD_BG} alt="" className="absolute inset-0 w-full h-full object-cover" />
+
+        {/* A graded cream scrim across the tear — the ink-colored text
+            crossing it needs a LIGHTER patch of photo to read against,
+            not a darker one, so this fades in from transparent and
+            brightens going down into the cream panel. This is what
+            makes "Save" readable whether it's sitting on sky, water,
+            or cream. Only relevant to screen 1, so it fades out with
+            the title screen's own text. */}
+        <div
+          className="absolute left-0 w-full pointer-events-none"
+          style={{
+            top: '42%',
+            height: '24%',
+            background: 'linear-gradient(to bottom, rgba(253,249,246,0) 0%, rgba(253,249,246,0.55) 75%, rgba(253,249,246,0.85) 100%)',
+            opacity: titleVisible && stage !== 'fadingOut' ? 1 : 0,
+            transition: `opacity ${TITLE_FADE_MS}ms ease`,
+          }}
+        />
+
+        {/* Screen 2's background: the plain photo, full-bleed, washed
+            under a cream veil so the ink text reads cleanly across the
+            WHOLE card rather than only the strip below the tear. Fades
+            in in sync with the detail text below. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            opacity: detailVisible ? 1 : 0,
+            transition: `opacity ${DETAIL_FADE_MS}ms ease`,
+          }}
+        >
+          <img src={DETAIL_BG} alt="" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0" style={{ background: 'rgba(253,249,246,0.78)' }} />
+        </div>
 
         {/* Title screen: visible until "see more" is tapped, then fades
             fully to 0 before the detail screen starts fading in. */}
