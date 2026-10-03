@@ -15,6 +15,13 @@ const scriptFont = "'La Luxes Script', var(--font-alex-brush), cursive"
 const ink = '#2C3A36'
 const blush = '#D9AA95'
 const bg = '#FDF9F6'
+// The cream panel baked into card-bg-mobile.png is this exact color
+// (sampled directly from the file) — a noticeably warmer, deeper tone
+// than the page's own off-white #FDF9F6. The scrim behind "Save" was
+// fading to #FDF9F6 instead, which is why there was a visibly lighter
+// band right under the tear before the real (darker) cream panel
+// started — two different creams stacked on top of each other.
+const cardCream = '#E8E0D8'
 
 const ASSET_PATH = '/images/wishes/clients/theone-and-ra/save-the-date'
 // Screen 1 (title) — photo on top, torn horizontal edge, cream panel
@@ -37,7 +44,7 @@ const DETAIL_FADE_MS = 1700
 // The graded cream scrim (added where the card is built) does the
 // real contrast work for text crossing the tear. This just adds a
 // small amount of extra crispness on top of it.
-const crossoverGlow = { textShadow: '0 1px 8px rgba(253,249,246,0.6)' }
+const crossoverGlow = { textShadow: '0 1px 8px rgba(232,224,216,0.7)' }
 
 function useCountdown(isoString) {
   const [time, setTime] = useState(null)
@@ -124,8 +131,8 @@ function DateLabel({ top = 65.5, crossover = false }) {
 function Names({ top = 95.8 }) {
   return (
     <Pos top={top}>
-      <p className="uppercase" style={{ fontFamily: serifFont, fontSize: '2.2cqw', letterSpacing: '0.1em', color: ink, opacity: 0.85, margin: 0 }}>
-        THEONÉ &amp; RA
+      <p style={{ fontFamily: scriptFont, fontSize: '5.4cqw', color: ink, opacity: 0.9, margin: 0, lineHeight: 1 }}>
+        Theoné &amp; Ra
       </p>
     </Pos>
   )
@@ -164,10 +171,10 @@ function TitleScreen({ onSeeMore, fadingOut }) {
         </p>
       </Pos>
 
-      <GoldLine top={79} width={22} />
-      <Names top={81.5} />
+      <GoldLine top={78} width={22} />
+      <Names top={80.5} />
 
-      <Pos top={86}>
+      <Pos top={88}>
         <button
           onClick={onSeeMore}
           disabled={fadingOut}
@@ -205,29 +212,29 @@ function DetailScreen({ countdown }) {
       <DateLabel top={13} />
       <GoldLine top={19.5} width={16} />
 
-      <Pos top={23.5}>
-        <p style={{ fontFamily: serifFont, fontSize: '8.6cqw', fontVariant: 'small-caps', letterSpacing: '0.03em', color: ink, margin: 0 }}>
+      <Pos top={23}>
+        <p style={{ fontFamily: serifFont, fontSize: '9.6cqw', fontVariant: 'small-caps', letterSpacing: '0.03em', color: ink, margin: 0 }}>
           Ons gaan trou!
         </p>
       </Pos>
 
       <Pos top={32.5} left={8} width={84}>
-        <p style={{ fontFamily: serifFont, fontSize: '4.2cqw', color: ink, opacity: 0.9, margin: 0, lineHeight: 1.4 }}>
+        <p style={{ fontFamily: serifFont, fontSize: '5cqw', color: ink, opacity: 0.9, margin: 0, lineHeight: 1.45 }}>
           En ons hoop jy sal hierdie besondere dag saam met ons vier.
         </p>
       </Pos>
 
       {countdown && (
-        <Pos top={47}>
+        <Pos top={49}>
           <div className="flex items-stretch justify-center">
             {[['d', 'dae'], ['h', 'ure'], ['m', 'min']].map(([key, label], i) => (
               <div key={key} className="flex items-center">
-                {i > 0 && <div style={{ width: 1, height: '8.8cqw', background: 'rgba(44,58,54,0.18)', margin: '0 3.6cqw' }} />}
-                <div className="text-center" style={{ minWidth: '15cqw' }}>
-                  <p style={{ fontFamily: serifFont, fontSize: '8.8cqw', color: ink, margin: 0, lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>
+                {i > 0 && <div style={{ width: 1, height: '9.5cqw', background: 'rgba(44,58,54,0.18)', margin: '0 3.8cqw' }} />}
+                <div className="text-center" style={{ minWidth: '16cqw' }}>
+                  <p style={{ fontFamily: serifFont, fontSize: '9.5cqw', color: ink, margin: 0, lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>
                     {countdown[key]}
                   </p>
-                  <p className="uppercase" style={{ fontFamily: serifFont, fontSize: '2cqw', letterSpacing: '0.18em', color: ink, opacity: 0.6, margin: 0, marginTop: '0.7cqw' }}>
+                  <p className="uppercase" style={{ fontFamily: serifFont, fontSize: '2.1cqw', letterSpacing: '0.18em', color: ink, opacity: 0.6, margin: 0, marginTop: '0.8cqw' }}>
                     {label}
                   </p>
                 </div>
@@ -237,14 +244,14 @@ function DetailScreen({ countdown }) {
         </Pos>
       )}
 
-      <Pos top={62} left={7} width={86}>
-        <p className="italic" style={{ fontFamily: serifFont, fontSize: '3.2cqw', color: ink, opacity: 0.75, margin: 0, lineHeight: 1.4 }}>
+      <Pos top={64} left={7} width={86}>
+        <p className="italic" style={{ fontFamily: serifFont, fontSize: '3.8cqw', color: ink, opacity: 0.75, margin: 0, lineHeight: 1.45 }}>
           Die volledige uitnodiging met al die besonderhede volg binnekort.
         </p>
       </Pos>
 
-      <GoldLine top={91} width={22} />
-      <Names top={93.5} />
+      <GoldLine top={89} width={22} />
+      <Names top={91.5} />
     </>
   )
 }
@@ -319,7 +326,7 @@ export default function TheoneAndRaSaveTheDate() {
           style={{
             top: '42%',
             height: '24%',
-            background: 'linear-gradient(to bottom, rgba(253,249,246,0) 0%, rgba(253,249,246,0.55) 75%, rgba(253,249,246,0.85) 100%)',
+            background: 'linear-gradient(to bottom, rgba(232,224,216,0) 0%, rgba(232,224,216,0.55) 75%, rgba(232,224,216,0.92) 100%)',
             opacity: titleVisible && stage !== 'fadingOut' ? 1 : 0,
             transition: `opacity ${TITLE_FADE_MS}ms ease`,
           }}
@@ -337,7 +344,7 @@ export default function TheoneAndRaSaveTheDate() {
           }}
         >
           <img src={DETAIL_BG} alt="" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0" style={{ background: 'rgba(253,249,246,0.78)' }} />
+          <div className="absolute inset-0" style={{ background: 'rgba(232,224,216,0.78)' }} />
         </div>
 
         {/* Title screen: visible until "see more" is tapped, then fades
