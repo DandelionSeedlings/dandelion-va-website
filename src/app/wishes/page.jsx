@@ -256,193 +256,137 @@ export default function WishesPage() {
         </Reveal>
       </section>
 
-      {/* How it works */}
+      {/* How it works — a connected line instead of four identical
+          numbered circles, so the steps read as one path. */}
       <section id="how" className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <Reveal className="text-center mb-12">
+          <Reveal className="text-center mb-14">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>How it works</h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((s, i) => (
-              <Reveal key={s.n} delay={i * 0.1} className="text-center">
-                <div className="w-10 h-10 rounded-full bg-[#E8C4C4]/50 text-[#8B7355] flex items-center justify-center mx-auto mb-3 font-medium">
-                  {s.n}
-                </div>
-                <p className="font-medium text-[#5C4A3A] mb-1">{s.title}</p>
-                <p className="text-sm text-[#3A3A3A]/70">{s.desc}</p>
-              </Reveal>
-            ))}
+          <div className="relative">
+            <div className="hidden sm:block absolute left-0 right-0 top-[7px] h-px bg-[#E8C4C4]/50" />
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {steps.map((s, i) => (
+                <Reveal key={s.n} delay={i * 0.1} className="relative">
+                  <div className="hidden sm:block w-3.5 h-3.5 rounded-full bg-[#E8C4C4] ring-4 ring-[#FAF6F0] mb-4" />
+                  <p className="font-medium text-[#5C4A3A] mb-1">
+                    <span className="sm:hidden text-[#8B7355] mr-1.5">{s.n}.</span>
+                    {s.title}
+                  </p>
+                  <p className="text-sm text-[#3A3A3A]/70">{s.desc}</p>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features */}
+      {/* Features — plain two-column rows instead of six identical
+          bordered cards; a hairline above each row does the dividing
+          work a card border was doing before. */}
       <section className="bg-white/60 py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <Reveal className="text-center mb-12">
+        <div className="max-w-3xl mx-auto">
+          <Reveal className="text-center mb-14">
             <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>What&apos;s included</h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 gap-x-12">
             {features.map((f, i) => (
-              <Reveal key={f.title} delay={i * 0.06}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  className="border border-[#E8C4C4]/40 rounded-2xl p-6 bg-[#FAF6F0] h-full"
-                >
-                  <p className="font-medium text-[#5C4A3A] mb-1">{f.title}</p>
-                  <p className="text-sm text-[#3A3A3A]/70">{f.desc}</p>
-                </motion.div>
+              <Reveal
+                key={f.title}
+                delay={i * 0.06}
+                className={`py-5 border-t border-[#E8C4C4]/40 ${i < 2 ? 'sm:border-t-0' : ''}`}
+              >
+                <p className="font-medium text-[#5C4A3A] mb-1">{f.title}</p>
+                <p className="text-sm text-[#3A3A3A]/70">{f.desc}</p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Meet MemoryBloom */}
+      {/* Two more ways to make this easier — MemoryBloom and The Wedding
+          Bloom used to be two full-width sections back to back, each
+          with its own near-identical 4-box grid, which is the kind of
+          literal repetition that reads as templated. Side by side as
+          one comparison instead, so it's one decision ("which of these
+          two, or both") rather than two copies of the same section. */}
       <section className="py-20 px-6" style={{ background: '#F3ECE3' }}>
-        <div className="max-w-4xl mx-auto">
-          <Reveal className="text-center mb-4">
-            <p className="uppercase tracking-[3px] text-xs mb-4 text-[#8B7355]">Introducing</p>
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <BloomIcon size={24} style={{ color: '#5C4A3A' }} />
-              <h2 className="text-3xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                Meet MemoryBloom
-              </h2>
-            </div>
-            <p className="text-[#3A3A3A]/75 max-w-lg mx-auto mb-2">
-              Because the best photos aren&apos;t always taken by the photographer.
-            </p>
-            <p className="text-[#3A3A3A]/75 max-w-lg mx-auto">
-              Your guests are already taking photos. Give those moments somewhere to bloom.
-            </p>
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="text-center mb-14">
+            <p className="uppercase tracking-[3px] text-xs mb-4 text-[#8B7355]">Beyond the invitation</p>
+            <h2 className="text-3xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              Two more ways to make this easier
+            </h2>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
-            {memoryBloomSteps.map((s, i) => (
-              <Reveal key={s.n} delay={i * 0.08}>
-                <div className="bg-white rounded-2xl p-6 h-full text-center" style={{ boxShadow: '0 12px 28px -16px rgba(139,115,85,0.2)' }}>
-                  <p
-                    className="text-xs tracking-[3px] mb-3"
-                    style={{ color: '#7C8B68', fontWeight: 600 }}
-                  >
-                    {s.n}
-                  </p>
-                  <p className="font-medium text-[#5C4A3A] mb-1">{s.title}</p>
-                  <p className="text-sm text-[#3A3A3A]/70">{s.desc}</p>
+          <div className="grid sm:grid-cols-2 gap-10">
+            {/* MemoryBloom */}
+            <Reveal>
+              <div className="bg-white rounded-[1.5rem] p-8 h-full flex flex-col" style={{ boxShadow: '0 20px 45px -24px rgba(139,115,85,0.25)' }}>
+                <div className="flex items-center gap-2 mb-3">
+                  <BloomIcon size={22} style={{ color: '#5C4A3A' }} />
+                  <h3 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>MemoryBloom</h3>
                 </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.2} className="mt-12 flex flex-wrap gap-3 justify-center">
-            {['Unlimited guest uploads', 'No app required', '30 days live'].map((b) => (
-              <span
-                key={b}
-                className="text-xs px-4 py-2 rounded-full"
-                style={{ background: 'rgba(124,139,104,0.12)', color: '#5C6B4E' }}
-              >
-                {b}
-              </span>
-            ))}
-          </Reveal>
-
-          <Reveal delay={0.22} className="text-center mt-6">
-            <p className="text-sm text-[#3A3A3A]/70">
-              Usually <span className="line-through opacity-60">R750</span>{' '}
-              <span className="font-medium text-[#5C4A3A]">R350</span> — launch special, limited time
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.25} className="text-center mt-8">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/wishes/photo-album"
-                className="inline-block px-8 py-3.5 rounded-full font-medium text-white"
-                style={{ background: '#7C8B68' }}
-              >
-                Get MemoryBloom — R350
-              </a>
-              <a
-                href="/wishes/photo-album#showcase"
-                className="inline-block px-8 py-3.5 rounded-full font-medium border"
-                style={{ borderColor: '#7C8B68', color: '#7C8B68', background: '#fff' }}
-              >
-                See a live demo
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Meet The Wedding Bloom */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <Reveal className="text-center mb-4">
-            <p className="uppercase tracking-[3px] text-xs mb-4 text-[#8B7355]">Introducing</p>
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <BloomIcon size={24} style={{ color: '#5C4A3A' }} />
-              <h2 className="text-3xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                Meet The Wedding Bloom
-              </h2>
-            </div>
-            <p className="text-[#3A3A3A]/75 max-w-lg mx-auto mb-2">
-              Your invitation is only part of the day. This is everything behind it.
-            </p>
-            <p className="text-[#3A3A3A]/75 max-w-lg mx-auto">
-              A full wedding planner that lives in your own Google Sheet, built for budget, guests,
-              suppliers, seating and the day-of timeline, all in one place.
-            </p>
-          </Reveal>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
-            {weddingBloomSteps.map((s, i) => (
-              <Reveal key={s.n} delay={i * 0.08}>
-                <div className="rounded-2xl p-6 h-full text-center" style={{ background: '#FAF6F0', boxShadow: '0 12px 28px -16px rgba(139,115,85,0.2)' }}>
-                  <p
-                    className="text-xs tracking-[3px] mb-3"
-                    style={{ color: '#7C8B68', fontWeight: 600 }}
-                  >
-                    {s.n}
-                  </p>
-                  <p className="font-medium text-[#5C4A3A] mb-1">{s.title}</p>
-                  <p className="text-sm text-[#3A3A3A]/70">{s.desc}</p>
+                <p className="text-sm text-[#3A3A3A]/75 mb-6">
+                  The best photos aren&apos;t always taken by the photographer. One QR code turns every
+                  guest's phone into part of your gallery.
+                </p>
+                <ul className="space-y-2.5 text-sm text-[#3A3A3A]/80 mb-6 flex-1">
+                  {memoryBloomSteps.map((s) => (
+                    <li key={s.n} className="flex gap-2.5">
+                      <span className="text-[#7C8B68]">✦</span>
+                      <span><span className="font-medium text-[#5C4A3A]">{s.title}.</span> {s.desc}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-sm text-[#3A3A3A]/70 mb-5">
+                  Usually <span className="line-through opacity-60">R750</span>{' '}
+                  <span className="font-medium text-[#5C4A3A]">R350</span> — launch special
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a href="/wishes/photo-album" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium text-white" style={{ background: '#7C8B68' }}>
+                    Get MemoryBloom — R350
+                  </a>
+                  <a href="/wishes/photo-album#showcase" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium border" style={{ borderColor: '#7C8B68', color: '#7C8B68' }}>
+                    See a live demo
+                  </a>
                 </div>
-              </Reveal>
-            ))}
+              </div>
+            </Reveal>
+
+            {/* The Wedding Bloom */}
+            <Reveal delay={0.08}>
+              <div className="bg-white rounded-[1.5rem] p-8 h-full flex flex-col" style={{ boxShadow: '0 20px 45px -24px rgba(139,115,85,0.25)' }}>
+                <div className="flex items-center gap-2 mb-3">
+                  <BloomIcon size={22} style={{ color: '#5C4A3A' }} />
+                  <h3 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>The Wedding Bloom</h3>
+                </div>
+                <p className="text-sm text-[#3A3A3A]/75 mb-6">
+                  Your invitation is only part of the day. This is everything behind it — budget,
+                  guests, suppliers, seating and the day-of timeline, in your own Google Sheet.
+                </p>
+                <ul className="space-y-2.5 text-sm text-[#3A3A3A]/80 mb-6 flex-1">
+                  {weddingBloomSteps.map((s) => (
+                    <li key={s.n} className="flex gap-2.5">
+                      <span className="text-[#7C8B68]">✦</span>
+                      <span><span className="font-medium text-[#5C4A3A]">{s.title}.</span> {s.desc}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-sm text-[#3A3A3A]/70 mb-5">
+                  One once-off payment <span className="font-medium text-[#5C4A3A]">R750</span> — no subscription, ever
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a href="/wishes/wedding-bloom" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium text-white" style={{ background: '#7C8B68' }}>
+                    Get The Wedding Bloom — R750
+                  </a>
+                  <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium border" style={{ borderColor: '#7C8B68', color: '#7C8B68' }}>
+                    Ask a question
+                  </a>
+                </div>
+              </div>
+            </Reveal>
           </div>
-
-          <Reveal delay={0.2} className="mt-12 flex flex-wrap gap-3 justify-center">
-            {['Budget & supplier tracker', 'Guest list & RSVP tracking', 'Seating sign with QR code', 'No subscription, ever'].map((b) => (
-              <span
-                key={b}
-                className="text-xs px-4 py-2 rounded-full"
-                style={{ background: 'rgba(124,139,104,0.12)', color: '#5C6B4E' }}
-              >
-                {b}
-              </span>
-            ))}
-          </Reveal>
-
-          <Reveal delay={0.25} className="text-center mt-8">
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/wishes/wedding-bloom"
-                className="inline-block px-8 py-3.5 rounded-full font-medium text-white"
-                style={{ background: '#7C8B68' }}
-              >
-                Get The Wedding Bloom — R750
-              </a>
-              <a
-                href={WA_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-8 py-3.5 rounded-full font-medium border"
-                style={{ borderColor: '#7C8B68', color: '#7C8B68', background: '#fff' }}
-              >
-                Ask a question on WhatsApp
-              </a>
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -603,20 +547,20 @@ export default function WishesPage() {
               across people worth vouching for.
             </p>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
-            {vendorCategories.map((v, i) => (
-              <Reveal key={v.label} delay={i * 0.05}>
-                <div
-                  className="rounded-2xl p-6 text-center h-full"
-                  style={{ background: 'rgba(255,255,255,0.6)', border: '1px dashed #D4C4A0' }}
-                >
-                  <div className="mb-2">{v.icon}</div>
-                  <p className="text-lg mb-1 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{v.label}</p>
-                  <p className="text-xs text-[#A8B89C]">Recommendations coming soon</p>
-                </div>
-              </Reveal>
+          {/* A simple inline row rather than four dashed boxes — there's
+              no content here yet ("coming soon"), so it shouldn't carry
+              as much visual weight as the sections with real content. */}
+          <Reveal delay={0.05} className="flex flex-wrap justify-center gap-x-10 gap-y-6 mt-12">
+            {vendorCategories.map((v) => (
+              <div key={v.label} className="flex items-center gap-2.5">
+                <span className="[&_svg]:w-5 [&_svg]:h-5">{v.icon}</span>
+                <span className="text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.05rem' }}>
+                  {v.label}
+                </span>
+              </div>
             ))}
-          </div>
+          </Reveal>
+          <p className="text-center text-xs text-[#A8B89C] mt-4">Recommendations coming soon</p>
         </div>
       </section>
 
