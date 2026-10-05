@@ -11,54 +11,36 @@ import PricingCard from '../../../components/wishes/PricingCard'
 // routed by the enquiryType field. See code-gs dandelion wishes enquiries.txt.
 const ENQUIRY_API_URL = 'https://script.google.com/macros/s/AKfycby9eYADuyLFGddnIoK83R_9hEzIwQtm5S2ZRe0lnc-OybRjo_S5ou0jvGeYuV6vGGJ9mw/exec'
 
-const included = [
+// Grouped into three working categories instead of one flat 12-tile grid —
+// this is how the planner is actually organised for a couple using it, and
+// it reads as three short decisions rather than a wall of identical cards.
+const includedGroups = [
   {
-    title: 'Dashboard & countdown',
-    desc: 'Days to go, an overall progress bar, category progress, and today’s priorities in one glance.',
+    heading: 'Plan & track',
+    items: [
+      ['Dashboard & countdown', 'Days to go, an overall progress bar, category progress, and today’s priorities in one glance.'],
+      ['Automatic checklist', 'Built from your wedding date, guest count and planning style, with due dates that shift if your date changes.'],
+      ['Budget manager', 'Tracks estimated vs actual cost per category, flags anything over budget, and warns before a balance is due.'],
+      ['Wedding health check', 'A plain-language read on how you’re tracking, plus your top three things to focus on this week.'],
+    ],
   },
   {
-    title: 'Automatic checklist',
-    desc: 'Built from your wedding date, guest count and planning style, with due dates that shift if your date changes.',
+    heading: 'Guests & the day',
+    items: [
+      ['Guest list & RSVP', 'One link for every guest to RSVP themselves, meal choice and dietary notes included.'],
+      ['Seating plan', 'Assign guests to tables with capacity warnings, plus a Find My Seat link guests can use on the day.'],
+      ['Day-of timeline', 'Your run sheet for the big day, time by time, with who’s responsible for what.'],
+      ['Supplier directory', 'Every quote, deposit, balance and status (favourite, shortlisted, booked, paid) in one place.'],
+    ],
   },
   {
-    title: 'Budget manager',
-    desc: 'Tracks estimated vs actual cost per category, flags anything over budget, and warns before a balance is due.',
-  },
-  {
-    title: 'Supplier directory',
-    desc: 'Every quote, deposit, balance and status (favourite, shortlisted, booked, paid) in one place.',
-  },
-  {
-    title: 'Guest list & RSVP',
-    desc: 'One link for every guest to RSVP themselves, meal choice and dietary notes included. No per-guest links to manage.',
-  },
-  {
-    title: 'Seating plan',
-    desc: 'Assign guests to tables with capacity warnings, plus a Find My Seat link guests can use on the day.',
-  },
-  {
-    title: 'Day-of timeline',
-    desc: 'Your run sheet for the big day, time by time, with who’s responsible for what.',
-  },
-  {
-    title: '19 planning sections',
-    desc: 'Bride, groom, bridal party, catering, decor, music, photography, cake, transport, accommodation, packing, responsibilities, emergency plan, stationery, videography, style board, honeymoon, journal and weather plan.',
-  },
-  {
-    title: 'Wedding health check',
-    desc: 'A plain-language read on how you’re tracking, plus your top three things to focus on this week.',
-  },
-  {
-    title: 'Automatic Drive folder',
-    desc: 'A tidy folder structure for every supplier, contract and document, created for you the moment you save your names.',
-  },
-  {
-    title: 'PDF reports',
-    desc: 'Export your budget, guest list, supplier list, seating plan, catering plan, timeline and contact sheet as PDFs, or all of them together as one planning pack.',
-  },
-  {
-    title: 'Weekly email reminders',
-    desc: 'A Monday morning email with what’s overdue, what’s due this week, and any payments coming up.',
+    heading: 'Stay organised',
+    items: [
+      ['19 planning sections', 'Bride, groom, bridal party, catering, decor, music, photography, cake, transport, accommodation and more.'],
+      ['Automatic Drive folder', 'A tidy folder structure for every supplier, contract and document, created the moment you save your names.'],
+      ['PDF reports', 'Export your budget, guest list, seating plan and timeline as PDFs, or all of them together as one planning pack.'],
+      ['Weekly email reminders', 'A Monday morning email with what’s overdue, what’s due this week, and any payments coming up.'],
+    ],
   },
 ]
 
@@ -110,6 +92,45 @@ function PetalField() {
   )
 }
 
+// A quick illustrative preview of the planner dashboard, built from plain
+// divs rather than a screenshot — gives the hero something to look at on
+// the right instead of stacking everything dead-center, and doubles as a
+// concrete preview of what "Dashboard & countdown" below actually means.
+function DashboardPreview() {
+  const rows = [
+    { label: 'Venue & catering', pct: 100 },
+    { label: 'Guest list & RSVP', pct: 72 },
+    { label: 'Decor & styling', pct: 45 },
+    { label: 'Photography', pct: 20 },
+  ]
+  return (
+    <div className="bg-white rounded-[1.75rem] border border-[#E5DED2] shadow-[0_30px_60px_-30px_rgba(139,115,85,0.35)] p-6 w-full max-w-sm">
+      <div className="flex items-baseline justify-between mb-5">
+        <p className="text-sm text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+          Emma &amp; James
+        </p>
+        <p className="text-xs text-[#A8B89C]">142 days to go</p>
+      </div>
+      <div className="space-y-3.5">
+        {rows.map((r) => (
+          <div key={r.label}>
+            <div className="flex justify-between text-[11px] text-[#8B7355] mb-1">
+              <span>{r.label}</span>
+              <span>{r.pct}%</span>
+            </div>
+            <div className="h-1.5 rounded-full bg-[#F1F0EB] overflow-hidden">
+              <div className="h-full rounded-full" style={{ width: `${r.pct}%`, background: '#A8B89C' }} />
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-5 pt-4 border-t border-[#E5DED2] text-xs text-[#3A3A3A]/70">
+        Today: confirm final guest count, follow up with caterer
+      </div>
+    </div>
+  )
+}
+
 export default function WeddingBloomPage() {
   const [form, setForm] = useState({
     coupleNames: '', email: '', phone: '', weddingDate: '', notes: '',
@@ -141,103 +162,123 @@ export default function WeddingBloomPage() {
       <WishesNav />
       <PetalField />
 
-      {/* Hero */}
-      <div className="max-w-4xl mx-auto px-6 pt-14 pb-16 text-center relative" style={{ zIndex: 1 }}>
-        <Reveal>
-          <p className="text-2xl mb-3" style={{ fontFamily: "'Alex Brush', cursive", color: '#8B7355' }}>
-            The Wedding Bloom
-          </p>
-          <h1 className="text-3xl sm:text-4xl mb-5 text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-            Every part of planning your wedding, in one place you own
-          </h1>
-          <p className="text-sm sm:text-base text-[#3A3A3A]/75 max-w-xl mx-auto mb-8">
-            A complete wedding planner built on Google Sheets. Your budget, guest list, suppliers, seating,
-            checklist and timeline, all working together, all backed up in your own Google account.
-            One once-off payment, yours to keep.
-          </p>
-          <a
-            href="#order"
-            className="inline-block px-8 py-3.5 rounded-full font-medium text-white transition-transform hover:scale-[1.02]"
-            style={{ background: '#7C8B68' }}
-          >
-            Get The Wedding Bloom &mdash; R750
-          </a>
-        </Reveal>
+      {/* Hero — asymmetric now: copy on the left, a live-feeling dashboard
+          preview on the right, instead of one centered text block over a
+          background. Gives the page an actual focal point. */}
+      <div className="max-w-6xl mx-auto px-6 pt-14 pb-16 relative" style={{ zIndex: 1 }}>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+          <Reveal>
+            <p className="text-2xl mb-3" style={{ fontFamily: "'Alex Brush', cursive", color: '#8B7355' }}>
+              The Wedding Bloom
+            </p>
+            <h1 className="text-3xl sm:text-4xl mb-5 text-[#5C4A3A] leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              Every part of planning your wedding, in one place you own
+            </h1>
+            <p className="text-sm sm:text-base text-[#3A3A3A]/75 max-w-xl mb-8">
+              A complete wedding planner built on Google Sheets. Your budget, guest list, suppliers, seating,
+              checklist and timeline, all working together, all backed up in your own Google account.
+              One once-off payment, yours to keep.
+            </p>
+            <a
+              href="#order"
+              className="inline-block px-8 py-3.5 rounded-full font-medium text-white transition-transform hover:scale-[1.02]"
+              style={{ background: '#7C8B68' }}
+            >
+              Get The Wedding Bloom &mdash; R750
+            </a>
+          </Reveal>
+          <Reveal delay={0.1} className="flex justify-center lg:justify-end">
+            <DashboardPreview />
+          </Reveal>
+        </div>
       </div>
 
-      {/* What's included */}
+      {/* What's included — three grouped checklists instead of a 12-tile
+          card grid, divided by hairlines rather than repeated white boxes. */}
       <div className="max-w-5xl mx-auto px-6 pb-16 relative" style={{ zIndex: 1 }}>
-        <Reveal className="text-center mb-10">
-          <p className="text-xs uppercase tracking-[2px] text-[#7C8B68] mb-2">What&apos;s included</p>
+        <Reveal className="mb-10 max-w-lg">
           <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             Everything you need, nothing you don&apos;t
           </h2>
         </Reveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {included.map((item, i) => (
-            <Reveal key={item.title} delay={(i % 3) * 0.05}>
-              <div className="bg-white rounded-2xl p-6 h-full border border-[#E5DED2]">
-                <p className="text-sm font-medium text-[#5C4A3A] mb-2">{item.title}</p>
-                <p className="text-xs text-[#3A3A3A]/70 leading-relaxed">{item.desc}</p>
-              </div>
+        <div className="grid sm:grid-cols-3 gap-10 sm:gap-6">
+          {includedGroups.map((group, gi) => (
+            <Reveal key={group.heading} delay={gi * 0.08} className={gi > 0 ? 'sm:border-l sm:border-[#E5DED2] sm:pl-6' : ''}>
+              <p className="text-sm font-medium text-[#7C8B68] mb-4">{group.heading}</p>
+              <ul className="space-y-3.5">
+                {group.items.map(([title, desc]) => (
+                  <li key={title}>
+                    <p className="text-sm font-medium text-[#5C4A3A]">{title}</p>
+                    <p className="text-xs text-[#3A3A3A]/65 leading-relaxed mt-0.5">{desc}</p>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           ))}
         </div>
       </div>
 
-      {/* How it works */}
+      {/* How it works — a connected timeline instead of a row of numbered
+          circles, so the four steps read as one continuous path. */}
       <div className="max-w-4xl mx-auto px-6 pb-16 relative" style={{ zIndex: 1 }}>
-        <Reveal className="text-center mb-10">
+        <Reveal className="mb-12 max-w-lg">
           <p className="text-xs uppercase tracking-[2px] text-[#7C8B68] mb-2">How it works</p>
           <h2 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             From order to organised, in a few minutes
           </h2>
         </Reveal>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {steps.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.08}>
-              <div className="text-center">
-                <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center mx-auto mb-3 text-sm font-medium text-white"
-                  style={{ background: '#A8B89C' }}
-                >
-                  {i + 1}
-                </div>
-                <p className="text-sm font-medium text-[#5C4A3A] mb-1.5">{s.title}</p>
+        <div className="relative">
+          <div className="hidden sm:block absolute left-0 right-0 top-[7px] h-px bg-[#E5DED2]" />
+          <div className="grid sm:grid-cols-4 gap-8 sm:gap-5">
+            {steps.map((s, i) => (
+              <Reveal key={s.title} delay={i * 0.08} className="relative">
+                <div className="hidden sm:block w-3.5 h-3.5 rounded-full bg-[#A8B89C] ring-4 ring-[#FAF6F0] mb-4" />
+                <p className="text-sm font-medium text-[#5C4A3A] mb-1.5">
+                  <span className="sm:hidden text-[#A8B89C] mr-1.5">{i + 1}.</span>
+                  {s.title}
+                </p>
                 <p className="text-xs text-[#3A3A3A]/70 leading-relaxed">{s.desc}</p>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Pricing */}
-      <div className="max-w-md mx-auto px-6 pb-16 relative" style={{ zIndex: 1 }}>
-        <Reveal>
-          <PricingCard
-            tier="One once-off payment"
-            price="R750"
-            note="Yours to keep, no subscription, no monthly fee"
-            featured
-            features={[
-              'Full planner, all 19 sections included',
-              'Guest RSVP and Find My Seat pages',
-              'Automatic Drive folder for your documents',
-              'PDF reports whenever you need them',
-              'Weekly reminder emails',
-              'Private, key-protected admin link',
-            ]}
-          />
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="text-xs text-center text-[#A8B89C] mt-5">
-            Already planning your photos too? Pair it with{' '}
-            <a href="/wishes/memorybloom" className="underline hover:text-[#7C8B68]">
-              MemoryBloom
-            </a>
-            , your guest photo album.
-          </p>
-        </Reveal>
+      {/* Pricing — set beside a short reassurance note instead of stacked
+          alone in a narrow centered column. */}
+      <div className="max-w-5xl mx-auto px-6 pb-16 relative" style={{ zIndex: 1 }}>
+        <div className="grid sm:grid-cols-[0.85fr_1fr] gap-10 items-center">
+          <Reveal>
+            <PricingCard
+              tier="One once-off payment"
+              price="R750"
+              note="Yours to keep, no subscription, no monthly fee"
+              featured
+              features={[
+                'Full planner, all 19 sections included',
+                'Guest RSVP and Find My Seat pages',
+                'Automatic Drive folder for your documents',
+                'PDF reports whenever you need them',
+                'Weekly reminder emails',
+                'Private, key-protected admin link',
+              ]}
+            />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-sm text-[#3A3A3A]/70 leading-relaxed max-w-sm">
+              Built once, in Google Sheets you already know how to open — no new software to learn, no
+              subscription to cancel later. It stays in your own Google account, backed up the way your
+              other documents already are.
+            </p>
+            <p className="text-xs text-[#A8B89C] mt-5">
+              Already planning your photos too? Pair it with{' '}
+              <a href="/wishes/memorybloom" className="underline hover:text-[#7C8B68]">
+                MemoryBloom
+              </a>
+              , your guest photo album.
+            </p>
+          </Reveal>
+        </div>
       </div>
 
       {/* Order form */}
