@@ -8,17 +8,22 @@
 // Fonts are loaded here via next/font rather than relying on the root
 // layout — next/font works in any layout (not just root) and guarantees
 // the @font-face is actually injected, which a plain <link> in a nested
-// layout can't do (only the root layout can render <head>). This fixes
-// couple names silently falling back to the browser's default cursive
-// font when Alex Brush hadn't loaded.
+// layout can't do (only the root layout can render <head>).
 
 import { Cormorant_Garamond, Alex_Brush } from 'next/font/google'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  style: 'normal',
   variable: '--font-cormorant',
+})
+
+const cormorantItalic = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: 'italic',
+  variable: '--font-cormorant-italic',
 })
 
 const alexBrush = Alex_Brush({
@@ -36,7 +41,7 @@ export const metadata = {
 export default function WishesLayout({ children }) {
   return (
     <div
-      className={`${cormorant.variable} ${alexBrush.variable} bg-[#FAF6F0] text-[#3A3A3A]`}
+      className={`${cormorant.variable} ${cormorantItalic.variable} ${alexBrush.variable} bg-[#FAF6F0] text-[#3A3A3A]`}
       style={{ minHeight: '100vh' }}
     >
       {children}
