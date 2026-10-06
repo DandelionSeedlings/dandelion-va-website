@@ -61,6 +61,13 @@ const weddingBloomSteps = [
   { n: 'KEEP', title: 'Yours, no subscription', desc: 'One payment, one copy, no monthly fee ever.' },
 ]
 
+const rsvpBloomSteps = [
+  { n: 'SHARE', title: 'One link, or personal invites', desc: 'Share a single RSVP link with everyone, or email each guest their own pre-filled link, your choice.' },
+  { n: 'TRACK', title: 'Guest list built in', desc: 'Every RSVP lands straight into your own guest list, no spreadsheet chasing.' },
+  { n: 'LOCK', title: 'Pre-filled & locked', desc: "Personal invites open already filled in with that guest's name, so there's no retyping or mismatched entries." },
+  { n: 'KEEP', title: 'Yours, no subscription', desc: 'One payment, one copy, no monthly fee ever.' },
+]
+
 const extras = [
   { name: 'MemoryBloom — Interactive Guest Photo Album', desc: 'Guests scan one QR code and upload unlimited photos to a shared live gallery. The album stays live for 30 days after the event.', price: 'R350', href: '/wishes/photo-album' },
   { name: 'Flip-to-Invite Save-the-Date', desc: 'Goes live early with a teaser & countdown, flips to the full invite when ready.', price: 'R250', promo: 'Free for now' },
@@ -125,6 +132,7 @@ const faqs = [
   { q: 'What if a guest doesn’t have a smartphone?', a: 'We can add a simple printable card with the link and a QR code.' },
   { q: 'How do RSVPs reach me?', a: 'Automatically, in a live guest list you can check anytime.' },
   { q: 'Can I use my own domain?', a: 'Yes, optional — or use the free Dandelion Wishes link.' },
+  { q: 'Can I get my invitation in Afrikaans?', a: 'Yes — Afrikaans is available on request, just mention it when you start your invitation.' },
 ]
 
 export default function WishesPage() {
@@ -304,22 +312,21 @@ export default function WishesPage() {
         </div>
       </section>
 
-      {/* Two more ways to make this easier — MemoryBloom and The Wedding
-          Bloom used to be two full-width sections back to back, each
-          with its own near-identical 4-box grid, which is the kind of
-          literal repetition that reads as templated. Side by side as
-          one comparison instead, so it's one decision ("which of these
-          two, or both") rather than two copies of the same section. */}
+      {/* Three more ways to make this easier — MemoryBloom, The Wedding
+          Bloom, and RSVPBloom. Side by side as one comparison rather than
+          three near-identical full-width sections back to back, so it's
+          one decision ("which of these, or more than one") rather than
+          three copies of the same section. */}
       <section className="py-20 px-6" style={{ background: '#F3ECE3' }}>
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <Reveal className="text-center mb-14">
             <p className="uppercase tracking-[3px] text-xs mb-4 text-[#8B7355]">Beyond the invitation</p>
             <h2 className="text-3xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-              Two more ways to make this easier
+              Three more ways to make this easier
             </h2>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 gap-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {/* MemoryBloom */}
             <Reveal>
               <div className="bg-white rounded-[1.5rem] p-8 h-full flex flex-col" style={{ boxShadow: '0 20px 45px -24px rgba(139,115,85,0.25)' }}>
@@ -379,6 +386,39 @@ export default function WishesPage() {
                 <div className="flex flex-wrap gap-3">
                   <a href="/wishes/wedding-bloom" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium text-white" style={{ background: '#7C8B68' }}>
                     Get The Wedding Bloom — R750
+                  </a>
+                  <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium border" style={{ borderColor: '#7C8B68', color: '#7C8B68' }}>
+                    Ask a question
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* RSVPBloom */}
+            <Reveal delay={0.16}>
+              <div className="bg-white rounded-[1.5rem] p-8 h-full flex flex-col" style={{ boxShadow: '0 20px 45px -24px rgba(139,115,85,0.25)' }}>
+                <div className="flex items-center gap-2 mb-3">
+                  <BloomIcon size={22} style={{ color: '#5C4A3A' }} />
+                  <h3 className="text-2xl text-[#5C4A3A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>RSVPBloom</h3>
+                </div>
+                <p className="text-sm text-[#3A3A3A]/75 mb-6">
+                  Already sorted for an invitation, or don&apos;t need the full planner? This is the
+                  bare essentials — a guest list and RSVP, nothing else.
+                </p>
+                <ul className="space-y-2.5 text-sm text-[#3A3A3A]/80 mb-6 flex-1">
+                  {rsvpBloomSteps.map((s) => (
+                    <li key={s.n} className="flex gap-2.5">
+                      <span className="text-[#7C8B68]">✦</span>
+                      <span><span className="font-medium text-[#5C4A3A]">{s.title}.</span> {s.desc}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-sm text-[#3A3A3A]/70 mb-5">
+                  One once-off payment <span className="font-medium text-[#5C4A3A]">R400</span> — no subscription, ever
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <a href="/wishes/rsvpbloom" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium text-white" style={{ background: '#7C8B68' }}>
+                    Get RSVPBloom — R400
                   </a>
                   <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium border" style={{ borderColor: '#7C8B68', color: '#7C8B68' }}>
                     Ask a question
