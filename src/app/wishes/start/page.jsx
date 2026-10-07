@@ -8,7 +8,55 @@ import Reveal from '../../../components/wishes/Reveal'
 // the resulting /exec URL here.
 const ENQUIRY_API_URL = 'https://script.google.com/macros/s/AKfycby9eYADuyLFGddnIoK83R_9hEzIwQtm5S2ZRe0lnc-OybRjo_S5ou0jvGeYuV6vGGJ9mw/exec'
 
-const packages = ['Essential Suite — R750', 'Interactive Suite — R1,250', 'Bespoke Suite — R2,650+', "I'm not sure yet"]
+const pricingSuites = [
+  {
+    name: 'Essential Suite',
+    price: 'R1,250',
+    note: 'once-off',
+    featured: false,
+    features: [
+      'Custom single-page mobile invite',
+      'Digital RSVP form + plus-ones',
+      'Live sync to Google Sheets',
+      'Maps & Waze directions',
+      'Standard web address',
+      'WhatsApp save-the-date image',
+    ],
+  },
+  {
+    name: 'Interactive Suite',
+    price: 'R2,650',
+    note: 'once-off',
+    featured: true,
+    badge: 'Most loved',
+    features: [
+      'Everything in Essential',
+      'Custom .co.za domain, 12 months',
+      'Live countdown timer',
+      'MemoryBloom guest photo album, 30 days live',
+      'Song requests on RSVP',
+      'Add to Calendar, one tap',
+      'Animated WhatsApp invite',
+    ],
+  },
+  {
+    name: 'Bespoke Suite',
+    price: 'R4,500+',
+    note: 'custom experience',
+    featured: false,
+    features: [
+      'Everything in Interactive',
+      'Free Flip-to-Invite save-the-date',
+      'MemoryBloom, unlimited uploads',
+      'Extended 18-month hosting',
+      'Multi-page: story, itinerary, FAQs',
+      'Multi-day event RSVPs',
+      'Auto WhatsApp/email confirmations',
+    ],
+  },
+]
+
+const packages = ['Essential Suite — R1,250', 'Interactive Suite — R2,650', 'Bespoke Suite — R4,500+', "I'm not sure yet"]
 
 const styles = [
   { label: 'Romantic & Soft', desc: 'Blush · Ivory · Delicate florals', image: '/images/wishes/styles/romantic-soft.jpg' },
@@ -48,6 +96,72 @@ function Toggle({ label, selected, onClick }) {
       }
     >
       {label}
+    </button>
+  )
+}
+
+function CheckIcon({ color = '#A8B89C' }) {
+  return (
+    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" className="shrink-0 mt-[3px]">
+      <path d="M2 6.5L5 9.5L11 3.5" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function PackageCard({ suite, selected, onChoose }) {
+  const dark = suite.featured
+  return (
+    <button
+      type="button"
+      onClick={onChoose}
+      className="text-left rounded-2xl p-6 flex flex-col transition-all"
+      style={{
+        background: dark ? 'linear-gradient(160deg, #8B7355, #5C4A3A)' : '#fff',
+        color: dark ? '#fff' : '#3A3A3A',
+        border: selected ? '2px solid #7C8B68' : dark ? '2px solid transparent' : '1px solid #E5DED2',
+        boxShadow: selected ? '0 14px 30px -14px rgba(124,139,104,0.45)' : 'none',
+      }}
+    >
+      {suite.badge && (
+        <span
+          className="self-start text-[11px] font-medium px-3 py-1 rounded-full mb-4"
+          style={{ background: 'rgba(232,196,196,0.9)', color: '#5C4A3A' }}
+        >
+          {suite.badge}
+        </span>
+      )}
+      <p
+        className="text-xs uppercase tracking-[2px] mb-3"
+        style={{ color: dark ? '#D9CBB8' : '#A8B89C' }}
+      >
+        {suite.name}
+      </p>
+      <p className="text-3xl mb-1" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+        {suite.price}
+      </p>
+      <p className="text-xs mb-5" style={{ color: dark ? 'rgba(255,255,255,0.65)' : '#3A3A3A99' }}>
+        {suite.note}
+      </p>
+      <ul className="space-y-2.5 flex-1">
+        {suite.features.map((f) => (
+          <li key={f} className="flex items-start gap-2 text-sm">
+            <CheckIcon color={dark ? '#D9CBB8' : '#A8B89C'} />
+            <span style={{ color: dark ? 'rgba(255,255,255,0.9)' : '#3A3A3A' }}>{f}</span>
+          </li>
+        ))}
+      </ul>
+      <span
+        className="mt-6 text-center text-sm font-medium py-2.5 rounded-full"
+        style={
+          selected
+            ? { background: '#7C8B68', color: '#fff' }
+            : dark
+            ? { background: 'rgba(255,255,255,0.12)', color: '#fff' }
+            : { background: '#F1F4EE', color: '#7C8B68' }
+        }
+      >
+        {selected ? 'Selected' : 'Choose this suite'}
+      </span>
     </button>
   )
 }
@@ -94,6 +208,12 @@ export default function StartInvitation() {
   const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }))
   const toggleFrom = (list, setList, value) =>
     setList(list.includes(value) ? list.filter((v) => v !== value) : [...list, value])
+
+  const choosePackage = (label) => {
+    setForm((f) => ({ ...f, package: label }))
+    const el = document.getElementById('invitation-form')
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -146,7 +266,8 @@ export default function StartInvitation() {
   return (
     <div className="bg-[#FAF6F0] text-[#3A3A3A] min-h-screen relative">
       <DandelionField />
-      <div className="max-w-2xl mx-auto px-6 py-16 relative" style={{ zIndex: 1 }}>
+
+      <div className="max-w-2xl mx-auto px-6 pt-16 relative" style={{ zIndex: 1 }}>
         <Reveal className="text-center mb-14">
           <img
             src="/images/wishes/lettermark.png"
@@ -164,8 +285,37 @@ export default function StartInvitation() {
             before we talk properly.
           </p>
         </Reveal>
+      </div>
 
-        <form onSubmit={handleSubmit} className="space-y-10">
+      {/* Packages — shown up front so a couple can see what's on offer
+          before filling anything in. Choosing a card pre-selects that
+          package below and scrolls straight to the form. */}
+      <div className="max-w-5xl mx-auto px-6 pb-16 relative" style={{ zIndex: 1 }}>
+        <Reveal className="text-center mb-10">
+          <p className="text-xs uppercase tracking-[2px] text-[#7C8B68] mb-2">What we offer</p>
+          <p className="text-sm text-[#3A3A3A]/70">One payment per wedding. No subscriptions, ever.</p>
+        </Reveal>
+        <div className="grid sm:grid-cols-3 gap-5 items-start">
+          {pricingSuites.map((s) => (
+            <Reveal key={s.name} delay={0.05}>
+              <PackageCard
+                suite={s}
+                selected={form.package.startsWith(s.name)}
+                onChoose={() => choosePackage(`${s.name} — ${s.price}`)}
+              />
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={0.15}>
+          <p className="text-center text-xs text-[#3A3A3A]/60 mt-6">
+            Not sure which one fits? Pick &quot;I&apos;m not sure yet&quot; in the form below and
+            we&apos;ll figure it out together.
+          </p>
+        </Reveal>
+      </div>
+
+      <div className="max-w-2xl mx-auto px-6 pb-16 relative" style={{ zIndex: 1 }}>
+        <form id="invitation-form" onSubmit={handleSubmit} className="space-y-10">
           {/* Basics */}
           <Reveal>
             <p className="text-xs uppercase tracking-[2px] text-[#7C8B68] mb-4">The basics</p>
