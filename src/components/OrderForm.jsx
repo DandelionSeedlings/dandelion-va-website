@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 // The Orders Apps Script deployment (Code.gs in the Orders sheet). Keep the same
 // deployment and publish a new version after changing the script.
 const ORDER_ENDPOINT = process.env.NEXT_PUBLIC_ORDER_ENDPOINT ||
-  'https://script.google.com/macros/s/AKfycbyUAtVX_pKihPq2iBqb_bq4ctso-v8z52YHHlSX3TflJaz_DlaMsTq8FUSoCw7hmQqPNw/exec'
+  'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
 const DISCOUNT = 0.10
 const MAX_POP = 5 * 1024 * 1024
