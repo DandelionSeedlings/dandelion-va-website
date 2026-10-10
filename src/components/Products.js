@@ -11,7 +11,7 @@ import {
   FaTag, FaPercentage, FaBookOpen
 } from 'react-icons/fa';
 
-const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec';
+const ORDER_FORM_URL = '/order';
 
 // Floating seeds configuration
 const floatingSeeds = Array.from({ length: 8 }, (_, i) => ({

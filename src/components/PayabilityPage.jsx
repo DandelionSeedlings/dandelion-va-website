@@ -153,14 +153,14 @@ const BODY = `<header class="top"><div class="wrap">
       <h3>Do it yourself</h3>
       <div class="big">R499</div><div style="color:var(--muted);font-size:14px">once off</div>
       <ul><li>Payability sheet and licence key</li><li>Step by step deploy guide</li><li>72 hour trial before you commit</li></ul>
-      <a class="btn btn-gold" style="display:block;text-align:center" href="https://wa.me/27728393087?text=Hi%2C%20I%27d%20like%20Payability%20(DIY%20R499)">Order on WhatsApp</a>
+      <a class="btn btn-gold" style="display:block;text-align:center" href="/order?product=payability">Order now</a>
     </div>
     <div class="card hl" style="background:#fff;color:var(--ink)">
       <span class="tag">Recommended</span>
       <h3>Done with you</h3>
       <div class="big">R999</div><div style="color:var(--muted);font-size:14px">once off</div>
       <ul><li>Everything in Do it yourself</li><li>We set it up with you on a call</li><li>Your company details, tax settings and first invoice done</li></ul>
-      <a class="btn btn-gold" style="display:block;text-align:center" href="https://wa.me/27728393087?text=Hi%2C%20I%27d%20like%20Payability%20(Done-With-You%20R999)">Order on WhatsApp</a>
+      <a class="btn btn-gold" style="display:block;text-align:center" href="/order?product=payability-dwy">Order now</a>
     </div>
   </div>
 </div></section>
