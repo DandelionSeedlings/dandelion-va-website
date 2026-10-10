@@ -77,7 +77,7 @@ font-family:var(--font-inter),Inter,system-ui,-apple-system,Segoe UI,Roboto,Aria
 .of textarea{min-height:84px;resize:vertical}
 .of .hint{font-size:12.5px;color:var(--muted);margin-top:5px}
 .of .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.of .pay{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.of .pay{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .of .opt{border:2px solid var(--line);border-radius:10px;padding:14px;text-align:center;cursor:pointer;font-weight:650;color:var(--navy);background:#fff}
 .of .opt:hover{border-color:var(--gold)}
 .of .opt.on{border-color:var(--gold);background:rgba(201,168,76,.12);box-shadow:0 0 0 3px rgba(201,168,76,.18)}
@@ -132,7 +132,7 @@ function findPreselect(param) {
 export default function OrderForm() {
   const [picked, setPicked] = useState({})
   const [f, setF] = useState({ firstName: '', lastName: '', email: '', phone: '', company: '', notes: '', website: '' })
-  const [method, setMethod] = useState('Bank Transfer')
+  const [method, setMethod] = useState('Card')
   const [code, setCode] = useState('')
   const [pop, setPop] = useState(null) // { name, data }
   const [busy, setBusy] = useState(false)
@@ -153,6 +153,10 @@ export default function OrderForm() {
       const pre = findPreselect(q.get('product'))
       if (pre) setPicked({ [pre.id]: true })
     } catch (e) {}
+    // Coming back with the browser Back button from the payment page must not leave the button stuck.
+    const back = (ev) => { if (ev.persisted) setBusy(false) }
+    window.addEventListener('pageshow', back)
+    return () => window.removeEventListener('pageshow', back)
   }, [])
 
   const codeOk = /^[A-Z0-9][A-Z0-9-]{2,29}$/.test(code.trim().toUpperCase())
@@ -209,11 +213,16 @@ export default function OrderForm() {
           productIds: chosen.map((p) => p.id),
           firstName: f.firstName, lastName: f.lastName, email: f.email, phone: f.phone,
           company: f.company, notes: f.notes, website: f.website,
-          paymentMethod: method, partnerCode: applied ? code.trim().toUpperCase() : '',
-          popFile: pop ? pop.data : '', popFileName: pop ? pop.name : '',
+          paymentMethod: total > 0 ? method : 'Bank Transfer', partnerCode: applied ? code.trim().toUpperCase() : '',
+          popFile: pop && method !== 'Card' ? pop.data : '', popFileName: pop ? pop.name : '',
         }),
       })
       const data = await res.json()
+      if (data && data.success && data.paymentUrl) {
+        // Card order: hand over to Paystack. They bring the buyer back to /order/thanks.
+        window.location.assign(data.paymentUrl)
+        return
+      }
       if (data && data.success) {
         setDone({ orderId: data.orderId, total: typeof data.total === 'number' ? data.total : total, items: chosen.map((p) => p.name), hadPop: !!pop, method })
         try { window.scrollTo(0, 0) } catch (x) {}
@@ -338,13 +347,18 @@ export default function OrderForm() {
               {code.trim() && !codeOk && <p className="hint" style={{ color: 'var(--bad)' }}>Use letters, numbers and dashes only.</p>}
             </div>
             <div className="pay" role="radiogroup" aria-label="Payment method">
-              {['Bank Transfer', 'QR Code'].map((m) => (
+              {['Card', 'Bank Transfer', 'QR Code'].map((m) => (
                 <label key={m} className={'opt' + (method === m ? ' on' : '')}>
-                  <input type="radio" name="method" checked={method === m} onChange={() => setMethod(m)} />{m === 'QR Code' ? 'Scan QR code' : 'Bank transfer'}
+                  <input type="radio" name="method" checked={method === m} onChange={() => setMethod(m)} />{m === 'QR Code' ? 'Scan QR code' : m === 'Card' ? 'Pay by card' : 'Bank transfer'}
                 </label>
               ))}
             </div>
-            {method === 'Bank Transfer' ? (
+            {method === 'Card' ? (
+              <div className="bank">
+                <strong>Secure card payment</strong><br />
+                You will be taken to Paystack to pay, then brought straight back here. Your licence keys are emailed as soon as the payment is confirmed.
+              </div>
+            ) : method === 'Bank Transfer' ? (
               <div className="bank">
                 <strong>FNB, Simone Theron</strong><br />
                 Account no: <strong>631 4425 1509</strong><br />
@@ -361,14 +375,14 @@ export default function OrderForm() {
             )}
           </fieldset>
 
-          <fieldset className="card" style={{ border: 0 }}>
+          {method !== 'Card' && (<fieldset className="card" style={{ border: 0 }}>
             <legend><span className="step">4</span>Proof of payment <span style={{ fontWeight: 500, color: 'var(--muted)', fontSize: 14 }}>(optional now, you can send it later)</span></legend>
             <label className={'upload' + (pop ? ' has' : '')}>
               <input type="file" accept="image/jpeg,image/png,image/webp,application/pdf" onChange={onFile} />
               <b>{pop ? 'File selected' : 'Choose your proof of payment'}</b>
               <span>{pop ? pop.name : 'JPG, PNG or PDF, up to 5 MB'}</span>
             </label>
-          </fieldset>
+          </fieldset>)}
 
           <div className="total" aria-live="polite">
             <div className="lab">Total{saving > 0 ? <small>You save {money(saving)}</small> : null}</div>
@@ -377,7 +391,7 @@ export default function OrderForm() {
 
           {error && <div className="err" role="alert" tabIndex={-1} ref={errRef}>{error}</div>}
 
-          <button className="btn" type="submit" disabled={busy}>{busy ? 'Placing your order...' : 'Complete order'}</button>
+          <button className="btn" type="submit" disabled={busy}>{busy ? (method === 'Card' && total > 0 ? 'Taking you to payment...' : 'Placing your order...') : (method === 'Card' && total > 0 ? 'Continue to secure payment' : 'Complete order')}</button>
         </form>
 
         <p className="foot">Questions? WhatsApp <a href="https://wa.me/27728393087" target="_blank" rel="noopener noreferrer">+27 72 839 3087</a> or email <a href="mailto:dandelioncreat@outlook.com">dandelioncreat@outlook.com</a></p>
