@@ -17,5 +17,11 @@ const nextConfig = {
       },
     ];
   },
+  // Payability sales page lives in public/payability.html
+  async rewrites() {
+    return [
+      { source: '/payability', destination: '/payability.html' },
+    ];
+  },
 }
 module.exports = nextConfig

@@ -179,14 +179,15 @@ const products = [
     subtitle: 'Invoice Sorter Pro',
     price: 499,
     priceLabel: 'R499',
-    description: 'Automated accounts receivable workflows to track billing cycles and optimize collections.',
+    description: 'A complete invoicing system that runs from your own Google Sheet: invoices, quotes, payment links and VAT reports, opened from one private link.',
     tagline: 'Streamlining cash flow with effortless efficiency.',
     icon: FaFileInvoice,
     color: 'from-cyan-500 to-blue-600',
     badge: null,
     badgeColor: '',
     available: true,
-    features: ['PDF generation', 'Email sending', 'Payment tracking', 'VAT reports'],
+    orderUrl: '/payability',
+    features: ['PDF invoices and email', 'Quotes and credit notes', 'Payment links', 'VAT reports'],
     category: 'financial-operations'
   },
   {
@@ -660,14 +661,14 @@ export default function Products() {
                 </div>
               </div>
               <p className="text-navy-600 mb-6 text-sm leading-relaxed">
-                <strong>You sell things and need to get paid.</strong> Payability is a full accounts receivable system — generate branded PDF invoices, track payments, send reminders, and know exactly who owes you what.
+                <strong>You sell things and need to get paid.</strong> Payability is a full invoicing system. Send invoices and quotes, add payment links, track payments, and know exactly who owes you what. It runs from your own private link, and your data stays in your own Google Sheet.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center gap-2 text-sm text-navy-700">
                   <FaCheckCircle className="text-cyan-500 flex-shrink-0" size={14} /> Generate branded PDF invoices
                 </li>
                 <li className="flex items-center gap-2 text-sm text-navy-700">
-                  <FaCheckCircle className="text-cyan-500 flex-shrink-0" size={14} /> Email invoices directly from Sheets
+                  <FaCheckCircle className="text-cyan-500 flex-shrink-0" size={14} /> Email invoices with the PDF attached
                 </li>
                 <li className="flex items-center gap-2 text-sm text-navy-700">
                   <FaCheckCircle className="text-cyan-500 flex-shrink-0" size={14} /> Track payment status & overdue
@@ -681,12 +682,10 @@ export default function Products() {
                 <p className="text-sm text-navy-700">Service businesses, agencies, consultants — anyone who invoices clients and needs cash flow visibility.</p>
               </div>
               <a
-                href={buildOrderUrl({ name: 'Payability', subtitle: 'Invoice Sorter Pro', price: 499, orderUrl: null }, globalPartnerCode)}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/payability"
                 className="block w-full text-center py-3 rounded-xl font-bold bg-cyan-500 hover:bg-cyan-600 text-white transition-all duration-300 flex items-center justify-center gap-2"
               >
-                <FaShoppingCart /> Deploy Payability
+                <FaArrowRight /> Learn More About Payability
               </a>
             </div>
           </div>

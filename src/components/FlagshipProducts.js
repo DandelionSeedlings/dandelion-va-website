@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { FaUsers, FaReceipt, FaCalendarCheck, FaArrowRight, FaGift } from 'react-icons/fa'
+import { FaUsers, FaReceipt, FaCalendarCheck, FaFileInvoice, FaArrowRight, FaGift } from 'react-icons/fa'
 
 const products = [
   {
@@ -30,23 +30,31 @@ const products = [
     desc: 'A live booking page and approval dashboard, no more back-and-forth to confirm a slot.',
     href: '/bookability',
   },
+  {
+    icon: FaFileInvoice,
+    name: 'Payability',
+    price: 'R499',
+    priceNote: 'once-off',
+    desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet, with no monthly fee.',
+    href: '/payability',
+  },
 ]
 
 export default function FlagshipProducts() {
   return (
     <section id="flagship-systems" className="py-24 px-4 bg-cream">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-3">Three Systems. Start Anywhere.</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-3">Four Systems. Start Anywhere.</h2>
           <p className="text-gray-600 max-w-xl mx-auto">Each one is engineered to work alone or together, as part of the full AbilitySuite&trade; ecosystem.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product, i) => (
             <motion.div
               key={i}

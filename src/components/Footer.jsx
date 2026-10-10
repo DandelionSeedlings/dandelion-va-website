@@ -117,11 +117,7 @@ export default function Footer() {
                   CRM Pro — R499 <FiExternalLink size={10} />
                 </a>
               </li>
-              <li>
-                <a href={buildOrderUrl('Payability', 'Invoice Sorter')} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm flex items-center gap-1">
-                  Invoice Sorter — R499 <FiExternalLink size={10} />
-                </a>
-              </li>
+              <li><Link href="/payability" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm">Payability — R499</Link></li>
               <li>
                 <a href={buildOrderUrl('Availability', 'Stock & Supplier')} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm flex items-center gap-1">
                   Stock & Supplier — R499 <FiExternalLink size={10} />

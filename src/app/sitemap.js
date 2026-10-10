@@ -5,6 +5,7 @@ export default function sitemap() {
     { url: base + '/receiptsnap', lastModified: new Date() },
     { url: base + '/connectability', lastModified: new Date() },
     { url: base + '/bookability', lastModified: new Date() },
+    { url: base + '/payability', lastModified: new Date() },
     { url: base + '/embeddedsupport', lastModified: new Date() },
   ]
 }
