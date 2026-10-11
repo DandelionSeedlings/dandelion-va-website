@@ -122,7 +122,7 @@ function DateLabel({ top = 65.5, crossover = false }) {
           ...(crossover ? crossoverGlow : {}),
         }}
       >
-        21.11.2027
+        21.11.2026
       </p>
     </Pos>
   )
