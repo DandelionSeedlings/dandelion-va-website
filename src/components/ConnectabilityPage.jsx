@@ -79,6 +79,16 @@ const CSS = `.cb{--navy:#0F172A;--navy2:#1E293B;--gold:#C9A84C;--cream:#F5F1E8;-
 .cb .p-cust{background:#DCFCE7;color:#166534}
 .cb .p-today{background:#FEE2E2;color:#991B1B}
 .cb .price.one{grid-template-columns:minmax(0,1fr);max-width:460px}
+
+.cb .shotframe{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 24px 50px -24px rgba(15,23,42,.35);border-top:4px solid var(--gold)}
+.cb .shotframe .bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#F8FAFC;border-bottom:1px solid #E2E8F0}
+.cb .shotframe .bar i{width:9px;height:9px;border-radius:50%;background:#CBD5E1;display:block}
+.cb .shotframe .bar span{margin-left:8px;font-size:12px;color:#64748B}
+.cb .shotframe img{display:block;width:100%;height:auto}
+.cb .shots{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.55fr);gap:18px;margin-top:18px;align-items:start}
+.cb .shots .shotframe.phone{border-radius:22px}
+.cb .shotnote{font-size:13px;color:var(--muted);margin:14px 0 0}
+@media (max-width:860px){.cb .shots{grid-template-columns:minmax(0,1fr)}.cb .shots .shotframe.phone{max-width:280px;margin:0 auto}}
 `
 
 const BODY = `<header class="top"><div class="wrap">
@@ -92,7 +102,7 @@ const BODY = `<header class="top"><div class="wrap">
     <h1>A simple CRM you own, for free.</h1>
     <p class="lead">Keep every contact, log every conversation and never miss a follow-up. It runs from your own Google Sheet and one private link. Your contacts stay in your account.</p>
     <div class="btns">
-      <a class="btn btn-gold" href="https://script.google.com/macros/s/AKfycbz3VCljSxG-fQsIcdr5Z0D4_BfrpVV6CTeTFLibw0BjFGpklhe6recnTJiwa4JnSI0/exec">Get Connectability free</a>
+      <a class="btn btn-gold" href="/order?product=crm-mini">Get Connectability free</a>
       <a class="btn btn-line" href="#how">See how it works</a>
     </div>
     <p class="fine">Free. No card needed. No subscription.</p>
@@ -148,6 +158,18 @@ const BODY = `<header class="top"><div class="wrap">
   </ul>
 </div></section>
 
+<section id="see"><div class="wrap">
+  <h2>See it in action</h2>
+  <p class="sub">Your dashboard, follow-ups and contacts. Here is what you open every morning.</p>
+  <div class="shotframe"><div class="bar"><i></i><i></i><i></i><span>Your private Connectability link</span></div><img src="/images/connectability/dashboard.webp" alt="Connectability dashboard showing contacts, follow-ups due and pipeline stages" width="1600" height="1538" loading="lazy"></div>
+  <div class="shots">
+    <div class="shotframe"><img src="/images/connectability/followups.webp" alt="Connectability follow-ups list showing overdue, today and upcoming follow-ups" width="1600" loading="lazy"></div>
+    <div class="shotframe"><img src="/images/connectability/contacts.webp" alt="Connectability contact list with lead status labels" width="1600" loading="lazy"></div>
+    <div class="shotframe phone"><img src="/images/connectability/phone-followups.webp" alt="Connectability follow-ups on a phone" width="780" height="1688" loading="lazy"></div>
+  </div>
+  <p class="shotnote">Screens show sample data.</p>
+</div></section>
+
 <section class="band" id="buy"><div class="wrap">
   <h2>Free, and yours to keep</h2>
   <p class="sub" style="margin-bottom:28px">One signup. No monthly fee, no renewal.</p>
@@ -157,7 +179,7 @@ const BODY = `<header class="top"><div class="wrap">
       <h3>Connectability</h3>
       <div class="big">R0</div><div style="color:var(--muted);font-size:14px">no card needed</div>
       <ul><li>Connectability sheet and free activation key</li><li>Step by step deploy guide</li><li>Import and export your contacts</li></ul>
-      <a class="btn btn-gold" style="display:block;text-align:center" href="https://script.google.com/macros/s/AKfycbz3VCljSxG-fQsIcdr5Z0D4_BfrpVV6CTeTFLibw0BjFGpklhe6recnTJiwa4JnSI0/exec">Get it free</a>
+      <a class="btn btn-gold" style="display:block;text-align:center" href="/order?product=crm-mini">Get it free</a>
     </div>
   </div>
   <p class="sub" style="margin:28px 0 0;color:#CBD5E1">Outgrown a contact list? <a href="/order?product=crm-pro" style="color:var(--gold)">Scalability: CRM Pro</a> adds full deal pipelines and growth tracking.</p>
@@ -177,7 +199,7 @@ const BODY = `<header class="top"><div class="wrap">
 <section class="band final"><div class="wrap">
   <h2>Stop losing leads to a missed follow-up.</h2>
   <p>Deploy Connectability once and keep every conversation in a system you own.</p>
-  <a class="btn btn-gold" href="https://script.google.com/macros/s/AKfycbz3VCljSxG-fQsIcdr5Z0D4_BfrpVV6CTeTFLibw0BjFGpklhe6recnTJiwa4JnSI0/exec">Get Connectability free</a>
+  <a class="btn btn-gold" href="/order?product=crm-mini">Get Connectability free</a>
 </div></section>
 
 <footer><div class="wrap">

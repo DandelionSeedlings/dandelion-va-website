@@ -74,6 +74,16 @@ const CSS = `.pb{--navy:#0F172A;--navy2:#1E293B;--gold:#C9A84C;--cream:#F5F1E8;-
 .pb section{padding:52px 0}
 .pb .hero{padding:44px 0 56px}
 }
+
+.pb .shotframe{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 24px 50px -24px rgba(15,23,42,.35);border-top:4px solid var(--gold)}
+.pb .shotframe .bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#F8FAFC;border-bottom:1px solid #E2E8F0}
+.pb .shotframe .bar i{width:9px;height:9px;border-radius:50%;background:#CBD5E1;display:block}
+.pb .shotframe .bar span{margin-left:8px;font-size:12px;color:#64748B}
+.pb .shotframe img{display:block;width:100%;height:auto}
+.pb .shots{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,.55fr);gap:18px;margin-top:18px;align-items:start}
+.pb .shots .shotframe.phone{border-radius:22px}
+.pb .shotnote{font-size:13px;color:var(--muted);margin:14px 0 0}
+@media (max-width:860px){.pb .shots{grid-template-columns:minmax(0,1fr)}.pb .shots .shotframe.phone{max-width:280px;margin:0 auto}}
 `
 
 const BODY = `<header class="top"><div class="wrap">
@@ -143,6 +153,18 @@ const BODY = `<header class="top"><div class="wrap">
     <li><b>CSV import and export</b><span>Bring in your clients and past invoices. Take your data out whenever you like.</span></li>
     <li><b>Private by design</b><span>A long private key on your link, and a lockout after repeated wrong guesses.</span></li>
   </ul>
+</div></section>
+
+<section id="see"><div class="wrap">
+  <h2>See it in action</h2>
+  <p class="sub">The dashboard, invoice list and debtors report, running from your own Google Sheet.</p>
+  <div class="shotframe"><div class="bar"><i></i><i></i><i></i><span>Your private Payability link</span></div><img src="/images/payability/dashboard.webp" alt="Payability dashboard showing money owed, overdue invoices and paid invoices by month" width="1600" height="1538" loading="lazy"></div>
+  <div class="shots">
+    <div class="shotframe"><img src="/images/payability/invoices.webp" alt="Payability invoice list with paid, sent, partially paid and overdue statuses" width="1600" loading="lazy"></div>
+    <div class="shotframe"><img src="/images/payability/aging.webp" alt="Payability debtors aging report showing who owes what and how late" width="1600" loading="lazy"></div>
+    <div class="shotframe phone"><img src="/images/payability/phone-invoices.webp" alt="Payability invoice list on a phone" width="780" height="1688" loading="lazy"></div>
+  </div>
+  <p class="shotnote">Screens show sample data.</p>
 </div></section>
 
 <section class="band" id="buy"><div class="wrap">
