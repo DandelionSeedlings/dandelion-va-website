@@ -923,12 +923,10 @@ export default function Products() {
 
               {selectedProduct.id === 'connectability' ? (
                 <a
-                  href="https://dandelioncreations.co.za/get-connectability"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/connectability"
                   className="block w-full bg-emerald-500 hover:bg-emerald-600 text-white text-center py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2"
                 >
-                  <FaArrowRight /> Get Connectability Free
+                  <FaArrowRight /> Learn More and Get It Free
                 </a>
               ) : selectedProduct.orderUrl && selectedProduct.orderUrl.startsWith('/') ? (
                 <a
