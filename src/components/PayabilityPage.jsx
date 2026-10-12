@@ -7,6 +7,7 @@ const CSS = `.pb{--navy:#0F172A;--navy2:#1E293B;--gold:#C9A84C;--cream:#F5F1E8;-
 .pb header.top{background:var(--navy);color:#fff}
 .pb header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
 .pb .logo{font-weight:800;letter-spacing:.02em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.pb .logo img.mono{background:none;object-fit:contain;border-radius:6px}
 .pb .logo .mono{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--gold);color:var(--navy);font-size:13px;font-weight:800}
 .pb .top a.cta{font-size:14px;font-weight:600;text-decoration:none;border:1px solid var(--gold);color:var(--gold);padding:8px 16px;border-radius:999px}
 .pb .top a.cta:hover{background:var(--gold);color:var(--navy)}
@@ -87,7 +88,7 @@ const CSS = `.pb{--navy:#0F172A;--navy2:#1E293B;--gold:#C9A84C;--cream:#F5F1E8;-
 `
 
 const BODY = `<header class="top"><div class="wrap">
-  <a class="logo" href="https://www.dandelioncreations.co.za/"><span class="mono">DC</span>Dandelion Creations</a>
+  <a class="logo" href="https://www.dandelioncreations.co.za/"><img class="mono" src="/images/logo-icon.png?v=2" alt="" width="30" height="30">Dandelion Creations</a>
   <a class="cta" href="#buy">Get Payability</a>
 </div></header>
 
@@ -162,7 +163,7 @@ const BODY = `<header class="top"><div class="wrap">
   <div class="shots">
     <div class="shotframe"><img src="/images/payability/invoices.webp" alt="Payability invoice list with paid, sent, partially paid and overdue statuses" width="1600" loading="lazy"></div>
     <div class="shotframe"><img src="/images/payability/aging.webp" alt="Payability debtors aging report showing who owes what and how late" width="1600" loading="lazy"></div>
-    <div class="shotframe phone"><img src="/images/payability/phone-invoices.webp" alt="Payability invoice list on a phone" width="780" height="1688" loading="lazy"></div>
+    <div class="shotframe phone"><img src="/images/payability/phone-invoices.webp" alt="Payability invoice list on a phone" width="780" height="1576" loading="lazy"></div>
   </div>
   <p class="shotnote">Screens show sample data.</p>
 </div></section>
