@@ -137,7 +137,7 @@ function DateLabel({ top = 65.5, crossover = false }) {
           ...(crossover ? crossoverGlow : {}),
         }}
       >
-        26.11.2026
+        21.11.2026
       </p>
     </Pos>
   )
@@ -407,10 +407,10 @@ export default function TheoneAndRaSaveTheDate() {
     return () => cancelAnimationFrame(id)
   }, [])
 
-  // Correct wedding date: 26 November 2026.
-  // Countdown reaches zero at midnight at the start
+  // Correct wedding date: 21 November 2026.
+  // Countdown reaches zero at midnight at the start1   
   // of the wedding day in the visitor's local time.
-  const countdown = useCountdown('2026-11-26T00:00:00')
+  const countdown = useCountdown('2026-11-21T00:00:00')
 
   const spotifyEmbedUrl =
     'https://open.spotify.com/embed/track/4t6qMeHgbxWod2SLokiSQp'
