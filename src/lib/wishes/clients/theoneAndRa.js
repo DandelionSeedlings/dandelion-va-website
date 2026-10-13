@@ -1,112 +1,119 @@
 // src/lib/wishes/clients/theoneAndRa.js
 //
-// Real content for Theoné & Ra — Timeless & Classic theme, Indawo Game
-// Lodge, Farm Witpunt, Ermelo. Full Package.
+// Content for Theoné & Ra. Timeless & Classic theme, Indawo Game Lodge,
+// Farm Witpunt, Ermelo. Wedding moved to Saturday 21 November 2026.
+// The save-the-date also works as the RSVP.
 //
-// TODO markers below are everything the enquiry didn't cover — the
-// questionnaire needs a v2 pass (see chat) to capture this kind of detail
-// upfront instead of it coming back one email at a time.
+// Anything still marked TODO is waiting on Theoné.
 
 export const theoneAndRaContent = {
   coupleNames: 'Theoné & Ra',
 
-  weddingDateLong: '21 November 2027',
-  weddingDateISO: '2027-11-21T15:00:00', // TODO: 15:00 is a placeholder — swap once ceremony time is confirmed
+  weddingDateLong: '21 November 2026',
+  weddingDateWeekday: 'Saturday',
+  weddingDateISO: '2026-11-21T15:00:00+02:00',
 
-  tagline: 'Two people. One beautiful story.', // TODO: swap for their own line if they want one
-  heroAccentText: 'Two hearts. One journey.', // floating script line over the hero photo — TODO: swap for their own if they want something different
+  tagline: 'Two people. One beautiful story.',
+  heroAccentText: 'Two hearts. One journey.',
+  heroImage: '/images/wishes/clients/theone-and-ra/hero.jpg',
 
-  heroImage: '/images/wishes/clients/theone-and-ra/hero.jpg', // real photo of the couple, supplied by Theoné
-
-  // Plays via the floating music button once the invite is open — needs
-  // a normal Spotify share link (open.spotify.com/track/...), converted
-  // to an embed automatically. "Ordinary" — Alex Warren.
+  // "Ordinary" by Alex Warren. Guests can also pick their own songs in the RSVP.
   spotifyTrackUrl: 'https://open.spotify.com/track/4t6qMeHgbxWod2SLokiSQp',
 
   storyText:
-    "A warm, beautiful barn wedding — the kind of day that feels like both of us, start to finish.", // TODO: replace with their real story
+    'A warm, beautiful barn wedding, the kind of day that feels like both of us, start to finish.', // TODO: their real story
   milestones: [
     { label: 'First met', year: 'TODO' },
     { label: 'First date', year: 'TODO' },
     { label: 'The proposal', year: 'TODO' },
-    { label: 'The wedding', year: 'TODO' },
+    { label: 'The wedding', year: '2026' },
   ],
-
-  storyImage: '/images/wishes/clients/theone-and-ra/story.jpg', // placeholder illustration — TODO: swap for a real photo
-
-  // TODO: real photos from the couple — these are placeholder illustrations for now
+  storyImage: '/images/wishes/clients/theone-and-ra/story.jpg',
   galleryImages: [
     '/images/wishes/clients/theone-and-ra/gallery-1.jpg',
     '/images/wishes/clients/theone-and-ra/gallery-2.jpg',
     '/images/wishes/clients/theone-and-ra/gallery-3.jpg',
     '/images/wishes/clients/theone-and-ra/gallery-4.jpg',
   ],
-
-  // TODO: real photos — placeholders for the two banner columns either side of Order of the Day
   orderOfDayImages: [
     '/images/wishes/clients/theone-and-ra/banner-left.jpg',
     '/images/wishes/clients/theone-and-ra/banner-right.jpg',
   ],
+  footerImage: '/images/wishes/clients/theone-and-ra/gallery-4.jpg',
 
-  // TODO: real photo — placeholder for the closing footer banner
-  footerImage: '/images/wishes/clients/theone-and-ra/gallery-4.jpg', // swapped from footer.jpg — that crop was too tight on faces to work at any aspect ratio
+  // Everything happens at Indawo. Only the ceremony time is fixed so far.
+  ceremony: { time: '15:00', venue: 'Indawo Game Lodge', location: 'Farm Witpunt, Ermelo, 2350' },
+  reception: { time: '', venue: 'Indawo Game Lodge' },
 
-  ceremony: { time: 'TODO', venue: 'Indawo Game Lodge', location: 'Farm Witpunt, Ermelo, 2350' },
-  reception: { time: 'TODO', venue: 'Indawo Game Lodge' },
-
+  // Program shown on the save-the-date. Leave time as '' until Theoné sends it.
+  // icon: ceremony | toast | cocktail | dinner | cake | dance | exit | photos
+  // side: 'left' or 'right' (alternates around the centre line)
   schedule: [
-    { time: 'TODO', label: 'Wedding Ceremony', icon: 'ceremony' },
-    { time: 'TODO', label: 'Canapés & Champagne', icon: 'cocktail' },
-    { time: 'TODO', label: 'Reception & Dinner', icon: 'reception' },
-    { time: 'TODO', label: 'First Dance & Celebrations', icon: 'party' },
-    { time: 'TODO', label: 'Last Dance', icon: 'party' },
+    { time: '15:00', label: 'Wedding Ceremony', labelAf: 'Troudiens', icon: 'ceremony', side: 'left' },
+    { time: '', label: 'Canapés & Drinks', labelAf: 'Peuselhappies & Drankies', icon: 'cocktail', side: 'right' },
+    { time: '', label: 'Welcome & Toasts', labelAf: 'Verwelkoming & Heildronke', icon: 'toast', side: 'left' },
+    { time: '', label: 'Spitbraai Dinner', labelAf: 'Spitbraai-ete', icon: 'dinner', side: 'right' },
+    { time: '', label: 'Cake Cutting', labelAf: 'Koek sny', icon: 'cake', side: 'left' },
+    { time: '', label: 'First Dance & Party', labelAf: 'Eerste Dans & Partytjie', icon: 'dance', side: 'right' },
   ],
+  scheduleNote: 'More times to follow.',
+  scheduleNoteAf: 'Meer tye volg.',
 
-  // New: Dress Code section — remove this whole object to hide the section
   dressCode: {
-    title: 'TODO — e.g. Formal / Garden Formal',
-    blurb: "We'd love you to dress up with us!",
-    ladies: 'TODO',
-    gentlemen: 'TODO',
+    title: 'Smart casual',
+    blurb: 'Come comfortable and look your best. It is a farm wedding, so think relaxed and polished.',
+    ladies: '',
+    gentlemen: '',
   },
 
-  // New: Accommodation section — remove/empty the array to hide the section
+  // Practical details shown on the RSVP section
+  menuNote: 'A fixed menu: spitbraai with salads.',
+  childrenNote: 'Children are welcome.',
+  plusOneNote: 'Partners and plus ones are welcome too.',
+  songNote: 'Pick a song or two for the dance floor. Everyone in your party can add their own.',
+
+  // Accommodation is booked directly at Indawo
   accommodationOptions: [
-    // { name: 'TODO Hotel name', note: 'TODO distance + price note', href: 'TODO booking link' },
+    {
+      name: 'Indawo Game Lodge',
+      note: 'Book directly with Lauriska Eksteen',
+      phone: '+27 83 640 7262',
+      href: 'tel:+27836407262',
+    },
   ],
 
-  rsvpDeadline: 'TODO',
-  rsvpUrl: '', // TODO: needs its own RSVP Sheet + Apps Script deployment, per your per-wedding pattern
+  rsvpDeadline: '5 November 2026',
+  rsvpDeadlineISO: '2026-11-05',
+  // Paste the Apps Script /exec URL here once deployed (see rsvp-apps-script/Code.gs)
+  rsvpUrl: '',
   rsvpWaNumber: '27765670125',
+  rsvpLanguage: 'af', // 'en' or 'af'
 
-  // New: Guest Photo Album — same as Mark & Sammy's, needs its own Apps
-  // Script deployment before this can be a real URL
-  photoWallUrl: '', // TODO
+  photoWallUrl: '',
 
-  weddingParty: [
-    { initial: '?', name: 'TODO', role: 'TODO', note: 'TODO' },
-  ],
+  weddingParty: [{ initial: '?', name: 'TODO', role: 'TODO', note: 'TODO' }],
 
-  // New: Getting There section — quick logistics notes, remove to hide
   gettingThere: {
-    notes: [
-      // 'TODO e.g. Free parking available',
-      // 'TODO e.g. Shuttle service (on request)',
-    ],
+    notes: ['There is a boom gate at the entrance. Please let us know if you have trouble getting through.'],
   },
 
-  registryLinks: [
-    { label: 'TODO registry link', href: '#' },
-  ],
+  registryLinks: [{ label: 'TODO registry link', href: '#' }],
 
-  // New: "Need a Little Help?" section — remove/empty the array to hide it
+  // Questions about the wedding go to the couple
   coordinators: [
-    // { name: 'TODO', role: 'Wedding Coordinator', phone: 'TODO', waLink: 'https://wa.me/27...' },
+    { name: 'Theoné', role: 'About the wedding', phone: '+27 76 567 0125', waLink: 'https://wa.me/27765670125' },
+    { name: 'Ra', role: 'About the wedding', phone: '+27 78 353 3366', waLink: 'https://wa.me/27783533366' },
   ],
 
   faqs: [
-    { q: 'What should I wear?', a: 'TODO — pulls from Dress Code above once confirmed' },
-    { q: 'Is there parking?', a: 'TODO' },
-    { q: 'Are children welcome?', a: 'TODO' },
+    { q: 'What should I wear?', a: 'Smart casual.' },
+    { q: 'Are children welcome?', a: 'Yes, children are welcome.' },
+    { q: 'Can I bring a plus one?', a: 'Yes, partners and plus ones are welcome.' },
+    { q: 'What is on the menu?', a: 'A fixed menu: spitbraai with salads.' },
+    { q: 'Where do I stay?', a: 'Indawo has accommodation. Contact Lauriska Eksteen on +27 83 640 7262.' },
+    { q: 'Is there a boom gate?', a: 'Yes, there is a boom gate at the entrance.' },
   ],
+
+  // Optional: fill in once Theoné sends the guest list. Used for the name suggestions.
+  guestList: [],
 }

@@ -2,6 +2,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import RsvpSection from '../../../../components/wishes/RsvpSection'
+import { theoneAndRaContent } from '../../../../lib/wishes/clients/theoneAndRa'
 
 // Font families configured in layout.jsx
 const serifFont = "'La Luxes Serif', var(--font-cormorant), serif"
@@ -260,7 +262,7 @@ function TitleScreen({ onSeeMore, fadingOut }) {
 }
 
 // Second screen: Wedding details and countdown
-function DetailScreen({ countdown }) {
+function DetailScreen({ countdown, onRsvp }) {
   return (
     <>
       <DateLabel top={13} />
@@ -365,22 +367,57 @@ function DetailScreen({ countdown }) {
         </Pos>
       )}
 
-      <Pos top={64} left={7} width={86}>
+      <Pos top={63} left={7} width={86}>
+        <p
+          style={{
+            fontFamily: serifFont,
+            fontSize: '4.6cqw',
+            letterSpacing: '0.04em',
+            color: ink,
+            margin: 0,
+            lineHeight: 1.5,
+            textShadow: '0 1px 1px rgba(255,255,255,0.2)',
+          }}
+        >
+          Troudiens om 15h00
+          <br />
+          Indawo Game Lodge, Ermelo
+        </p>
+      </Pos>
+
+      <Pos top={76}>
+        <button
+          onClick={onRsvp}
+          className="uppercase"
+          style={{
+            fontFamily: serifFont,
+            fontSize: '2.8cqw',
+            letterSpacing: '0.16em',
+            color: bg,
+            background: ink,
+            border: '1px solid ' + ink,
+            borderRadius: '999px',
+            padding: '1.3cqw 4.2cqw',
+            cursor: 'pointer',
+          }}
+        >
+          RSVP voor 5 November
+        </button>
+      </Pos>
+
+      <Pos top={83} left={7} width={86}>
         <p
           className="italic"
           style={{
             fontFamily: serifFont,
-            fontSize: '4.2cqw',
+            fontSize: '3.6cqw',
             color: ink,
             opacity: 0.95,
             margin: 0,
-            lineHeight: 1.5,
-            textShadow:
-              '0 1px 1px rgba(255,255,255,0.2)',
+            lineHeight: 1.4,
           }}
         >
-          Die volledige uitnodiging met al die besonderhede
-          volg binnekort.
+          Die program en meer besonderhede volg.
         </p>
       </Pos>
 
@@ -408,7 +445,7 @@ export default function TheoneAndRaSaveTheDate() {
   }, [])
 
   // Correct wedding date: 21 November 2026.
-  // Countdown reaches zero at midnight at the start1   
+  // Countdown reaches zero at midnight at the start
   // of the wedding day in the visitor's local time.
   const countdown = useCountdown('2026-11-21T00:00:00')
 
@@ -443,7 +480,7 @@ export default function TheoneAndRaSaveTheDate() {
 
   return (
     <div
-      className="min-h-screen relative flex flex-col items-center justify-center px-4 py-6"
+      className="min-h-screen relative flex flex-col items-center px-4 pt-6 pb-24"
       style={{ background: bg }}
     >
       <div
@@ -538,8 +575,25 @@ export default function TheoneAndRaSaveTheDate() {
               : 'none',
           }}
         >
-          <DetailScreen countdown={countdown} />
+          <DetailScreen
+            countdown={countdown}
+            onRsvp={() =>
+              document
+                .getElementById('rsvp')
+                ?.scrollIntoView({ behavior: 'smooth' })
+            }
+          />
         </div>
+      </div>
+
+      {/* Program and RSVP, below the card */}
+      <div className="w-full" style={{ maxWidth: 520 }}>
+        <RsvpSection
+          content={theoneAndRaContent}
+          accent={ink}
+          font={serifFont}
+          textColor={ink}
+        />
       </div>
 
       {/* Floating record-player music button */}
