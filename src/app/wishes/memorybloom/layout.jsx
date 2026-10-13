@@ -7,11 +7,11 @@
 // ones from src/app/wishes/layout.jsx.
 
 export const metadata = {
-  title: 'MemoryBloom | Live Event Photo Gallery — Dandelion Wishes',
+  title: 'MemoryBloom | Live Event Photo Gallery | Dandelion Wishes',
   description:
-    'Every photo tells part of the story. MemoryBloom brings them all together — one shared, live photo gallery for weddings, matric farewells, birthdays and more. Unlimited guest uploads, no app required, live for 30 days.',
+    'Every photo tells part of the story. MemoryBloom brings them all together. One shared, live photo gallery for weddings, matric farewells, birthdays and more. Unlimited guest uploads, no app required, live for 30 days.',
   openGraph: {
-    title: 'MemoryBloom — Your event, live',
+    title: 'MemoryBloom: Your event, live',
     description:
       'Guests scan a QR code, upload photos, and watch them appear on one shared live gallery. Unlimited uploads, no app required, live for 30 days.',
     images: ['/images/wishes/party-album/hero-dancing.png'],
@@ -19,7 +19,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MemoryBloom — Your event, live',
+    title: 'MemoryBloom: Your event, live',
     description:
       'One shared, live photo gallery for your event. Guests scan, upload, and watch it fill up in real time.',
     images: ['/images/wishes/party-album/hero-dancing.png'],

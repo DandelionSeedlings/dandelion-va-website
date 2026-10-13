@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import WishesNav from '../../../components/wishes/WishesNav'
 import WishesFooter from '../../../components/wishes/WishesFooter'
 import Reveal from '../../../components/wishes/Reveal'
+import SeeItInAction from '../../../components/wishes/SeeItInAction'
 import { GoldDividerImg, DriftingSignatureSeed, StarAccent, BloomIcon } from '../../../components/wishes/WishesDecor'
 
 const ENQUIRY_API_URL = 'https://script.google.com/macros/s/AKfycby9eYADuyLFGddnIoK83R_9hEzIwQtm5S2ZRe0lnc-OybRjo_S5ou0jvGeYuV6vGGJ9mw/exec'
@@ -68,7 +69,7 @@ const faqs = [
   { q: 'Can guests upload more than once?', a: 'Yes. There\u2019s no guest upload limit, they can keep adding photos throughout the event.' },
   { q: 'How long does my gallery stay available?', a: 'It stays live for 30 days after your event, giving everyone time to revisit and download their favourites.' },
   { q: 'What if venue Wi-Fi or cellular connection is slow?', a: 'Photos are compressed on the guest\u2019s phone before sending, so uploads stay quick even on crowded venue networks.' },
-  { q: 'Can I control which photos appear?', a: 'Yes, through the moderation tools in your private host portal — approve or hide anything before it goes live.' },
+  { q: 'Can I control which photos appear?', a: 'Yes, through the moderation tools in your private host portal: approve or hide anything before it goes live.' },
   { q: 'How do I download everything afterward?', a: 'One click in your private host portal packages every photo into a single ZIP file.' },
   { q: 'Is MemoryBloom only for weddings?', a: 'No. The same system works for matric farewells, birthdays, baby showers, corporate functions, and more.' },
 ]
@@ -121,7 +122,7 @@ function LiveGalleryPreview() {
         New memory just added
       </motion.p>
       <p className="text-center text-white/40 text-[10px] mt-3">
-        Example gallery for illustration — try the real thing below
+        Example gallery for illustration. Try the real thing below
       </p>
     </div>
   )
@@ -234,7 +235,7 @@ export default function MemoryBloomPage() {
 
           <p className="text-white/70 text-xs">
             Usually <span className="line-through opacity-60">R750</span>{' '}
-            <span className="font-semibold text-white">R350</span> — launch special, limited time
+            <span className="font-semibold text-white">R350</span> launch special, limited time
           </p>
         </Reveal>
       </section>
@@ -306,6 +307,9 @@ export default function MemoryBloomPage() {
           </div>
         </div>
       </section>
+
+      {/* See it in action: real screens from the album, sample data */}
+      <SeeItInAction />
 
       {/* One night, unlimited memories */}
       <section className="py-20 px-6 text-center" style={{ background: 'linear-gradient(160deg, #507F82 0%, #31494B 100%)' }}>
