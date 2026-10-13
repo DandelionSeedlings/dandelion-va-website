@@ -51,12 +51,12 @@ export const theoneAndRaContent = {
     { time: '15:00', label: 'Troudiens', icon: 'ceremony', side: 'left' },
     { time: '16:00', label: 'Peuselhappies', icon: 'cocktail', side: 'right' },
     { time: '18:00', label: 'Verwelkoming', icon: 'toast', side: 'left' },
-    { time: '19:00 tot 20:00', label: 'Spitbraai-ete', icon: 'dinner', side: 'right' },
-    { time: null, label: 'Cupcakes', icon: 'cake', side: 'left' },
+    { time: '19:00 tot 20:00', label: 'Spitbraai met Bykosse', icon: 'dinner', side: 'right' },
+    { time: null, label: 'Kroeg', icon: 'cocktail', side: 'beskikbaar' },
   ],
 
   dressCode: {
-    title: 'Smart casual',
+    title: 'Semi-formeel
     blurb: 'Come comfortable and look your best. It is a farm wedding, so think relaxed and polished.',
     ladies: '',
     gentlemen: '',
@@ -72,9 +72,9 @@ export const theoneAndRaContent = {
   accommodationOptions: [
     {
       name: 'Indawo Game Lodge',
-      note: 'Book directly with Lauriska Eksteen',
-      phone: '+27 83 640 7262',
-      href: 'tel:+27836407262',
+      note: 'Akomodasie beskikbaar by Indawo.',
+      phone: '+27 72 779 9748',
+      href: 'tel:+27727799748',
     },
   ],
 
@@ -105,11 +105,11 @@ export const theoneAndRaContent = {
   ],
 
   faqs: [
-    { q: 'What should I wear?', a: 'Smart casual.' },
+    { q: 'What should I wear?', a: 'Semi-formeel.' },
     { q: 'Are children welcome?', a: 'Yes, children are welcome.' },
     { q: 'Can I bring a plus one?', a: 'Yes, partners and plus ones are welcome.' },
     { q: 'What is on the menu?', a: 'A fixed menu: spitbraai with salads.' },
-    { q: 'Where do I stay?', a: 'Indawo has accommodation. Contact Lauriska Eksteen on +27 83 640 7262.' },
+    { q: 'Where do I stay?', a: 'Akkomodasie beskikbaar by Indawo .' },
     { q: 'Is there a boom gate?', a: 'Yes, there is a boom gate at the entrance.' },
   ],
 
