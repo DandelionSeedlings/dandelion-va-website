@@ -54,7 +54,6 @@ export const theoneAndRaContent = {
     { time: '19:00 tot 20:00', label: 'Spitbraai-ete', icon: 'dinner', side: 'right' },
     { time: null, label: 'Cupcakes', icon: 'cake', side: 'left' },
   ],
-  scheduleNote: 'Ons het nie \'n koek nie, ons maak sommer cupcakes.',
 
   dressCode: {
     title: 'Smart casual',
