@@ -2,7 +2,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import RsvpSection from '../../../../components/wishes/RsvpSection'
+import DetailsSection from '../../../../components/wishes/DetailsSection'
 import { theoneAndRaContent } from '../../../../lib/wishes/clients/theoneAndRa'
 
 // Font families configured in layout.jsx
@@ -262,7 +262,7 @@ function TitleScreen({ onSeeMore, fadingOut }) {
 }
 
 // Second screen: Wedding details and countdown
-function DetailScreen({ countdown, onRsvp }) {
+function DetailScreen({ countdown, rsvpUrl, onMore }) {
   return (
     <>
       <DateLabel top={13} />
@@ -386,8 +386,10 @@ function DetailScreen({ countdown, onRsvp }) {
       </Pos>
 
       <Pos top={76}>
-        <button
-          onClick={onRsvp}
+        <a
+          href={rsvpUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="uppercase"
           style={{
             fontFamily: serifFont,
@@ -399,14 +401,17 @@ function DetailScreen({ countdown, onRsvp }) {
             borderRadius: '999px',
             padding: '1.3cqw 4.2cqw',
             cursor: 'pointer',
+            display: 'inline-block',
+            textDecoration: 'none',
           }}
         >
           RSVP voor 5 November
-        </button>
+        </a>
       </Pos>
 
       <Pos top={83} left={7} width={86}>
-        <p
+        <button
+          onClick={onMore}
           className="italic"
           style={{
             fontFamily: serifFont,
@@ -415,10 +420,15 @@ function DetailScreen({ countdown, onRsvp }) {
             opacity: 0.95,
             margin: 0,
             lineHeight: 1.4,
+            background: 'none',
+            border: 'none',
+            textDecoration: 'underline',
+            textUnderlineOffset: 3,
+            cursor: 'pointer',
           }}
         >
-          Die program en meer besonderhede volg.
-        </p>
+          Program en kaart ⌄
+        </button>
       </Pos>
 
       <GoldLine top={89} width={22} />
@@ -577,22 +587,23 @@ export default function TheoneAndRaSaveTheDate() {
         >
           <DetailScreen
             countdown={countdown}
-            onRsvp={() =>
+            rsvpUrl={theoneAndRaContent.rsvpUrl}
+            onMore={() =>
               document
-                .getElementById('rsvp')
+                .getElementById('besonderhede')
                 ?.scrollIntoView({ behavior: 'smooth' })
             }
           />
         </div>
       </div>
 
-      {/* Program and RSVP, below the card */}
+      {/* Program, place and practical notes, below the card */}
       <div className="w-full" style={{ maxWidth: 520 }}>
-        <RsvpSection
+        <DetailsSection
           content={theoneAndRaContent}
-          accent={ink}
+          ink={ink}
           font={serifFont}
-          textColor={ink}
+          script={scriptFont}
         />
       </div>
 

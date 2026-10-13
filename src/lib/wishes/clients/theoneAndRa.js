@@ -42,22 +42,19 @@ export const theoneAndRaContent = {
   footerImage: '/images/wishes/clients/theone-and-ra/gallery-4.jpg',
 
   // Everything happens at Indawo. Only the ceremony time is fixed so far.
-  ceremony: { time: '15:00', venue: 'Indawo Game Lodge', location: 'Farm Witpunt, Ermelo, 2350' },
+  ceremony: { time: '15:00', venue: 'Indawo Game Lodge', location: 'Plaas Witpunt, Ermelo, 2350' },
   reception: { time: '', venue: 'Indawo Game Lodge' },
 
-  // Program shown on the save-the-date. Leave time as '' until Theoné sends it.
-  // icon: ceremony | toast | cocktail | dinner | cake | dance | exit | photos
-  // side: 'left' or 'right' (alternates around the centre line)
+  // Program shown on the save-the-date (Afrikaans). Leave time null to show the label only.
+  // icon: ceremony | toast | cocktail | dinner | cake | dance
   schedule: [
-    { time: '15:00', label: 'Wedding Ceremony', labelAf: 'Troudiens', icon: 'ceremony', side: 'left' },
-    { time: '', label: 'Canapés & Drinks', labelAf: 'Peuselhappies & Drankies', icon: 'cocktail', side: 'right' },
-    { time: '', label: 'Welcome & Toasts', labelAf: 'Verwelkoming & Heildronke', icon: 'toast', side: 'left' },
-    { time: '', label: 'Spitbraai Dinner', labelAf: 'Spitbraai-ete', icon: 'dinner', side: 'right' },
-    { time: '', label: 'Cake Cutting', labelAf: 'Koek sny', icon: 'cake', side: 'left' },
-    { time: '', label: 'First Dance & Party', labelAf: 'Eerste Dans & Partytjie', icon: 'dance', side: 'right' },
+    { time: '15:00', label: 'Troudiens', icon: 'ceremony', side: 'left' },
+    { time: '16:00', label: 'Peuselhappies', icon: 'cocktail', side: 'right' },
+    { time: '18:00', label: 'Verwelkoming', icon: 'toast', side: 'left' },
+    { time: '19:00 tot 20:00', label: 'Spitbraai-ete', icon: 'dinner', side: 'right' },
+    { time: null, label: 'Cupcakes', icon: 'cake', side: 'left' },
   ],
-  scheduleNote: 'More times to follow.',
-  scheduleNoteAf: 'Meer tye volg.',
+  scheduleNote: 'Ons het nie \'n koek nie, ons maak sommer cupcakes.',
 
   dressCode: {
     title: 'Smart casual',
@@ -85,9 +82,12 @@ export const theoneAndRaContent = {
   rsvpDeadline: '5 November 2026',
   rsvpDeadlineISO: '2026-11-05',
   // Paste the Apps Script /exec URL here once deployed (see rsvp-apps-script/Code.gs)
-  rsvpUrl: '',
+  // RSVPBloom page for Theoné & Ra (the guest RSVP form)
+  rsvpUrl: 'https://script.google.com/macros/s/AKfycbxiLDKHclGJBV05CCvTMhOG6l1J6EjfYt1kUhAEpVGEvp-L1HSTEJOhrQvIwnd8ess/exec?page=rsvp',
+  mapUrl: 'https://maps.app.goo.gl/JN8r2ufAuNKJQBQ18',
+  venueUrl: 'https://share.google/gSc490mBpdJB5FfJn',
   rsvpWaNumber: '27765670125',
-  rsvpLanguage: 'af', // 'en' or 'af'
+  rsvpLanguage: 'af',
 
   photoWallUrl: '',
 
