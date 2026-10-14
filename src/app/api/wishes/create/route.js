@@ -26,8 +26,8 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Bad request.' }, { status: 400 })
   }
 
-  // Honeypot: real people never fill in the hidden "website" field.
-  if (body?.website) return NextResponse.json({ ok: true, slug: 'thank-you' })
+  // Honeypot: real people never fill in the hidden spam-trap field.
+  if (body?.hpCheck) return NextResponse.json({ ok: true, slug: 'thank-you' })
 
   const email = String(body?.email || '').trim().slice(0, 200)
   if (!EMAIL_RE.test(email)) {

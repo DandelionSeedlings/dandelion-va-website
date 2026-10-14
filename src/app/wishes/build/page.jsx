@@ -109,7 +109,7 @@ export default function BuildYourOwnPage() {
     ceremonyVenue: '', ceremonyLocation: '', receptionVenue: '',
     theme: 'romantic-soft', tagline: '', storyText: '',
     rsvpDeadline: '', dressCodeTitle: '', dressCodeBlurb: '',
-    spotifyTrackUrl: '', website: '', // "website" is the hidden honeypot
+    spotifyTrackUrl: '', hpCheck: '', // hidden spam trap (odd name so browsers do not autofill it)
   })
   const [milestones, setMilestones] = useState([
     { label: 'First met', year: '' },
@@ -243,7 +243,7 @@ export default function BuildYourOwnPage() {
           <form onSubmit={handleSubmit} className="space-y-10">
             {/* Honeypot */}
             <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
-              <input tabIndex={-1} autoComplete="off" value={f.website} onChange={set('website')} />
+              <input name="zq-hp-check" type="text" tabIndex={-1} autoComplete="off" data-lpignore="true" data-1p-ignore="true" value={f.hpCheck} onChange={set('hpCheck')} />
             </div>
 
             <section>
