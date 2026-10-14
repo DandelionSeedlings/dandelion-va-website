@@ -211,6 +211,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
             </div>
           </Reveal>
         </div>
+        {content.milestones?.length > 0 && (
         <div className="max-w-3xl mx-auto mt-16 grid grid-cols-2 sm:grid-cols-4 gap-6">
           {content.milestones.map((m, i) => (
             <Reveal key={m.label} delay={i * 0.08} className="text-center">
@@ -220,6 +221,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
             </Reveal>
           ))}
         </div>
+        )}
       </section>
 
       {/* Gallery */}
@@ -350,6 +352,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
       </section>
 
       {/* Order of the Day */}
+      {content.schedule?.length > 0 && (
       <section className="py-20 px-6 relative overflow-hidden" style={{ background: c.bgAlt }}>
         {theme.showCoastalAccents && (
           <CoastalCornerShell size={80} style={{ top: 0, right: 8, opacity: 0.3, transform: 'rotate(18deg)' }} />
@@ -379,6 +382,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
           ))}
         </div>
       </section>
+      )}
 
       {/* Dress Code — only renders when content.dressCode is supplied */}
       {content.dressCode && (
@@ -471,6 +475,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
       )}
 
       {/* Our People */}
+      {content.weddingParty?.length > 0 && (
       <section className="py-20 px-6 relative">
         {theme.showCoastalAccents && (
           <CoastalCornerShell size={70} style={{ top: 4, left: 16, opacity: 0.35, transform: 'rotate(-12deg)' }} />
@@ -493,8 +498,10 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
           ))}
         </div>
       </section>
+      )}
 
       {/* Gift Registry */}
+      {content.registryLinks?.length > 0 && (
       <section className="py-20 px-6 relative overflow-hidden" style={{ background: c.bgAlt }}>
         {theme.showCoastalAccents && (
           <DriftingCoastalAccent variant="shell" size={54} style={{ top: 16, right: 24, opacity: 0.3 }} duration={14} />
@@ -518,8 +525,10 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
           </div>
         </Reveal>
       </section>
+      )}
 
       {/* FAQ */}
+      {content.faqs?.length > 0 && (
       <section className="py-20 px-6 relative">
         {theme.showCoastalAccents && (
           <CoastalSeaglassImg size={50} style={{ top: 10, left: 24, opacity: 0.3 }} />
@@ -538,6 +547,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
           ))}
         </div>
       </section>
+      )}
 
       {/* Need a Little Help — only renders when content.coordinators is supplied */}
       {content.coordinators?.length > 0 && (

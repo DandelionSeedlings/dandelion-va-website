@@ -11,8 +11,8 @@ const ENQUIRY_API_URL = 'https://script.google.com/macros/s/AKfycby9eYADuyLFGddn
 const pricingSuites = [
   {
     name: 'Essential Suite',
-    price: 'R1,250',
-    note: 'once-off',
+    price: 'R880',
+    note: 'launch special, usually R1,250 · once-off',
     featured: false,
     features: [
       'Custom single-page mobile invite',
@@ -56,7 +56,7 @@ const pricingSuites = [
   },
 ]
 
-const packages = ['Essential Suite — R1,250', 'Interactive Suite — R2,650', 'Bespoke Suite — R4,500+', "I'm not sure yet"]
+const packages = ['Essential Suite — R880', 'Interactive Suite — R2,650', 'Bespoke Suite — R4,500+', "I'm not sure yet"]
 
 const styles = [
   { label: 'Romantic & Soft', desc: 'Blush · Ivory · Delicate florals', image: '/images/wishes/styles/romantic-soft.jpg' },
@@ -294,6 +294,10 @@ export default function StartInvitation() {
         <Reveal className="text-center mb-10">
           <p className="text-xs uppercase tracking-[2px] text-[#7C8B68] mb-2">What we offer</p>
           <p className="text-sm text-[#3A3A3A]/70">One payment per wedding. No subscriptions, ever.</p>
+          <p className="text-sm text-[#3A3A3A]/70 mt-2">
+            Prefer to do the Essential Suite yourself?{' '}
+            <a href="/wishes/build" className="underline text-[#7C8B68]">Build it yourself</a>
+          </p>
         </Reveal>
         <div className="grid sm:grid-cols-3 gap-5 items-start">
           {pricingSuites.map((s) => (

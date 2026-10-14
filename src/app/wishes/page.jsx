@@ -212,7 +212,7 @@ export default function WishesPage() {
                WhatsApp
             </a>
           </div>
-          <p className="text-sm text-[#8B7355]">From R1,250 per wedding · one payment, no subscriptions</p>
+          <p className="text-sm text-[#8B7355]">From R880 per wedding (launch special) · one payment, no subscriptions</p>
         </motion.div>
 
         <div
@@ -443,8 +443,8 @@ export default function WishesPage() {
             <Reveal delay={0}>
               <PricingCard
                 tier="Essential Suite"
-                price="R1,250"
-                note="once-off"
+                price="R880"
+                note="launch special, usually R1,250 · once-off"
                 features={[
                   'Custom single-page mobile invite',
                   'Digital RSVP form + plus-ones',
@@ -489,6 +489,22 @@ export default function WishesPage() {
                 ]}
               />
             </Reveal>
+          </div>
+          <div className="text-center mt-12">
+            <p className="text-sm text-[#5C4A3A] mb-4">
+              Want the Essential Suite without waiting on me? Build it yourself in about 15 minutes
+              and see a private preview straight away.
+            </p>
+            <a
+              href="/wishes/build"
+              className="inline-block px-8 py-3.5 rounded-full text-white font-medium"
+              style={{ background: '#7C8B68', boxShadow: '0 10px 25px -8px rgba(124,139,104,0.5)' }}
+            >
+              Build it yourself, R880
+            </a>
+            <p className="text-xs text-[#8B7355] mt-3">
+              Want something fully custom? The Interactive and Bespoke suites are hand-designed by me.
+            </p>
           </div>
           <p className="text-center text-sm mt-10 text-[#A8B89C]">
             Flip-to-Invite Save-the-Date — <span className="line-through opacity-60">R250</span> free
