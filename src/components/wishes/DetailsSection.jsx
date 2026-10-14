@@ -1,4 +1,3 @@
-
 // src/components/wishes/DetailsSection.jsx
 // Program, place and practical notes for the Theoné & Ra save-the-date.
 // Afrikaans. Each topic sits in its own card. No state, server-safe.
@@ -18,28 +17,13 @@ const ICONS = {
 
 function Icon({ name, size = 30 }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      width={size}
-      height={size}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       {ICONS[name] || ICONS.ceremony}
     </svg>
   )
 }
 
-export default function DetailsSection({
-  content,
-  ink = '#202D28',
-  font = 'inherit',
-  script = 'cursive',
-}) {
+export default function DetailsSection({ content, ink = '#202D28', font = 'inherit', script = 'cursive' }) {
   const card = {
     background: '#F4EEE8',
     border: '1px solid rgba(32,45,40,0.12)',
@@ -48,134 +32,29 @@ export default function DetailsSection({
     textAlign: 'center',
     boxShadow: '0 8px 24px -16px rgba(44,58,54,0.35)',
   }
-
-  const title = {
-    fontFamily: script,
-    fontSize: 34,
-    fontWeight: 400,
-    margin: '6px 0 12px',
-    lineHeight: 1.1,
-  }
-
-  const label = {
-    fontSize: 13,
-    letterSpacing: '0.16em',
-    textTransform: 'uppercase',
-    fontWeight: 600,
-    margin: '6px 0 8px',
-  }
-
-  const text = {
-    fontSize: 18,
-    lineHeight: 1.45,
-    margin: 0,
-  }
-
+  const title = { fontFamily: script, fontSize: 34, fontWeight: 400, margin: '6px 0 12px', lineHeight: 1.1 }
+  const label = { fontSize: 13, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 600, margin: '6px 0 8px' }
+  const text = { fontSize: 18, lineHeight: 1.45, margin: 0 }
   const pill = {
-    display: 'inline-block',
-    padding: '9px 20px',
-    borderRadius: 999,
-    border: '1px solid ' + ink,
-    color: ink,
-    textDecoration: 'none',
-    fontSize: 16,
-    margin: '4px 4px 0',
+    display: 'inline-block', padding: '9px 20px', borderRadius: 999, border: '1px solid ' + ink,
+    color: ink, textDecoration: 'none', fontSize: 16, margin: '4px 4px 0',
   }
-
-  const filled = {
-    ...pill,
-    background: ink,
-    color: '#FDF9F6',
-  }
-
+  const filled = { ...pill, background: ink, color: '#FDF9F6' }
   const wa = (n) => 'https://wa.me/' + n
 
   return (
-    <section
-      id="besonderhede"
-      style={{
-        fontFamily: font,
-        color: ink,
-        width: '100%',
-        maxWidth: 520,
-        padding: '48px 16px 0',
-        margin: '0 auto',
-        display: 'grid',
-        gap: 16,
-        boxSizing: 'border-box',
-      }}
-    >
+    <section id="besonderhede" style={{ fontFamily: font, color: ink, width: '100%', maxWidth: 520, padding: '48px 16px 0', margin: '0 auto', display: 'grid', gap: 16 }}>
       {/* Program */}
       <div style={card}>
         <h2 style={title}>Die Dag</h2>
-
-        <ol
-          style={{
-            listStyle: 'none',
-            margin: '18px 0 0',
-            padding: 0,
-            position: 'relative',
-          }}
-        >
-          <span
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              left: '50%',
-              top: 0,
-              bottom: 0,
-              width: 1,
-              background: ink,
-              opacity: 0.3,
-            }}
-          />
-
+        <ol style={{ listStyle: 'none', margin: '18px 0 0', padding: 0, position: 'relative' }}>
+          <span aria-hidden="true" style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, background: ink, opacity: 0.3 }} />
           {content.schedule.map((s, i) => (
-            <li
-              key={i}
-              style={{
-                position: 'relative',
-                display: 'grid',
-                gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-                columnGap: 30,
-                alignItems: 'center',
-                marginBottom: 24,
-              }}
-            >
-              <span
-                aria-hidden="true"
-                style={{
-                  position: 'absolute',
-                  left: '50%',
-                  top: '50%',
-                  width: 10,
-                  height: 10,
-                  borderRadius: '50%',
-                  background: '#C9A66B',
-                  transform: 'translate(-50%,-50%)',
-                }}
-              />
-
-              <div
-                style={{
-                  gridColumn: s.side === 'left' ? 1 : 2,
-                  textAlign: s.side === 'left' ? 'right' : 'left',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems:
-                    s.side === 'left' ? 'flex-end' : 'flex-start',
-                  gap: 2,
-                  minWidth: 0,
-                }}
-              >
+            <li key={i} style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 30, alignItems: 'center', marginBottom: 24 }}>
+              <span aria-hidden="true" style={{ position: 'absolute', left: '50%', top: '50%', width: 10, height: 10, borderRadius: '50%', background: '#C9A66B', transform: 'translate(-50%,-50%)' }} />
+              <div style={{ gridColumn: s.side === 'left' ? 1 : 2, textAlign: s.side === 'left' ? 'right' : 'left', display: 'flex', flexDirection: 'column', alignItems: s.side === 'left' ? 'flex-end' : 'flex-start', gap: 2 }}>
                 <Icon name={s.icon} size={32} />
-
-                {s.time && (
-                  <span style={{ fontSize: 19, fontWeight: 600 }}>
-                    {s.time}
-                  </span>
-                )}
-
+                {s.time && <span style={{ fontSize: 19, fontWeight: 600 }}>{s.time}</span>}
                 <span style={{ fontSize: 17 }}>{s.label}</span>
               </div>
             </li>
@@ -187,112 +66,39 @@ export default function DetailsSection({
       <div style={card}>
         <Icon name="pin" />
         <h2 style={title}>Plek</h2>
-
         <p style={text}>
-          <strong>{content.ceremony.venue}</strong>
-          <br />
-          {content.ceremony.location}
-          <br />
+          <strong>{content.ceremony.venue}</strong><br />
+          {content.ceremony.location}<br />
           Troudiens om {content.ceremony.time.replace(':', 'h')}
         </p>
-
         <div style={{ marginTop: 14 }}>
-          <a
-            href={content.mapUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={filled}
-          >
-            Kaart
-          </a>
-
-          <a
-            href={content.venueUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={pill}
-          >
-            Indawo
-          </a>
+          <a href={content.mapUrl} target="_blank" rel="noopener noreferrer" style={filled}>Kaart</a>
+          <a href={content.venueUrl} target="_blank" rel="noopener noreferrer" style={pill}>Indawo</a>
         </div>
-
-        <p
-          style={{
-            ...text,
-            fontSize: 16,
-            opacity: 0.8,
-            marginTop: 14,
-          }}
-        >
-          Daar is 'n boomhek by die ingang.
-        </p>
+        <p style={{ ...text, fontSize: 16, opacity: 0.8, marginTop: 14 }}>Daar is 'n boomhek by die ingang.</p>
       </div>
 
-      {/* Kleredrag + Spyskaart + Kroeg — mobile-first */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-          gap: 12,
-          alignItems: 'stretch',
-        }}
-      >
-        {/* Kleredrag */}
-        <div
-          style={{
-            ...card,
-            padding: '22px 10px',
-            minWidth: 0,
-            boxSizing: 'border-box',
-          }}
-        >
+      {/* Kleredrag + Spyskaart side by side */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div style={{ ...card, padding: '22px 14px' }}>
           <Icon name="hanger" />
           <p style={label}>Kleredrag</p>
-          <p style={text}>Semi-formeel</p>
+          <p style={text}>Semi formal</p>
         </div>
-
-        {/* Spyskaart — unchanged */}
-        <div
-          style={{
-            ...card,
-            padding: '22px 10px',
-            minWidth: 0,
-            boxSizing: 'border-box',
-          }}
-        >
+        <div style={{ ...card, padding: '22px 14px' }}>
           <Icon name="dinner" />
           <p style={label}>Spyskaart</p>
           <p style={text}>Spitbraai met bykosse</p>
-        </div>
-
-        {/* Kroeg — replaces cupcakes */}
-        <div
-          style={{
-            ...card,
-            padding: '22px 10px',
-            gridColumn: '1 / -1',
-            width: 'calc(50% - 6px)',
-            justifySelf: 'center',
-            minWidth: 0,
-            boxSizing: 'border-box',
-          }}
-        >
-          <Icon name="cocktail" />
-          <p style={label}>Kroeg</p>
-          <p style={text}>Beskikbaar</p>
         </div>
       </div>
 
       {/* Slaapplek */}
       <div style={card}>
         <Icon name="bed" />
-        <h2 style={title}>Slaapplek</h2>
-        <p style={text}>Akkomodasie beskikbaar by Indawo.</p>
-
+        <h2 style={title}>Akkomodasie</h2>
+        <p style={text}>Akkomodasie beskikbaar by Indawo.<br />Vir besprekings kontak:</p>
         <div style={{ marginTop: 12 }}>
-          <a href={wa('27727799748')} style={pill}>
-            +27 83 640 7262
-          </a>
+          <a href={wa('27727799748')} style={pill}>+27 72 779 9748</a>
         </div>
       </div>
 
@@ -300,15 +106,9 @@ export default function DetailsSection({
       <div style={card}>
         <Icon name="chat" />
         <h2 style={title}>Vrae oor die troue?</h2>
-
         <div>
-          <a href={wa('27765670125')} style={pill}>
-            Theoné +27 76 567 0125
-          </a>
-
-          <a href={wa('27783533366')} style={pill}>
-            Ra +27 78 353 3366
-          </a>
+          <a href={wa('27765670125')} style={pill}>Theoné +27 76 567 0125</a>
+          <a href={wa('27783533366')} style={pill}>Ra +27 78 353 3366</a>
         </div>
       </div>
     </section>
