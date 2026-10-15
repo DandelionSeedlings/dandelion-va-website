@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Reveal from './Reveal'
 import { getStrings } from '../../lib/wishes/i18n'
+import { applyDesign, fontsHref } from '../../lib/wishes/customDesign'
 import EnvelopeIntro from './EnvelopeIntro'
 import {
   SeedCluster, DriftingSeed, GoldDividerImg, GoldStarImg, DriftingSignatureSeed,
@@ -48,8 +49,23 @@ function useCountdown(isoString) {
  * should render THIS component rather than copy-pasting the markup — fix a
  * bug or improve a section once here, and every invitation benefits.
  */
-export default function InvitationTemplate({ theme, content, showPreviewBanner = true, skipIntro = false }) {
+export default function InvitationTemplate({ theme: baseTheme, content, showPreviewBanner = true, skipIntro = false }) {
+  const theme = applyDesign(baseTheme, content.design)
   const c = theme.colors
+  const fontsUrl = fontsHref(content.design)
+  useEffect(() => {
+    if (!fontsUrl) return
+    let link = document.querySelector('link[data-wishes-fonts]')
+    if (!link) {
+      link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.setAttribute('data-wishes-fonts', '1')
+      document.head.appendChild(link)
+    }
+    if (link.href !== fontsUrl) link.href = fontsUrl
+  }, [fontsUrl])
+  const showStory = !!(content.storyText || content.milestones?.length)
+  const gi = (content.galleryImages || []).filter(Boolean)
   const L = getStrings(content.lang)
   const [opened, setOpened] = useState(skipIntro)
   const [guestName, setGuestName] = useState('')
@@ -157,7 +173,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
             {content.coupleNames}
           </h1>
           <p className="text-xs tracking-[3px] uppercase mb-3">{content.weddingDateLong}</p>
-          <p className="text-lg italic" style={{ fontFamily: theme.serifFont }}>{content.tagline}</p>
+          {content.tagline && <p className="text-lg italic" style={{ fontFamily: theme.serifFont }}>{content.tagline}</p>}
           {countdown && (
             <div className="flex justify-center gap-4 sm:gap-6 mt-8">
               {[['d', L.days], ['h', L.hrs], ['m', L.min], ['s', L.sec]].map(([key, label]) => (
@@ -175,6 +191,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
       </motion.section>
 
       {/* Our Story */}
+      {showStory && (
       <section id="story" className="py-20 px-6">
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <Reveal>
@@ -231,9 +248,10 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
         </div>
         )}
       </section>
+      )}
 
       {/* Gallery */}
-      {theme.showDriftingSeeds !== undefined && content.galleryImages?.length > 0 && (
+      {theme.showDriftingSeeds !== undefined && gi.length > 0 && (gi.length > 1 || !showStory) && (
         <section id="gallery" className="py-20 px-6 relative" style={{ background: c.bgAlt }}>
           <SeedCluster color={c.soft} size={50} style={{ position: 'absolute', top: 20, right: 24, opacity: 0.4, display: (theme.showBotanicalAccents || theme.showCoastalAccents) ? 'none' : 'block' }} />
           {theme.showBotanicalAccents && (
@@ -268,27 +286,19 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
               </div>
             )}
           </Reveal>
-          <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
-            <Reveal className="col-span-2 row-span-2 relative">
-              <img src={content.galleryImages[0]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 300, objectPosition: 'center 25%' }} />
-              {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="portrait" />}
-              {theme.showCoastalAccents && <CoastalGalleryFrame shape="portrait" />}
-            </Reveal>
-            <Reveal delay={0.05} className="relative">
-              <img src={content.galleryImages[1]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145, objectPosition: 'center 25%' }} />
-              {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="square" />}
-              {theme.showCoastalAccents && <CoastalGalleryFrame shape="square" />}
-            </Reveal>
-            <Reveal delay={0.1} className="relative">
-              <img src={content.galleryImages[2]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145, objectPosition: 'center 25%' }} />
-              {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="square" />}
-              {theme.showCoastalAccents && <CoastalGalleryFrame shape="square" />}
-            </Reveal>
-            <Reveal delay={0.15} className="col-span-2 relative">
-              <img src={content.galleryImages[3]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145, objectPosition: 'center 25%' }} />
-              {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="square" />}
-              {theme.showCoastalAccents && <CoastalGalleryFrame shape="square" />}
-            </Reveal>
+          <div className={`mx-auto grid grid-cols-2 gap-3 ${gi.length >= 4 ? 'max-w-4xl md:grid-cols-4' : gi.length === 1 ? 'max-w-xl' : 'max-w-3xl'}`}>
+            {gi.slice(0, 4).map((src, i) => {
+              const n = Math.min(gi.length, 4)
+              const span = n >= 4 ? (i === 0 ? 'col-span-2 row-span-2' : i === 3 ? 'col-span-2' : '') : n === 3 ? (i === 0 ? 'col-span-2' : '') : n === 1 ? 'col-span-2' : ''
+              const big = (n >= 4 && i === 0) || n <= 3 && (n === 1 || n === 2 || i === 0)
+              return (
+                <Reveal key={src + i} delay={i * 0.05} className={`relative ${span}`}>
+                  <img src={src} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: big ? 300 : 145, objectPosition: 'center 25%' }} />
+                  {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape={big ? 'portrait' : 'square'} />}
+                  {theme.showCoastalAccents && <CoastalGalleryFrame shape={big ? 'portrait' : 'square'} />}
+                </Reveal>
+              )
+            })}
           </div>
         </section>
       )}

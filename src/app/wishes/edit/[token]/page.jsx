@@ -12,6 +12,8 @@ import { useParams } from 'next/navigation'
 import { createClient } from '@supabase/supabase-js'
 import { buildContent } from '../../../../lib/wishes/buildContent'
 import { LANGUAGES } from '../../../../lib/wishes/i18n'
+import { getTheme } from '../../../../lib/wishes/themes'
+import { HEADING_FONTS, SCRIPT_FONTS } from '../../../../lib/wishes/customDesign'
 
 const PHOTO_BUCKET = 'wishes-photos'
 const MAX_PHOTOS = 4
@@ -333,7 +335,8 @@ export default function EditorPage() {
     if (id === 'party' && empty.party) return 'hidden'
     if (id === 'registry' && empty.registry) return 'hidden'
     if (id === 'faqs' && empty.faqs) return 'hidden'
-    if (id === 'schedule' && empty.schedule) return 'default'
+    if (id === 'schedule' && empty.schedule) return form.blank ? 'hidden' : 'default'
+    if (id === 'story' && form.blank && !form.storyText) return 'hidden'
     if (id === 'banner' && !form.bannerUrl) return 'default'
     return ''
   }
@@ -443,6 +446,7 @@ export default function EditorPage() {
           )}
 
           {section === 'style' && (
+            <>
             <div className="grid grid-cols-2 gap-3">
               {THEMES.map((t) => {
                 const selected = form.theme === t.key
@@ -457,6 +461,42 @@ export default function EditorPage() {
                 )
               })}
             </div>
+
+            {(() => {
+              const base = getTheme(form.theme).colors
+              const cd = form.customDesign || { on: false, bg: base.bg, ink: base.ink, accent: base.accent, headingFont: 'Cormorant Garamond', scriptFont: 'Alex Brush' }
+              const setCd = (patch) => up({ customDesign: { ...cd, ...patch } })
+              const colour = (key, label) => (
+                <label className="flex items-center justify-between gap-3 text-sm py-1.5">
+                  {label}
+                  <input type="color" value={cd[key]} disabled={!cd.on} onChange={(e) => setCd({ [key]: e.target.value })}
+                    className="w-12 h-8 rounded border border-[#E5DED2] bg-white" />
+                </label>
+              )
+              return (
+                <div className="mt-5 rounded-xl border-2 bg-white p-4" style={{ borderColor: cd.on ? '#2E2A26' : '#E5DED2' }}>
+                  <label className="flex items-center gap-3 text-sm font-medium cursor-pointer">
+                    <input type="checkbox" checked={!!cd.on} onChange={(e) => setCd({ on: e.target.checked })} />
+                    Design your own colours and fonts
+                  </label>
+                  <p className="text-[11px] text-[#3A3A3A]/55 mt-1 mb-3 leading-snug">Starts from the style you picked above. Modern &amp; Minimal is the cleanest base.</p>
+                  {colour('bg', 'Background')}
+                  {colour('ink', 'Text')}
+                  {colour('accent', 'Accent (buttons and details)')}
+                  <label className="block text-sm mt-3">Heading font
+                    <select disabled={!cd.on} value={cd.headingFont} onChange={(e) => setCd({ headingFont: e.target.value })} className={inputClass + ' mt-1'}>
+                      {HEADING_FONTS.map((f) => <option key={f.key} value={f.key}>{f.label}</option>)}
+                    </select>
+                  </label>
+                  <label className="block text-sm mt-3">Names font
+                    <select disabled={!cd.on} value={cd.scriptFont} onChange={(e) => setCd({ scriptFont: e.target.value })} className={inputClass + ' mt-1'}>
+                      {SCRIPT_FONTS.map((f) => <option key={f.key} value={f.key}>{f.label}</option>)}
+                    </select>
+                  </label>
+                </div>
+              )
+            })()}
+            </>
           )}
 
           {section === 'language' && (

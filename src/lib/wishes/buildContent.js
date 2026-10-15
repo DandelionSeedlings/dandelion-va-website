@@ -8,6 +8,7 @@
 // the WhatsApp number is normalised.
 
 import { getMonths, getDefaults, normalizeLang } from './i18n'
+import { sanitizeDesign } from './customDesign'
 
 export const THEME_LABELS = {
   'romantic-soft': 'Romantic & Soft',
@@ -113,6 +114,7 @@ const HERO_DEFAULT = {
  *          the message is safe to show to the person filling in the form.
  */
 export function buildContent(input, { photoBase }) {
+  const blank = input.blank === true
   const lang = normalizeLang(input.lang)
   const D = getDefaults(lang)
   const coupleNames = clip(input.coupleNames, 80)
@@ -140,21 +142,21 @@ export function buildContent(input, { photoBase }) {
     .filter((u) => typeof u === 'string' && u.length < 400 && photoBase && u.startsWith(photoBase))
     .slice(0, MAX_PHOTOS)
   if (photos.length === 0) throw new Error('Please add at least one photo.')
-  // The template lays out exactly four gallery slots; repeat photos if there are fewer.
-  const galleryImages = Array.from({ length: 4 }, (_, i) => photos[i % photos.length])
+  // Only the photos they uploaded are shown; the gallery adapts to 1 to 4 photos.
+  const galleryImages = photos.slice()
 
   const milestones = (Array.isArray(input.milestones) ? input.milestones : [])
     .map((m) => ({ label: clip(m?.label, 40), year: clip(m?.year, 12) }))
     .filter((m) => m.label && m.year)
     .slice(0, 6)
-  if (milestones.length === 0) milestones.push({ label: D.theWedding, year: weddingDateLong.slice(-4) })
+  if (milestones.length === 0 && !blank) milestones.push({ label: D.theWedding, year: weddingDateLong.slice(-4) })
 
   let schedule = (Array.isArray(input.schedule) ? input.schedule : [])
     .map((s) => ({ time: clip(s?.time, 10), label: clip(s?.label, 80) }))
     .filter((s) => s.label)
     .slice(0, 10)
     .map((s) => ({ ...s, icon: guessIcon(s.label) }))
-  if (schedule.length === 0) {
+  if (schedule.length === 0 && !blank) {
     schedule = [
       { time: ceremonyTime, label: D.ceremony, icon: 'ceremony' },
       { time: receptionTime, label: D.reception, icon: 'reception' },
@@ -189,9 +191,9 @@ export function buildContent(input, { photoBase }) {
     coupleNames,
     weddingDateLong,
     weddingDateISO: `${input.weddingDate}T${ceremonyTime}:00`,
-    tagline: clip(input.tagline, 100) || D.tagline,
+    tagline: clip(input.tagline, 100) || (blank ? '' : D.tagline),
     ...hero,
-    storyText: clip(input.storyText, 1200) || D.story,
+    storyText: clip(input.storyText, 1200) || (blank ? '' : D.story),
     milestones,
     storyImage: photos[0],
     galleryImages,
@@ -219,6 +221,9 @@ export function buildContent(input, { photoBase }) {
   if (bannerUrl && photoBase && bannerUrl.length < 400 && bannerUrl.startsWith(photoBase)) {
     content.heroImage = bannerUrl
   }
+
+  const design = sanitizeDesign(input.customDesign)
+  if (design) content.design = design
 
   const spotify = safeSpotifyTrack(input.spotifyTrackUrl)
   if (spotify) content.spotifyTrackUrl = spotify

@@ -124,7 +124,7 @@ export default function BuildYourOwnPage() {
     firstName: '', partnerName: '', email: '', phone: '',
     weddingDate: '', ceremonyTime: '15:00', receptionTime: '', rsvpDeadline: '',
     ceremonyVenue: '', ceremonyLocation: '', receptionVenue: '',
-    theme: 'romantic-soft', lang: 'en', tagline: '', storyText: '',
+    theme: 'romantic-soft', lang: 'en', blank: false, tagline: '', storyText: '',
     dressCodeTitle: '', dressCodeBlurb: '',
     spotifyTrackUrl: '', hpCheck: '', // hidden spam trap (odd name so browsers do not autofill it)
   })
@@ -339,6 +339,17 @@ export default function BuildYourOwnPage() {
                   <Field label="Your partner's first name">
                     <input value={f.partnerName} onChange={set('partnerName')} className={inputClass} placeholder="e.g. James" />
                   </Field>
+                  <div className="sm:col-span-2">
+                    <Field label="How would you like to start?" hint="Guided adds friendly wording you can change. Blank leaves everything empty so you write it all yourself.">
+                      <div className="grid grid-cols-2 gap-3">
+                        {[[false, 'Guided'], [true, 'Blank page']].map(([val, label]) => (
+                          <button key={label} type="button" onClick={() => setF((s) => ({ ...s, blank: val }))}
+                            className="text-sm px-4 py-3 rounded-lg border-2 bg-white"
+                            style={{ borderColor: f.blank === val ? '#2E2A26' : '#E5DED2' }}>{label}</button>
+                        ))}
+                      </div>
+                    </Field>
+                  </div>
                   <div className="sm:col-span-2">
                     <Field label="Invitation language" hint="You can change this later. The words you type yourself stay as you wrote them.">
                       <select value={f.lang} onChange={set('lang')} className={inputClass}>
