@@ -47,9 +47,9 @@ function useCountdown(isoString) {
  * should render THIS component rather than copy-pasting the markup — fix a
  * bug or improve a section once here, and every invitation benefits.
  */
-export default function InvitationTemplate({ theme, content, showPreviewBanner = true }) {
+export default function InvitationTemplate({ theme, content, showPreviewBanner = true, skipIntro = false }) {
   const c = theme.colors
-  const [opened, setOpened] = useState(false)
+  const [opened, setOpened] = useState(skipIntro)
   const [guestName, setGuestName] = useState('')
   const [musicOpen, setMusicOpen] = useState(false)
   const countdown = useCountdown(content.weddingDateISO)
@@ -69,14 +69,16 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
 
   return (
     <div style={{ background: c.bg, color: c.muted }}>
-      <EnvelopeIntro
-        coupleNames={content.coupleNames}
-        onOpen={() => setOpened(true)}
-        theme={theme}
-        mode={theme.envelopeMode}
-        videoSrc={content.heroVideoSrc}
-        videoPoster={content.heroVideoPoster}
-      />
+      {!skipIntro && (
+        <EnvelopeIntro
+          coupleNames={content.coupleNames}
+          onOpen={() => setOpened(true)}
+          theme={theme}
+          mode={theme.envelopeMode}
+          videoSrc={content.heroVideoSrc}
+          videoPoster={content.heroVideoPoster}
+        />
+      )}
 
       {spotifyEmbedUrl && opened && (
         <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end">

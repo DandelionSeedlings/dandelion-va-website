@@ -236,6 +236,8 @@ export default function BuildYourOwnPage() {
       setSlug(data.slug)
       setStatus('done')
       window.scrollTo({ top: 0 })
+      // Straight into the editor, so they can fine-tune everything themselves.
+      if (data.editToken) window.location.assign(`/wishes/edit/${data.editToken}`)
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.')
       setStatus('idle')

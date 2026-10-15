@@ -5,6 +5,7 @@
 // up in the same Enquiries sheet (and email) as every other lead.
 
 import { NextResponse } from 'next/server'
+import { randomBytes } from 'node:crypto'
 import { getAdminClient, PHOTO_BUCKET } from '../../../../lib/wishes/supabase'
 import {
   buildContent, slugify, isThemeKey, RESERVED_SLUGS, THEME_LABELS,
@@ -52,6 +53,9 @@ export async function POST(request) {
     if (base.length < 3 || RESERVED_SLUGS.has(base)) base = `${base}-wedding`
     let slug = base
     let saved = false
+    const editToken = randomBytes(16).toString('hex')
+    // Keep the raw answers too, so the editor can reopen them exactly as typed.
+    const { hpCheck, ...formForEditor } = body
 
     for (let attempt = 0; attempt < 5 && !saved; attempt++) {
       const { error } = await supabase.from('wishes_invitations').insert({
@@ -61,6 +65,8 @@ export async function POST(request) {
         theme_key: body.theme,
         owner_email: email,
         content,
+        form: formForEditor,
+        edit_token: editToken,
       })
       if (!error) {
         saved = true
@@ -89,7 +95,7 @@ export async function POST(request) {
           venueLocation: content.ceremony.location,
           package: 'Essential Suite (self-serve build)',
           style: THEME_LABELS[body.theme],
-          notes: `Self-serve build, saved as a draft. Preview: ${origin}/wishes/${slug}`,
+          notes: `Self-serve build, saved as a draft. Preview: ${origin}/wishes/${slug} | Edit link: ${origin}/wishes/edit/${editToken}`,
         }),
         signal: AbortSignal.timeout(8000),
       })
@@ -97,7 +103,7 @@ export async function POST(request) {
       console.error('enquiry notify failed', err)
     }
 
-    return NextResponse.json({ ok: true, slug })
+    return NextResponse.json({ ok: true, slug, editToken })
   } catch (err) {
     console.error('create invitation failed', err)
     return NextResponse.json({ error: 'Something went wrong saving your invitation. Please try again.' }, { status: 500 })
