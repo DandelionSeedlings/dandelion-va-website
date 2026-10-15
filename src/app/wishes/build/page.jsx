@@ -14,6 +14,7 @@ import { createClient } from '@supabase/supabase-js'
 import WishesNav from '../../../components/wishes/WishesNav'
 import WishesFooter from '../../../components/wishes/WishesFooter'
 import Reveal from '../../../components/wishes/Reveal'
+import { LANGUAGES } from '../../../lib/wishes/i18n'
 
 const PHOTO_BUCKET = 'wishes-photos'
 const MAX_PHOTOS = 4
@@ -123,7 +124,7 @@ export default function BuildYourOwnPage() {
     firstName: '', partnerName: '', email: '', phone: '',
     weddingDate: '', ceremonyTime: '15:00', receptionTime: '', rsvpDeadline: '',
     ceremonyVenue: '', ceremonyLocation: '', receptionVenue: '',
-    theme: 'romantic-soft', tagline: '', storyText: '',
+    theme: 'romantic-soft', lang: 'en', tagline: '', storyText: '',
     dressCodeTitle: '', dressCodeBlurb: '',
     spotifyTrackUrl: '', hpCheck: '', // hidden spam trap (odd name so browsers do not autofill it)
   })
@@ -338,6 +339,13 @@ export default function BuildYourOwnPage() {
                   <Field label="Your partner's first name">
                     <input value={f.partnerName} onChange={set('partnerName')} className={inputClass} placeholder="e.g. James" />
                   </Field>
+                  <div className="sm:col-span-2">
+                    <Field label="Invitation language" hint="You can change this later. The words you type yourself stay as you wrote them.">
+                      <select value={f.lang} onChange={set('lang')} className={inputClass}>
+                        {LANGUAGES.map((l) => <option key={l.key} value={l.key}>{l.label}</option>)}
+                      </select>
+                    </Field>
+                  </div>
                 </div>
               )}
 
@@ -414,7 +422,7 @@ export default function BuildYourOwnPage() {
                   {photos.length < MAX_PHOTOS && (
                     <label className="block cursor-pointer rounded-xl border border-dashed border-[#C9BFAE] bg-white/60 py-12 text-center">
                       <p className="text-[15px] font-medium text-[#2E2A26]">{uploading ? 'Uploading…' : 'Choose your favourite photos'}</p>
-                      <p className="text-xs text-[#3A3A3A]/55 mt-1">JPG or PNG. We resize them for you.</p>
+                      <p className="text-xs text-[#3A3A3A]/55 mt-2 px-6 leading-snug">Best: landscape photos, at least 1600 pixels wide, JPG or PNG. Your first photo sits big beside your story and is cropped close to a square, so choose one where you are both in the middle. Very small or very tall photos can look blurry or cut off.</p>
                       <input type="file" accept="image/*" multiple className="hidden" disabled={uploading} onChange={handleFiles} />
                     </label>
                   )}

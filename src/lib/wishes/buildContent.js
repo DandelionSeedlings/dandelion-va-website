@@ -7,6 +7,8 @@
 // links must be http(s), photos must come from our own storage bucket, and
 // the WhatsApp number is normalised.
 
+import { getMonths, getDefaults, normalizeLang } from './i18n'
+
 export const THEME_LABELS = {
   'romantic-soft': 'Romantic & Soft',
   botanical: 'Botanical',
@@ -71,13 +73,13 @@ export function normalizeWaNumber(v) {
 }
 
 // 'YYYY-MM-DD' -> '14 February 2027'. Returns '' for anything that isn't a real date.
-export function formatDateLong(iso) {
+export function formatDateLong(iso, lang = 'en') {
   const m = String(iso || '').match(/^(\d{4})-(\d{2})-(\d{2})$/)
   if (!m) return ''
   const [y, mo, d] = [Number(m[1]), Number(m[2]), Number(m[3])]
   const check = new Date(Date.UTC(y, mo - 1, d))
   if (check.getUTCFullYear() !== y || check.getUTCMonth() !== mo - 1 || check.getUTCDate() !== d) return ''
-  return `${d} ${MONTHS[mo - 1]} ${y}`
+  return `${d} ${getMonths(lang)[mo - 1]} ${y}`
 }
 
 const isTime = (v) => /^([01]\d|2[0-3]):[0-5]\d$/.test(String(v || ''))
@@ -111,10 +113,12 @@ const HERO_DEFAULT = {
  *          the message is safe to show to the person filling in the form.
  */
 export function buildContent(input, { photoBase }) {
+  const lang = normalizeLang(input.lang)
+  const D = getDefaults(lang)
   const coupleNames = clip(input.coupleNames, 80)
   if (!coupleNames) throw new Error('Please enter your names.')
 
-  const weddingDateLong = formatDateLong(input.weddingDate)
+  const weddingDateLong = formatDateLong(input.weddingDate, lang)
   if (!weddingDateLong) throw new Error('Please choose your wedding date.')
 
   const ceremonyTime = isTime(input.ceremonyTime) ? input.ceremonyTime : ''
@@ -126,7 +130,7 @@ export function buildContent(input, { photoBase }) {
   const ceremonyLocation = clip(input.ceremonyLocation, 120)
   const receptionVenue = clip(input.receptionVenue, 120) || ceremonyVenue
 
-  const rsvpDeadline = formatDateLong(input.rsvpDeadline)
+  const rsvpDeadline = formatDateLong(input.rsvpDeadline, lang)
   if (!rsvpDeadline) throw new Error('Please choose an RSVP deadline.')
 
   const rsvpWaNumber = normalizeWaNumber(input.phone)
@@ -143,7 +147,7 @@ export function buildContent(input, { photoBase }) {
     .map((m) => ({ label: clip(m?.label, 40), year: clip(m?.year, 12) }))
     .filter((m) => m.label && m.year)
     .slice(0, 6)
-  if (milestones.length === 0) milestones.push({ label: 'The wedding', year: weddingDateLong.slice(-4) })
+  if (milestones.length === 0) milestones.push({ label: D.theWedding, year: weddingDateLong.slice(-4) })
 
   let schedule = (Array.isArray(input.schedule) ? input.schedule : [])
     .map((s) => ({ time: clip(s?.time, 10), label: clip(s?.label, 80) }))
@@ -152,8 +156,8 @@ export function buildContent(input, { photoBase }) {
     .map((s) => ({ ...s, icon: guessIcon(s.label) }))
   if (schedule.length === 0) {
     schedule = [
-      { time: ceremonyTime, label: 'Wedding Ceremony', icon: 'ceremony' },
-      { time: receptionTime, label: 'Reception', icon: 'reception' },
+      { time: ceremonyTime, label: D.ceremony, icon: 'ceremony' },
+      { time: receptionTime, label: D.reception, icon: 'reception' },
     ]
   }
 
@@ -181,14 +185,13 @@ export function buildContent(input, { photoBase }) {
   const hero = HERO_BY_THEME[themeKey] || HERO_DEFAULT
 
   const content = {
+    lang,
     coupleNames,
     weddingDateLong,
     weddingDateISO: `${input.weddingDate}T${ceremonyTime}:00`,
-    tagline: clip(input.tagline, 100) || 'Two hearts. One journey. A lifetime together.',
+    tagline: clip(input.tagline, 100) || D.tagline,
     ...hero,
-    storyText:
-      clip(input.storyText, 1200) ||
-      "We can't wait to celebrate this day with the people we love most.",
+    storyText: clip(input.storyText, 1200) || D.story,
     milestones,
     storyImage: photos[0],
     galleryImages,
@@ -208,6 +211,13 @@ export function buildContent(input, { photoBase }) {
   const dressTitle = clip(input.dressCodeTitle, 80)
   if (dressTitle) {
     content.dressCode = { title: dressTitle, blurb: clip(input.dressCodeBlurb, 200), ladies: '', gentlemen: '' }
+  }
+
+  // Their own banner photo replaces the animated banner. Same rule as every photo:
+  // it must come from our own storage bucket.
+  const bannerUrl = typeof input.bannerUrl === 'string' ? input.bannerUrl : ''
+  if (bannerUrl && photoBase && bannerUrl.length < 400 && bannerUrl.startsWith(photoBase)) {
+    content.heroImage = bannerUrl
   }
 
   const spotify = safeSpotifyTrack(input.spotifyTrackUrl)

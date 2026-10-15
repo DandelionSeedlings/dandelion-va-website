@@ -14,8 +14,16 @@ export default function PreviewFrame() {
   const [state, setState] = useState(null)
 
   useEffect(() => {
+    // The sideways scrollbar came from decorations poking past the edge.
+    document.documentElement.style.overflowX = 'hidden'
+    document.body.style.overflowX = 'hidden'
     const onMessage = (e) => {
       if (e.origin !== window.location.origin) return
+      if (e.data?.type === 'wishes-scroll') {
+        const el = document.getElementById(e.data.id)
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        return
+      }
       if (e.data?.type !== 'wishes-preview') return
       setState({ theme: getTheme(e.data.theme), content: e.data.content })
     }

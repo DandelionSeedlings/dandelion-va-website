@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Reveal from './Reveal'
+import { getStrings } from '../../lib/wishes/i18n'
 import EnvelopeIntro from './EnvelopeIntro'
 import {
   SeedCluster, DriftingSeed, GoldDividerImg, GoldStarImg, DriftingSignatureSeed,
@@ -49,6 +50,7 @@ function useCountdown(isoString) {
  */
 export default function InvitationTemplate({ theme, content, showPreviewBanner = true, skipIntro = false }) {
   const c = theme.colors
+  const L = getStrings(content.lang)
   const [opened, setOpened] = useState(skipIntro)
   const [guestName, setGuestName] = useState('')
   const [musicOpen, setMusicOpen] = useState(false)
@@ -64,7 +66,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
     : null
 
   const rsvpWaLink = `https://wa.me/${content.rsvpWaNumber}?text=${encodeURIComponent(
-    `Hi! It's ${guestName || '[your name]'} — RSVPing for ${content.coupleNames}'s wedding. `
+    L.waText(guestName, content.coupleNames)
   )}`
 
   return (
@@ -114,16 +116,20 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
       )}
 
       {/* Hero */}
-      <motion.section
+      <motion.section id="top"
         initial={{ opacity: 0 }}
         animate={{ opacity: opened ? 1 : 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
         className="relative min-h-[85vh] flex items-center overflow-hidden"
       >
         <div className="absolute inset-0 z-0">
-          <video autoPlay muted loop playsInline preload="auto" poster={content.heroVideoPoster} className="w-full h-full object-cover">
-            <source src={content.heroVideoSrc} type="video/mp4" />
-          </video>
+          {content.heroImage ? (
+            <img src={content.heroImage} alt="" className="w-full h-full object-cover" style={{ objectPosition: 'center 30%' }} />
+          ) : (
+            <video autoPlay muted loop playsInline preload="auto" poster={content.heroVideoPoster} className="w-full h-full object-cover">
+              <source src={content.heroVideoSrc} type="video/mp4" />
+            </video>
+          )}
           <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(58,58,58,0.35) 0%, rgba(58,58,58,0.55) 100%)' }} />
         </div>
         {theme.showDriftingSeeds && (
@@ -145,7 +151,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
           </>
         )}
         <div className="relative z-10 max-w-2xl mx-auto text-center px-6 text-white">
-          <p className="text-sm opacity-90 mb-4">Together with their families, invite you to celebrate</p>
+          <p className="text-sm opacity-90 mb-4">{L.together}</p>
           <div className="w-16 h-px mx-auto mb-6" style={{ background: c.soft }} />
           <h1 className="text-6xl md:text-7xl mb-6" style={{ fontFamily: theme.scriptFont }}>
             {content.coupleNames}
@@ -154,7 +160,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
           <p className="text-lg italic" style={{ fontFamily: theme.serifFont }}>{content.tagline}</p>
           {countdown && (
             <div className="flex justify-center gap-4 sm:gap-6 mt-8">
-              {[['d', 'days'], ['h', 'hrs'], ['m', 'min'], ['s', 'sec']].map(([key, label]) => (
+              {[['d', L.days], ['h', L.hrs], ['m', L.min], ['s', L.sec]].map(([key, label]) => (
                 <div key={key} className="text-center">
                   <p className="text-2xl sm:text-3xl" style={{ fontFamily: theme.serifFont }}>{countdown[key]}</p>
                   <p className="text-[10px] uppercase tracking-wide opacity-80">{label}</p>
@@ -163,18 +169,18 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
             </div>
           )}
           <a href="#rsvp" className="inline-block mt-8 px-8 py-3.5 rounded-full font-medium" style={{ background: c.soft, color: c.ink }}>
-            RSVP
+            {L.rsvp}
           </a>
         </div>
       </motion.section>
 
       {/* Our Story */}
-      <section className="py-20 px-6">
+      <section id="story" className="py-20 px-6">
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <Reveal>
             <div className="relative" style={{ boxShadow: theme.showBotanicalAccents ? 'none' : '0 25px 50px -20px rgba(0,0,0,0.2)' }}>
               <div className="rounded-2xl overflow-hidden" style={theme.showBotanicalAccents ? { transform: 'rotate(-2deg)' } : {}}>
-                <img src={content.storyImage} alt="" className="w-full h-[380px] object-cover" />
+                <img src={content.storyImage} alt="" className="w-full h-[380px] object-cover" style={{ objectPosition: 'center 25%' }} />
               </div>
               {theme.showBotanicalAccents && (
                 <>
@@ -192,9 +198,9 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
               <CoastalSeaglassImg size={70} style={{ top: -20, left: -36, opacity: 0.5, zIndex: 0, transform: 'rotate(-8deg)' }} />
             )}
             <div className="relative" style={{ zIndex: 1 }}>
-              <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>Our Story</p>
+              <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>{L.ourStory}</p>
               <h2 className="text-3xl mb-4 italic" style={{ fontFamily: theme.serifFont, color: c.ink }}>
-                Two people. One beautiful story.
+                {L.storyHeading}
               </h2>
               {theme.showBotanicalAccents && (
                 <EucalyptusDividerImg width={160} className="mb-6" style={{ marginLeft: 0 }} />
@@ -228,7 +234,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
 
       {/* Gallery */}
       {theme.showDriftingSeeds !== undefined && content.galleryImages?.length > 0 && (
-        <section className="py-20 px-6 relative" style={{ background: c.bgAlt }}>
+        <section id="gallery" className="py-20 px-6 relative" style={{ background: c.bgAlt }}>
           <SeedCluster color={c.soft} size={50} style={{ position: 'absolute', top: 20, right: 24, opacity: 0.4, display: (theme.showBotanicalAccents || theme.showCoastalAccents) ? 'none' : 'block' }} />
           {theme.showBotanicalAccents && (
             <BotanicalCornerSprig variant={2} size={260} style={{ top: -34, right: -34, opacity: 0.55 }} />
@@ -237,8 +243,8 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
             <CoastalCornerShell size={80} style={{ top: 8, right: 12, opacity: 0.75 }} />
           )}
           <Reveal className="text-center mb-12">
-            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>Our Gallery</p>
-            <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Our Favourite Moments</h2>
+            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>{L.ourGallery}</p>
+            <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>{L.favouriteMoments}</h2>
             {content.photoWallUrl && (
               <div className="flex gap-3 justify-center mt-5">
                 <a
@@ -248,7 +254,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
                   className="text-xs px-5 py-2.5 rounded-full font-medium text-white"
                   style={{ background: c.accent }}
                 >
-                  Add your photos 📸
+                  {L.addPhotos}
                 </a>
                 <a
                   href={`${content.photoWallUrl}?page=gallery`}
@@ -257,29 +263,29 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
                   className="text-xs px-5 py-2.5 rounded-full font-medium border"
                   style={{ borderColor: c.accent, color: c.accent }}
                 >
-                  View the live wall
+                  {L.viewWall}
                 </a>
               </div>
             )}
           </Reveal>
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
             <Reveal className="col-span-2 row-span-2 relative">
-              <img src={content.galleryImages[0]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 300 }} />
+              <img src={content.galleryImages[0]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 300, objectPosition: 'center 25%' }} />
               {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="portrait" />}
               {theme.showCoastalAccents && <CoastalGalleryFrame shape="portrait" />}
             </Reveal>
             <Reveal delay={0.05} className="relative">
-              <img src={content.galleryImages[1]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145 }} />
+              <img src={content.galleryImages[1]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145, objectPosition: 'center 25%' }} />
               {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="square" />}
               {theme.showCoastalAccents && <CoastalGalleryFrame shape="square" />}
             </Reveal>
             <Reveal delay={0.1} className="relative">
-              <img src={content.galleryImages[2]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145 }} />
+              <img src={content.galleryImages[2]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145, objectPosition: 'center 25%' }} />
               {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="square" />}
               {theme.showCoastalAccents && <CoastalGalleryFrame shape="square" />}
             </Reveal>
             <Reveal delay={0.15} className="col-span-2 relative">
-              <img src={content.galleryImages[3]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145 }} />
+              <img src={content.galleryImages[3]} alt="" className="w-full h-full object-cover rounded-xl" style={{ minHeight: 145, objectPosition: 'center 25%' }} />
               {theme.showBotanicalAccents && <EucalyptusGalleryFrame shape="square" />}
               {theme.showCoastalAccents && <CoastalGalleryFrame shape="square" />}
             </Reveal>
@@ -288,7 +294,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
       )}
 
       {/* Details */}
-      <section
+      <section id="details"
         className="py-20 px-6"
         style={
           theme.showCoastalAccents
@@ -301,8 +307,8 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
         }
       >
         <Reveal className="text-center mb-14">
-          <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>The Day</p>
-          <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Wedding Details</h2>
+          <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>{L.theDay}</p>
+          <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>{L.weddingDetails}</h2>
         </Reveal>
         <div className="max-w-2xl mx-auto grid sm:grid-cols-2 gap-6">
           <Reveal>
@@ -312,7 +318,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
               ) : (
                 <GoldStarImg size={16} style={{ top: 14, left: 16 }} />
               )}
-              <p className="text-sm font-medium" style={{ color: c.ink }}>Ceremony</p>
+              <p className="text-sm font-medium" style={{ color: c.ink }}>{L.ceremony}</p>
               <div className="w-8 h-px mx-auto my-3" style={{ background: c.soft }} />
               <p className="text-2xl italic mb-3" style={{ fontFamily: theme.serifFont, color: c.accent }}>{content.ceremony.time}</p>
               <p className="text-sm" style={{ color: c.ink }}>{content.ceremony.venue}</p>
@@ -324,7 +330,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
                 className="text-xs underline"
                 style={{ color: c.accent }}
               >
-                Get directions →
+                {L.directions}
               </a>
             </div>
           </Reveal>
@@ -335,7 +341,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
               ) : (
                 <GoldStarImg size={16} style={{ top: 14, left: 16 }} />
               )}
-              <p className="text-sm font-medium" style={{ color: c.ink }}>Reception</p>
+              <p className="text-sm font-medium" style={{ color: c.ink }}>{L.reception}</p>
               <div className="w-8 h-px mx-auto my-3" style={{ background: c.soft }} />
               <p className="text-2xl italic mb-3" style={{ fontFamily: theme.serifFont, color: c.accent }}>{content.reception.time}</p>
               <p className="text-sm mb-3" style={{ color: c.ink }}>{content.reception.venue}</p>
@@ -346,7 +352,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
                 className="text-xs underline"
                 style={{ color: c.accent }}
               >
-                Get directions →
+                {L.directions}
               </a>
             </div>
           </Reveal>
@@ -355,12 +361,12 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
 
       {/* Order of the Day */}
       {content.schedule?.length > 0 && (
-      <section className="py-20 px-6 relative overflow-hidden" style={{ background: c.bgAlt }}>
+      <section id="schedule" className="py-20 px-6 relative overflow-hidden" style={{ background: c.bgAlt }}>
         {theme.showCoastalAccents && (
           <CoastalCornerShell size={80} style={{ top: 0, right: 8, opacity: 0.3, transform: 'rotate(18deg)' }} />
         )}
         <Reveal className="text-center mb-12">
-          <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Order of the Day</h2>
+          <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>{L.orderOfDay}</h2>
         </Reveal>
         <div className="max-w-md mx-auto border-l pl-8 space-y-6" style={{ borderColor: c.soft }}>
           {content.schedule.map((s, i) => (
@@ -388,16 +394,16 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
 
       {/* Dress Code — only renders when content.dressCode is supplied */}
       {content.dressCode && (
-        <section className="py-20 px-6" style={{ background: c.bgAlt }}>
+        <section id="dress" className="py-20 px-6" style={{ background: c.bgAlt }}>
           <Reveal className="max-w-md mx-auto text-center">
-            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>What to Wear</p>
-            <h2 className="text-3xl mb-4" style={{ fontFamily: theme.serifFont, color: c.ink }}>Dress Code</h2>
+            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>{L.whatToWear}</p>
+            <h2 className="text-3xl mb-4" style={{ fontFamily: theme.serifFont, color: c.ink }}>{L.dressCode}</h2>
             <p className="text-xl italic mb-3" style={{ fontFamily: theme.serifFont, color: c.accent }}>{content.dressCode.title}</p>
             {content.dressCode.blurb && <p className="text-sm opacity-75 mb-5">{content.dressCode.blurb}</p>}
             {(content.dressCode.ladies || content.dressCode.gentlemen) && (
               <div className="text-sm space-y-1" style={{ color: c.ink }}>
-                {content.dressCode.ladies && <p><span className="font-medium">Ladies:</span> {content.dressCode.ladies}</p>}
-                {content.dressCode.gentlemen && <p><span className="font-medium">Gentlemen:</span> {content.dressCode.gentlemen}</p>}
+                {content.dressCode.ladies && <p><span className="font-medium">{L.ladies}</span> {content.dressCode.ladies}</p>}
+                {content.dressCode.gentlemen && <p><span className="font-medium">{L.gentlemen}</span> {content.dressCode.gentlemen}</p>}
               </div>
             )}
           </Reveal>
@@ -410,8 +416,8 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
           <DriftingCoastalAccent variant="seaglass" size={60} style={{ top: 20, left: 30, opacity: 0.2 }} duration={16} />
         )}
         <Reveal className="max-w-2xl mx-auto text-center text-white mb-10">
-          <h2 className="text-3xl mb-3" style={{ fontFamily: theme.serifFont }}>Will you celebrate with us?</h2>
-          <p className="opacity-85 text-sm">Please let us know by {content.rsvpDeadline}.</p>
+          <h2 className="text-3xl mb-3" style={{ fontFamily: theme.serifFont }}>{L.willYouCelebrate}</h2>
+          <p className="opacity-85 text-sm">{L.rsvpBy(content.rsvpDeadline)}</p>
         </Reveal>
         <div className="max-w-md mx-auto">
           <div className="bg-white/95 rounded-2xl p-8 text-center">
@@ -437,14 +443,14 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
               </>
             ) : (
               <p className="text-sm mb-6 italic opacity-70" style={{ color: c.ink }}>
-                Online RSVP form coming soon — for now, please RSVP on WhatsApp below.
+                {L.rsvpSoon}
               </p>
             )}
-            <input type="text" placeholder="Your name" value={guestName} onChange={(e) => setGuestName(e.target.value)}
+            <input type="text" placeholder={L.yourName} value={guestName} onChange={(e) => setGuestName(e.target.value)}
               className="w-full px-4 py-2.5 rounded-full border text-sm mb-3 text-center" style={{ borderColor: c.cardBorder }} />
             <a href={rsvpWaLink} target="_blank" rel="noopener noreferrer"
               className="inline-block w-full px-8 py-3.5 rounded-full font-medium" style={{ border: `1px solid ${c.accent}`, color: c.accent }}>
-              Send RSVP on WhatsApp instead
+              {L.rsvpWhatsapp}
             </a>
           </div>
         </div>
@@ -454,8 +460,8 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
       {content.accommodationOptions?.length > 0 && (
         <section className="py-20 px-6">
           <Reveal className="text-center mb-12">
-            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>Staying Over</p>
-            <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Accommodation</h2>
+            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>{L.stayingOver}</p>
+            <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>{L.accommodation}</h2>
           </Reveal>
           <div className="max-w-3xl mx-auto grid sm:grid-cols-2 gap-6">
             {content.accommodationOptions.map((a) => (
@@ -466,7 +472,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
                   {a.href && (
                     <a href={a.href} target="_blank" rel="noopener noreferrer"
                       className="inline-block text-sm px-5 py-2 rounded-full border" style={{ borderColor: c.accent, color: c.accent }}>
-                      Book here
+                      {L.bookHere}
                     </a>
                   )}
                 </div>
@@ -478,14 +484,14 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
 
       {/* Our People */}
       {content.weddingParty?.length > 0 && (
-      <section className="py-20 px-6 relative">
+      <section id="party" className="py-20 px-6 relative">
         {theme.showCoastalAccents && (
           <CoastalCornerShell size={70} style={{ top: 4, left: 16, opacity: 0.35, transform: 'rotate(-12deg)' }} />
         )}
         <Reveal className="text-center mb-4">
-          <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Our People</h2>
+          <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>{L.ourPeople}</h2>
         </Reveal>
-        <p className="text-center text-sm opacity-60 mb-12">The ones standing up with us</p>
+        <p className="text-center text-sm opacity-60 mb-12">{L.standingUp}</p>
         <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6">
           {content.weddingParty.map((p, i) => (
             <Reveal key={p.name} delay={i * 0.06} className="text-center">
@@ -504,18 +510,17 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
 
       {/* Gift Registry */}
       {content.registryLinks?.length > 0 && (
-      <section className="py-20 px-6 relative overflow-hidden" style={{ background: c.bgAlt }}>
+      <section id="registry" className="py-20 px-6 relative overflow-hidden" style={{ background: c.bgAlt }}>
         {theme.showCoastalAccents && (
           <DriftingCoastalAccent variant="shell" size={54} style={{ top: 16, right: 24, opacity: 0.3 }} duration={14} />
         )}
         <Reveal className="text-center mb-10">
-          <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Gift Registry</h2>
+          <h2 className="text-3xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>{L.giftRegistry}</h2>
         </Reveal>
         <Reveal>
           <div className="max-w-lg mx-auto rounded-2xl p-8 text-center" style={{ background: c.highlight }}>
             <p className="text-sm mb-6" style={{ color: c.ink }}>
-              Your presence really is the greatest gift. If you&apos;d like to spoil us anyway,
-              we&apos;ve put a few things together below.
+              {L.giftText}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               {content.registryLinks.map((r) => (
@@ -531,12 +536,12 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
 
       {/* FAQ */}
       {content.faqs?.length > 0 && (
-      <section className="py-20 px-6 relative">
+      <section id="faqs" className="py-20 px-6 relative">
         {theme.showCoastalAccents && (
           <CoastalSeaglassImg size={50} style={{ top: 10, left: 24, opacity: 0.3 }} />
         )}
         <Reveal className="text-center mb-10">
-          <h2 className="text-2xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Quick Answers</h2>
+          <h2 className="text-2xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>{L.quickAnswers}</h2>
         </Reveal>
         <div className="max-w-xl mx-auto space-y-5">
           {content.faqs.map((f, i) => (
@@ -555,8 +560,8 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
       {content.coordinators?.length > 0 && (
         <section className="py-20 px-6" style={{ background: c.bgAlt }}>
           <Reveal className="text-center mb-10">
-            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>Questions on the Day</p>
-            <h2 className="text-2xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>Need a Little Help?</h2>
+            <p className="uppercase tracking-[3px] text-xs mb-4" style={{ color: c.accent }}>{L.questionsOnDay}</p>
+            <h2 className="text-2xl" style={{ fontFamily: theme.serifFont, color: c.ink }}>{L.needHelp}</h2>
           </Reveal>
           <div className="max-w-md mx-auto space-y-4">
             {content.coordinators.map((p) => (
@@ -569,7 +574,7 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
                   {p.waLink && (
                     <a href={p.waLink} target="_blank" rel="noopener noreferrer"
                       className="text-xs px-4 py-2 rounded-full border" style={{ borderColor: c.accent, color: c.accent }}>
-                      WhatsApp
+                      {L.whatsapp}
                     </a>
                   )}
                 </div>
@@ -593,18 +598,18 @@ export default function InvitationTemplate({ theme, content, showPreviewBanner =
           </>
         )}
         <Reveal>
-          <p className="text-white text-2xl mb-3" style={{ fontFamily: theme.serifFont }}>We can&apos;t wait to celebrate with you</p>
-          <p className="text-white/70 italic mb-2" style={{ fontFamily: theme.serifFont }}>With love,</p>
+          <p className="text-white text-2xl mb-3" style={{ fontFamily: theme.serifFont }}>{L.cantWait}</p>
+          <p className="text-white/70 italic mb-2" style={{ fontFamily: theme.serifFont }}>{L.withLove}</p>
           <p className="text-white text-4xl mb-6" style={{ fontFamily: theme.scriptFont }}>{content.coupleNames}</p>
           <GoldDividerImg width={160} center opacity={0.7} />
         </Reveal>
       </section>
 
       <div className="text-center py-8 px-6" style={{ background: c.bg }}>
-        <p className="text-sm mb-2" style={{ color: c.warm }}>Like this style? This could be yours.</p>
+        <p className="text-sm mb-2" style={{ color: c.warm }}>{L.likeStyle}</p>
         <a href="https://wa.me/27728393087" target="_blank" rel="noopener noreferrer"
           className="inline-block px-7 py-3 rounded-full font-medium text-white" style={{ background: c.accent }}>
-          Start Your Invitation
+          {L.startInvitation}
         </a>
       </div>
     </div>

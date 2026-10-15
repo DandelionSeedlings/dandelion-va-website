@@ -11,10 +11,12 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { createClient } from '@supabase/supabase-js'
 import { buildContent } from '../../../../lib/wishes/buildContent'
+import { LANGUAGES } from '../../../../lib/wishes/i18n'
 
 const PHOTO_BUCKET = 'wishes-photos'
 const MAX_PHOTOS = 4
 const MAX_DIM = 1600
+const BANNER_DIM = 2200
 const PHOTO_BASE = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${PHOTO_BUCKET}/`
 const SIMONE_WA = '27728393087'
 
@@ -70,15 +72,15 @@ function ListEditor({ items, setItems, fields, addLabel }) {
   )
 }
 
-function resizeToBlob(file) {
+function resizeToBlob(file, maxDim = MAX_DIM) {
   return new Promise((resolve, reject) => {
     const url = URL.createObjectURL(file)
     const img = new Image()
     img.onload = () => {
       let w = img.width
       let h = img.height
-      if (w > h && w > MAX_DIM) { h = Math.round(h * (MAX_DIM / w)); w = MAX_DIM }
-      else if (h > MAX_DIM) { w = Math.round(w * (MAX_DIM / h)); h = MAX_DIM }
+      if (w > h && w > maxDim) { h = Math.round(h * (maxDim / w)); w = maxDim }
+      else if (h > maxDim) { w = Math.round(w * (maxDim / h)); h = maxDim }
       const canvas = document.createElement('canvas')
       canvas.width = w
       canvas.height = h
@@ -95,6 +97,8 @@ const SECTIONS = [
   { id: 'names', label: 'Names & date' },
   { id: 'venue', label: 'Venue' },
   { id: 'style', label: 'Style' },
+  { id: 'language', label: 'Language' },
+  { id: 'banner', label: 'Banner' },
   { id: 'photos', label: 'Photos' },
   { id: 'story', label: 'Our story' },
   { id: 'schedule', label: 'Order of the day' },
@@ -105,6 +109,21 @@ const SECTIONS = [
   { id: 'song', label: 'Your song' },
   { id: 'rsvp', label: 'RSVP & contact' },
 ]
+
+// Which part of the invitation to show in the preview when a section is chosen.
+const SCROLL_TARGET = {
+  names: 'top', venue: 'details', style: 'top', language: 'top', banner: 'top',
+  photos: 'story', story: 'story', schedule: 'schedule', dress: 'dress', party: 'party',
+  registry: 'registry', faqs: 'faqs', song: 'top', rsvp: 'rsvp',
+}
+
+const PHOTO_GUIDE =
+  'Best results: landscape photos (wider than tall), at least 1600 pixels wide, JPG or PNG. ' +
+  'Your first photo sits big beside your story and is cropped close to a square, so pick one where you are both in the middle. ' +
+  'The rest fill the gallery in wide and square frames. Very small or very tall photos can look blurry or cut off.'
+const BANNER_GUIDE =
+  'Best: a landscape photo, at least 1920 pixels wide (16:9 is ideal), JPG or PNG. ' +
+  'Your names and date sit in the middle of it, so pick a photo that is calm in the centre, such as a wide scene with the two of you off to one side or lower down.'
 
 export default function EditorPage() {
   const { token } = useParams()
@@ -181,6 +200,16 @@ export default function EditorPage() {
     return () => clearTimeout(t)
   }, [frameReady, form, built])
 
+  // ---- jump the preview to the section being edited
+  useEffect(() => {
+    if (!frameReady) return
+    const id = SCROLL_TARGET[section]
+    const t = setTimeout(() => {
+      iframeRef.current?.contentWindow?.postMessage({ type: 'wishes-scroll', id }, window.location.origin)
+    }, 250)
+    return () => clearTimeout(t)
+  }, [section, frameReady])
+
   // ---- autosave
   useEffect(() => {
     if (!form) return
@@ -208,6 +237,37 @@ export default function EditorPage() {
   }, [form])
 
   // ---- photos
+  async function uploadOne(file, maxDim) {
+    const sb = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+    const blob = await resizeToBlob(file, maxDim)
+    const res = await fetch('/api/wishes/upload-url', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contentType: 'image/jpeg', size: blob.size }),
+    })
+    const info = await res.json()
+    if (!res.ok) throw new Error(info.error || 'Upload failed.')
+    const { error: upErr } = await sb.storage.from(PHOTO_BUCKET).uploadToSignedUrl(info.path, info.token, blob, { contentType: 'image/jpeg' })
+    if (upErr) throw upErr
+    return info.publicUrl
+  }
+
+  async function handleBanner(e) {
+    const file = (e.target.files || [])[0]
+    e.target.value = ''
+    if (!file || !form) return
+    setUploadError('')
+    setUploading(true)
+    try {
+      const url = await uploadOne(file, BANNER_DIM)
+      up({ bannerUrl: url })
+    } catch {
+      setUploadError('That banner did not upload. Please try a JPG or PNG.')
+    } finally {
+      setUploading(false)
+    }
+  }
+
   async function handleFiles(e) {
     const files = Array.from(e.target.files || [])
     e.target.value = ''
@@ -215,22 +275,11 @@ export default function EditorPage() {
     setUploadError('')
     setUploading(true)
     try {
-      const sb = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
       const added = []
       let count = (form.photos || []).length
       for (const file of files) {
         if (count >= MAX_PHOTOS) break
-        const blob = await resizeToBlob(file)
-        const res = await fetch('/api/wishes/upload-url', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ contentType: 'image/jpeg', size: blob.size }),
-        })
-        const info = await res.json()
-        if (!res.ok) throw new Error(info.error || 'Upload failed.')
-        const { error: upErr } = await sb.storage.from(PHOTO_BUCKET).uploadToSignedUrl(info.path, info.token, blob, { contentType: 'image/jpeg' })
-        if (upErr) throw upErr
-        added.push(info.publicUrl)
+        added.push(await uploadOne(file, MAX_DIM))
         count += 1
       }
       if (added.length) setForm((s) => ({ ...s, photos: [...(s.photos || []), ...added] }))
@@ -285,6 +334,7 @@ export default function EditorPage() {
     if (id === 'registry' && empty.registry) return 'hidden'
     if (id === 'faqs' && empty.faqs) return 'hidden'
     if (id === 'schedule' && empty.schedule) return 'default'
+    if (id === 'banner' && !form.bannerUrl) return 'default'
     return ''
   }
 
@@ -409,9 +459,52 @@ export default function EditorPage() {
             </div>
           )}
 
+          {section === 'language' && (
+            <>
+              <p className="text-xs text-[#3A3A3A]/60 mb-3">
+                This changes the headings, buttons and dates on your invitation. The words you type yourself stay exactly as you wrote them.
+              </p>
+              <div className="space-y-2">
+                {LANGUAGES.map((l) => (
+                  <button key={l.key} type="button" onClick={() => up({ lang: l.key })}
+                    className="w-full text-left text-sm px-4 py-3 rounded-lg border-2 bg-white flex items-center justify-between"
+                    style={{ borderColor: (form.lang || 'en') === l.key ? '#2E2A26' : '#E5DED2' }}>
+                    {l.label}
+                    {(form.lang || 'en') === l.key && <span>✓</span>}
+                  </button>
+                ))}
+              </div>
+              <p className="text-[11px] text-[#3A3A3A]/55 mt-3">Need another language? Message us and we will add it.</p>
+            </>
+          )}
+
+          {section === 'banner' && (
+            <>
+              <p className="text-xs text-[#3A3A3A]/60 mb-3">The big picture at the top of your invitation. By default it is the animated banner from your style, or you can use your own photo.</p>
+              {form.bannerUrl ? (
+                <div className="relative rounded-lg overflow-hidden border border-[#E5DED2] mb-3">
+                  <img src={form.bannerUrl} alt="" className="w-full h-32 object-cover" style={{ objectPosition: 'center 30%' }} />
+                  <button type="button" onClick={() => up({ bannerUrl: '' })}
+                    className="absolute top-2 right-2 text-[11px] px-2.5 py-1 rounded-full text-white" style={{ background: 'rgba(58,58,58,0.75)' }}>
+                    Use the animated banner
+                  </button>
+                </div>
+              ) : (
+                <p className="text-xs mb-3 px-3 py-2 rounded-lg bg-white border border-[#E5DED2]">Using the animated banner from your style.</p>
+              )}
+              <label className="inline-block text-xs px-5 py-2.5 rounded-full border border-[#7C8B68] text-[#7C8B68] cursor-pointer">
+                {uploading ? 'Uploading…' : form.bannerUrl ? 'Change my banner photo' : 'Upload my own banner photo'}
+                <input type="file" accept="image/*" className="hidden" disabled={uploading} onChange={handleBanner} />
+              </label>
+              {uploadError && <p className="text-xs mt-3 text-[#8B4A4A]">{uploadError}</p>}
+              <p className="text-[11px] text-[#3A3A3A]/55 mt-3 leading-snug">{BANNER_GUIDE}</p>
+            </>
+          )}
+
           {section === 'photos' && (
             <>
-              <p className="text-xs text-[#3A3A3A]/60 mb-3">Up to {MAX_PHOTOS}. The first one is your cover for Our Story.</p>
+              <p className="text-xs text-[#3A3A3A]/60 mb-2">Up to {MAX_PHOTOS}. The first one is your cover for Our Story.</p>
+              <p className="text-[11px] text-[#3A3A3A]/55 mb-3 leading-snug">{PHOTO_GUIDE}</p>
               <div className="grid grid-cols-2 gap-2 mb-4">
                 {photos.map((url, i) => (
                   <div key={url} className="relative aspect-square rounded-lg overflow-hidden border border-[#E5DED2]">
