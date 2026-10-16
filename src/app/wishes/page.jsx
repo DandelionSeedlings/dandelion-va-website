@@ -354,6 +354,9 @@ export default function WishesPage() {
                   <a href="/wishes/photo-album" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium text-white" style={{ background: '#7C8B68' }}>
                     Get MemoryBloom — R350
                   </a>
+                  <a href="/wishes/pay?product=memorybloom" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium text-white" style={{ background: '#5C4A3A' }}>
+                    Pay now — R350
+                  </a>
                   <a href="/wishes/photo-album#showcase" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium border" style={{ borderColor: '#7C8B68', color: '#7C8B68' }}>
                     See a live demo
                   </a>
@@ -387,6 +390,9 @@ export default function WishesPage() {
                   <a href="/wishes/wedding-bloom" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium text-white" style={{ background: '#7C8B68' }}>
                     Get The Wedding Bloom — R750
                   </a>
+                  <a href="/wishes/pay?product=weddingbloom" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium text-white" style={{ background: '#5C4A3A' }}>
+                    Pay now — R750
+                  </a>
                   <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium border" style={{ borderColor: '#7C8B68', color: '#7C8B68' }}>
                     Ask a question
                   </a>
@@ -419,6 +425,9 @@ export default function WishesPage() {
                 <div className="flex flex-wrap gap-3">
                   <a href="/wishes/rsvpbloom" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium text-white" style={{ background: '#7C8B68' }}>
                     Get RSVPBloom — R400
+                  </a>
+                  <a href="/wishes/pay?product=rsvpbloom" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium text-white" style={{ background: '#5C4A3A' }}>
+                    Pay now — R400
                   </a>
                   <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2.5 rounded-full text-sm font-medium border" style={{ borderColor: '#7C8B68', color: '#7C8B68' }}>
                     Ask a question
@@ -471,6 +480,10 @@ export default function WishesPage() {
                   'Add to Calendar, one tap',
                   'Animated WhatsApp invite',
                 ]}
+                actions={[
+                  { label: 'Pay now, R2,650', href: '/wishes/pay?product=interactive', primary: true },
+                  { label: 'Pay 50% deposit, R1,325', href: '/wishes/pay?product=interactive&mode=deposit' },
+                ]}
               />
             </Reveal>
             <Reveal delay={0.24}>
@@ -486,6 +499,10 @@ export default function WishesPage() {
                   'Multi-page: story, itinerary, FAQs',
                   'Multi-day event RSVPs',
                   'Auto WhatsApp/email confirmations',
+                ]}
+                actions={[
+                  { label: 'Pay 50% deposit, R2,250', href: '/wishes/pay?product=bespoke&mode=deposit', primary: true },
+                  { label: 'Chat first on WhatsApp', href: WA_LINK },
                 ]}
               />
             </Reveal>

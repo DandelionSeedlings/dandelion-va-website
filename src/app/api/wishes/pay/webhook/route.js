@@ -3,7 +3,7 @@
 import { NextResponse } from 'next/server'
 import { createHmac, timingSafeEqual } from 'crypto'
 import { getAdminClient } from '../../../../../lib/wishes/supabase'
-import { publishIfPaid } from '../../../../../lib/wishes/paystack'
+import { publishIfPaid, completeOrderIfPaid } from '../../../../../lib/wishes/paystack'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -20,7 +20,9 @@ export async function POST(request) {
   try {
     const event = JSON.parse(raw)
     if (event?.event === 'charge.success' && event?.data?.reference) {
-      await publishIfPaid(getAdminClient(), String(event.data.reference), new URL(request.url).origin)
+      const ref = String(event.data.reference)
+      if (ref.startsWith('dwo-')) await completeOrderIfPaid(getAdminClient(), ref)
+      else await publishIfPaid(getAdminClient(), ref, new URL(request.url).origin)
     }
   } catch (err) {
     console.error('paystack webhook failed', err)

@@ -3,7 +3,7 @@
 // Talks to Paystack with the SECRET key (env var PAYSTACK_SECRET_KEY, never
 // NEXT_PUBLIC_). Test keys start sk_test_, live keys sk_live_; the code is identical.
 
-import { ADDONS, cleanAddons, totalCents } from './pricing'
+import { ADDONS, PRODUCTS, cleanAddons, totalCents } from './pricing'
 
 const BASE = 'https://api.paystack.co'
 
@@ -69,4 +69,48 @@ export async function publishIfPaid(admin, reference, origin = '') {
     }
   }
   return { paid: true, addons }
+}
+
+// Same idea for product orders (/wishes/pay). Marks the order paid once, and only then emails you.
+export async function completeOrderIfPaid(admin, reference) {
+  const { data: o } = await admin.from('wishes_orders').select('*').eq('reference', reference).maybeSingle()
+  if (!o) return { paid: false }
+  const { json } = await paystack(`/transaction/verify/${encodeURIComponent(reference)}`)
+  const d = json?.data
+  const paid = json?.status === true && d?.status === 'success' && d?.currency === 'ZAR' && Number(d?.amount) >= o.amount_due
+  if (!paid) return { paid: false }
+
+  const { data: updated, error } = await admin
+    .from('wishes_orders')
+    .update({ status: 'paid', paid_at: new Date().toISOString(), amount_paid: d.amount })
+    .eq('reference', reference).eq('status', 'pending').select('id')
+  if (error) throw error
+
+  if (updated?.length) {
+    const names = (o.items || []).map((k) => PRODUCTS[k]?.label || k).join(' + ')
+    const isDeposit = o.mode === 'deposit'
+    const paidR = Math.round(d.amount / 100)
+    const balR = Math.round((o.total_amount - o.amount_due) / 100)
+    try {
+      await fetch(ENQUIRY_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          enquiryType: 'invitation',
+          coupleNames: o.name || '',
+          email: o.email || '',
+          phone: o.phone || '',
+          weddingDate: o.wedding_date || '',
+          venueName: '',
+          package: `${isDeposit ? 'DEPOSIT PAID' : 'PAID'} R${paidR}: ${names}`,
+          style: '',
+          notes: `${isDeposit ? `50% DEPOSIT PAID. Balance still to collect: R${balR}. ` : 'PAID IN FULL. '}Paystack ref ${reference}. ${o.notes ? 'Customer notes: ' + o.notes : ''}`,
+        }),
+        signal: AbortSignal.timeout(8000),
+      })
+    } catch (err) {
+      console.error('order notify failed', err)
+    }
+  }
+  return { paid: true, items: o.items, mode: o.mode, balance: o.total_amount - o.amount_due }
 }

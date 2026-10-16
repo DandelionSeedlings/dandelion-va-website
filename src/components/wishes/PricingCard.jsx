@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion'
 
-export default function PricingCard({ tier, price, note, features, featured, dark }) {
+// `actions` is optional: [{ label, href, primary }] buttons shown under the feature list.
+export default function PricingCard({ tier, price, note, features, featured, dark, actions }) {
   return (
     <motion.div
       whileHover={{ y: -6 }}
@@ -34,6 +35,23 @@ export default function PricingCard({ tier, price, note, features, featured, dar
           </li>
         ))}
       </ul>
+      {actions && actions.length > 0 && (
+        <div className="mt-6 flex flex-col gap-2">
+          {actions.map((a) => (
+            <a
+              key={a.label}
+              href={a.href}
+              className={`text-center px-5 py-2.5 rounded-full text-sm font-medium border ${
+                a.primary
+                  ? dark ? 'bg-white text-[#5C4A3A] border-white' : 'bg-[#7C8B68] text-white border-[#7C8B68]'
+                  : dark ? 'border-white/60 text-white' : 'border-[#7C8B68] text-[#7C8B68]'
+              }`}
+            >
+              {a.label}
+            </a>
+          ))}
+        </div>
+      )}
     </motion.div>
   )
 }
