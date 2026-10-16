@@ -13,6 +13,7 @@ import { createClient } from '@supabase/supabase-js'
 import { buildContent } from '../../../../lib/wishes/buildContent'
 import { LANGUAGES } from '../../../../lib/wishes/i18n'
 import { getTheme } from '../../../../lib/wishes/themes'
+import { PRICE_LABEL, USUAL_PRICE_LABEL } from '../../../../lib/wishes/pricing'
 import { HEADING_FONTS, SCRIPT_FONTS } from '../../../../lib/wishes/customDesign'
 
 const PHOTO_BUCKET = 'wishes-photos'
@@ -142,6 +143,11 @@ export default function EditorPage() {
   const [uploadError, setUploadError] = useState('')
   const [frameReady, setFrameReady] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [showPay, setShowPay] = useState(false)
+  const [payEmail, setPayEmail] = useState('')
+  const [payBusy, setPayBusy] = useState(false)
+  const [payError, setPayError] = useState('')
+  const [copiedLive, setCopiedLive] = useState(false)
 
   const iframeRef = useRef(null)
   const skipNextSave = useRef(true)
@@ -162,6 +168,48 @@ export default function EditorPage() {
       .catch((err) => alive && setLoadError(err.message))
     return () => { alive = false }
   }, [token])
+
+  // ---- coming back from Paystack: confirm the payment and publish
+  useEffect(() => {
+    const reference = new URLSearchParams(window.location.search).get('reference')
+    if (!reference) return
+    setShowPay(true)
+    setPayBusy(true)
+    fetch('/api/wishes/pay/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token, reference }),
+    })
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.published) {
+          setPubStatus('published')
+          window.history.replaceState(null, '', window.location.pathname)
+        } else {
+          setPayError('We could not confirm your payment yet. If you were charged, message us and we will sort it out straight away.')
+        }
+      })
+      .catch(() => setPayError('We could not confirm your payment yet. If you were charged, message us and we will sort it out straight away.'))
+      .finally(() => setPayBusy(false))
+  }, [token])
+
+  async function startPayment() {
+    setPayError('')
+    setPayBusy(true)
+    try {
+      const res = await fetch('/api/wishes/pay/init', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, email: payEmail }),
+      })
+      const d = await res.json()
+      if (!res.ok) throw new Error(d.error || 'Could not start the payment.')
+      window.location.assign(d.url)
+    } catch (err) {
+      setPayError(err.message)
+      setPayBusy(false)
+    }
+  }
 
   const up = useCallback((patch) => setForm((s) => ({ ...s, ...patch })), [])
   const set = (key) => (e) => up({ [key]: e.target.value })
@@ -369,11 +417,54 @@ export default function EditorPage() {
           ))}
         </div>
         <a href={previewUrl} target="_blank" rel="noopener noreferrer" className="hidden md:block text-xs underline text-[#7C8B68]">Open preview</a>
-        <a href={publishLink} target="_blank" rel="noopener noreferrer"
+        <button type="button" onClick={() => setShowPay(true)}
           className="px-4 py-2 rounded-lg text-xs font-medium text-white" style={{ background: '#2E2A26' }}>
-          Publish
-        </a>
+          {pubStatus === 'published' ? 'Share' : 'Publish'}
+        </button>
       </header>
+
+      {showPay && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(46,42,38,0.55)' }}
+          onClick={(e) => { if (e.target === e.currentTarget && !payBusy) setShowPay(false) }}>
+          <div className="bg-white rounded-2xl p-6 w-full max-w-md relative">
+            <button type="button" onClick={() => setShowPay(false)} disabled={payBusy} aria-label="Close"
+              className="absolute top-3 right-4 text-xl text-[#3A3A3A]/50">×</button>
+            {pubStatus === 'published' ? (
+              <>
+                <h2 className="text-2xl mb-2 text-[#2E2A26]" style={{ fontFamily: 'var(--font-cormorant), serif' }}>Your invitation is live</h2>
+                <p className="text-sm text-[#3A3A3A]/70 mb-4">Send this link to your guests. Any change you make here shows up on it straight away.</p>
+                <p className="text-sm break-all px-3 py-2.5 rounded-lg bg-[#FAF6F0] border border-[#E5DED2] mb-3">{previewUrl}</p>
+                <div className="flex gap-2 flex-wrap">
+                  <button type="button" className="px-4 py-2.5 rounded-lg text-xs font-medium text-white" style={{ background: '#2E2A26' }}
+                    onClick={() => { navigator.clipboard?.writeText(previewUrl); setCopiedLive(true); setTimeout(() => setCopiedLive(false), 2000) }}>
+                    {copiedLive ? 'Link copied' : 'Copy invitation link'}
+                  </button>
+                  <a href={`https://wa.me/?text=${encodeURIComponent(previewUrl)}`} target="_blank" rel="noopener noreferrer"
+                    className="px-4 py-2.5 rounded-lg text-xs font-medium border border-[#7C8B68] text-[#7C8B68]">Share on WhatsApp</a>
+                </div>
+                <p className="text-[11px] text-[#3A3A3A]/55 mt-4">Keep your private edit link safe too. It is the only way back in to make changes.</p>
+              </>
+            ) : payBusy && new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '').get('reference') ? (
+              <p className="text-sm py-6 text-center text-[#3A3A3A]/70">Confirming your payment…</p>
+            ) : (
+              <>
+                <h2 className="text-2xl mb-2 text-[#2E2A26]" style={{ fontFamily: 'var(--font-cormorant), serif' }}>Publish your invitation</h2>
+                <p className="text-sm text-[#3A3A3A]/70 mb-4">
+                  One payment of <strong>{PRICE_LABEL}</strong> <span className="line-through opacity-60">{USUAL_PRICE_LABEL}</span> (launch special) puts your invitation online with its own link. You can keep editing it afterwards.
+                </p>
+                <label className="block text-sm mb-1">Your email (for your payment receipt)</label>
+                <input type="email" value={payEmail} onChange={(e) => setPayEmail(e.target.value)} placeholder="you@example.com" className={inputClass} />
+                {payError && <p className="text-xs mt-3 text-[#8B4A4A]">{payError}</p>}
+                <button type="button" onClick={startPayment} disabled={payBusy || saveState === 'saving'}
+                  className="w-full mt-4 px-4 py-3 rounded-lg text-sm font-medium text-white disabled:opacity-60" style={{ background: '#2E2A26' }}>
+                  {payBusy ? 'Taking you to Paystack…' : saveState === 'saving' ? 'Saving your changes…' : `Pay ${PRICE_LABEL} securely with Paystack`}
+                </button>
+                <p className="text-[11px] text-[#3A3A3A]/55 mt-3 text-center">Card, instant EFT and more, handled by Paystack. We never see your card details.</p>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {saveState === 'error' && saveMsg && (
         <p className="text-xs text-center py-1.5 bg-[#F6E3E3] text-[#8B4A4A]">Not saved yet: {saveMsg}</p>
