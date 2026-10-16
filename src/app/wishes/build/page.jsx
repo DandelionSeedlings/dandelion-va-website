@@ -154,6 +154,12 @@ export default function BuildYourOwnPage() {
   const panelImage = photos[0]?.url || theme.image
   const panelDate = prettyDate(f.weddingDate)
 
+  // Blank page: only the essentials are asked here (names, date, venue, photo, contact).
+  // Style, story and extras are all left for the editor, where nothing is pre-filled.
+  const flow = f.blank ? [1, 2, 3, 5, 8] : [1, 2, 3, 4, 5, 6, 7, 8]
+  const stepIdx = Math.max(0, flow.indexOf(step))
+  const lastStep = flow[flow.length - 1]
+
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim())
   const phoneOk = f.phone.replace(/\D/g, '').length >= 9
 
@@ -248,7 +254,7 @@ export default function BuildYourOwnPage() {
   function handleSubmit(e) {
     e.preventDefault()
     if (!canContinue || status === 'sending') return
-    if (step < TOTAL_STEPS) goTo(step + 1)
+    if (step !== lastStep) goTo(flow[stepIdx + 1])
     else submitAll()
   }
 
@@ -300,15 +306,15 @@ export default function BuildYourOwnPage() {
           <a href="/wishes" aria-label="Dandelion Wishes">
             <img src="/images/wishes/lettermark.png" alt="Dandelion Wishes" className="w-20 h-auto" />
           </a>
-          <p className="text-xs text-[#3A3A3A]/60">Build your invitation, step {step} of {TOTAL_STEPS}</p>
+          <p className="text-xs text-[#3A3A3A]/60">Build your invitation, step {stepIdx + 1} of {flow.length}</p>
         </div>
 
         <div className="flex gap-2 mb-10" aria-hidden="true">
-          {Array.from({ length: TOTAL_STEPS }, (_, i) => (
+          {Array.from({ length: flow.length }, (_, i) => (
             <span
               key={i}
               className="flex-1 h-[2px] rounded-full transition-colors"
-              style={{ background: i < step ? '#3A3A3A' : '#E5DED2' }}
+              style={{ background: i < stepIdx + 1 ? '#3A3A3A' : '#E5DED2' }}
             />
           ))}
         </div>
@@ -340,10 +346,10 @@ export default function BuildYourOwnPage() {
                     <input value={f.partnerName} onChange={set('partnerName')} className={inputClass} placeholder="e.g. James" />
                   </Field>
                   <div className="sm:col-span-2">
-                    <Field label="How would you like to start?" hint="Guided adds friendly wording you can change. Blank leaves everything empty so you write it all yourself.">
+                    <Field label="How would you like to start?" hint="Guided adds friendly wording you can change. Blank only asks for the essentials, then opens the editor with everything else empty, so you build it yourself and can design your own colours and fonts.">
                       <div className="grid grid-cols-2 gap-3">
                         {[[false, 'Guided'], [true, 'Blank page']].map(([val, label]) => (
-                          <button key={label} type="button" onClick={() => setF((s) => ({ ...s, blank: val }))}
+                          <button key={label} type="button" onClick={() => setF((s) => ({ ...s, blank: val, theme: val ? 'modern-minimal' : s.theme }))}
                             className="text-sm px-4 py-3 rounded-lg border-2 bg-white"
                             style={{ borderColor: f.blank === val ? '#2E2A26' : '#E5DED2' }}>{label}</button>
                         ))}
@@ -520,7 +526,7 @@ export default function BuildYourOwnPage() {
 
           <div className="flex items-center justify-between mt-10 pt-4">
             {step > 1 ? (
-              <button type="button" onClick={() => goTo(step - 1)} className="text-sm text-[#3A3A3A]/70 px-2 py-3">
+              <button type="button" onClick={() => goTo(flow[stepIdx - 1])} className="text-sm text-[#3A3A3A]/70 px-2 py-3">
                 ‹ Back
               </button>
             ) : (
@@ -532,7 +538,7 @@ export default function BuildYourOwnPage() {
               className="px-9 py-3.5 rounded-lg font-medium text-white transition-colors disabled:cursor-not-allowed"
               style={{ background: canContinue && status !== 'sending' ? '#2E2A26' : '#A39E96' }}
             >
-              {step === TOTAL_STEPS
+              {step === lastStep
                 ? status === 'sending' ? 'Creating your invitation…' : 'Create my invitation'
                 : optionalEmpty ? 'Skip for now' : 'Continue'}
             </button>
