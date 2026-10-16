@@ -17,7 +17,7 @@ async function findByToken(token) {
   if (!TOKEN_RE.test(token)) return null
   const { data, error } = await getAdminClient()
     .from('wishes_invitations')
-    .select('slug, status, theme_key, form')
+    .select('slug, status, theme_key, form, addons')
     .eq('edit_token', token)
     .maybeSingle()
   if (error) throw error
@@ -33,7 +33,7 @@ export async function GET(_request, { params }) {
     if (!row.form) {
       return NextResponse.json({ error: 'This invitation was made before editing existed. Please message us and we will help.' }, { status: 404 })
     }
-    return NextResponse.json({ slug: row.slug, status: row.status, form: row.form })
+    return NextResponse.json({ slug: row.slug, status: row.status, form: row.form, addons: row.addons || [] })
   } catch (err) {
     console.error('edit load failed', err)
     return NextResponse.json({ error: 'Could not load your invitation. Please try again.' }, { status: 500 })

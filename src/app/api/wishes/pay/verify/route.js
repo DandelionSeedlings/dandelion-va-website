@@ -18,12 +18,12 @@ export async function POST(request) {
   try {
     const admin = getAdminClient()
     const { data: row, error } = await admin
-      .from('wishes_invitations').select('status, paystack_reference').eq('edit_token', token).maybeSingle()
+      .from('wishes_invitations').select('status, paystack_reference, addons').eq('edit_token', token).maybeSingle()
     if (error) throw error
     if (!row || row.paystack_reference !== reference) return NextResponse.json({ error: 'Payment not found.' }, { status: 404 })
-    if (row.status === 'published') return NextResponse.json({ published: true })
-    const { paid } = await publishIfPaid(admin, reference)
-    return NextResponse.json({ published: paid })
+    if (row.status === 'published') return NextResponse.json({ published: true, addons: row.addons || [] })
+    const { paid, addons } = await publishIfPaid(admin, reference, new URL(request.url).origin)
+    return NextResponse.json({ published: paid, addons: addons || [] })
   } catch (err) {
     console.error('pay verify failed', err)
     return NextResponse.json({ error: 'Could not confirm the payment yet.' }, { status: 500 })

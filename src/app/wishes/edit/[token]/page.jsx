@@ -13,7 +13,7 @@ import { createClient } from '@supabase/supabase-js'
 import { buildContent } from '../../../../lib/wishes/buildContent'
 import { LANGUAGES } from '../../../../lib/wishes/i18n'
 import { getTheme } from '../../../../lib/wishes/themes'
-import { PRICE_LABEL, USUAL_PRICE_LABEL } from '../../../../lib/wishes/pricing'
+import { PRICE_LABEL, USUAL_PRICE_LABEL, ADDONS, totalRands, rand } from '../../../../lib/wishes/pricing'
 import { HEADING_FONTS, SCRIPT_FONTS } from '../../../../lib/wishes/customDesign'
 
 const PHOTO_BUCKET = 'wishes-photos'
@@ -111,13 +111,14 @@ const SECTIONS = [
   { id: 'faqs', label: 'Quick answers' },
   { id: 'song', label: 'Your song' },
   { id: 'rsvp', label: 'RSVP & contact' },
+  { id: 'addons', label: 'Add-ons' },
 ]
 
 // Which part of the invitation to show in the preview when a section is chosen.
 const SCROLL_TARGET = {
   names: 'top', venue: 'details', style: 'top', language: 'top', banner: 'top',
   photos: 'story', story: 'story', schedule: 'schedule', dress: 'dress', party: 'party',
-  registry: 'registry', faqs: 'faqs', song: 'top', rsvp: 'rsvp',
+  registry: 'registry', faqs: 'faqs', song: 'top', rsvp: 'rsvp', addons: 'gallery',
 }
 
 const PHOTO_GUIDE =
@@ -148,6 +149,8 @@ export default function EditorPage() {
   const [payBusy, setPayBusy] = useState(false)
   const [payError, setPayError] = useState('')
   const [copiedLive, setCopiedLive] = useState(false)
+  const [boughtAddons, setBoughtAddons] = useState([])
+  const [pickAddons, setPickAddons] = useState([])
 
   const iframeRef = useRef(null)
   const skipNextSave = useRef(true)
@@ -164,6 +167,7 @@ export default function EditorPage() {
         setForm(data.form)
         setSlug(data.slug)
         setPubStatus(data.status)
+        setBoughtAddons(data.addons || [])
       })
       .catch((err) => alive && setLoadError(err.message))
     return () => { alive = false }
@@ -184,6 +188,7 @@ export default function EditorPage() {
       .then((d) => {
         if (d.published) {
           setPubStatus('published')
+          setBoughtAddons(d.addons || [])
           window.history.replaceState(null, '', window.location.pathname)
         } else {
           setPayError('We could not confirm your payment yet. If you were charged, message us and we will sort it out straight away.')
@@ -200,7 +205,7 @@ export default function EditorPage() {
       const res = await fetch('/api/wishes/pay/init', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ token, email: payEmail }),
+        body: JSON.stringify({ token, email: payEmail, addons: pickAddons }),
       })
       const d = await res.json()
       if (!res.ok) throw new Error(d.error || 'Could not start the payment.')
@@ -386,6 +391,7 @@ export default function EditorPage() {
     if (id === 'schedule' && empty.schedule) return form.blank ? 'hidden' : 'default'
     if (id === 'story' && form.blank && !form.storyText) return 'hidden'
     if (id === 'banner' && !form.bannerUrl) return 'default'
+    if (id === 'addons') return boughtAddons.length ? '' : 'none yet'
     return ''
   }
 
@@ -452,12 +458,26 @@ export default function EditorPage() {
                 <p className="text-sm text-[#3A3A3A]/70 mb-4">
                   One payment of <strong>{PRICE_LABEL}</strong> <span className="line-through opacity-60">{USUAL_PRICE_LABEL}</span> (launch special) puts your invitation online with its own link. You can keep editing it afterwards.
                 </p>
+                <p className="text-sm font-medium mb-2">Add to your order (optional)</p>
+                <div className="space-y-2 mb-4">
+                  {Object.entries(ADDONS).map(([key, a]) => (
+                    <label key={key} className="flex gap-3 items-start text-sm p-3 rounded-lg border cursor-pointer"
+                      style={{ borderColor: pickAddons.includes(key) ? '#2E2A26' : '#E5DED2' }}>
+                      <input type="checkbox" className="mt-1" checked={pickAddons.includes(key)}
+                        onChange={(e) => setPickAddons((s) => e.target.checked ? [...s, key] : s.filter((k) => k !== key))} />
+                      <span>
+                        <span className="font-medium">{a.label}</span> <span className="opacity-70">+{rand(a.rands)}</span>
+                        <span className="block text-[11px] text-[#3A3A3A]/60 leading-snug">{a.blurb} We set it up for you after you pay.</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
                 <label className="block text-sm mb-1">Your email (for your payment receipt)</label>
                 <input type="email" value={payEmail} onChange={(e) => setPayEmail(e.target.value)} placeholder="you@example.com" className={inputClass} />
                 {payError && <p className="text-xs mt-3 text-[#8B4A4A]">{payError}</p>}
                 <button type="button" onClick={startPayment} disabled={payBusy || saveState === 'saving'}
                   className="w-full mt-4 px-4 py-3 rounded-lg text-sm font-medium text-white disabled:opacity-60" style={{ background: '#2E2A26' }}>
-                  {payBusy ? 'Taking you to Paystack…' : saveState === 'saving' ? 'Saving your changes…' : `Pay ${PRICE_LABEL} securely with Paystack`}
+                  {payBusy ? 'Taking you to Paystack…' : saveState === 'saving' ? 'Saving your changes…' : `Pay ${rand(totalRands(pickAddons))} securely with Paystack`}
                 </button>
                 <p className="text-[11px] text-[#3A3A3A]/55 mt-3 text-center">Card, instant EFT and more, handled by Paystack. We never see your card details.</p>
               </>
@@ -587,6 +607,32 @@ export default function EditorPage() {
                 </div>
               )
             })()}
+            </>
+          )}
+
+          {section === 'addons' && (
+            <>
+              {boughtAddons.length === 0 ? (
+                <p className="text-xs text-[#3A3A3A]/60 leading-snug">
+                  {pubStatus === 'published'
+                    ? <>Want RSVPBloom or MemoryBloom? <a className="underline" href={`https://wa.me/${SIMONE_WA}?text=${encodeURIComponent('Hi Simone! I would like to add RSVPBloom / MemoryBloom to my invitation: ' + previewUrl)}`} target="_blank" rel="noopener noreferrer">Message us</a> and we will add it.</>
+                    : 'You can add RSVPBloom (guest list and RSVPs) or MemoryBloom (a guest photo gallery) when you press Publish.'}
+                </p>
+              ) : (
+                <>
+                  <p className="text-xs text-[#3A3A3A]/60 mb-4 leading-snug">We set these up for you after your payment, usually within a day. When they are ready, their links appear here and your invitation connects to them automatically.</p>
+                  {boughtAddons.includes('rsvpbloom') && (
+                    <Field label="RSVPBloom link" hint={form.rsvpUrl ? 'Connected. Your RSVP button now opens it.' : 'Being set up for you.'}>
+                      <input value={form.rsvpUrl || ''} onChange={set('rsvpUrl')} className={inputClass} placeholder="https://..." />
+                    </Field>
+                  )}
+                  {boughtAddons.includes('memorybloom') && (
+                    <Field label="MemoryBloom link" hint={form.photoWallUrl ? 'Connected. The "Add your photos" buttons show in your gallery.' : 'Being set up for you.'}>
+                      <input value={form.photoWallUrl || ''} onChange={set('photoWallUrl')} className={inputClass} placeholder="https://..." />
+                    </Field>
+                  )}
+                </>
+              )}
             </>
           )}
 

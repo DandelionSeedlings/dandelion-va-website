@@ -203,7 +203,7 @@ export function buildContent(input, { photoBase }) {
     rsvpDeadline,
     // Empty on purpose: InvitationTemplate then shows its WhatsApp RSVP. Stage 2
     // replaces this with the shared RSVP backend.
-    rsvpUrl: '',
+    rsvpUrl: safeUrl(input.rsvpUrl),
     rsvpWaNumber,
     weddingParty,
     registryLinks,
@@ -221,6 +221,10 @@ export function buildContent(input, { photoBase }) {
   if (bannerUrl && photoBase && bannerUrl.length < 400 && bannerUrl.startsWith(photoBase)) {
     content.heroImage = bannerUrl
   }
+
+  // MemoryBloom base address; the template adds ?page=upload and ?page=gallery itself.
+  const wall = safeUrl(input.photoWallUrl).split('?')[0].split('#')[0]
+  if (wall) content.photoWallUrl = wall
 
   const design = sanitizeDesign(input.customDesign)
   if (design) content.design = design

@@ -20,7 +20,7 @@ export async function POST(request) {
   try {
     const event = JSON.parse(raw)
     if (event?.event === 'charge.success' && event?.data?.reference) {
-      await publishIfPaid(getAdminClient(), String(event.data.reference))
+      await publishIfPaid(getAdminClient(), String(event.data.reference), new URL(request.url).origin)
     }
   } catch (err) {
     console.error('paystack webhook failed', err)

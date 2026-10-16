@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 import { randomBytes } from 'crypto'
 import { getAdminClient } from '../../../../../lib/wishes/supabase'
 import { paystack } from '../../../../../lib/wishes/paystack'
-import { PRICE_CENTS } from '../../../../../lib/wishes/pricing'
+import { cleanAddons, totalCents } from '../../../../../lib/wishes/pricing'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -16,6 +16,7 @@ export async function POST(request) {
   try { body = await request.json() } catch { return NextResponse.json({ error: 'Bad request.' }, { status: 400 }) }
   const token = String(body?.token || '')
   const email = String(body?.email || '').trim().slice(0, 200)
+  const addons = cleanAddons(body?.addons)
   if (!TOKEN_RE.test(token)) return NextResponse.json({ error: 'This edit link is not valid.' }, { status: 404 })
   if (!EMAIL_RE.test(email)) return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
 
@@ -29,7 +30,7 @@ export async function POST(request) {
 
     const reference = `dw-${randomBytes(10).toString('hex')}`
     const { error: upErr } = await admin
-      .from('wishes_invitations').update({ paystack_reference: reference, customer_email: email }).eq('edit_token', token)
+      .from('wishes_invitations').update({ paystack_reference: reference, customer_email: email, addons }).eq('edit_token', token)
     if (upErr) throw upErr
 
     const origin = new URL(request.url).origin
@@ -37,11 +38,11 @@ export async function POST(request) {
       method: 'POST',
       body: JSON.stringify({
         email,
-        amount: PRICE_CENTS,
+        amount: totalCents(addons),
         currency: 'ZAR',
         reference,
         callback_url: `${origin}/wishes/edit/${token}`,
-        metadata: { slug: row.slug, product: 'Dandelion Wishes Essential Suite' },
+        metadata: { slug: row.slug, product: 'Dandelion Wishes Essential Suite', addons: addons.join(',') },
       }),
     })
     if (!httpOk || !json?.status || !json?.data?.authorization_url) {
