@@ -28,7 +28,11 @@ export async function POST(request) {
   }
 
   // Honeypot: real people never fill in the hidden spam-trap field.
-  if (body?.hpCheck) return NextResponse.json({ ok: true, slug: 'thank-you' })
+  // Spam checks. Both fail with a plain error (never a pretend success), so a real
+  // person who trips one is told to try again instead of landing on a missing page.
+  if (body?.hpCheck || (typeof body?.elapsedMs === 'number' && body.elapsedMs < 4000)) {
+    return NextResponse.json({ error: 'Something went wrong. Please try again.' }, { status: 400 })
+  }
 
   const email = String(body?.email || '').trim().slice(0, 200)
   if (!EMAIL_RE.test(email)) {
@@ -55,7 +59,7 @@ export async function POST(request) {
     let saved = false
     const editToken = randomBytes(16).toString('hex')
     // Keep the raw answers too, so the editor can reopen them exactly as typed.
-    const { hpCheck, ...formForEditor } = body
+    const { hpCheck, elapsedMs, ...formForEditor } = body
 
     for (let attempt = 0; attempt < 5 && !saved; attempt++) {
       const { error } = await supabase.from('wishes_invitations').insert({

@@ -8,7 +8,7 @@
 // Storage through a signed URL; the finished form is posted to
 // /api/wishes/create, which saves a draft and returns the preview link.
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { createClient } from '@supabase/supabase-js'
 import WishesNav from '../../../components/wishes/WishesNav'
@@ -119,6 +119,7 @@ function resizeToBlob(file) {
 
 export default function BuildYourOwnPage() {
   const [step, setStep] = useState(1)
+  const startedAt = useRef(Date.now()) // spam check: a real person takes longer than a few seconds
   const [dir, setDir] = useState(1)
   const [f, setF] = useState({
     firstName: '', partnerName: '', email: '', phone: '',
@@ -126,7 +127,7 @@ export default function BuildYourOwnPage() {
     ceremonyVenue: '', ceremonyLocation: '', receptionVenue: '',
     theme: 'romantic-soft', lang: 'en', blank: false, tagline: '', storyText: '',
     dressCodeTitle: '', dressCodeBlurb: '',
-    spotifyTrackUrl: '', hpCheck: '', // hidden spam trap (odd name so browsers do not autofill it)
+    spotifyTrackUrl: '', // (no hidden spam-trap field any more: browsers kept autofilling it)
   })
   const [milestones, setMilestones] = useState([
     { label: 'First met', year: '' },
@@ -236,6 +237,7 @@ export default function BuildYourOwnPage() {
           coupleNames,
           milestones, schedule, weddingParty, registryLinks, faqs,
           photos: photos.map((p) => p.url),
+          elapsedMs: Date.now() - startedAt.current,
         }),
       })
       const data = await res.json()
@@ -320,10 +322,6 @@ export default function BuildYourOwnPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="flex-1 flex flex-col max-w-lg w-full">
-          {/* Honeypot */}
-          <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
-            <input name="zq-hp-check" type="text" tabIndex={-1} autoComplete="off" data-lpignore="true" data-1p-ignore="true" value={f.hpCheck} onChange={set('hpCheck')} />
-          </div>
 
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
