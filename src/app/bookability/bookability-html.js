@@ -1,6 +1,6 @@
 // The Bookability sales page, as one static string. app/bookability/page.js injects it.
 // Edit the copy here. Images live in public/images/bookability (webp).
-// Order link: your existing Apps Script order form, ?product=Bookability
+// Order link: /order?product=bookability (id from OrderForm.js)
 
 const html = `
 <div class="bk">
@@ -110,14 +110,17 @@ const html = `
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Bookability","applicationCategory":"BusinessApplication","description":"An online booking system you own. Clients book from a link or QR code, you manage everything in a private app backed by your own Google Sheet.","offers":{"@type":"Offer","price":"499","priceCurrency":"ZAR"},"publisher":{"@type":"Organization","name":"Dandelion Creations","url":"https://www.dandelioncreations.co.za"}}</script>
 
-<div style="height:80px;background:#0F172A"></div>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="https://www.dandelioncreations.co.za/"><img src="/images/logo-icon.png?v=2" alt="" width="34" height="34"> Dandelion Creations</a>
+  <a class="btn btn-gold" href="/order?product=bookability">Get Bookability</a>
+</div></header>
 
 <section class="hero"><div class="wrap"><div class="grid">
   <div>
     <span class="eyebrow" style="color:var(--gold)">Owned, not rented</span>
     <h1>Online booking <span>you own</span></h1>
     <p class="lead">Clients pick a time from a link or a QR code. You see every booking in a private app that runs on your own Google Sheet. Pay R499 once. There is no monthly fee.</p>
-    <div class="cta"><a class="btn btn-gold" href="https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec?product=Bookability" target="_blank" rel="noopener noreferrer">Get Bookability for R499</a><a class="btn btn-ghost" href="#see-it">See it in action</a></div>
+    <div class="cta"><a class="btn btn-gold" href="/order?product=bookability">Get Bookability for R499</a><a class="btn btn-ghost" href="#see-it">See it in action</a></div>
     <p class="fine">Runs on your own Google account. A 72 hour trial is built in.</p>
   </div>
   <div class="stage">
@@ -228,7 +231,7 @@ const html = `
         <li>A step by step buyer guide</li>
         <li>No subscription and no renewal</li>
       </ul>
-      <a class="btn btn-gold" href="https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec?product=Bookability" target="_blank" rel="noopener noreferrer">Get Bookability</a>
+      <a class="btn btn-gold" href="/order?product=bookability">Get Bookability</a>
     </div>
     <p class="help">Questions before you buy? Message us on WhatsApp: <a href="https://wa.me/27728393087"><b>+27 72 839 3087</b></a></p>
   </div>
@@ -255,7 +258,7 @@ const html = `
   <div class="wrap">
     <h2>Own your bookings</h2>
     <p>Pay once. Keep your data. Let clients book while you get on with the work.</p>
-    <a class="btn btn-gold" href="https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec?product=Bookability" target="_blank" rel="noopener noreferrer">Get Bookability for R499</a>
+    <a class="btn btn-gold" href="/order?product=bookability">Get Bookability for R499</a>
   </div>
 </section>
 
