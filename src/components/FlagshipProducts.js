@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { FaUsers, FaReceipt, FaCalendarCheck, FaFileInvoice, FaArrowRight, FaGift } from 'react-icons/fa'
+import { FaUsers, FaReceipt, FaCalendarCheck, FaFileInvoice, FaWallet, FaArrowRight, FaGift } from 'react-icons/fa'
 
 const products = [
   {
@@ -38,6 +38,14 @@ const products = [
     desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet, with no monthly fee.',
     href: '/payability',
   },
+  {
+    icon: FaWallet,
+    name: 'BudgetAbility',
+    price: 'R499',
+    priceNote: 'once-off',
+    desc: 'Track accounts, budgets, bills and debt for your household, in any currency, from your own Google Sheet.',
+    href: '/budgetability',
+  },
 ]
 
 export default function FlagshipProducts() {
@@ -50,11 +58,11 @@ export default function FlagshipProducts() {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-3">Four Systems. Start Anywhere.</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-3">Five Systems. Start Anywhere.</h2>
           <p className="text-gray-600 max-w-xl mx-auto">Each one is engineered to work alone or together, as part of the full AbilitySuite&trade; ecosystem.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
           {products.map((product, i) => (
             <motion.div
               key={i}
@@ -63,7 +71,7 @@ export default function FlagshipProducts() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -6 }}
-              className="bg-white rounded-2xl p-8 shadow-sm border border-gold/10 hover:shadow-xl hover:shadow-gold/10 hover:border-gold/30 transition-all duration-300 relative"
+              className="bg-white rounded-2xl p-6 shadow-sm border border-gold/10 hover:shadow-xl hover:shadow-gold/10 hover:border-gold/30 transition-all duration-300 relative"
             >
               {product.badge && (
                 <div className="absolute -top-3 right-6 bg-signal-green text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">

@@ -107,6 +107,7 @@ export default function Footer() {
               </li>
               <li><Link href="/receiptsnap" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm">ReceiptSnap — R299</Link></li>
               <li><Link href="/bookability" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm">Bookability — R499</Link></li>
+              <li><Link href="/budgetability" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm">BudgetAbility — R499</Link></li>
               <li>
                 <a href={buildOrderUrl('Visibility', 'Content Planner')} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#D4AF37] transition-colors duration-300 text-sm flex items-center gap-1">
                   Content Planner — R299 <FiExternalLink size={10} />

@@ -16,6 +16,7 @@ const PRODUCTS = [
   { id: 'crm-mini', key: 'connectability', name: 'Connectability: CRM Mini', price: 0, badge: 'Free', desc: 'Client tracking foundations for front-facing sales and administrative workflows.' },
   { id: 'receiptsnap', key: 'receiptsnap', name: 'ReceiptSnap', price: 299, badge: 'New', desc: 'Snap photos of receipts, extract the data with AI, and export clean CSV files for your bookkeeper.' },
   { id: 'bookability', key: 'bookability', name: 'Bookability: CRM + Booking System', price: 499, badge: 'New', desc: 'QR code booking, a PIN-protected admin portal, email and WhatsApp confirmations, and slot blocking.' },
+  { id: 'budgetability', key: 'budgetability', name: 'BudgetAbility: Household Finance Tracker', price: 499, badge: 'New', desc: 'Accounts, budgets, bills, goals and debt payoff for your household, in more than one currency, in your own Google Sheet.' },
   { id: 'content-planner', key: 'visibility', name: 'Visibility: Content Planner', price: 299, desc: 'Marketing calendars, content scheduling, and social media production workflows.' },
   { id: 'crm-pro', key: 'scalability', name: 'Scalability: CRM Pro', price: 499, badge: 'Popular', desc: 'Advanced sales pipelines, relationship metrics, and growth tracking for account managers.' },
   { id: 'payability', key: 'payability', name: 'Payability: Invoice Sorter Pro', price: 499, group: 'payability', option: 'Do it yourself', desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet. Set it up yourself with the guide.' },

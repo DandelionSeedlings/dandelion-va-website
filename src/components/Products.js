@@ -8,7 +8,7 @@ import {
   FaCalendarAlt, FaBullhorn, FaTshirt, FaClock,
   FaBuilding, FaCogs, FaReceipt, FaArrowRight,
   FaBalanceScale, FaMoneyBillWave, FaCalculator,
-  FaTag, FaPercentage, FaBookOpen
+  FaTag, FaPercentage, FaBookOpen, FaWallet
 } from 'react-icons/fa';
 
 const ORDER_FORM_URL = '/order';
@@ -41,7 +41,7 @@ const productCategories = [
     color: 'text-gold',
     bgColor: 'bg-navy-900',
     borderColor: 'border-gold/30',
-    products: ['payability', 'profitability', 'mini-cash-up']
+    products: ['payability', 'budgetability', 'profitability', 'mini-cash-up']
   },
   {
     id: 'inventory',
@@ -188,6 +188,23 @@ const products = [
     available: true,
     orderUrl: '/payability',
     features: ['PDF invoices and email', 'Quotes and credit notes', 'Payment links', 'VAT reports'],
+    category: 'financial-operations'
+  },
+  {
+    id: 'budgetability',
+    name: 'BudgetAbility',
+    subtitle: 'Household Finance Tracker',
+    price: 499,
+    priceLabel: 'R499',
+    description: 'Accounts, budgets, bills, goals and debt payoff for your household, in more than one currency, kept in your own Google Sheet and opened from one private link.',
+    tagline: 'Know where the money went, in any currency.',
+    icon: FaWallet,
+    color: 'from-emerald-500 to-teal-600',
+    badge: 'NEW',
+    badgeColor: 'bg-emerald-500',
+    available: true,
+    orderUrl: '/budgetability',
+    features: ['Multi currency accounts', 'Budgets and bills', 'Debt payoff plan', 'CSV export'],
     category: 'financial-operations'
   },
   {
