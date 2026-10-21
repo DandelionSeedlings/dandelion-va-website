@@ -114,8 +114,9 @@ const BODY = `<header class="top"><div class="wrap">
     <div class="btns">
       <a class="btn btn-gold" href="/order?product=receiptsnap">Get ReceiptSnap, R299</a>
       <a class="btn btn-line" href="#how">See how it works</a>
+      <a class="btn btn-line" href="https://docs.google.com/spreadsheets/d/15yKsrjjS7S01aJDbBWZHk3ib69a9BEMgZdaprkzt1n4/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a>
     </div>
-    <p class="fine">One payment. No subscription. 72 hour demo included.</p>
+    <p class="fine">One payment. No subscription. 72 hour demo included. Make your own copy of the demo sheet, then start the 72 hour demo with the key RSP-DEMO-2026.</p>
   </div>
   <div class="mock" aria-hidden="true">
     <div class="bar"><i></i><i></i><i></i><span>Your private ReceiptSnap link</span></div>

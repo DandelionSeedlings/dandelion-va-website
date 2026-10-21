@@ -114,8 +114,9 @@ const BODY = `<header class="top"><div class="wrap">
     <div class="btns">
       <a class="btn btn-gold" href="/order?product=budgetability">Get BudgetAbility, R499</a>
       <a class="btn btn-line" href="#see">See the screens</a>
+      <a class="btn btn-line" href="https://docs.google.com/spreadsheets/d/1atnNGnuaf90AsrhU1GihAwuDa5rsyOZZSPGS0wfKPZQ/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a>
     </div>
-    <p class="fine">One payment. No subscription. 72 hour demo included.</p>
+    <p class="fine">One payment. No subscription. 72 hour demo included. Make your own copy of the demo sheet, then start the 72 hour demo with the key BDG-DEMO-2026.</p>
   </div>
   <div class="mock" aria-hidden="true">
     <div class="bar"><i></i><i></i><i></i><span>Your private BudgetAbility link</span></div>
@@ -149,7 +150,7 @@ const BODY = `<header class="top"><div class="wrap">
     <div class="card"><span class="n">2</span><h3>Deploy it once</h3><p>A short guide walks you through the setup. Then pick your home currency and add your accounts.</p></div>
     <div class="card"><span class="n">3</span><h3>Add as you go</h3><p>Bookmark one private link. Add a payment in a few taps, or plan the month's bills in one click.</p></div>
   </div>
-  <div class="note" style="background:var(--navy2);border-color:#334155;border-left-color:var(--gold)"><p style="color:#CBD5E1">You type your transactions in. BudgetAbility does not connect to your bank, so nothing is pulled in without you, and nobody can see your login. Exchange rates are the ones you enter yourself.</p></div>
+  <div class="note" style="background:var(--navy2);border-color:#334155;border-left-color:var(--gold)"><p style="color:#CBD5E1">Add transactions yourself, or download a CSV statement from your bank and import a whole month at once. BudgetAbility does not connect to your bank, so nobody can see your login. Exchange rates are the ones you enter yourself.</p></div>
 </div></section>
 
 <section><div class="wrap">
@@ -166,6 +167,7 @@ const BODY = `<header class="top"><div class="wrap">
     <li><b>Debt payoff plan</b><span>Pick highest interest first or smallest balance first. See your debt free date and what extra payments save.</span></li>
     <li><b>Subscriptions</b><span>Everything that renews, its monthly cost, and a heads up before it does.</span></li>
     <li><b>Insurance</b><span>Policies, premiums, cover and renewal dates in one list.</span></li>
+    <li><b>Bank statement import</b><span>Download a CSV from FNB, Capitec, Standard Bank, ABSA or most other banks. Check the rows, fix a category, and import a month in one go. Duplicates are skipped.</span></li>
     <li><b>Reports and CSV export</b><span>Income and spending by month, top categories and merchants. Download your transactions to share with an accountant.</span></li>
     <li><b>Private by design</b><span>A long private key on your link, and a lockout after repeated wrong guesses.</span></li>
   </ul>
@@ -212,7 +214,7 @@ const BODY = `<header class="top"><div class="wrap">
   <p class="sub">Short answers.</p>
   <details><summary>Do I need to know how to code?</summary><p>No. Deploying is a handful of clicks and the guide shows each one.</p></details>
   <details><summary>Is there a monthly fee?</summary><p>No. You pay once and it runs in your own Google account.</p></details>
-  <details><summary>Does it connect to my bank?</summary><p>No. You add transactions yourself, which keeps your bank details out of it completely. Adding one takes a few taps.</p></details>
+  <details><summary>Does it connect to my bank?</summary><p>No. Nothing connects to your bank, so your login details are never involved. You can add transactions in a few taps, or download a CSV statement from your bank and import it. You see every row first, and rows you already have are skipped.</p></details>
   <details><summary>Can I use it outside South Africa?</summary><p>Yes. Choose any home currency and give each account its own. Dollars, euros, pounds and other currencies all work.</p></details>
   <details><summary>How does it handle more than one currency?</summary><p>Each account has one currency and its transactions follow it. You can look at one currency at a time, or combine them into your home currency using the exchange rates you type in. It does not look rates up for you.</p></details>
   <details><summary>Where is my data stored?</summary><p>In your own Google Sheet. We never see it.</p></details>

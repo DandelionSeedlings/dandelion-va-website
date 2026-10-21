@@ -105,8 +105,9 @@ const BODY = `<header class="top"><div class="wrap">
     <div class="btns">
       <a class="btn btn-gold" href="/order?product=crm-mini">Get Connectability free</a>
       <a class="btn btn-line" href="#how">See how it works</a>
+      <a class="btn btn-line" href="https://docs.google.com/spreadsheets/d/1PZyoOPMV93SSfTOe2MGxbZKqd9aUFffy9iFXBmx1oBQ/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a>
     </div>
-    <p class="fine">Free. No card needed. No subscription.</p>
+    <p class="fine">Free. No card needed. No subscription. Make your own copy of the demo sheet and try it before you decide.</p>
   </div>
   <div class="mock" aria-hidden="true">
     <div class="bar"><i></i><i></i><i></i><span>Your private Connectability link</span></div>

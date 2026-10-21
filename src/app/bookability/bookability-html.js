@@ -120,8 +120,8 @@ const html = `
     <span class="eyebrow" style="color:var(--gold)">Owned, not rented</span>
     <h1>Online booking <span>you own</span></h1>
     <p class="lead">Clients pick a time from a link or a QR code. You see every booking in a private app that runs on your own Google Sheet. Pay R499 once. There is no monthly fee.</p>
-    <div class="cta"><a class="btn btn-gold" href="/order?product=bookability">Get Bookability for R499</a><a class="btn btn-ghost" href="#see-it">See it in action</a></div>
-    <p class="fine">Runs on your own Google account. A 72 hour trial is built in.</p>
+    <div class="cta"><a class="btn btn-gold" href="/order?product=bookability">Get Bookability for R499</a><a class="btn btn-ghost" href="#see-it">See it in action</a><a class="btn btn-ghost" href="https://docs.google.com/spreadsheets/d/1uclTbWOiMXhSWSKvvc-mcPd2RfOF-BVuoyZRbsLzStU/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a></div>
+    <p class="fine">Runs on your own Google account. A 72 hour trial is built in. Make your own copy of the demo sheet to try it first.</p>
   </div>
   <div class="stage">
     <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
