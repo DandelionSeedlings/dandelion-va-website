@@ -1,11 +1,12 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { FiArrowRight, FiTrendingUp } from 'react-icons/fi'
+import { FiArrowRight } from 'react-icons/fi'
 import { FaUsers, FaReceipt, FaCalendarCheck, FaFileInvoiceDollar } from 'react-icons/fa'
 
 const stats = [
-  { value: '4', label: 'Systems Built', sub: 'ConnectAbility, Payability, ReceiptSnap, Bookability' },
+  { value: '5', label: 'Systems Built', sub: 'ConnectAbility, Payability, ReceiptSnap, Bookability, BudgetAbility' },
   { value: '0', label: 'Monthly Subscriptions', sub: 'Own your infrastructure' },
   { value: '100%', label: 'Owned By You', sub: 'Not us, not a platform' },
 ]
@@ -19,7 +20,7 @@ const systemsWeUse = [
   {
     icon: FaFileInvoiceDollar,
     name: 'Payability',
-    desc: 'We invoice through our own system. R2M+ processed so far.',
+    desc: 'We invoice through our own system.',
   },
   {
     icon: FaReceipt,
@@ -35,7 +36,7 @@ const systemsWeUse = [
 
 export default function PortfolioTeaser() {
   return (
-    <section className="py-24 px-4 bg-white">
+    <section id="portfolio" className="scroll-mt-24 py-24 px-4 bg-white">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -88,14 +89,12 @@ export default function PortfolioTeaser() {
         </div>
 
         <div className="text-center">
-          <a
-            href="https://wa.me/27728393087"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#0a1628] hover:bg-[#0a1628]/90 text-[#D4AF37] px-8 py-4 rounded-xl font-bold transition-all"
+          <Link
+            href="/book"
+            className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-8 py-4 font-semibold text-gold transition hover:bg-navy-700"
           >
-            <FiTrendingUp /> Book a Systems Audit
-          </a>
+            Book a Systems Audit <FiArrowRight aria-hidden="true" />
+          </Link>
         </div>
       </div>
     </section>

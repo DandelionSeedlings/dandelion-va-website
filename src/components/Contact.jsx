@@ -1,13 +1,13 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { FiMail, FiPhone, FiMapPin, FiExternalLink, FiCheckCircle, FiCalendar, FiMessageCircle, FiShoppingCart } from 'react-icons/fi'
-
-const ORDER_FORM_URL = 'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
+import { FiMail, FiPhone, FiMapPin, FiCheckCircle, FiCalendar } from 'react-icons/fi'
+import { SITE, whatsappLink } from '../lib/site'
 
 export default function Contact() {
   return (
-    <section id="contact" className="section-padding bg-navy-900 text-cream relative overflow-hidden">
+    <section id="contact" className="section-padding bg-navy-900 text-cream relative overflow-hidden scroll-mt-24">
       {/* Background decorations */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl"></div>
@@ -22,11 +22,11 @@ export default function Contact() {
         >
           <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">Get In Touch</p>
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-            Let&apos;s Diagnose What&apos;s Actually <span className="text-gold">Slowing You Down</span>
+            Let&apos;s find what is <span className="text-gold">slowing you down</span>
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto rounded-full"></div>
           <p className="text-xl text-cream/60 max-w-2xl mx-auto mt-6">
-            Whether you need a single engineered module or a fully custom system, it starts the same way: understanding exactly what&apos;s breaking in your operation before we propose anything. Book a systems audit, or deploy an Ability module directly.
+            Whether you need one module or a fully custom system, it starts the same way: we look at what is actually breaking before we propose anything.
           </p>
         </motion.div>
 
@@ -51,7 +51,7 @@ export default function Contact() {
                 </div>
               </a>
 
-              <a href="https://wa.me/27728393087" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-cream/70 hover:text-gold transition-smooth group">
+              <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-cream/70 hover:text-gold transition-smooth group">
                 <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center border border-gold/20 group-hover:bg-gold/20 transition-colors">
                   <FiPhone className="w-5 h-5 text-gold" />
                 </div>
@@ -82,29 +82,29 @@ export default function Contact() {
                 <div className="flex gap-4">
                   <div className="w-8 h-8 bg-gold rounded-full flex items-center justify-center flex-shrink-0 text-navy-900 font-bold text-sm">1</div>
                   <div>
-                    <p className="font-medium text-cream">Submit the Brief</p>
-                    <p className="text-sm text-cream/50">Tell us what&apos;s breaking, not what solution you think you need.</p>
+                    <p className="font-medium text-cream">Book your audit</p>
+                    <p className="text-sm text-cream/50">Choose a time. Tell us what is breaking, not which solution you think you need.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <div className="w-8 h-8 bg-gold/30 rounded-full flex items-center justify-center flex-shrink-0 text-gold font-bold text-sm">2</div>
                   <div>
-                    <p className="font-medium text-cream">We Diagnose Within 24 Hours</p>
-                    <p className="text-sm text-cream/50">We assess the actual operational gap, not just the request.</p>
+                    <p className="font-medium text-cream">We reply within 24 hours</p>
+                    <p className="text-sm text-cream/50">We confirm the time and read your answers before we speak.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <div className="w-8 h-8 bg-gold/30 rounded-full flex items-center justify-center flex-shrink-0 text-gold font-bold text-sm">3</div>
                   <div>
-                    <p className="font-medium text-cream">Systems Audit Scheduled</p>
-                    <p className="text-sm text-cream/50">A focused 15–30 minute session on your process, not a sales call.</p>
+                    <p className="font-medium text-cream">The audit call</p>
+                    <p className="text-sm text-cream/50">A focused 15 to 30 minutes on your process, not a sales call.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <div className="w-8 h-8 bg-gold/30 rounded-full flex items-center justify-center flex-shrink-0 text-gold font-bold text-sm">4</div>
                   <div>
-                    <p className="font-medium text-cream">Engineering Proposal Delivered</p>
-                    <p className="text-sm text-cream/50">The exact system, scoped, priced, and timelined.</p>
+                    <p className="font-medium text-cream">Written proposal</p>
+                    <p className="text-sm text-cream/50">The exact system, scoped, priced and timelined.</p>
                   </div>
                 </div>
               </div>
@@ -119,88 +119,28 @@ export default function Contact() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            {/* Order Products Card */}
-            <div className="bg-gradient-to-br from-gold/30 to-gold/10 rounded-2xl p-8 border border-gold/30 shadow-2xl">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-gold/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FiShoppingCart className="w-8 h-8 text-gold" />
-                </div>
-                <h3 className="text-2xl font-bold text-cream mb-2">Deploy an Engineered Module</h3>
-                <p className="text-cream/60 text-sm">
-                  Deploy an engineered module directly. Delivered and ready to run within 24 hours.
-                </p>
-              </div>
-
-              <div className="space-y-2 mb-6">
-                <div className="flex items-center gap-3 text-cream/70 text-sm">
-                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
-                  <span>14 modules from FREE to R1,499</span>
-                </div>
-                <div className="flex items-center gap-3 text-cream/70 text-sm">
-                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
-                  <span>Bank transfer or QR code payment</span>
-                </div>
-                <div className="flex items-center gap-3 text-cream/70 text-sm">
-                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
-                  <span>Instant license key delivery</span>
-                </div>
-              </div>
-
-              <a 
-                href={ORDER_FORM_URL}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block w-full bg-gold text-navy-900 text-center py-4 rounded-xl font-bold text-lg hover:bg-gold-light transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+            <div className="rounded-2xl border border-gold/30 bg-gradient-to-br from-gold/20 to-gold/5 p-8">
+              <h3 className="mb-2 text-2xl font-bold text-cream">Book a Systems Audit</h3>
+              <p className="mb-6 text-sm text-cream/60">
+                A free 15 to 30 minute call about how your business runs today. You leave with a clear
+                picture of what to fix first, whether you hire us or not.
+              </p>
+              <ul className="mb-6 space-y-2 text-sm text-cream/70">
+                <li className="flex items-center gap-3"><FiCheckCircle className="h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />Pick a time that suits you</li>
+                <li className="flex items-center gap-3"><FiCheckCircle className="h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />No obligation</li>
+                <li className="flex items-center gap-3"><FiCheckCircle className="h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />Written proposal within 48 hours if we are a fit</li>
+              </ul>
+              <Link
+                href={SITE.cta.href}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-gold py-4 text-lg font-semibold text-navy-900 transition hover:bg-gold-light"
               >
-                <FiShoppingCart className="w-5 h-5" />
-                Deploy Now
-                <FiExternalLink className="w-4 h-4" />
-              </a>
+                {SITE.cta.label}
+              </Link>
             </div>
 
-            {/* Book Systems Audit Card */}
-            <div className="bg-gradient-to-br from-navy-800 to-navy-900 rounded-2xl p-8 border border-gold/20">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FiMessageCircle className="w-8 h-8 text-gold" />
-                </div>
-                <h3 className="text-2xl font-bold text-cream mb-2">Book a Systems Audit</h3>
-                <p className="text-cream/60 text-sm">
-                  For fully custom builds, embedded operations support, or anything that doesn&apos;t fit an existing module.
-                </p>
-              </div>
-
-              <div className="space-y-2 mb-6">
-                <div className="flex items-center gap-3 text-cream/70 text-sm">
-                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
-                  <span>Free 15–30 minute diagnostic session</span>
-                </div>
-                <div className="flex items-center gap-3 text-cream/70 text-sm">
-                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
-                  <span>No obligation, no pressure</span>
-                </div>
-                <div className="flex items-center gap-3 text-cream/70 text-sm">
-                  <FiCheckCircle className="w-4 h-4 text-gold flex-shrink-0" />
-                  <span>Engineering proposal within 48 hours</span>
-                </div>
-              </div>
-
-              <a 
-                href="https://forms.gle/H7tviRGGacXykoYUA" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block w-full bg-white/10 text-white text-center py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300 border border-white/20 flex items-center justify-center gap-2"
-              >
-                Start Systems Audit
-                <FiExternalLink className="w-4 h-4" />
-              </a>
-            </div>
-
-            {/* Trust badge */}
-            <div className="flex items-center justify-center gap-2 text-sm text-cream/40">
-              <FiCheckCircle className="w-4 h-4 text-green-500" />
-              <span>BCEA-Exempt Independent Contractor</span>
-            </div>
+            <p className="text-center text-sm text-cream/50">
+              Just want a ready-made system? <Link href="/order" className="text-gold underline underline-offset-4 hover:text-gold-light">Order a module</Link>
+            </p>
           </motion.div>
         </div>
       </div>

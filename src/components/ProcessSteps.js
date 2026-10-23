@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { FiSearch, FiMap, FiClock, FiPenTool, FiCpu, FiCheckCircle, FiSend, FiHeart } from 'react-icons/fi'
 
@@ -19,19 +20,19 @@ const steps = [
   {
     num: '03',
     title: 'Find Time-Wasting Tasks',
-    desc: 'We identify the repetitive tasks that drain your team — the ones that should have been automated months ago.',
+    desc: 'We identify the repetitive tasks that drain your team, the ones that should have been automated months ago.',
     icon: FiClock,
   },
   {
     num: '04',
     title: 'Design The System',
-    desc: 'We design a custom system that works for you, not against you. Every screen, every flow, every formula — intentional.',
+    desc: 'We design a custom system that works for you, not against you. Every screen, every flow, every formula, intentional.',
     icon: FiPenTool,
   },
   {
     num: '05',
     title: 'Build & Automate',
-    desc: 'We engineer your solution with precision-built automation. Every trigger, every formula, every workflow — crafted to run without you.',
+    desc: 'We engineer your solution with precision-built automation. Every trigger, every formula, every workflow, crafted to run without you.',
     icon: FiCpu,
   },
   {
@@ -49,7 +50,7 @@ const steps = [
   {
     num: '08',
     title: 'Support & Improve',
-    desc: "We're here for support, tweaks, and continuous improvement. Systems evolve — and so does our partnership.",
+    desc: "We're here for support, tweaks, and continuous improvement. Systems evolve, and so does our partnership.",
     icon: FiHeart,
   },
 ]
@@ -69,7 +70,7 @@ const item = {
 
 export default function ProcessSteps() {
   return (
-    <section id="process" className="py-24 px-4 bg-white relative overflow-hidden">
+    <section id="process" className="scroll-mt-24 py-24 px-4 bg-white relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent" />
 
       <div className="max-w-6xl mx-auto">
@@ -134,12 +135,12 @@ export default function ProcessSteps() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="mt-20 text-center"
         >
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 bg-[#0a1628] hover:bg-[#0a1628]/90 text-white px-8 py-4 rounded-xl font-bold text-sm transition-all duration-300 hover:shadow-lg"
+          <Link
+            href="/book"
+            className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-8 py-4 text-sm font-semibold text-gold transition hover:bg-navy-700"
           >
-            Start Your Process <span className="text-[#D4AF37]">→</span>
-          </a>
+            Book a Systems Audit <span aria-hidden="true">&rarr;</span>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -9,8 +9,8 @@ const navLinks = [
   { name: 'Home', href: '#hero' },
   { name: 'Products', href: '#products' },
   { name: 'How It Works', href: '#process' },
-  { name: 'Portfolio', href: '#portfolio' },
-  { name: 'Support', href: '/embeddedsupport' },
+  { name: 'Our Work', href: '#portfolio' },
+  { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '#contact' },
 ]
 
@@ -53,12 +53,12 @@ export default function Navbar() {
       <div
         className={`flex items-center justify-between rounded-2xl border px-5 py-3 md:px-8 md:py-3.5 transition-all duration-500 ${
           isDark
-            ? 'border-white/[0.12] bg-[#0a1628]/85 shadow-[0_10px_40px_rgba(0,0,0,0.4)] backdrop-blur-[20px]'
+            ? 'border-white/[0.12] bg-navy-900/85 shadow-[0_10px_40px_rgba(0,0,0,0.4)] backdrop-blur-[20px]'
             : 'border-white/[0.08] bg-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.2)] backdrop-blur-[18px]'
         }`}
       >
         <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <img src="/images/logo-icon.png?v=2" alt="Dandelion Creations" className="h-7 w-7 md:h-8 md:w-8 object-contain" />
+          <img src="/images/logo-icon.png" alt="" width="32" height="32" className="h-7 w-7 md:h-8 md:w-8 object-contain" />
           <img src="/images/DC-logo-text.png" alt="Dandelion Creations OS" className="h-5 md:h-6 w-auto object-contain hidden sm:block" />
         </Link>
 
@@ -71,22 +71,22 @@ export default function Navbar() {
               className="text-[13px] font-medium tracking-wide text-white/70 hover:text-white transition-colors duration-300 relative group"
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#D4AF37] group-hover:w-full transition-all duration-300" />
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gold group-hover:w-full transition-all duration-300" />
             </a>
           ))}
-          <a
-            href={isHome ? '#contact' : '/#contact'}
-            onClick={(e) => isHome && handleClick(e, '#contact')}
-            className="ml-1 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#D4AF37] to-[#b8941f] px-5 md:px-6 py-2 md:py-2.5 text-[12px] md:text-[13px] font-bold text-[#0a1628] shadow-[0_0_20px_rgba(212,175,55,0.12)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_rgba(212,175,55,0.25)]"
+          <Link
+            href="/book"
+            className="ml-1 inline-flex items-center justify-center rounded-full bg-gold px-5 py-2.5 text-[13px] font-semibold text-navy-900 transition hover:bg-gold-light"
           >
-            Book a Consultation
-          </a>
+            Book a Systems Audit
+          </Link>
         </div>
 
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
         >
           {isOpen ? (
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
@@ -103,7 +103,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden mt-3 rounded-2xl border border-white/[0.12] bg-[#0a1628]/95 backdrop-blur-[20px] p-5 shadow-[0_10px_40px_rgba(0,0,0,0.3)]"
+            className="lg:hidden mt-3 rounded-2xl border border-white/[0.12] bg-navy-900/95 backdrop-blur-[20px] p-5 shadow-[0_10px_40px_rgba(0,0,0,0.3)]"
           >
             <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
@@ -114,21 +114,18 @@ export default function Navbar() {
                     if (isHome) handleClick(e, link.href)
                     setIsOpen(false)
                   }}
-                  className="block py-2.5 px-3 text-[14px] text-white/80 font-medium hover:text-[#D4AF37] hover:bg-white/5 rounded-lg transition-colors"
+                  className="block py-2.5 px-3 text-[14px] text-white/80 font-medium hover:text-gold hover:bg-white/5 rounded-lg transition-colors"
                 >
                   {link.name}
                 </a>
               ))}
-              <a
-                href={isHome ? '#contact' : '/#contact'}
-                onClick={(e) => {
-                  if (isHome) handleClick(e, '#contact')
-                  setIsOpen(false)
-                }}
-                className="mt-3 block text-center rounded-full bg-gradient-to-r from-[#D4AF37] to-[#b8941f] px-6 py-3 text-sm font-bold text-[#0a1628]"
+              <Link
+                href="/book"
+                onClick={() => setIsOpen(false)}
+                className="mt-3 block rounded-full bg-gold px-6 py-3 text-center text-sm font-semibold text-navy-900"
               >
-                Book a Consultation
-              </a>
+                Book a Systems Audit
+              </Link>
             </div>
           </motion.div>
         )}

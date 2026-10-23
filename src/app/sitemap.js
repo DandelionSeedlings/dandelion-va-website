@@ -1,12 +1,17 @@
+import { getAllPosts } from '../lib/blog'
+
+const base = 'https://dandelioncreations.co.za'
+
 export default function sitemap() {
-  const base = 'https://www.dandelioncreations.co.za'
-  return [
-    { url: base + '/', lastModified: new Date() },
-    { url: base + '/receiptsnap', lastModified: new Date() },
-    { url: base + '/connectability', lastModified: new Date() },
-    { url: base + '/bookability', lastModified: new Date() },
-    { url: base + '/budgetability', lastModified: new Date() },
-    { url: base + '/payability', lastModified: new Date() },
-    { url: base + '/embeddedsupport', lastModified: new Date() },
-  ]
+  const pages = [
+    '/', '/book', '/order', '/abilitysuite', '/payability', '/bookability', '/receiptsnap',
+    '/connectability', '/budgetability', '/embeddedsupport', '/blog',
+  ].map((path) => ({ url: base + path, lastModified: new Date() }))
+
+  const posts = getAllPosts().map((post) => ({
+    url: `${base}/blog/${post.slug}`,
+    lastModified: post.date ? new Date(post.date) : new Date(),
+  }))
+
+  return [...pages, ...posts]
 }

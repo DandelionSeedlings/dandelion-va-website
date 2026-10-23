@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   return {
-    title: `${post.title} — Dandelion Creations`,
+    title: `${post.title} | Dandelion Creations`,
     description: post.excerpt,
     openGraph: {
       title: post.title,

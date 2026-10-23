@@ -15,7 +15,7 @@ export default function AbilitySuitePage() {
             Every Module. One Architecture.
           </h1>
           <p className="text-navy-600 text-lg max-w-2xl mx-auto">
-            Each Ability is engineered to solve one operational problem precisely — 
+            Each Ability is engineered to solve one operational problem precisely, 
             deployed inside your Google Workspace, owned outright, built to scale.
           </p>
         </div>

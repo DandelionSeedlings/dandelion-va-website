@@ -34,15 +34,15 @@ Here's what actually happens when you rely on AI-generated spreadsheets:
 
 Real business systems need:
 
-✓ **Hard-coded architecture** — Fixed, secure relational logic that doesn't break when someone sneezes
+✓ **Hard-coded architecture**: Fixed, secure relational logic that doesn't break when someone sneezes
 
-✓ **Validation rules** — Not AI guesses, but actual data validation that prevents bad inputs
+✓ **Validation rules**: Not AI guesses, but actual data validation that prevents bad inputs
 
-✓ **Maintenance included** — We fix it if it breaks, because we built it properly
+✓ **Maintenance included**: We fix it if it breaks, because we built it properly
 
-✓ **Documentation** — So your team understands how it works
+✓ **Documentation**: So your team understands how it works
 
-✓ **Scalability** — Built to grow with your business, not collapse under it
+✓ **Scalability**: Built to grow with your business, not collapse under it
 
 ## The Real Cost of "Cheap" Automation
 
@@ -67,4 +67,4 @@ We build custom Google Apps Script systems that:
 
 ---
 
-*Dandelion Creations builds custom automation for South African small businesses. From invoice tracking to CRM systems — we turn your spreadsheet chaos into clean, reliable workflows.*
+*Dandelion Creations builds custom automation for South African small businesses. From invoice tracking to CRM systems: we turn your spreadsheet chaos into clean, reliable workflows.*

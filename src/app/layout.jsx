@@ -1,4 +1,4 @@
-import { Inter, Sora, JetBrains_Mono, Poppins } from 'next/font/google'
+import { Inter, Sora, Dancing_Script } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({ 
@@ -11,25 +11,20 @@ const sora = Sora({
   variable: '--font-display',
 })
 
-const jetbrainsMono = JetBrains_Mono({
+const script = Dancing_Script({
   subsets: ['latin'],
-  variable: '--font-mono',
-})
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-poppins',
+  weight: ['400', '600', '700'],
+  variable: '--font-script',
 })
 
 export const metadata = {
   metadataBase: new URL('https://dandelioncreations.co.za'),
   title: 'Dandelion Creations OS | Operations Engineering & Automation Systems',
-  description: 'Custom automated systems built inside Google Workspace — precise, permanent, and engineered for how your business actually runs. No subscriptions. No bloated platforms.',
+  description: 'Custom automated systems built inside Google Workspace, precise, permanent, and engineered for how your business actually runs. No subscriptions. No bloated platforms.',
   keywords: 'operations engineering, Google Apps Script, business automation, systems architecture, remote automation consultant, no subscription software',
   authors: [{ name: 'Simone Theron' }],
   openGraph: {
-    title: 'Dandelion Creations OS — Operations Engineering Studio',
+    title: 'Dandelion Creations OS, Operations Engineering Studio',
     description: 'Custom automated systems for businesses ready to run on clarity, not chaos.',
     type: 'website',
     url: 'https://dandelioncreations.co.za',
@@ -38,7 +33,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${sora.variable} ${jetbrainsMono.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${inter.variable} ${sora.variable} ${script.variable}`}>
       <head>
         <link rel="icon" href="/images/logo-icon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/images/logo-icon.png" />

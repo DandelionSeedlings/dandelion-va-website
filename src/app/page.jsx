@@ -9,39 +9,24 @@ import Footer from '../components/Footer'
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-[#0a1628]">
+    <main className="overflow-hidden bg-navy-900">
       <Navbar />
 
-      {/* Home anchor — the navbar "Home" link scrolls here */}
-      <section id="hero">
-        <Header />
-      </section>
+      <Header />
 
-      {/* No ID needed — this is visual, not a nav destination */}
       <Differentiators />
 
-      {/* Products anchor — navbar "Products" link */}
       <section id="products">
         <FlagshipProducts />
       </section>
 
-      {/* How It Works anchor — navbar "How It Works" link */}
-      <section id="process">
-        <ProcessSteps />
-      </section>
+      <ProcessSteps />
 
-      {/* Portfolio anchor — navbar "Portfolio" link */}
-      <section id="portfolio">
+      <section>
         <PortfolioTeaser />
       </section>
 
-      {/* About anchor — if you have an About section, add it here */}
-      {/* <section id="about"><About /></section> */}
-
-      {/* Contact anchor — navbar "Contact" link */}
-      <section id="contact">
-        <Contact />
-      </section>
+      <Contact />
 
       <Footer />
     </main>

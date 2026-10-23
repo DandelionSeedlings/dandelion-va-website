@@ -97,7 +97,7 @@ const products = [
     subtitle: 'CRM Mini',
     price: 0,
     priceLabel: 'FREE',
-    description: 'The relationship-tracking layer every operation needs before it can scale — deployed free, upgraded when you\'re ready.',
+    description: 'The relationship-tracking layer every operation needs before it can scale, deployed free, upgraded when you\'re ready.',
     tagline: 'The foundation layer for every client relationship you\'ll ever manage.',
     icon: FaUsers,
     color: 'from-emerald-500 to-teal-600',
@@ -113,7 +113,7 @@ const products = [
     subtitle: 'CRM Pro',
     price: 499,
     priceLabel: 'R499',
-    description: 'A full pipeline architecture — deal stages, relationship metrics, and growth tracking — engineered for teams that have outgrown a contact list.',
+    description: 'A full pipeline architecture, deal stages, relationship metrics, and growth tracking, engineered for teams that have outgrown a contact list.',
     tagline: 'Expanding your reach with systematic precision.',
     icon: FaUsers,
     color: 'from-blue-500 to-indigo-600',
@@ -130,7 +130,7 @@ const products = [
     subtitle: 'Appointment Scheduler',
     price: 499,
     priceLabel: 'R499',
-    description: 'Client self-booking with automated confirmations, calendar sync, and reminder workflows — no more back-and-forth scheduling.',
+    description: 'Client self-booking with automated confirmations, calendar sync, and reminder workflows, no more back-and-forth scheduling.',
     tagline: 'Let clients book themselves while you focus on delivering.',
     icon: FaBookOpen,
     color: 'from-rose-400 to-pink-500',
@@ -362,7 +362,7 @@ export default function Products() {
     const params = new URLSearchParams();
 
     if (!product.orderUrl) {
-      params.set('product', product.name + ' — ' + product.subtitle);
+      params.set('product', product.name + ' / ' + product.subtitle);
     }
     if (code && code.trim()) {
       params.set('partner', code.trim().toUpperCase());
@@ -461,10 +461,10 @@ export default function Products() {
             A Modular Operations Architecture
           </p>
           <p className="text-navy-500 text-base max-w-3xl mx-auto mt-4">
-            Each Ability is a purpose-engineered automation solving one operational problem precisely — deployed inside your existing Google Workspace, owned outright, and built to interoperate as your business scales. This isn&apos;t a bundle of templates. It&apos;s infrastructure, assembled module by module, exactly to the shape of your operation.
+            Each Ability is a purpose-engineered automation solving one operational problem precisely, deployed inside your existing Google Workspace, owned outright, and built to interoperate as your business scales. This isn&apos;t a bundle of templates. It&apos;s infrastructure, assembled module by module, exactly to the shape of your operation.
           </p>
           <p className="text-gold-dark font-bold text-sm mt-4">
-            No subscriptions. No rented software. Build it once, and it&apos;s yours — permanently.
+            No subscriptions. No rented software. Build it once, and it&apos;s yours, permanently.
           </p>
         </motion.div>
 
@@ -485,7 +485,7 @@ export default function Products() {
                 </div>
                 <div>
                   <h3 className="text-navy-900 font-bold text-lg">Have a Referral Code?</h3>
-                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid module. This is a customer discount — separate from the <a href="#resellers" className="text-gold underline hover:no-underline">Partner Program</a> where you earn by reselling.</p>
+                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid module. This is a customer discount, separate from the <a href="#resellers" className="text-gold underline hover:no-underline">Partner Program</a> where you earn by reselling.</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 w-full md:w-auto">
@@ -594,7 +594,7 @@ export default function Products() {
                       {globalPartnerCode.trim() && product.price > 0 && product.available && (
                         <p className="text-emerald-600 text-xs mt-2 font-medium text-center">
                           <FaTag className="inline mr-1" size={10} />
-                          Referral code applied — 10% off
+                          Referral code applied: 10% off
                         </p>
                       )}
                     </motion.div>
@@ -629,7 +629,7 @@ export default function Products() {
                 <div>
                   <h4 className="text-xl font-bold text-navy-900">ReceiptSnap</h4>
                   <p className="text-amber-600 font-bold">
-                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(299)) : 'R299'} — One Time
+                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(299)) : 'R299'} · one time
                     {globalPartnerCode.trim() && <span className="text-navy-400 text-sm line-through ml-2">R299</span>}
                   </p>
                 </div>
@@ -672,7 +672,7 @@ export default function Products() {
                 <div>
                   <h4 className="text-xl font-bold text-navy-900">Payability</h4>
                   <p className="text-cyan-600 font-bold">
-                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(499)) : 'R499'} — One Time
+                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(499)) : 'R499'} · one time
                     {globalPartnerCode.trim() && <span className="text-navy-400 text-sm line-through ml-2">R499</span>}
                   </p>
                 </div>
@@ -696,7 +696,7 @@ export default function Products() {
               </ul>
               <div className="bg-white/80 rounded-lg p-4 border border-cyan-100 mb-4">
                 <p className="text-xs text-navy-500 font-medium">Best for:</p>
-                <p className="text-sm text-navy-700">Service businesses, agencies, consultants — anyone who invoices clients and needs cash flow visibility.</p>
+                <p className="text-sm text-navy-700">Service businesses, agencies, consultants, anyone who invoices clients and needs cash flow visibility.</p>
               </div>
               <a
                 href="/payability"
@@ -713,7 +713,7 @@ export default function Products() {
               The Simple Rule
             </p>
             <p className="text-navy-600 text-sm max-w-2xl mx-auto">
-              <strong>ReceiptSnap</strong> governs what leaves your business. <strong>Payability</strong> governs what comes back in. Most operations eventually need both — they&apos;re built to run side by side inside the same Workspace.
+              <strong>ReceiptSnap</strong> governs what leaves your business. <strong>Payability</strong> governs what comes back in. Most operations eventually need both, they&apos;re built to run side by side inside the same Workspace.
             </p>
           </div>
         </motion.div>
@@ -738,7 +738,7 @@ export default function Products() {
                 Every Module, Rebuilt as Yours.
               </h3>
               <p className="text-cream/80 text-lg mb-6 leading-relaxed">
-                Adaptability is where engineering becomes bespoke. We take any Ability module and rebuild it entirely around your identity — your colors, your logo, your business name, on every sheet — and hand it back as a system that looks, and functions, like it was built from scratch for you alone.
+                Adaptability is where engineering becomes bespoke. We take any Ability module and rebuild it entirely around your identity, your colors, your logo, your business name, on every sheet, and hand it back as a system that looks, and functions, like it was built from scratch for you alone.
               </p>
               <div className="bg-white/10 rounded-xl p-6 border border-white/10 mb-6 backdrop-blur-sm">
                 <p className="text-gold font-bold mb-2">Example:</p>
@@ -773,11 +773,11 @@ export default function Products() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
               >
-                <FaShoppingCart /> Commission Adaptability — {globalPartnerCode.trim() ? formatPrice(discountedPrice(999)) : 'R999'}
+                <FaShoppingCart /> Commission Adaptability · {globalPartnerCode.trim() ? formatPrice(discountedPrice(999)) : 'R999'}
               </a>
               {globalPartnerCode.trim() && (
                 <p className="text-emerald-400 text-sm mt-2">
-                  <FaTag className="inline mr-1" size={10} /> Referral code applied — 10% off
+                  <FaTag className="inline mr-1" size={10} /> Referral code applied: 10% off
                 </p>
               )}
             </div>
@@ -816,7 +816,7 @@ export default function Products() {
                   </div>
                 </div>
                 <p className="text-center text-cream/40 text-xs mt-4">
-                  * Visual mockup — actual branding uses your real assets
+                  * Visual mockup. Actual branding uses your real assets
                 </p>
               </div>
             </div>
@@ -841,7 +841,7 @@ export default function Products() {
 
           {globalPartnerCode.trim() && (
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-600 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-emerald-500/30">
-              <FaTag size={12} /> Referral code <span className="uppercase">{globalPartnerCode}</span> active — 10% off at checkout
+              <FaTag size={12} /> Referral code <span className="uppercase">{globalPartnerCode}</span> active: 10% off at checkout
             </div>
           )}
 
@@ -852,7 +852,7 @@ export default function Products() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
             >
-              <FaShoppingCart /> Deploy Now — One Form, Everything You Need
+              <FaShoppingCart /> Order Now, One Form for Everything
             </a>
           </div>
 
@@ -913,7 +913,7 @@ export default function Products() {
                 <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center gap-2">
                   <FaTag className="text-emerald-500" size={14} />
                   <span className="text-emerald-700 text-sm font-medium">
-                    Referral code <span className="font-bold uppercase">{globalPartnerCode}</span> applied — 10% off
+                    Referral code <span className="font-bold uppercase">{globalPartnerCode}</span> applied: 10% off
                   </span>
                 </div>
               )}

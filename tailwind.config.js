@@ -29,9 +29,9 @@ module.exports = {
       fontFamily: {
         'display': ['var(--font-display)', 'Georgia', 'serif'],
         'serif': ['var(--font-display)', 'Georgia', 'serif'],
-        'script': ['"Dancing Script"', 'cursive'],
-        'sans': ['var(--font-poppins)', 'var(--font-inter)', 'Lato', 'system-ui', 'sans-serif'],
-        'mono': ['var(--font-mono)', 'Consolas', 'monospace'],
+        'script': ['var(--font-script)', 'cursive'],
+        'sans': ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        'mono': ['ui-monospace', 'Consolas', 'monospace'],
       },
     },
   },
