@@ -93,7 +93,7 @@ export default function EmbeddedSupportPage() {
           </motion.div>
 
           <motion.div {...rise} className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/40">
-            <img src="/images/simone-hero.png" alt="Simone Theron, founder of Dandelion Creations" width="800" height="1000" className="h-full w-full object-cover" />
+            <img src="/images/simone-hero.webp" alt="Simone Theron, founder of Dandelion Creations" width="500" height="500" className="h-full w-full object-cover" />
           </motion.div>
         </div>
       </section>
@@ -101,7 +101,7 @@ export default function EmbeddedSupportPage() {
       <section className="relative bg-cream px-4 py-20">
         <div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2">
           <motion.div {...rise} className="aspect-[3/4] overflow-hidden rounded-2xl border border-gold/20 shadow-xl">
-            <img src="/images/simone-story.png" alt="Simone Theron" loading="lazy" width="800" height="1066" className="h-full w-full object-cover" />
+            <img src="/images/simone-story.webp" alt="Simone Theron" loading="lazy" width="500" height="500" className="h-full w-full object-cover" />
           </motion.div>
           <motion.div {...rise}>
             <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">Why I do this</p>

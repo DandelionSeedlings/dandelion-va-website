@@ -1,7 +1,7 @@
 import ReceiptSnapPage from '../../components/ReceiptSnapPage'
 
 export const metadata = {
-  title: 'ReceiptSnap: photograph receipts, export for your bookkeeper | Dandelion Creations',
+  title: 'ReceiptSnap: photograph receipts, export for your bookkeeper',
   description: 'ReceiptSnap reads your receipts from a photo into your own Google Sheet and exports a clean CSV for your bookkeeper. R299 once off, no subscription.',
   alternates: { canonical: '/receiptsnap' },
   openGraph: {

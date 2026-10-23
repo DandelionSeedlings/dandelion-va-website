@@ -414,7 +414,7 @@ export default function Products() {
             }}
           >
             <img
-              src="/images/dandelion-seed.png"
+              src="/images/dandelion-seed.webp"
               alt=""
               className="w-full h-full"
               style={{

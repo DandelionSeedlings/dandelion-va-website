@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* { @apply scroll-smooth; }
 
 html { scroll-behavior: smooth; }
 
@@ -10,7 +9,35 @@ body {
   @apply bg-cream text-navy-900;
 }
 
-h1, h2, h3, h4, h5, h6 { @apply font-display font-bold; }
+h1, h2, h3, h4, h5, h6 { @apply font-display font-bold; text-wrap: balance; }
+
+/* Tracking follows size: large type is tightened, body stays neutral. */
+h1 { letter-spacing: -0.025em; }
+h2 { letter-spacing: -0.02em; }
+h3 { letter-spacing: -0.01em; }
+p { text-wrap: pretty; }
+
+/* Feedback on press is instant. */
+a, button { -webkit-tap-highlight-color: transparent; }
+button:not(:disabled):active, a.btn-primary:active { transform: scale(0.97); transition: transform 100ms ease-out; }
+
+:focus-visible { outline: 2px solid #C9A227; outline-offset: 3px; }
+
+.skip-link {
+  position: fixed; left: 1rem; top: -4rem; z-index: 100;
+  background: #C9A227; color: #0a1628; padding: .75rem 1.25rem; border-radius: .75rem; font-weight: 600;
+  transition: top 150ms ease-out;
+}
+.skip-link:focus { top: 1rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  video { display: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  nav > div { backdrop-filter: none !important; background-color: #0a1628 !important; }
+}
 
 .font-script { font-family: var(--font-script), cursive; }
 

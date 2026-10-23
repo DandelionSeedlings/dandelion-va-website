@@ -8,6 +8,12 @@ export async function generateStaticParams() {
   return [];
 }
 
+export const metadata = {
+  title: 'Blog',
+  description: 'Practical writing on business systems, automation and owning your tools, from Dandelion Creations.',
+  alternates: { canonical: '/blog' },
+}
+
 export default async function BlogPage() {
   const posts = getAllPosts();
 

@@ -4,7 +4,7 @@ date: "2026-07-08"
 category: "Automation"
 readTime: 5
 excerpt: "Everyone thinks ChatGPT can build your business systems in 10 minutes. I know better. Here's why real automation needs engineering, not just prompting."
-coverImage: "/images/blog/chatgpt-systems.png"
+coverImage: "/images/blog/chatgpt-systems.webp"
 ---
 
 Everyone thinks ChatGPT can build your business systems in 10 minutes.

@@ -1,7 +1,7 @@
 import PayabilityPage from '../../components/PayabilityPage'
 
 export const metadata = {
-  title: 'Payability: invoicing you own, inside your own Google Sheet | Dandelion Creations',
+  title: 'Payability: invoicing you own, inside your own Google Sheet',
   description: 'Payability is an invoicing system that runs from your own Google Sheet. Invoices, quotes, VAT reports and payment links. Pay once, own it, no subscription.',
   alternates: { canonical: '/payability' },
   openGraph: {

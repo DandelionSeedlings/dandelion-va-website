@@ -3,7 +3,7 @@ import Footer from '../../components/Footer'
 import BookingFlow from '../../components/BookingFlow'
 
 export const metadata = {
-  title: 'Book a Systems Audit | Dandelion Creations',
+  title: 'Book a Systems Audit',
   description:
     'Pick a time for a free 15 to 30 minute Systems Audit. We look at how your business runs today and tell you what to fix first.',
   alternates: { canonical: '/book' },

@@ -1,7 +1,7 @@
 import BudgetAbilityPage from '../../components/BudgetAbilityPage'
 
 export const metadata = {
-  title: 'BudgetAbility: household budget in your own Google Sheet, any currency | Dandelion Creations',
+  title: 'BudgetAbility: household budget in your own Google Sheet, any currency',
   description: 'BudgetAbility tracks accounts, spending, bills, budgets, goals and debt in your own Google Sheet, in any currency. R499 once off, no subscription.',
   alternates: { canonical: '/budgetability' },
   openGraph: {

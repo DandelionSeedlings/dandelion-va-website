@@ -1,7 +1,7 @@
 import ConnectabilityPage from '../../components/ConnectabilityPage'
 
 export const metadata = {
-  title: 'Connectability: a free CRM you own, inside your own Google Sheet | Dandelion Creations',
+  title: 'Connectability: a free CRM you own, inside your own Google Sheet',
   description: 'Connectability is a free CRM that runs from your own Google Sheet. Contacts, interaction log and follow-ups. Free, own it, no subscription.',
   alternates: { canonical: '/connectability' },
   openGraph: {

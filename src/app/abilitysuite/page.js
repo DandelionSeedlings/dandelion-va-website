@@ -2,6 +2,12 @@ import Products from '../../components/Products'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
+export const metadata = {
+  title: 'AbilitySuite: ready-made business systems',
+  description: 'Invoicing, bookings, receipts, budgets, CRM and stock systems that run inside your own Google Workspace. Pay once and keep them.',
+  alternates: { canonical: '/abilitysuite' },
+}
+
 export default function AbilitySuitePage() {
   return (
     <main className="bg-cream min-h-screen">
