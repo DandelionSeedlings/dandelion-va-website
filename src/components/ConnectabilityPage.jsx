@@ -109,8 +109,8 @@ const BODY = `<header class="top"><div class="wrap">
 
 <div class="hero"><div class="wrap grid">
   <div>
-    <p class="eyebrow">Connectability</p>
-    <h1>A simple CRM you own, for free.</h1>
+    <p class="eyebrow">Connectability &middot; a free CRM you own</p>
+    <h1>Never lose track of a customer or a follow-up.</h1>
     <p class="lead">Keep every contact, log every conversation and never miss a follow-up. It runs from your own Google Sheet and one private link. Your contacts stay in your account.</p>
     <div class="btns">
       <a class="btn btn-gold" href="/order?product=crm-mini">Get Connectability free</a>
@@ -118,6 +118,7 @@ const BODY = `<header class="top"><div class="wrap">
       <a class="btn btn-line" href="https://docs.google.com/spreadsheets/d/1PZyoOPMV93SSfTOe2MGxbZKqd9aUFffy9iFXBmx1oBQ/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a>
     </div>
     <p class="fine">Free. No card needed. No subscription. Make your own copy of the demo sheet and try it before you decide.</p>
+    <p class="fine"><b>Best for</b> keeping contacts and follow-ups in order. It does not do invoicing or bookings.</p>
   </div>
   <div class="mock" aria-hidden="true">
     <div class="bar"><i></i><i></i><i></i><span>Your private Connectability link</span></div>

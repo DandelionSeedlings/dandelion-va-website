@@ -122,11 +122,12 @@ const BODY = `<header class="top"><div class="wrap">
     <h1>Know where your money goes, in any currency.</h1>
     <p class="lead">Accounts, spending, bills, budgets, savings goals, debt and insurance in one place. It lives in your own Google Sheet and works in rand, dollars, euros or whatever you use.</p>
     <div class="btns">
-      <a class="btn btn-gold" href="/order?product=budgetability">Get BudgetAbility, R499</a>
+      <a class="btn btn-gold" href="https://docs.google.com/spreadsheets/d/1atnNGnuaf90AsrhU1GihAwuDa5rsyOZZSPGS0wfKPZQ/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a>
+      <a class="btn btn-line" href="/order?product=budgetability">Get BudgetAbility, R499</a>
       <a class="btn btn-line" href="#see">See the screens</a>
-      <a class="btn btn-line" href="https://docs.google.com/spreadsheets/d/1atnNGnuaf90AsrhU1GihAwuDa5rsyOZZSPGS0wfKPZQ/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a>
     </div>
     <p class="fine">One payment. No subscription. 72 hour demo included. Make your own copy of the demo sheet, then start the 72 hour demo with the key BDG-DEMO-2026.</p>
+    <p class="fine"><b>Best for</b> households and individuals who want one clear view of their money. For business invoicing, see Payability.</p>
   </div>
   <div class="mock" aria-hidden="true">
     <div class="bar"><i></i><i></i><i></i><span>Your private BudgetAbility link</span></div>

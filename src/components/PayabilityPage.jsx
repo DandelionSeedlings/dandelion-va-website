@@ -104,28 +104,18 @@ const BODY = `<header class="top"><div class="wrap">
 
 <div class="hero"><div class="wrap grid">
   <div>
-    <p class="eyebrow">Payability</p>
-    <h1>Invoicing you own, not rent.</h1>
+    <p class="eyebrow">Payability &middot; invoicing you own</p>
+    <h1>Send an invoice in minutes. See who owes you at a glance.</h1>
     <p class="lead">Invoices, quotes, payment links and VAT reports, running from your own Google Sheet. Your clients and your numbers stay in your account. You pay once and there is no monthly fee.</p>
     <div class="btns">
-      <a class="btn btn-gold" href="#buy">Get Payability from R499</a>
+      <a class="btn btn-gold" href="https://docs.google.com/spreadsheets/d/1pthmsdN4cj8lee1B9OsUQyTMqms-p3A8mBr1Dr7lows/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a>
+      <a class="btn btn-line" href="#buy">Get Payability from R499</a>
       <a class="btn btn-line" href="#how">See how it works</a>
-      <a class="btn btn-line" href="https://docs.google.com/spreadsheets/d/1pthmsdN4cj8lee1B9OsUQyTMqms-p3A8mBr1Dr7lows/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a>
     </div>
     <p class="fine">Pay once. No subscription. 72 hour trial included. Make your own copy of the demo sheet, then start the 72 hour demo with the key INV-DEMO-2026.</p>
+    <p class="fine"><b>Best for</b> small businesses that invoice clients and want to see who owes them. It does not do stock control or payroll.</p>
   </div>
-  <div class="mock" aria-hidden="true">
-    <div class="bar"><i></i><i></i><i></i><span>Your private Payability link</span></div>
-    <div class="body">
-      <div class="stats">
-        <div class="stat gold"><small>Owed to you</small><b>R 48 250,00</b></div>
-        <div class="stat"><small>Paid this month</small><b>R 31 900,00</b></div>
-      </div>
-      <div class="row"><span>INV-0042 &middot; Mokoena Hardware</span><span class="pill p-over">Overdue</span></div>
-      <div class="row"><span>INV-0043 &middot; Lakeview Dental</span><span class="pill p-sent">Sent</span></div>
-      <div class="row"><span>INV-0044 &middot; Pretorius &amp; Co</span><span class="pill p-paid">Paid</span></div>
-    </div>
-  </div>
+  <div class="shotframe"><div class="bar"><i></i><i></i><i></i><span>Your private Payability link</span></div><img src="/images/payability/dashboard.webp" alt="Payability dashboard showing money owed, overdue invoices and paid invoices by month" width="1600" height="1538"></div>
 </div></div>
 
 <section><div class="wrap">
@@ -169,8 +159,7 @@ const BODY = `<header class="top"><div class="wrap">
 
 <section id="see"><div class="wrap">
   <h2>See it in action</h2>
-  <p class="sub">The dashboard, invoice list and debtors report, running from your own Google Sheet.</p>
-  <div class="shotframe"><div class="bar"><i></i><i></i><i></i><span>Your private Payability link</span></div><img src="/images/payability/dashboard.webp" alt="Payability dashboard showing money owed, overdue invoices and paid invoices by month" width="1600" height="1538" loading="lazy"></div>
+  <p class="sub">The invoice list and debtors report, running from your own Google Sheet. On a phone too.</p>
   <div class="shots">
     <div class="shotframe"><img src="/images/payability/invoices.webp" alt="Payability invoice list with paid, sent, partially paid and overdue statuses" width="1600" loading="lazy"></div>
     <div class="shotframe"><img src="/images/payability/aging.webp" alt="Payability debtors aging report showing who owes what and how late" width="1600" loading="lazy"></div>
@@ -181,7 +170,7 @@ const BODY = `<header class="top"><div class="wrap">
 
 <section class="band" id="buy"><div class="wrap">
   <h2>Two ways to get it</h2>
-  <p class="sub" style="margin-bottom:28px">One payment. No monthly fee, no renewal.</p>
+  <p class="sub" style="margin-bottom:28px">One payment. No monthly fee, no renewal. After you order you get your sheet and licence key, make your own copy, enter the key and send your first invoice. Done with you includes a setup call.</p>
   <div class="price">
     <div class="card" style="background:#fff;color:var(--ink);border-color:var(--line)">
       <h3>Do it yourself</h3>
@@ -215,6 +204,7 @@ const BODY = `<header class="top"><div class="wrap">
   <h2>Stop renting your invoicing.</h2>
   <p>Deploy Payability once and send your next invoice from a system you own.</p>
   <a class="btn btn-gold" href="#buy">Get Payability from R499</a>
+  <p class="fine" style="margin-top:22px">Also from us: <a href="/receiptsnap" style="color:var(--gold)">ReceiptSnap</a> for the receipts that go out, <a href="/connectability" style="color:var(--gold)">Connectability</a> for follow-ups.</p>
 </div></section>
 
 <footer><div class="wrap">

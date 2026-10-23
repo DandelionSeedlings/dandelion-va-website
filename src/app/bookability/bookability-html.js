@@ -106,6 +106,7 @@ const html = `
   .bk .price{padding:28px 22px}
   .bk .hero{padding:44px 0 56px}
 }
+.bk .fine{font-size:14px;color:#94A3B8;margin:14px 0 0}
 .bk footer a{color:#CBD5E1;text-decoration:none}
 .bk footer a:hover{color:var(--gold)}
 .bk footer b{font-style:normal}
@@ -125,10 +126,11 @@ const html = `
 <section class="hero"><div class="wrap"><div class="grid">
   <div>
     <span class="eyebrow" style="color:var(--gold)">Owned, not rented</span>
-    <h1>Online booking <span>you own</span></h1>
+    <h1>Clients book themselves. <span>You own the system.</span></h1>
     <p class="lead">Clients pick a time from a link or a QR code. You see every booking in a private app that runs on your own Google Sheet. Pay R499 once. There is no monthly fee.</p>
-    <div class="cta"><a class="btn btn-gold" href="/order?product=bookability">Get Bookability for R499</a><a class="btn btn-ghost" href="#see-it">See it in action</a><a class="btn btn-ghost" href="https://docs.google.com/spreadsheets/d/1uclTbWOiMXhSWSKvvc-mcPd2RfOF-BVuoyZRbsLzStU/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a></div>
+    <div class="cta"><a class="btn btn-gold" href="https://docs.google.com/spreadsheets/d/1uclTbWOiMXhSWSKvvc-mcPd2RfOF-BVuoyZRbsLzStU/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a><a class="btn btn-ghost" href="/order?product=bookability">Get Bookability for R499</a><a class="btn btn-ghost" href="#see-it">See it in action</a></div>
     <p class="fine">Runs on your own Google account. A 72 hour trial is built in. Make your own copy of the demo sheet to try it first.</p>
+    <p class="fine"><b>Best for</b> one business that takes appointments or consultations by the hour.</p>
   </div>
   <div class="stage">
     <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
@@ -266,6 +268,7 @@ const html = `
     <h2>Own your bookings</h2>
     <p>Pay once. Keep your data. Let clients book while you get on with the work.</p>
     <a class="btn btn-gold" href="/order?product=bookability">Get Bookability for R499</a>
+    <p class="fine" style="margin-top:22px">Also from us: <a href="/connectability" style="color:var(--gold)">Connectability</a> keeps your clients and follow-ups, <a href="/payability" style="color:var(--gold)">Payability</a> sends the invoice.</p>
   </div>
 </section>
 
