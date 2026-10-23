@@ -82,18 +82,26 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
-          aria-label="Toggle menu"
-          aria-expanded={isOpen}
-        >
-          {isOpen ? (
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
-          ) : (
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
-          )}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <Link
+            href="/book"
+            className="rounded-full bg-gold px-4 py-2 text-xs font-semibold text-navy-900"
+          >
+            Book an Audit
+          </Link>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="rounded-lg p-2 text-white transition-colors hover:bg-white/10"
+            aria-label="Toggle menu"
+            aria-expanded={isOpen}
+          >
+            {isOpen ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+            )}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>

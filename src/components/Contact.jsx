@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { FiMail, FiPhone, FiMapPin, FiCheckCircle, FiCalendar } from 'react-icons/fi'
 import { SITE, whatsappLink } from '../lib/site'
+import ContactForm from './ContactForm'
 
 export default function Contact() {
   return (
@@ -137,6 +138,8 @@ export default function Contact() {
                 {SITE.cta.label}
               </Link>
             </div>
+
+            <ContactForm />
 
             <p className="text-center text-sm text-cream/50">
               Just want a ready-made system? <Link href="/order" className="text-gold underline underline-offset-4 hover:text-gold-light">Order a module</Link>
