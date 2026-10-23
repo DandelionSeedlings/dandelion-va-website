@@ -5,7 +5,7 @@
 const html = `
 <div class="bk">
 <style>
-.bk{--navy:#0F172A;--navy2:#1E293B;--gold:#C9A84C;--gold-d:#A68B3C;--cream:#F5F1E8;--line:#E7E1D3;--mute:#64748B;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--navy);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+.bk{--navy:#0a1628;--navy2:#0f1d33;--gold:#C9A227;--gold-d:#9A7A18;--cream:#F5F1E8;--line:#E7E1D3;--mute:#64748B;font-family:var(--font-inter),Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--navy);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
 .bk *{box-sizing:border-box}
 .bk img{max-width:100%;height:auto;display:block}
 .bk a{color:inherit}
@@ -106,12 +106,19 @@ const html = `
   .bk .price{padding:28px 22px}
   .bk .hero{padding:44px 0 56px}
 }
+.bk footer a{color:#CBD5E1;text-decoration:none}
+.bk footer a:hover{color:var(--gold)}
+.bk footer b{font-style:normal}
+.bk a:focus-visible,.bk summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.bk .btn:active{transform:scale(.97);transition:transform 100ms ease-out}
+.bk h1,.bk h2{text-wrap:balance}
+@media (prefers-reduced-motion:reduce){.bk *{transition:none!important}}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Bookability","applicationCategory":"BusinessApplication","description":"An online booking system you own. Clients book from a link or QR code, you manage everything in a private app backed by your own Google Sheet.","offers":{"@type":"Offer","price":"499","priceCurrency":"ZAR"},"publisher":{"@type":"Organization","name":"Dandelion Creations","url":"https://www.dandelioncreations.co.za"}}</script>
 
 <header class="nav"><div class="wrap">
-  <a class="brand" href="https://www.dandelioncreations.co.za/"><img src="/images/logo-icon.png?v=2" alt="" width="34" height="34"> Dandelion Creations</a>
+  <a class="brand" href="/"><img src="/images/logo-icon.png" alt="" width="34" height="34"> Dandelion Creations</a>
   <a class="btn btn-gold" href="/order?product=bookability">Get Bookability</a>
 </div></header>
 
@@ -262,7 +269,7 @@ const html = `
   </div>
 </section>
 
-<footer>Dandelion Creations &middot; <a href="https://www.dandelioncreations.co.za">dandelioncreations.co.za</a><br><b>Planting the abilities your business needs to grow.</b></footer>
+<footer>Dandelion Creations &middot; <a href="/">Home</a> &middot; <a href="/abilitysuite">All systems</a> &middot; <a href="/book">Book a Systems Audit</a><br><b>Systems you own, paid for once.</b></footer>
 </div>
 `;
 

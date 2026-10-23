@@ -1,5 +1,5 @@
 // BudgetAbility sales page. Static content, styled inside .ba so it cannot affect the rest of the site.
-const CSS = `.ba{--navy:#0F172A;--navy2:#1E293B;--gold:#C9A84C;--cream:#F5F1E8;--ink:#0F172A;--muted:#475569;--line:#E4DECF;--white:#fff}
+const CSS = `.ba{--navy:#0a1628;--navy2:#0f1d33;--gold:#C9A227;--cream:#F5F1E8;--ink:#0a1628;--muted:#475569;--line:#E4DECF;--white:#fff}
 .ba, .ba *{box-sizing:border-box}
 .ba{margin:0;font-family:var(--font-inter),Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
 .ba a{color:inherit}
@@ -99,11 +99,21 @@ const CSS = `.ba{--navy:#0F172A;--navy2:#1E293B;--gold:#C9A84C;--cream:#F5F1E8;-
 @media (max-width:860px){.ba .shots.two,.ba .shots.three{grid-template-columns:minmax(0,1fr)}}
 .ba .note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:10px;padding:16px 20px;max-width:44em;margin-top:28px}
 .ba .note p{margin:0;color:var(--muted);font-size:15px}
+.ba .hnav{display:flex;align-items:center;gap:20px}
+.ba .navlink{font-size:14px;color:#CBD5E1;text-decoration:none}
+.ba .navlink:hover{color:var(--gold)}
+.ba footer a{color:#CBD5E1;text-decoration:none}
+.ba footer a:hover{color:var(--gold)}
+.ba a:focus-visible,.ba summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.ba .btn:active{transform:scale(.97);transition:transform 100ms ease-out}
+.ba h1,.ba h2{text-wrap:balance}
+@media (max-width:520px){.ba .navlink{display:none}}
+@media (prefers-reduced-motion:reduce){.ba *{transition:none!important}}
 `
 
 const BODY = `<header class="top"><div class="wrap">
-  <a class="logo" href="https://www.dandelioncreations.co.za/"><img class="mono" src="/images/logo-icon.png?v=2" alt="" width="30" height="30">Dandelion Creations</a>
-  <a class="cta" href="#buy">Get BudgetAbility</a>
+  <a class="logo" href="/"><img class="mono" src="/images/logo-icon.png" alt="" width="30" height="30">Dandelion Creations</a>
+  <span class="hnav"><a class="navlink" href="/abilitysuite">All systems</a><a class="cta" href="#buy">Get BudgetAbility</a></span>
 </div></header>
 
 <div class="hero"><div class="wrap grid">
@@ -231,6 +241,7 @@ const BODY = `<header class="top"><div class="wrap">
 
 <footer><div class="wrap">
   <span>&copy; Dandelion Creations</span>
+  <span><a href="/">Home</a> &middot; <a href="/abilitysuite">All systems</a> &middot; <a href="/book">Book a Systems Audit</a></span>
   <span>WhatsApp +27 72 839 3087 &middot; dandelioncreat@outlook.com</span>
 </div></footer>`
 

@@ -1,5 +1,5 @@
 // Payability sales page. Static content, styled inside .pb so it cannot affect the rest of the site.
-const CSS = `.pb{--navy:#0F172A;--navy2:#1E293B;--gold:#C9A84C;--cream:#F5F1E8;--ink:#0F172A;--muted:#475569;--line:#E4DECF;--white:#fff}
+const CSS = `.pb{--navy:#0a1628;--navy2:#0f1d33;--gold:#C9A227;--cream:#F5F1E8;--ink:#0a1628;--muted:#475569;--line:#E4DECF;--white:#fff}
 .pb, .pb *{box-sizing:border-box}
 .pb{margin:0;font-family:var(--font-inter),Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
 .pb a{color:inherit}
@@ -85,11 +85,21 @@ const CSS = `.pb{--navy:#0F172A;--navy2:#1E293B;--gold:#C9A84C;--cream:#F5F1E8;-
 .pb .shots .shotframe.phone{border-radius:22px}
 .pb .shotnote{font-size:13px;color:var(--muted);margin:14px 0 0}
 @media (max-width:860px){.pb .shots{grid-template-columns:minmax(0,1fr)}.pb .shots .shotframe.phone{max-width:280px;margin:0 auto}}
+.pb .hnav{display:flex;align-items:center;gap:20px}
+.pb .navlink{font-size:14px;color:#CBD5E1;text-decoration:none}
+.pb .navlink:hover{color:var(--gold)}
+.pb footer a{color:#CBD5E1;text-decoration:none}
+.pb footer a:hover{color:var(--gold)}
+.pb a:focus-visible,.pb summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.pb .btn:active{transform:scale(.97);transition:transform 100ms ease-out}
+.pb h1,.pb h2{text-wrap:balance}
+@media (max-width:520px){.pb .navlink{display:none}}
+@media (prefers-reduced-motion:reduce){.pb *{transition:none!important}}
 `
 
 const BODY = `<header class="top"><div class="wrap">
-  <a class="logo" href="https://www.dandelioncreations.co.za/"><img class="mono" src="/images/logo-icon.png?v=2" alt="" width="30" height="30">Dandelion Creations</a>
-  <a class="cta" href="#buy">Get Payability</a>
+  <a class="logo" href="/"><img class="mono" src="/images/logo-icon.png" alt="" width="30" height="30">Dandelion Creations</a>
+  <span class="hnav"><a class="navlink" href="/abilitysuite">All systems</a><a class="cta" href="#buy">Get Payability</a></span>
 </div></header>
 
 <div class="hero"><div class="wrap grid">
@@ -209,6 +219,7 @@ const BODY = `<header class="top"><div class="wrap">
 
 <footer><div class="wrap">
   <span>&copy; Dandelion Creations</span>
+  <span><a href="/">Home</a> &middot; <a href="/abilitysuite">All systems</a> &middot; <a href="/book">Book a Systems Audit</a></span>
   <span>WhatsApp +27 72 839 3087 &middot; dandelioncreat@outlook.com</span>
 </div></footer>`
 

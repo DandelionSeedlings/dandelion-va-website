@@ -1,5 +1,5 @@
 // Connectability sales page. Static content, styled inside .cb so it cannot affect the rest of the site.
-const CSS = `.cb{--navy:#0F172A;--navy2:#1E293B;--gold:#C9A84C;--cream:#F5F1E8;--ink:#0F172A;--muted:#475569;--line:#E4DECF;--white:#fff}
+const CSS = `.cb{--navy:#0a1628;--navy2:#0f1d33;--gold:#C9A227;--cream:#F5F1E8;--ink:#0a1628;--muted:#475569;--line:#E4DECF;--white:#fff}
 .cb, .cb *{box-sizing:border-box}
 .cb{margin:0;font-family:var(--font-inter),Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
 .cb a{color:inherit}
@@ -90,11 +90,21 @@ const CSS = `.cb{--navy:#0F172A;--navy2:#1E293B;--gold:#C9A84C;--cream:#F5F1E8;-
 .cb .shots .shotframe.phone{border-radius:22px}
 .cb .shotnote{font-size:13px;color:var(--muted);margin:14px 0 0}
 @media (max-width:860px){.cb .shots{grid-template-columns:minmax(0,1fr)}.cb .shots .shotframe.phone{max-width:280px;margin:0 auto}}
+.cb .hnav{display:flex;align-items:center;gap:20px}
+.cb .navlink{font-size:14px;color:#CBD5E1;text-decoration:none}
+.cb .navlink:hover{color:var(--gold)}
+.cb footer a{color:#CBD5E1;text-decoration:none}
+.cb footer a:hover{color:var(--gold)}
+.cb a:focus-visible,.cb summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.cb .btn:active{transform:scale(.97);transition:transform 100ms ease-out}
+.cb h1,.cb h2{text-wrap:balance}
+@media (max-width:520px){.cb .navlink{display:none}}
+@media (prefers-reduced-motion:reduce){.cb *{transition:none!important}}
 `
 
 const BODY = `<header class="top"><div class="wrap">
-  <a class="logo" href="https://www.dandelioncreations.co.za/"><img class="mono" src="/images/logo-icon.png?v=2" alt="" width="30" height="30">Dandelion Creations</a>
-  <a class="cta" href="#buy">Get Connectability free</a>
+  <a class="logo" href="/"><img class="mono" src="/images/logo-icon.png" alt="" width="30" height="30">Dandelion Creations</a>
+  <span class="hnav"><a class="navlink" href="/abilitysuite">All systems</a><a class="cta" href="#buy">Get Connectability free</a></span>
 </div></header>
 
 <div class="hero"><div class="wrap grid">
@@ -206,6 +216,7 @@ const BODY = `<header class="top"><div class="wrap">
 
 <footer><div class="wrap">
   <span>&copy; Dandelion Creations</span>
+  <span><a href="/">Home</a> &middot; <a href="/abilitysuite">All systems</a> &middot; <a href="/book">Book a Systems Audit</a></span>
   <span>WhatsApp +27 72 839 3087 &middot; dandelioncreat@outlook.com</span>
 </div></footer>`
 
