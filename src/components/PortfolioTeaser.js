@@ -6,7 +6,7 @@ import { FiArrowRight } from 'react-icons/fi'
 import { FaUsers, FaReceipt, FaCalendarCheck, FaFileInvoiceDollar } from 'react-icons/fa'
 
 const stats = [
-  { value: '5', label: 'Systems Built', sub: 'ConnectAbility, Payability, ReceiptSnap, Bookability, BudgetAbility' },
+  { value: '5', label: 'Systems Built', sub: 'ConnectAbility, PayAbility, ReceiptSnap, BookAbility, BudgetAbility' },
   { value: '0', label: 'Monthly Subscriptions', sub: 'Own your infrastructure' },
   { value: '100%', label: 'Owned By You', sub: 'Not us, not a platform' },
 ]
@@ -19,7 +19,7 @@ const systemsWeUse = [
   },
   {
     icon: FaFileInvoiceDollar,
-    name: 'Payability',
+    name: 'PayAbility',
     desc: 'We invoice through our own system.',
   },
   {
@@ -29,7 +29,7 @@ const systemsWeUse = [
   },
   {
     icon: FaCalendarCheck,
-    name: 'Bookability',
+    name: 'BookAbility',
     desc: 'Client consultations booked through this exact system.',
   },
 ]

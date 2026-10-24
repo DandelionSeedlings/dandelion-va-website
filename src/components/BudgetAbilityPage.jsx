@@ -127,7 +127,7 @@ const BODY = `<header class="top"><div class="wrap">
       <a class="btn btn-line" href="#see">See the screens</a>
     </div>
     <p class="fine">One payment. No subscription. 72 hour demo included. Make your own copy of the demo sheet, then start the 72 hour demo with the key BDG-DEMO-2026.</p>
-    <p class="fine"><b>Best for</b> households and individuals who want one clear view of their money. For business invoicing, see Payability.</p>
+    <p class="fine"><b>Best for</b> households and individuals who want one clear view of their money. For business invoicing, see PayAbility.</p>
   </div>
   <div class="mock" aria-hidden="true">
     <div class="bar"><i></i><i></i><i></i><span>Your private BudgetAbility link</span></div>
@@ -217,7 +217,7 @@ const BODY = `<header class="top"><div class="wrap">
       <a class="btn btn-gold" style="display:block;text-align:center" href="/order?product=budgetability">Order now</a>
     </div>
   </div>
-  <p class="sub" style="margin:28px 0 0;color:#CBD5E1">Running a business too? <a href="/payability" style="color:var(--gold)">Payability</a> handles invoices and <a href="/receiptsnap" style="color:var(--gold)">ReceiptSnap</a> handles receipts.</p>
+  <p class="sub" style="margin:28px 0 0;color:#CBD5E1">Running a business too? <a href="/payability" style="color:var(--gold)">PayAbility</a> handles invoices and <a href="/receiptsnap" style="color:var(--gold)">ReceiptSnap</a> handles receipts.</p>
 </div></section>
 
 <section><div class="wrap">

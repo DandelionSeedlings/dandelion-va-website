@@ -41,15 +41,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <img src="/images/logo-icon-dark.png" alt="" width="48" height="48" className="h-12 w-12 object-contain" />
-              <div>
-                <p className="text-lg tracking-wide text-white font-bold">Dandelion</p>
-                <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-gold">
-                  Creations OS
-                </p>
-              </div>
-            </div>
+            <Link href="/" className="mb-6 flex items-center gap-2.5" aria-label="Dandelion Creations home">
+              <img src="/images/logo-icon.png" alt="" width="32" height="32" className="h-8 w-8 object-contain" />
+              <img src="/images/DC-logo-text.png" alt="Dandelion Creations OS" width="1584" height="396" className="h-6 w-auto object-contain" />
+            </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Operations engineering for small businesses in South Africa. Systems built inside your own Google Workspace, paid for once.
             </p>
@@ -77,6 +72,7 @@ export default function Footer() {
               <li><Link href="/#contact" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Contact</Link></li>
               <li><Link href="/blog" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Blog</Link></li>
               <li><Link href="/embeddedsupport" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Embedded Support</Link></li>
+              <li><Link href="/partners" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Partner Program</Link></li>
               <li><Link href="/book" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Book a Systems Audit</Link></li>
               <li>
                 <a href={buildOrderUrl()} className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-2">
@@ -96,7 +92,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li><Link href="/receiptsnap" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">ReceiptSnap · R299</Link></li>
-              <li><Link href="/bookability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Bookability · R499</Link></li>
+              <li><Link href="/bookability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">BookAbility · R499</Link></li>
               <li><Link href="/budgetability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">BudgetAbility · R499</Link></li>
               <li>
                 <a href={buildOrderUrl('Visibility', 'Content Planner')} className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-1">
@@ -108,7 +104,7 @@ export default function Footer() {
                   CRM Pro · R499
                 </a>
               </li>
-              <li><Link href="/payability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Payability · R499</Link></li>
+              <li><Link href="/payability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">PayAbility · R499</Link></li>
               <li>
                 <a href={buildOrderUrl('Availability', 'Stock & Supplier')} className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-1">
                   Stock & Supplier · R499

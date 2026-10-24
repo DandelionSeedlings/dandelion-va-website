@@ -146,6 +146,28 @@ export default function EmbeddedSupportPage() {
         </div>
       </section>
 
+      <section className="bg-navy-900 px-4 py-20">
+        <div className="mx-auto max-w-6xl">
+          <motion.div {...rise} className="mb-10 text-center">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">The systems we look after</p>
+            <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Your support comes with the real thing</h2>
+            <p className="mx-auto max-w-xl text-gray-400">Every retainer covers systems like these, built in your own Google Workspace.</p>
+          </motion.div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              { src: '/images/payability/dashboard.webp', w: 1600, h: 1538, name: 'PayAbility', alt: 'PayAbility dashboard with invoices and money owed' },
+              { src: '/images/bookability/dashboard.webp', w: 1800, h: 1400, name: 'BookAbility', alt: 'BookAbility dashboard with bookings and follow-ups' },
+              { src: '/images/receiptsnap/dashboard.webp', w: 1600, h: 1538, name: 'ReceiptSnap', alt: 'ReceiptSnap dashboard with captured receipts' },
+            ].map((shot) => (
+              <motion.figure key={shot.name} {...rise} className="overflow-hidden rounded-2xl border border-white/10 bg-navy-800">
+                <img src={shot.src} alt={shot.alt} width={shot.w} height={shot.h} loading="lazy" className="h-auto w-full" />
+                <figcaption className="px-5 py-3 text-sm font-semibold text-gold">{shot.name}</figcaption>
+              </motion.figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-cream px-4 py-20">
         <div className="mx-auto max-w-5xl text-center">
           <motion.div {...rise}>

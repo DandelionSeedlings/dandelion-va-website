@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { name: 'Home', href: '#hero' },
   { name: 'Products', href: '#products' },
   { name: 'How It Works', href: '#process' },
   { name: 'Our Work', href: '#portfolio' },
+  { name: 'Support', href: '/embeddedsupport' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '#contact' },
 ]

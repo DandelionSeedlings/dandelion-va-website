@@ -11,7 +11,7 @@ const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 const pad = (n) => String(n).padStart(2, '0')
 const iso = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`
 const parseIso = (s) => { const [y, m, d] = s.split('-').map(Number); return { y, m: m - 1, d } }
-// Sunday = 0 in JS Date. Bookability sends workingDays as JS day numbers (0 to 6).
+// Sunday = 0 in JS Date. BookAbility sends workingDays as JS day numbers (0 to 6).
 const dow = (s) => { const { y, m, d } = parseIso(s); return new Date(Date.UTC(y, m, d)).getUTCDay() }
 
 const field = 'w-full rounded-xl border border-white/15 bg-navy-800 px-4 py-3 text-white placeholder-gray-500 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold'

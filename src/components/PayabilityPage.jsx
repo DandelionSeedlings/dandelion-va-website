@@ -1,4 +1,4 @@
-// Payability sales page. Static content, styled inside .pb so it cannot affect the rest of the site.
+// PayAbility sales page. Static content, styled inside .pb so it cannot affect the rest of the site.
 const CSS = `.pb{--navy:#0a1628;--navy2:#0f1d33;--gold:#C9A227;--cream:#F5F1E8;--ink:#0a1628;--muted:#475569;--line:#E4DECF;--white:#fff}
 .pb, .pb *{box-sizing:border-box}
 .pb{margin:0;font-family:var(--font-inter),Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -99,28 +99,28 @@ const CSS = `.pb{--navy:#0a1628;--navy2:#0f1d33;--gold:#C9A227;--cream:#F5F1E8;-
 
 const BODY = `<header class="top"><div class="wrap">
   <a class="logo" href="/"><img class="mono" src="/images/logo-icon.png" alt="" width="30" height="30">Dandelion Creations</a>
-  <span class="hnav"><a class="navlink" href="/abilitysuite">All systems</a><a class="cta" href="#buy">Get Payability</a></span>
+  <span class="hnav"><a class="navlink" href="/abilitysuite">All systems</a><a class="cta" href="#buy">Get PayAbility</a></span>
 </div></header>
 
 <div class="hero"><div class="wrap grid">
   <div>
-    <p class="eyebrow">Payability &middot; invoicing you own</p>
+    <p class="eyebrow">PayAbility &middot; invoicing you own</p>
     <h1>Send an invoice in minutes. See who owes you at a glance.</h1>
     <p class="lead">Invoices, quotes, payment links and VAT reports, running from your own Google Sheet. Your clients and your numbers stay in your account. You pay once and there is no monthly fee.</p>
     <div class="btns">
       <a class="btn btn-gold" href="https://docs.google.com/spreadsheets/d/1pthmsdN4cj8lee1B9OsUQyTMqms-p3A8mBr1Dr7lows/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a>
-      <a class="btn btn-line" href="#buy">Get Payability from R499</a>
+      <a class="btn btn-line" href="#buy">Get PayAbility from R499</a>
       <a class="btn btn-line" href="#how">See how it works</a>
     </div>
     <p class="fine">Pay once. No subscription. 72 hour trial included. Make your own copy of the demo sheet, then start the 72 hour demo with the key INV-DEMO-2026.</p>
     <p class="fine"><b>Best for</b> small businesses that invoice clients and want to see who owes them. It does not do stock control or payroll.</p>
   </div>
-  <div class="shotframe"><div class="bar"><i></i><i></i><i></i><span>Your private Payability link</span></div><img src="/images/payability/dashboard.webp" alt="Payability dashboard showing money owed, overdue invoices and paid invoices by month" width="1600" height="1538"></div>
+  <div class="shotframe"><div class="bar"><i></i><i></i><i></i><span>Your private PayAbility link</span></div><img src="/images/payability/dashboard.webp" alt="PayAbility dashboard showing money owed, overdue invoices and paid invoices by month" width="1600" height="1538"></div>
 </div></div>
 
 <section><div class="wrap">
   <h2>Most invoicing tools charge you every month, forever.</h2>
-  <p class="sub">Payability is a module you deploy once. It lives in a Google Sheet that belongs to you, and you open it from one private link.</p>
+  <p class="sub">PayAbility is a module you deploy once. It lives in a Google Sheet that belongs to you, and you open it from one private link.</p>
   <div class="cards">
     <div class="card"><h3>Owned, not rented</h3><p>Pay once. If we vanish tomorrow, your system keeps working, because it runs in your own Google account.</p></div>
     <div class="card"><h3>Your data stays yours</h3><p>Clients, invoices and payments are stored in your own spreadsheet. Nothing is copied to our servers.</p></div>
@@ -132,7 +132,7 @@ const BODY = `<header class="top"><div class="wrap">
   <h2>How it works</h2>
   <p class="sub">From purchase to your first invoice in three steps.</p>
   <div class="cards">
-    <div class="card"><span class="n">1</span><h3>Copy the sheet</h3><p>You receive your Payability sheet and licence key after payment.</p></div>
+    <div class="card"><span class="n">1</span><h3>Copy the sheet</h3><p>You receive your PayAbility sheet and licence key after payment.</p></div>
     <div class="card"><span class="n">2</span><h3>Deploy it once</h3><p>A short guide walks you through running setup and deploying it as a web app from your own account.</p></div>
     <div class="card"><span class="n">3</span><h3>Open your private link</h3><p>Bookmark one link. Every page, from invoices to reports, opens from there.</p></div>
   </div>
@@ -161,9 +161,9 @@ const BODY = `<header class="top"><div class="wrap">
   <h2>See it in action</h2>
   <p class="sub">The invoice list and debtors report, running from your own Google Sheet. On a phone too.</p>
   <div class="shots">
-    <div class="shotframe"><img src="/images/payability/invoices.webp" alt="Payability invoice list with paid, sent, partially paid and overdue statuses" width="1600" loading="lazy"></div>
-    <div class="shotframe"><img src="/images/payability/aging.webp" alt="Payability debtors aging report showing who owes what and how late" width="1600" loading="lazy"></div>
-    <div class="shotframe phone"><img src="/images/payability/phone-invoices.webp" alt="Payability invoice list on a phone" width="780" height="1576" loading="lazy"></div>
+    <div class="shotframe"><img src="/images/payability/invoices.webp" alt="PayAbility invoice list with paid, sent, partially paid and overdue statuses" width="1600" loading="lazy"></div>
+    <div class="shotframe"><img src="/images/payability/aging.webp" alt="PayAbility debtors aging report showing who owes what and how late" width="1600" loading="lazy"></div>
+    <div class="shotframe phone"><img src="/images/payability/phone-invoices.webp" alt="PayAbility invoice list on a phone" width="780" height="1576" loading="lazy"></div>
   </div>
   <p class="shotnote">Screens show sample data.</p>
 </div></section>
@@ -175,7 +175,7 @@ const BODY = `<header class="top"><div class="wrap">
     <div class="card" style="background:#fff;color:var(--ink);border-color:var(--line)">
       <h3>Do it yourself</h3>
       <div class="big">R499</div><div style="color:var(--muted);font-size:14px">once off</div>
-      <ul><li>Payability sheet and licence key</li><li>Step by step deploy guide</li><li>72 hour trial before you commit</li></ul>
+      <ul><li>PayAbility sheet and licence key</li><li>Step by step deploy guide</li><li>72 hour trial before you commit</li></ul>
       <a class="btn btn-gold" style="display:block;text-align:center" href="/order?product=payability">Order now</a>
     </div>
     <div class="card hl" style="background:#fff;color:var(--ink)">
@@ -196,15 +196,15 @@ const BODY = `<header class="top"><div class="wrap">
   <details><summary>Is there a monthly fee?</summary><p>No. You pay once. Sending email and generating PDFs use your own Google account.</p></details>
   <details><summary>Does it work for VAT vendors and non-vendors?</summary><p>Both. You choose your tax settings, and zero-rated and exempt lines are supported.</p></details>
   <details><summary>Can I take my data with me?</summary><p>Yes. Everything is already in your sheet, and you can export clients and invoices to CSV any time.</p></details>
-  <details><summary>Can I try it first?</summary><p>Yes. Payability includes a 72 hour trial, so you can create real invoices before you decide.</p></details>
+  <details><summary>Can I try it first?</summary><p>Yes. PayAbility includes a 72 hour trial, so you can create real invoices before you decide.</p></details>
   <details><summary>Is the VAT report accepted by SARS?</summary><p>It is a working report to help you complete your return. Check it against your records or with your accountant before you submit.</p></details>
 </div></section>
 
 <section class="band final"><div class="wrap">
   <h2>Stop renting your invoicing.</h2>
-  <p>Deploy Payability once and send your next invoice from a system you own.</p>
-  <a class="btn btn-gold" href="#buy">Get Payability from R499</a>
-  <p class="fine" style="margin-top:22px">Also from us: <a href="/receiptsnap" style="color:var(--gold)">ReceiptSnap</a> for the receipts that go out, <a href="/connectability" style="color:var(--gold)">Connectability</a> for follow-ups.</p>
+  <p>Deploy PayAbility once and send your next invoice from a system you own.</p>
+  <a class="btn btn-gold" href="#buy">Get PayAbility from R499</a>
+  <p class="fine" style="margin-top:22px">Also from us: <a href="/receiptsnap" style="color:var(--gold)">ReceiptSnap</a> for the receipts that go out, <a href="/connectability" style="color:var(--gold)">ConnectAbility</a> for follow-ups.</p>
 </div></section>
 
 <footer><div class="wrap">
@@ -213,7 +213,7 @@ const BODY = `<header class="top"><div class="wrap">
   <span>WhatsApp +27 72 839 3087 &middot; dandelioncreat@outlook.com</span>
 </div></footer>`
 
-const LD = {"@context": "https://schema.org", "@type": "Product", "name": "Payability", "description": "Invoicing system that runs from your own Google Sheet. Invoices, quotes, payment links and VAT reports.", "brand": {"@type": "Brand", "name": "Dandelion Creations"}, "offers": [{"@type": "Offer", "name": "Do it yourself", "price": "499", "priceCurrency": "ZAR", "availability": "https://schema.org/InStock"}, {"@type": "Offer", "name": "Done with you", "price": "999", "priceCurrency": "ZAR", "availability": "https://schema.org/InStock"}]}
+const LD = {"@context": "https://schema.org", "@type": "Product", "name": "PayAbility", "description": "Invoicing system that runs from your own Google Sheet. Invoices, quotes, payment links and VAT reports.", "brand": {"@type": "Brand", "name": "Dandelion Creations"}, "offers": [{"@type": "Offer", "name": "Do it yourself", "price": "499", "priceCurrency": "ZAR", "availability": "https://schema.org/InStock"}, {"@type": "Offer", "name": "Done with you", "price": "999", "priceCurrency": "ZAR", "availability": "https://schema.org/InStock"}]}
 
 export default function PayabilityPage() {
   return (

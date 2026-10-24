@@ -9,7 +9,7 @@ export const SITE = {
   cta: { label: 'Book a Systems Audit', href: '/book' },
 }
 
-// Bookability web app that receives bookings and enquiries (Contacts sheet).
+// BookAbility web app that receives bookings and enquiries (Contacts sheet).
 export const BOOKING_URL =
   process.env.NEXT_PUBLIC_BOOKING_URL ||
   'https://script.google.com/macros/s/AKfycbzXZZYAh4RmDFPvTKjTNL6z9qG-E9ZFbGyqjiabCsTdQg1gBukJsJt1bBi9VVX3jlpN/exec'

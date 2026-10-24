@@ -1,4 +1,4 @@
-// The Bookability sales page, as one static string. app/bookability/page.js injects it.
+// The BookAbility sales page, as one static string. app/bookability/page.js injects it.
 // Edit the copy here. Images live in public/images/bookability (webp).
 // Order link: /order?product=bookability (id from OrderForm.js)
 
@@ -116,11 +116,11 @@ const html = `
 @media (prefers-reduced-motion:reduce){.bk *{transition:none!important}}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Bookability","applicationCategory":"BusinessApplication","description":"An online booking system you own. Clients book from a link or QR code, you manage everything in a private app backed by your own Google Sheet.","offers":{"@type":"Offer","price":"499","priceCurrency":"ZAR"},"publisher":{"@type":"Organization","name":"Dandelion Creations","url":"https://www.dandelioncreations.co.za"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BookAbility","applicationCategory":"BusinessApplication","description":"An online booking system you own. Clients book from a link or QR code, you manage everything in a private app backed by your own Google Sheet.","offers":{"@type":"Offer","price":"499","priceCurrency":"ZAR"},"publisher":{"@type":"Organization","name":"Dandelion Creations","url":"https://www.dandelioncreations.co.za"}}</script>
 
 <header class="nav"><div class="wrap">
   <a class="brand" href="/"><img src="/images/logo-icon.png" alt="" width="34" height="34"> Dandelion Creations</a>
-  <a class="btn btn-gold" href="/order?product=bookability">Get Bookability</a>
+  <a class="btn btn-gold" href="/order?product=bookability">Get BookAbility</a>
 </div></header>
 
 <section class="hero"><div class="wrap"><div class="grid">
@@ -128,13 +128,13 @@ const html = `
     <span class="eyebrow" style="color:var(--gold)">Owned, not rented</span>
     <h1>Clients book themselves. <span>You own the system.</span></h1>
     <p class="lead">Clients pick a time from a link or a QR code. You see every booking in a private app that runs on your own Google Sheet. Pay R499 once. There is no monthly fee.</p>
-    <div class="cta"><a class="btn btn-gold" href="https://docs.google.com/spreadsheets/d/1uclTbWOiMXhSWSKvvc-mcPd2RfOF-BVuoyZRbsLzStU/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a><a class="btn btn-ghost" href="/order?product=bookability">Get Bookability for R499</a><a class="btn btn-ghost" href="#see-it">See it in action</a></div>
+    <div class="cta"><a class="btn btn-gold" href="https://docs.google.com/spreadsheets/d/1uclTbWOiMXhSWSKvvc-mcPd2RfOF-BVuoyZRbsLzStU/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a><a class="btn btn-ghost" href="/order?product=bookability">Get BookAbility for R499</a><a class="btn btn-ghost" href="#see-it">See it in action</a></div>
     <p class="fine">Runs on your own Google account. A 72 hour trial is built in. Make your own copy of the demo sheet to try it first.</p>
     <p class="fine"><b>Best for</b> one business that takes appointments or consultations by the hour.</p>
   </div>
   <div class="stage">
     <div class="frame"><div class="bar"><i></i><i></i><i></i></div>
-      <img src="/images/bookability/dashboard.webp" width="1800" height="1400" alt="The Bookability dashboard showing today's bookings, bookings waiting to be confirmed and the next seven days" fetchpriority="high">
+      <img src="/images/bookability/dashboard.webp" width="1800" height="1400" alt="The BookAbility dashboard showing today's bookings, bookings waiting to be confirmed and the next seven days" fetchpriority="high">
     </div>
     <div class="phone"><img src="/images/bookability/phone-start.webp" width="780" height="1688" alt="The client booking page on a phone, with a list of services to choose from"></div>
   </div>
@@ -144,7 +144,7 @@ const html = `
   <div class="wrap center">
     <span class="eyebrow">The idea</span>
     <h2>Most booking tools rent you a calendar</h2>
-    <p class="sub">A lot of booking software charges every month for what is mostly a calendar and a form. Stop paying and the booking page goes with it. With Bookability you pay once, and all of it sits in your own Google account.</p>
+    <p class="sub">A lot of booking software charges every month for what is mostly a calendar and a form. Stop paying and the booking page goes with it. With BookAbility you pay once, and all of it sits in your own Google account.</p>
   </div>
 </section>
 
@@ -153,7 +153,7 @@ const html = `
     <span class="eyebrow">Getting started</span>
     <h2>How you get going</h2>
     <div class="steps" style="text-align:left">
-      <div class="step"><b class="n">1</b><h3>Copy the sheet</h3><p>Make a copy of the Google Sheet and paste the Bookability files into it.</p></div>
+      <div class="step"><b class="n">1</b><h3>Copy the sheet</h3><p>Make a copy of the Google Sheet and paste the BookAbility files into it.</p></div>
       <div class="step"><b class="n">2</b><h3>Deploy it</h3><p>Deploy it as a web app. You get two links: a private one for you and a public one for clients.</p></div>
       <div class="step"><b class="n">3</b><h3>Add your services</h3><p>Set your services, how long each takes, your opening hours and your days.</p></div>
       <div class="step"><b class="n">4</b><h3>Share the link</h3><p>Put the link on your website and WhatsApp, or print the QR code for your door.</p></div>
@@ -167,7 +167,7 @@ const html = `
     <div class="center">
       <span class="eyebrow">See it in action</span>
       <h2>This is the real app</h2>
-      <p class="sub">Every picture here is a screenshot of Bookability running. The business and the people in them are made up.</p>
+      <p class="sub">Every picture here is a screenshot of BookAbility running. The business and the people in them are made up.</p>
     </div>
 
     <figure class="shot" style="margin-left:0;margin-right:0">
@@ -178,7 +178,7 @@ const html = `
     <div class="phones">
       <figure><div class="phone"><img loading="lazy" src="/images/bookability/phone-filled.webp" width="780" height="1900" alt="A client choosing a service, a day and a free time on the booking page"></div><p class="cap"><b>What your client sees.</b> They pick a service, a day and a free time.</p></figure>
       <figure><div class="phone"><img loading="lazy" src="/images/bookability/phone-confirmed.webp" width="780" height="1250" alt="The booking confirmation screen with the service, day, time and reference"></div><p class="cap"><b>Then a clear confirmation</b> with the day, the time and a reference number.</p></figure>
-      <figure><div class="phone"><img loading="lazy" src="/images/bookability/phone-admin.webp" width="780" height="1688" alt="The Bookability admin dashboard on a phone"></div><p class="cap"><b>Your side works on a phone too.</b> Confirm a booking from wherever you are.</p></figure>
+      <figure><div class="phone"><img loading="lazy" src="/images/bookability/phone-admin.webp" width="780" height="1688" alt="The BookAbility admin dashboard on a phone"></div><p class="cap"><b>Your side works on a phone too.</b> Confirm a booking from wherever you are.</p></figure>
     </div>
 
     <div class="grid3">
@@ -214,7 +214,7 @@ const html = `
   <div class="wrap">
     <div class="center"><span class="eyebrow">Owned, not rented</span><h2>What changes when you own it</h2></div>
     <table>
-      <thead><tr><th></th><th>A booking subscription</th><th>Bookability</th></tr></thead>
+      <thead><tr><th></th><th>A booking subscription</th><th>BookAbility</th></tr></thead>
       <tbody>
         <tr><td>What you pay</td><td>Every month, for as long as you use it</td><td>R499 once</td></tr>
         <tr><td>Where your data lives</td><td>On the company's servers</td><td>In your own Google Sheet</td></tr>
@@ -240,7 +240,7 @@ const html = `
         <li>A step by step buyer guide</li>
         <li>No subscription and no renewal</li>
       </ul>
-      <a class="btn btn-gold" href="/order?product=bookability">Get Bookability</a>
+      <a class="btn btn-gold" href="/order?product=bookability">Get BookAbility</a>
     </div>
     <p class="help">Questions before you buy? Message us on WhatsApp: <a href="https://wa.me/27728393087"><b>+27 72 839 3087</b></a></p>
   </div>
@@ -267,8 +267,8 @@ const html = `
   <div class="wrap">
     <h2>Own your bookings</h2>
     <p>Pay once. Keep your data. Let clients book while you get on with the work.</p>
-    <a class="btn btn-gold" href="/order?product=bookability">Get Bookability for R499</a>
-    <p class="fine" style="margin-top:22px">Also from us: <a href="/connectability" style="color:var(--gold)">Connectability</a> keeps your clients and follow-ups, <a href="/payability" style="color:var(--gold)">Payability</a> sends the invoice.</p>
+    <a class="btn btn-gold" href="/order?product=bookability">Get BookAbility for R499</a>
+    <p class="fine" style="margin-top:22px">Also from us: <a href="/connectability" style="color:var(--gold)">ConnectAbility</a> keeps your clients and follow-ups, <a href="/payability" style="color:var(--gold)">PayAbility</a> sends the invoice.</p>
   </div>
 </section>
 

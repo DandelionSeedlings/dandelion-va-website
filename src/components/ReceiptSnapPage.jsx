@@ -211,7 +211,7 @@ const BODY = `<header class="top"><div class="wrap">
       <a class="btn btn-gold" style="display:block;text-align:center" href="/order?product=receiptsnap">Order now</a>
     </div>
   </div>
-  <p class="sub" style="margin:28px 0 0;color:#CBD5E1">Sending invoices too? <a href="/payability" style="color:var(--gold)">Payability</a> handles what comes in, ReceiptSnap handles what goes out.</p>
+  <p class="sub" style="margin:28px 0 0;color:#CBD5E1">Sending invoices too? <a href="/payability" style="color:var(--gold)">PayAbility</a> handles what comes in, ReceiptSnap handles what goes out.</p>
 </div></section>
 
 <section><div class="wrap">

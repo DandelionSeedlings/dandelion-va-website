@@ -24,7 +24,7 @@ const products = [
   },
   {
     icon: FaCalendarCheck,
-    name: 'Bookability',
+    name: 'BookAbility',
     price: 'R499',
     priceNote: 'once-off',
     desc: 'A live booking page and approval dashboard, no more back-and-forth to confirm a slot.',
@@ -32,7 +32,7 @@ const products = [
   },
   {
     icon: FaFileInvoice,
-    name: 'Payability',
+    name: 'PayAbility',
     price: 'R499',
     priceNote: 'once-off',
     desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet, with no monthly fee.',

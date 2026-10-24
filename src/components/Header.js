@@ -69,7 +69,7 @@ export default function Header() {
             <div className="overflow-hidden rounded-2xl border border-white/15 bg-navy-800 shadow-2xl shadow-black/40">
               <Image
                 src="/images/payability/dashboard.webp"
-                alt="Payability dashboard showing invoices, payments and outstanding balances"
+                alt="PayAbility dashboard showing invoices, payments and outstanding balances"
                 width={1600}
                 height={1538}
                 sizes="(min-width: 1024px) 40vw, 0px"

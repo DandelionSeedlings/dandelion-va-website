@@ -1,6 +1,6 @@
 import { BOOKING_URL } from './site'
 
-// Talks to the Bookability web app. Plain text body keeps this a "simple" request, so no CORS preflight.
+// Talks to the BookAbility web app. Plain text body keeps this a "simple" request, so no CORS preflight.
 export async function bookingCall(action, payload, { timeoutMs = 25000 } = {}) {
   const ctl = new AbortController()
   const timer = setTimeout(() => ctl.abort(), timeoutMs)

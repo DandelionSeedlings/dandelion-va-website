@@ -1,4 +1,4 @@
-// Connectability sales page. Static content, styled inside .cb so it cannot affect the rest of the site.
+// ConnectAbility sales page. Static content, styled inside .cb so it cannot affect the rest of the site.
 const CSS = `.cb{--navy:#0a1628;--navy2:#0f1d33;--gold:#C9A227;--cream:#F5F1E8;--ink:#0a1628;--muted:#475569;--line:#E4DECF;--white:#fff}
 .cb, .cb *{box-sizing:border-box}
 .cb{margin:0;font-family:var(--font-inter),Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -104,16 +104,16 @@ const CSS = `.cb{--navy:#0a1628;--navy2:#0f1d33;--gold:#C9A227;--cream:#F5F1E8;-
 
 const BODY = `<header class="top"><div class="wrap">
   <a class="logo" href="/"><img class="mono" src="/images/logo-icon.png" alt="" width="30" height="30">Dandelion Creations</a>
-  <span class="hnav"><a class="navlink" href="/abilitysuite">All systems</a><a class="cta" href="#buy">Get Connectability free</a></span>
+  <span class="hnav"><a class="navlink" href="/abilitysuite">All systems</a><a class="cta" href="#buy">Get ConnectAbility free</a></span>
 </div></header>
 
 <div class="hero"><div class="wrap grid">
   <div>
-    <p class="eyebrow">Connectability &middot; a free CRM you own</p>
+    <p class="eyebrow">ConnectAbility &middot; a free CRM you own</p>
     <h1>Never lose track of a customer or a follow-up.</h1>
     <p class="lead">Keep every contact, log every conversation and never miss a follow-up. It runs from your own Google Sheet and one private link. Your contacts stay in your account.</p>
     <div class="btns">
-      <a class="btn btn-gold" href="/order?product=crm-mini">Get Connectability free</a>
+      <a class="btn btn-gold" href="/order?product=crm-mini">Get ConnectAbility free</a>
       <a class="btn btn-line" href="#how">See how it works</a>
       <a class="btn btn-line" href="https://docs.google.com/spreadsheets/d/1PZyoOPMV93SSfTOe2MGxbZKqd9aUFffy9iFXBmx1oBQ/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a>
     </div>
@@ -121,7 +121,7 @@ const BODY = `<header class="top"><div class="wrap">
     <p class="fine"><b>Best for</b> keeping contacts and follow-ups in order. It does not do invoicing or bookings.</p>
   </div>
   <div class="mock" aria-hidden="true">
-    <div class="bar"><i></i><i></i><i></i><span>Your private Connectability link</span></div>
+    <div class="bar"><i></i><i></i><i></i><span>Your private ConnectAbility link</span></div>
     <div class="body">
       <div class="stats">
         <div class="stat gold"><small>Follow-ups due</small><b>3</b></div>
@@ -136,7 +136,7 @@ const BODY = `<header class="top"><div class="wrap">
 
 <section><div class="wrap">
   <h2>Most clients are lost in a missed follow-up.</h2>
-  <p class="sub">Connectability is a small CRM you deploy once. It lives in a Google Sheet that belongs to you, and you open it from one private link.</p>
+  <p class="sub">ConnectAbility is a small CRM you deploy once. It lives in a Google Sheet that belongs to you, and you open it from one private link.</p>
   <div class="cards">
     <div class="card"><h3>Owned, not rented</h3><p>No monthly fee and no per-user pricing. It runs in your own Google account, so it keeps working.</p></div>
     <div class="card"><h3>Your contacts stay yours</h3><p>Contacts and conversations are stored in your own spreadsheet. Nothing is copied to our servers.</p></div>
@@ -174,11 +174,11 @@ const BODY = `<header class="top"><div class="wrap">
 <section id="see"><div class="wrap">
   <h2>See it in action</h2>
   <p class="sub">Your dashboard, follow-ups and contacts. Here is what you open every morning.</p>
-  <div class="shotframe"><div class="bar"><i></i><i></i><i></i><span>Your private Connectability link</span></div><img src="/images/connectability/dashboard.webp" alt="Connectability dashboard showing contacts, follow-ups due and pipeline stages" width="1600" height="1538" loading="lazy"></div>
+  <div class="shotframe"><div class="bar"><i></i><i></i><i></i><span>Your private ConnectAbility link</span></div><img src="/images/connectability/dashboard.webp" alt="ConnectAbility dashboard showing contacts, follow-ups due and pipeline stages" width="1600" height="1538" loading="lazy"></div>
   <div class="shots">
-    <div class="shotframe"><img src="/images/connectability/followups.webp" alt="Connectability follow-ups list showing overdue, today and upcoming follow-ups" width="1600" loading="lazy"></div>
-    <div class="shotframe"><img src="/images/connectability/contacts.webp" alt="Connectability contact list with lead status labels" width="1600" loading="lazy"></div>
-    <div class="shotframe phone"><img src="/images/connectability/phone-followups.webp" alt="Connectability follow-ups on a phone" width="780" height="1576" loading="lazy"></div>
+    <div class="shotframe"><img src="/images/connectability/followups.webp" alt="ConnectAbility follow-ups list showing overdue, today and upcoming follow-ups" width="1600" loading="lazy"></div>
+    <div class="shotframe"><img src="/images/connectability/contacts.webp" alt="ConnectAbility contact list with lead status labels" width="1600" loading="lazy"></div>
+    <div class="shotframe phone"><img src="/images/connectability/phone-followups.webp" alt="ConnectAbility follow-ups on a phone" width="780" height="1576" loading="lazy"></div>
   </div>
   <p class="shotnote">Screens show sample data.</p>
 </div></section>
@@ -189,9 +189,9 @@ const BODY = `<header class="top"><div class="wrap">
   <div class="price one">
     <div class="card hl" style="background:#fff;color:var(--ink)">
       <span class="tag">Free</span>
-      <h3>Connectability</h3>
+      <h3>ConnectAbility</h3>
       <div class="big">R0</div><div style="color:var(--muted);font-size:14px">no card needed</div>
-      <ul><li>Connectability sheet and free activation key</li><li>Step by step deploy guide</li><li>Import and export your contacts</li></ul>
+      <ul><li>ConnectAbility sheet and free activation key</li><li>Step by step deploy guide</li><li>Import and export your contacts</li></ul>
       <a class="btn btn-gold" style="display:block;text-align:center" href="/order?product=crm-mini">Get it free</a>
     </div>
   </div>
@@ -211,8 +211,8 @@ const BODY = `<header class="top"><div class="wrap">
 
 <section class="band final"><div class="wrap">
   <h2>Stop losing leads to a missed follow-up.</h2>
-  <p>Deploy Connectability once and keep every conversation in a system you own.</p>
-  <a class="btn btn-gold" href="/order?product=crm-mini">Get Connectability free</a>
+  <p>Deploy ConnectAbility once and keep every conversation in a system you own.</p>
+  <a class="btn btn-gold" href="/order?product=crm-mini">Get ConnectAbility free</a>
 </div></section>
 
 <footer><div class="wrap">
@@ -221,7 +221,7 @@ const BODY = `<header class="top"><div class="wrap">
   <span>WhatsApp +27 72 839 3087 &middot; dandelioncreat@outlook.com</span>
 </div></footer>`
 
-const LD = {"@context": "https://schema.org", "@type": "Product", "name": "Connectability", "description": "A free CRM that runs from your own Google Sheet. Contacts, interaction log and follow-ups.", "brand": {"@type": "Brand", "name": "Dandelion Creations"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "ZAR", "availability": "https://schema.org/InStock"}}
+const LD = {"@context": "https://schema.org", "@type": "Product", "name": "ConnectAbility", "description": "A free CRM that runs from your own Google Sheet. Contacts, interaction log and follow-ups.", "brand": {"@type": "Brand", "name": "Dandelion Creations"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "ZAR", "availability": "https://schema.org/InStock"}}
 
 export default function ConnectabilityPage() {
   return (

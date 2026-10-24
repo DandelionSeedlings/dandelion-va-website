@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useReferral } from '../lib/referral';
 import { motion } from 'framer-motion';
 import { 
   FaCheckCircle, FaEye, FaShoppingCart, FaTimes, 
@@ -93,7 +94,7 @@ const productCategories = [
 const products = [
   {
     id: 'connectability',
-    name: 'Connectability',
+    name: 'ConnectAbility',
     subtitle: 'CRM Mini',
     price: 0,
     priceLabel: 'FREE',
@@ -126,7 +127,7 @@ const products = [
   },
   {
     id: 'bookability',
-    name: 'Bookability',
+    name: 'BookAbility',
     subtitle: 'Appointment Scheduler',
     price: 499,
     priceLabel: 'R499',
@@ -175,7 +176,7 @@ const products = [
   },
   {
     id: 'payability',
-    name: 'Payability',
+    name: 'PayAbility',
     subtitle: 'Invoice Sorter Pro',
     price: 499,
     priceLabel: 'R499',
@@ -343,6 +344,8 @@ export default function Products() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [partnerCode, setPartnerCode] = useState('');
   const [globalPartnerCode, setGlobalPartnerCode] = useState('');
+  const referral = useReferral(globalPartnerCode);
+  const codeActive = referral.valid;
 
   const openModal = (product) => {
     if (product.available) {
@@ -485,7 +488,7 @@ export default function Products() {
                 </div>
                 <div>
                   <h3 className="text-navy-900 font-bold text-lg">Have a Referral Code?</h3>
-                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid module. This is a customer discount, separate from the <a href="#resellers" className="text-gold underline hover:no-underline">Partner Program</a> where you earn by reselling.</p>
+                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid module. This is a customer discount, separate from the <a href="/partners" className="text-gold underline hover:no-underline">Partner Program</a> where you earn by reselling.</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 w-full md:w-auto">
@@ -499,11 +502,12 @@ export default function Products() {
                     className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/80 border border-gold/30 text-navy-900 placeholder-navy-400 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all"
                   />
                 </div>
-                {globalPartnerCode.trim() && (
-                  <span className="text-emerald-600 text-sm font-bold flex items-center gap-1 whitespace-nowrap">
-                    <FaCheckCircle size={14} /> 10% Active
-                  </span>
-                )}
+                <span className="text-sm font-bold flex items-center gap-1 whitespace-nowrap" aria-live="polite">
+                  {referral.status === 'checking' && <span className="text-navy-500">Checking...</span>}
+                  {codeActive && <span className="text-emerald-600 flex items-center gap-1"><FaCheckCircle size={14} /> {referral.percent}% off active</span>}
+                  {referral.status === 'invalid' && <span className="text-red-600">Code not found</span>}
+                  {referral.status === 'error' && <span className="text-navy-500">Checked at checkout</span>}
+                </span>
               </div>
             </div>
           </div>
@@ -556,7 +560,7 @@ export default function Products() {
                         {product.subtitle}
                       </p>
                       <div className="text-3xl font-bold text-navy-900 mb-2">
-                        {globalPartnerCode.trim() && product.price > 0 ? (
+                        {codeActive && product.price > 0 ? (
                           <div className="flex items-center gap-2">
                             <span className="text-lg text-navy-400 line-through">{product.priceLabel}</span>
                             <span className="text-emerald-600">{formatPrice(discountedPrice(product.price))}</span>
@@ -591,7 +595,7 @@ export default function Products() {
                           {product.available && <FaArrowRight className="w-4 h-4" />}
                         </span>
                       </a>
-                      {globalPartnerCode.trim() && product.price > 0 && product.available && (
+                      {codeActive && product.price > 0 && product.available && (
                         <p className="text-emerald-600 text-xs mt-2 font-medium text-center">
                           <FaTag className="inline mr-1" size={10} />
                           Referral code applied: 10% off
@@ -605,7 +609,7 @@ export default function Products() {
           })}
         </div>
 
-        {/* ReceiptSnap vs Payability Comparison */}
+        {/* ReceiptSnap vs PayAbility Comparison */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -615,7 +619,7 @@ export default function Products() {
         >
           <div className="text-center mb-10">
             <span className="text-gold font-script text-xl mb-2 block">Two Financial Systems. Two Different Jobs.</span>
-            <h3 className="text-3xl font-bold tracking-tight text-navy-900 mb-3">ReceiptSnap vs Payability</h3>
+            <h3 className="text-3xl font-bold tracking-tight text-navy-900 mb-3">ReceiptSnap vs PayAbility</h3>
             <p className="text-navy-600 max-w-xl mx-auto">Both handle money, but solve completely different problems. Here&apos;s how to choose.</p>
           </div>
 
@@ -629,8 +633,8 @@ export default function Products() {
                 <div>
                   <h4 className="text-xl font-bold text-navy-900">ReceiptSnap</h4>
                   <p className="text-amber-600 font-bold">
-                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(299)) : 'R299'} · one time
-                    {globalPartnerCode.trim() && <span className="text-navy-400 text-sm line-through ml-2">R299</span>}
+                    {codeActive ? formatPrice(discountedPrice(299)) : 'R299'} · one time
+                    {codeActive && <span className="text-navy-400 text-sm line-through ml-2">R299</span>}
                   </p>
                 </div>
               </div>
@@ -663,22 +667,22 @@ export default function Products() {
               </a>
             </div>
 
-            {/* Payability */}
+            {/* PayAbility */}
             <div className="bg-cyan-50/80 backdrop-blur-sm rounded-xl p-8 border-2 border-cyan-200/50">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center text-white">
                   <FaFileInvoice size={24} />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-navy-900">Payability</h4>
+                  <h4 className="text-xl font-bold text-navy-900">PayAbility</h4>
                   <p className="text-cyan-600 font-bold">
-                    {globalPartnerCode.trim() ? formatPrice(discountedPrice(499)) : 'R499'} · one time
-                    {globalPartnerCode.trim() && <span className="text-navy-400 text-sm line-through ml-2">R499</span>}
+                    {codeActive ? formatPrice(discountedPrice(499)) : 'R499'} · one time
+                    {codeActive && <span className="text-navy-400 text-sm line-through ml-2">R499</span>}
                   </p>
                 </div>
               </div>
               <p className="text-navy-600 mb-6 text-sm leading-relaxed">
-                <strong>You sell things and need to get paid.</strong> Payability is a full invoicing system. Send invoices and quotes, add payment links, track payments, and know exactly who owes you what. It runs from your own private link, and your data stays in your own Google Sheet.
+                <strong>You sell things and need to get paid.</strong> PayAbility is a full invoicing system. Send invoices and quotes, add payment links, track payments, and know exactly who owes you what. It runs from your own private link, and your data stays in your own Google Sheet.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center gap-2 text-sm text-navy-700">
@@ -702,7 +706,7 @@ export default function Products() {
                 href="/payability"
                 className="block w-full text-center py-3 rounded-xl font-bold bg-cyan-500 hover:bg-cyan-600 text-white transition-all duration-300 flex items-center justify-center gap-2"
               >
-                <FaArrowRight /> Learn More About Payability
+                <FaArrowRight /> Learn More About PayAbility
               </a>
             </div>
           </div>
@@ -713,7 +717,7 @@ export default function Products() {
               The Simple Rule
             </p>
             <p className="text-navy-600 text-sm max-w-2xl mx-auto">
-              <strong>ReceiptSnap</strong> governs what leaves your business. <strong>Payability</strong> governs what comes back in. Most operations eventually need both, they&apos;re built to run side by side inside the same Workspace.
+              <strong>ReceiptSnap</strong> governs what leaves your business. <strong>PayAbility</strong> governs what comes back in. Most operations eventually need both, they&apos;re built to run side by side inside the same Workspace.
             </p>
           </div>
         </motion.div>
@@ -773,9 +777,9 @@ export default function Products() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
               >
-                <FaShoppingCart /> Commission Adaptability · {globalPartnerCode.trim() ? formatPrice(discountedPrice(999)) : 'R999'}
+                <FaShoppingCart /> Commission Adaptability · {codeActive ? formatPrice(discountedPrice(999)) : 'R999'}
               </a>
-              {globalPartnerCode.trim() && (
+              {codeActive && (
                 <p className="text-emerald-400 text-sm mt-2">
                   <FaTag className="inline mr-1" size={10} /> Referral code applied: 10% off
                 </p>
@@ -839,7 +843,7 @@ export default function Products() {
             Your license keys are delivered within 24 hours.
           </p>
 
-          {globalPartnerCode.trim() && (
+          {codeActive && (
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-600 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-emerald-500/30">
               <FaTag size={12} /> Referral code <span className="uppercase">{globalPartnerCode}</span> active: 10% off at checkout
             </div>
@@ -856,7 +860,7 @@ export default function Products() {
             </a>
           </div>
 
-          {!globalPartnerCode.trim() && (
+          {!codeActive && (
             <p className="text-navy-400 text-sm">
               <FaTag className="inline mr-1" size={10} />
               Have a referral code? <button onClick={() => document.querySelector('input[placeholder*="PARTNER"]').scrollIntoView({ behavior: 'smooth' })} className="text-gold underline hover:no-underline">Enter it above</button> for 10% off.
@@ -899,7 +903,7 @@ export default function Products() {
 
               <div className="flex items-center justify-between mb-4 p-4 bg-gold-pale/30 rounded-xl">
                 <span className="text-navy-600 text-sm">Price</span>
-                {globalPartnerCode.trim() && selectedProduct.price > 0 ? (
+                {codeActive && selectedProduct.price > 0 ? (
                   <div className="text-right">
                     <span className="text-lg text-navy-400 line-through block">{selectedProduct.priceLabel}</span>
                     <span className="text-3xl font-bold text-emerald-600">{formatPrice(discountedPrice(selectedProduct.price))}</span>
@@ -909,7 +913,7 @@ export default function Products() {
                 )}
               </div>
 
-              {globalPartnerCode.trim() && selectedProduct.price > 0 && (
+              {codeActive && selectedProduct.price > 0 && (
                 <div className="mb-4 p-3 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center gap-2">
                   <FaTag className="text-emerald-500" size={14} />
                   <span className="text-emerald-700 text-sm font-medium">
@@ -931,9 +935,9 @@ export default function Products() {
                     className="w-full pl-10 pr-4 py-3 rounded-xl border border-navy-200 text-navy-900 placeholder-navy-400 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all"
                   />
                 </div>
-                {partnerCode.trim() && !globalPartnerCode.trim() && (
+                {partnerCode.trim() && !codeActive && (
                   <p className="text-emerald-600 text-xs mt-2 font-medium">
-                    <FaCheckCircle className="inline mr-1" size={10} /> 10% discount will be applied at checkout
+                    <FaCheckCircle className="inline mr-1" size={10} /> We check your code at checkout, and 10% comes off if it is valid
                   </p>
                 )}
               </div>
