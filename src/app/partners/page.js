@@ -12,13 +12,13 @@ const STEPS = [
   { n: '1', t: 'Apply', d: 'Tell us a little about you and how you would share the systems. It takes two minutes.' },
   { n: '2', t: 'We approve you', d: 'Simone reviews every application personally and emails you your code and link.' },
   { n: '3', t: 'Share your code', d: 'Anyone who uses your code or link gets 10% off their order.' },
-  { n: '4', t: 'You earn 20%', d: 'Once their payment clears, 20% of what they paid is added to your balance.' },
+  { n: '4', t: 'You earn 20%', d: 'Once their payment clears, 20% of what they paid is yours, once off per sale.' },
 ]
 
 const FAQ = [
   { q: 'How much does it cost to join?', a: 'Nothing. There are no fees and no targets.' },
   { q: 'What do my clients get?', a: '10% off any paid module, applied automatically when they use your code or your link.' },
-  { q: 'How and when do I get paid?', a: 'Your commission is calculated on what the customer actually paid, and only once the payment has cleared. We pay out by EFT. Your approval email explains the schedule.' },
+  { q: 'How and when do I get paid?', a: 'Your commission is calculated on what the customer actually paid, and only once the payment has cleared. Every product is a once-off purchase, so you earn once on each sale, not monthly. We pay you by EFT after the customer payment has cleared.' },
   { q: 'Can I use my own code on my own order?', a: 'No. Codes cannot be used by the partner who owns them. Your clients are the ones who save.' },
   { q: 'Who can join?', a: 'Accountants, bookkeepers, consultants, freelancers, business coaches and anyone whose clients run on spreadsheets. If you would recommend us anyway, this just rewards you for it.' },
 ]
