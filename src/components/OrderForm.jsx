@@ -11,12 +11,17 @@ const ORDER_ENDPOINT = process.env.NEXT_PUBLIC_ORDER_ENDPOINT ||
 const MAX_POP = 5 * 1024 * 1024
 const POP_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf']
 
+// AceIQ year-end special: R199 up to and including 31 December 2026, then R499 from 1 January 2027.
+// This only changes what the page shows. The order script (Code.gs, CATALOGUE) charges the real price, with the same dates.
+const ACEIQ_SPECIAL = Date.now() < new Date('2027-01-01T00:00:00+02:00').getTime()
+
 // Prices here are for display only. The server works out the real price from the ids.
 const PRODUCTS = [
   { id: 'crm-mini', key: 'connectability', name: 'ConnectAbility: CRM Mini', price: 0, badge: 'Free', desc: 'Client tracking foundations for front-facing sales and administrative workflows.' },
   { id: 'receiptsnap', key: 'receiptsnap', name: 'ReceiptSnap', price: 299, badge: 'New', desc: 'Snap photos of receipts, extract the data with AI, and export clean CSV files for your bookkeeper.' },
   { id: 'bookability', key: 'bookability', name: 'BookAbility: CRM + Booking System', price: 499, badge: 'New', desc: 'QR code booking, a PIN-protected admin portal, email and WhatsApp confirmations, and slot blocking.' },
   { id: 'budgetability', key: 'budgetability', name: 'BudgetAbility: Household Finance Tracker', price: 499, badge: 'New', desc: 'Accounts, budgets, bills, goals and debt payoff for your household, in more than one currency, in your own Google Sheet.' },
+  { id: 'aceiq', key: 'aceiq', name: 'AceIQ: AI Study Helper', price: ACEIQ_SPECIAL ? 199 : 499, was: ACEIQ_SPECIAL ? 499 : 0, badge: ACEIQ_SPECIAL ? 'Year-end special' : 'New', desc: 'Upload school notes and get summaries, keywords, flashcards and practice tests for every subject, in your own Google Sheet. Once off, no subscription.' },
   { id: 'content-planner', key: 'visibility', name: 'Visibility: Content Planner', price: 299, desc: 'Marketing calendars, content scheduling, and social media production workflows.' },
   { id: 'crm-pro', key: 'scalability', name: 'Scalability: CRM Pro', price: 499, badge: 'Popular', desc: 'Advanced sales pipelines, relationship metrics, and growth tracking for account managers.' },
   { id: 'payability', key: 'payability', name: 'PayAbility: Invoice Sorter Pro', price: 499, group: 'payability', option: 'Do it yourself', desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet. Set it up yourself with the guide.' },
@@ -380,7 +385,7 @@ export default function OrderForm() {
                         </span>
                         <span className={'price' + (p.price === 0 ? ' free' : '')}>
                           {p.price === 0 ? 'Free' : money(priceOf(p))}
-                          {applied && p.price > 0 ? <s>{money(p.price)}</s> : null}
+                          {applied && p.price > 0 ? <s>{money(p.price)}</s> : (p.was ? <s>{money(p.was)}</s> : null)}
                         </span>
                       </label>
                     )
