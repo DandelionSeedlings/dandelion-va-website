@@ -1,8 +1,8 @@
 import AceIQPage from '../../components/AceIQPage'
 
 export const metadata = {
-  title: 'AceIQ: study notes turned into summaries, flashcards, mind maps and tests',
-  description: 'AceIQ turns your notes into colour coded summaries, flashcards, mind maps and practice tests, in English or Afrikaans. It runs in your own Google Sheet. Pay once, no subscription.',
+  title: 'AceIQ: study notes turned into summaries, flashcards, mind maps, tests and an exam plan',
+  description: 'AceIQ turns your notes into colour coded summaries, flashcards, mind maps and practice tests, plans your exam timetable and shows your progress. English and Afrikaans. Runs in your own Google Sheet. Pay once.',
   alternates: { canonical: '/aceiq' },
   openGraph: {
     title: 'AceIQ: study smarter from your own notes',

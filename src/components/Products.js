@@ -223,7 +223,7 @@ const products = [
     subtitle: 'AI Study Helper',
     price: 199,
     priceLabel: 'R199',
-    description: 'Turns school notes into colour coded summaries, flashcards, mind maps and practice tests, in English or Afrikaans, kept in your own Google Sheet. Year end special, R499 from 2027.',
+    description: 'Turns school notes into colour coded summaries, flashcards, mind maps and practice tests, plans the exam timetable and shows progress, in English or Afrikaans, kept in your own Google Sheet. Year end special, R499 from 2027.',
     tagline: 'Study smarter from your own notes.',
     icon: FaBookOpen,
     color: 'from-indigo-500 to-purple-600',
@@ -231,7 +231,7 @@ const products = [
     badgeColor: 'bg-indigo-500',
     available: true,
     orderUrl: '/aceiq',
-    features: ['Summaries and keywords', 'Flashcards and mind maps', 'Practice tests', 'English and Afrikaans'],
+    features: ['Summaries, flashcards, mind maps', 'Practice tests', 'Exam timetable and progress report', 'English and Afrikaans'],
     category: 'learning'
   },
   {

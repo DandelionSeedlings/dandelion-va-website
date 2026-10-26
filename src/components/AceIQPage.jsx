@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 // AceIQ sales page. Static content, styled inside .aq so it cannot affect the rest of the site.
 // Set DEMO_COPY_URL to the "make a copy" link of the AceIQ demo sheet to show the demo button.
-const DEMO_COPY_URL = ''
+const DEMO_COPY_URL = 'https://docs.google.com/spreadsheets/d/10dyuHdKfXM9gs1IcPy_hjfJnJzsCy9AUXLQxzbTRyLs/copy'
 // The year end special runs to the end of 2026. From 2027 the price is R499.
 const SPECIAL_ENDS = '2027-01-01'
 
@@ -33,6 +33,9 @@ const CSS = `.aq{--navy:#0a1628;--navy2:#0f1d33;--gold:#C9A227;--cream:#F5F1E8;-
 .aq .btn-line{border:1px solid #475569;color:#fff}
 .aq .btn-line:hover{border-color:var(--gold);color:var(--gold)}
 .aq .fine{font-size:14px;color:#94A3B8;margin-top:16px}
+.aq .logochip{display:block;width:fit-content;background:#fff;border-radius:14px;padding:10px 16px;margin-bottom:18px}
+.aq .logochip img{display:block;height:46px;width:auto}
+.aq .ml{display:inline-block;background:rgba(255,194,14,.14);border:1px solid rgba(255,194,14,.5);color:#FFD75E;font-weight:700;font-size:13px;border-radius:999px;padding:4px 14px;margin:0 0 18px}
 .aq .special{display:inline-block;background:var(--gold);color:var(--navy);font-size:12px;font-weight:700;border-radius:999px;padding:3px 12px;margin-bottom:10px}
 .aq .was{text-decoration:line-through;color:#94A3B8;font-weight:500;font-size:.6em;margin-left:8px}
 .aq .shotframe{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 24px 50px -24px rgba(15,23,42,.35);border-top:4px solid var(--gold)}
@@ -60,7 +63,7 @@ const CSS = `.aq{--navy:#0a1628;--navy2:#0f1d33;--gold:#C9A227;--cream:#F5F1E8;-
 .aq .tool{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;border-top:5px solid var(--c)}
 .aq .tool h3{margin:0 0 8px;font-size:19px;color:var(--c)}
 .aq .tool p{margin:0;color:var(--muted);font-size:15px}
-.aq .c1{--c:var(--blue)}.aq .c2{--c:var(--green)}.aq .c3{--c:var(--purple)}.aq .c4{--c:var(--orange)}
+.aq .c1{--c:var(--blue)}.aq .c2{--c:var(--green)}.aq .c3{--c:var(--purple)}.aq .c4{--c:var(--orange)}.aq .c5{--c:var(--teal)}.aq .c6{--c:var(--pink)}
 .aq .feat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 40px;margin:0;padding:0;list-style:none}
 .aq .feat li{padding:12px 0 12px 28px;border-top:1px solid var(--line);position:relative}
 .aq .feat li:before{content:"";position:absolute;left:4px;top:20px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
@@ -106,17 +109,18 @@ const BODY = `<header class="top"><div class="wrap">
 
 <div class="hero"><div class="wrap grid">
   <div>
-    <p class="eyebrow">AceIQ</p>
+    <span class="logochip"><img src="/images/aceiq/logo-horizontal.png" alt="AceIQ" width="140" height="46"></span>
+    <p class="ml">Multilingual: English and Afrikaans</p>
     <h1>Turn school notes into study material that sticks.</h1>
-    <p class="lead">Add your notes, photos of pages or a PDF. AceIQ makes colour coded summaries, flashcards, mind maps and practice tests, in English or Afrikaans. It lives in your own Google Sheet.</p>
+    <p class="lead">Add your notes, photos of pages or a PDF. AceIQ makes colour coded summaries, flashcards, mind maps and practice tests, plans the exam timetable and shows what still needs to be learned. In English or Afrikaans, in your own Google Sheet.</p>
     <div class="btns">
       <a class="btn btn-gold" href="/order?product=aceiq">Get AceIQ, <span data-aq-price="hero"><span class="now">R199</span></span></a>
       ${demoBtn}
     </div>
-    <p class="fine">One payment. No subscription. <span data-aq-note>Year end special, R499 from 2027.</span> 72 hour demo included.</p>
+    <p class="fine">One payment. No subscription. <span data-aq-note>Year end special, R499 from 2027.</span> 72 hour demo included. Make your own copy of the demo sheet, then start the demo with the key ACE-DEMO-2026.</p>
     <p class="fine"><b>Best for</b> learners from Grade 1 to Grade 12 and the parents who help them study. CAPS, IEB and Cambridge.</p>
   </div>
-  <div class="shotframe"><img src="/images/aceiq/hero-summary.webp" alt="AceIQ summary of Grade 10 Life Sciences notes in Afrikaans, in colour coded blocks with terms, examples and reminders" width="1500" height="1250" fetchpriority="high"></div>
+  <div class="shotframe"><img src="/images/aceiq/hero-summary.webp" alt="AceIQ summary of Grade 10 Life Sciences notes in Afrikaans, in colour coded blocks with terms, examples and reminders" width="1500" height="1062" fetchpriority="high"></div>
 </div></div>
 
 <section><div class="wrap">
@@ -141,13 +145,15 @@ const BODY = `<header class="top"><div class="wrap">
 </div></section>
 
 <section><div class="wrap">
-  <h2>Four ways to revise, from one set of notes</h2>
-  <p class="sub">Add the notes once. AceIQ makes all four.</p>
+  <h2>Six tools from one set of notes</h2>
+  <p class="sub">Add the notes once. AceIQ makes the rest.</p>
   <div class="tools">
     <div class="tool c1"><h3>Summaries and keywords</h3><p>Short, clear lines under coloured headings, with the key terms pulled out and a search box to find any of them. Print it or save it as a PDF.</p></div>
     <div class="tool c2"><h3>Flashcards</h3><p>Cards you miss come back sooner. Cards you know come back later. Add your own cards too.</p></div>
     <div class="tool c3"><h3>Mind maps</h3><p>The summary drawn as a coloured map. Tap any block to read the full line, then download it as a picture.</p></div>
     <div class="tool c4"><h3>Practice tests</h3><p>Multiple choice questions made from the notes. After each test you see what was right, what was not, and why.</p></div>
+    <div class="tool c5"><h3>Exam timetable</h3><p>Add each exam from the school timetable. AceIQ plans one or two subjects a day, with the closest exam and the least ready subject first.</p></div>
+    <div class="tool c6"><h3>Progress report</h3><p>See how ready each subject is, what was missed in tests, which flashcards are still not learned and how many days were studied. Print it for a parent or teacher.</p></div>
   </div>
 </div></section>
 
@@ -162,10 +168,14 @@ const BODY = `<header class="top"><div class="wrap">
     <div class="shotframe"><img src="/images/aceiq/test.webp" alt="AceIQ practice test with multiple choice questions" width="1800" height="1125" loading="lazy"></div>
     <div class="shotframe"><img src="/images/aceiq/result.webp" alt="AceIQ test result showing 4 of 5 with the right answers and a short reason for each" width="1800" height="1125" loading="lazy"></div>
   </div>
+  <div class="shots">
+    <div class="shotframe"><img src="/images/aceiq/exams.webp" alt="AceIQ exam timetable with a study plan for each day and how ready each subject is" width="1800" height="1125" loading="lazy"></div>
+    <div class="shotframe"><img src="/images/aceiq/report.webp" alt="AceIQ progress report with readiness for each subject and what is still to learn" width="1800" height="1125" loading="lazy"></div>
+  </div>
   <div class="shots p3">
-    <div class="shotframe"><img src="/images/aceiq/dashboard.webp" alt="AceIQ learner dashboard with study streak and best test score for each subject" width="1800" height="1125" loading="lazy"></div>
-    <div class="shotframe phone"><img src="/images/aceiq/phone-summary.webp" alt="AceIQ summary on a phone" width="780" height="1688" loading="lazy"></div>
-    <div class="shotframe phone"><img src="/images/aceiq/phone-card.webp" alt="AceIQ flashcard on a phone" width="780" height="1688" loading="lazy"></div>
+    <div class="shotframe"><img src="/images/aceiq/dashboard.webp" alt="AceIQ learner dashboard with a colourful welcome, streak, next exam and subject cards" width="1800" height="1125" loading="lazy"></div>
+    <div class="shotframe phone"><img src="/images/aceiq/phone-dashboard.webp" alt="AceIQ dashboard on a phone" width="780" height="1688" loading="lazy"></div>
+    <div class="shotframe phone"><img src="/images/aceiq/phone-exams.webp" alt="AceIQ exam timetable on a phone" width="780" height="1688" loading="lazy"></div>
   </div>
   <p class="shotnote" style="color:#94A3B8">Screens show sample data.</p>
 </div></section>
@@ -176,11 +186,13 @@ const BODY = `<header class="top"><div class="wrap">
   <ul class="feat">
     <li><b>Notes from anywhere</b><span>Paste text, upload a PDF, a text file or photos of pages. Typed PDFs are read straight away. Scans and photos are read with Google text recognition.</span></li>
     <li><b>Whole term, not one page</b><span>Long notes are read in parts, so the last page counts as much as the first.</span></li>
-    <li><b>English and Afrikaans</b><span>Choose the home language for each learner. Afrikaans letters come through correctly.</span></li>
+    <li><b>Multilingual</b><span>Study material in English or Afrikaans, chosen for each learner. AceIQ writes in the language your notes are in, and Afrikaans letters come through correctly.</span></li>
+    <li><b>Exam timetable and study plan</b><span>Every exam with days left and how ready you are, and a day by day plan that updates as you practise.</span></li>
+    <li><b>Progress report</b><span>Readiness for each subject, test scores, study days, and a list of what still needs to be learned. Print it or save it as a PDF.</span></li>
     <li><b>More than one learner</b><span>Add every child in the family. Each one has their own notes, cards, scores and streak.</span></li>
     <li><b>Spaced flashcards</b><span>Missed cards return soon, known cards return later, so revision time goes where it is needed.</span></li>
     <li><b>Marked tests with reasons</b><span>Ten questions at a time, marked for you, with a short explanation of every answer.</span></li>
-    <li><b>Print and download</b><span>Print any summary or mind map, save the mind map as a picture, and download keywords and flashcards as a spreadsheet file.</span></li>
+    <li><b>Print and download</b><span>Print any summary, mind map, timetable or report, save the mind map as a picture, and download keywords and flashcards as a spreadsheet file.</span></li>
     <li><b>Private by design</b><span>A long private key on your link. Your notes are stored in your own Google Sheet, not on our servers.</span></li>
   </ul>
 </div></section>
@@ -193,7 +205,7 @@ const BODY = `<header class="top"><div class="wrap">
       <span class="tag" data-aq-tag>Year end special</span>
       <h3>AceIQ</h3>
       <div class="big" data-aq-price="card"><span class="now">R199</span><span class="was">R499</span></div><div style="color:var(--muted);font-size:14px"><span data-aq-note2>one payment, R499 from 2027</span></div>
-      <ul><li>AceIQ sheet and activation key</li><li>Step by step setup guide</li><li>72 hour demo before you commit</li><li>Unlimited learners and subjects</li></ul>
+      <ul><li>AceIQ sheet and activation key</li><li>Step by step setup guide</li><li>72 hour demo before you commit</li><li>Exam timetable and progress report</li><li>English and Afrikaans</li><li>Unlimited learners and subjects</li></ul>
       <a class="btn btn-gold" style="display:block;text-align:center" href="/order?product=aceiq">Order now</a>
     </div>
   </div>
@@ -206,7 +218,9 @@ const BODY = `<header class="top"><div class="wrap">
   <details><summary>Do I need to know how to code?</summary><p>No. Setting it up is a handful of clicks and the guide shows each one.</p></details>
   <details><summary>Is there a monthly fee?</summary><p>No. You pay once and it runs in your own Google account. The AI key is free from Groq and you add it yourself.</p></details>
   <details><summary>Which grades and curricula does it work for?</summary><p>Grade 1 to Grade 12, and CAPS, IEB, Cambridge or any other. AceIQ works from the notes you give it, so it fits whatever your child is studying.</p></details>
-  <details><summary>Does it work in Afrikaans?</summary><p>Yes. Choose English or Afrikaans for each learner and the summaries, cards and tests are made in that language.</p></details>
+  <details><summary>Is AceIQ multilingual?</summary><p>Yes. Choose English or Afrikaans for each learner and the summaries, flashcards, mind maps and tests are made in that language. AceIQ writes in the language of the notes you give it. English and Afrikaans are what it is built and tested for, so other languages may need a closer look before you rely on them. The menus are in English.</p></details>
+  <details><summary>How does the exam timetable work?</summary><p>You add each exam with its date. AceIQ then plans one or two subjects a day until the last exam. The subject with the closest exam and the least practice comes first, and the plan changes as you do flashcards and tests.</p></details>
+  <details><summary>What does the progress report show?</summary><p>How ready each subject is, test scores, study days, and the questions and flashcards that still need work. Readiness comes from flashcards learned and recent test scores, so it is a guide and not a promise of marks.</p></details>
   <details><summary>Can it read scanned pages and photos?</summary><p>Yes. Photos and scanned PDFs are read with Google text recognition. For these, keep each file to about 10 pages. Typed PDFs are read straight away and can be longer.</p></details>
   <details><summary>Can the AI make mistakes?</summary><p>It can. AceIQ checks every line against your notes and drops anything that does not match, but you should still skim the summary against the textbook. It is a revision helper, not a replacement for the teacher.</p></details>
   <details><summary>Where are my notes stored?</summary><p>In your own Google Sheet. We never see them. To make study material, the text of your notes is sent to Groq, the AI service, using your own key.</p></details>
@@ -241,7 +255,8 @@ const LD = [
     '@type': 'FAQPage',
     mainEntity: [
       ['Is there a monthly fee?', 'No. You pay once and it runs in your own Google account. The AI key is free from Groq and you add it yourself.'],
-      ['Does it work in Afrikaans?', 'Yes. Choose English or Afrikaans for each learner and the summaries, cards and tests are made in that language.'],
+      ['Is AceIQ multilingual?', 'Yes. Choose English or Afrikaans for each learner and the study material is made in that language. AceIQ writes in the language of your notes.'],
+      ['How does the exam timetable work?', 'You add each exam with its date and AceIQ plans one or two subjects a day until the last exam, putting the closest exam and the least ready subject first.'],
       ['Can it read scanned pages and photos?', 'Yes. Photos and scanned PDFs are read with Google text recognition. Typed PDFs are read straight away.'],
       ['Where are my notes stored?', 'In your own Google Sheet. We never see them.'],
       ['Can I try it first?', 'Yes. AceIQ includes a 72 hour demo with every feature.'],
