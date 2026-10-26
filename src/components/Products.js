@@ -45,15 +45,6 @@ const productCategories = [
     products: ['payability', 'budgetability', 'profitability', 'mini-cash-up']
   },
   {
-    id: 'learning',
-    title: 'Learning Tools',
-    icon: FaBookOpen,
-    color: 'text-gold',
-    bgColor: 'bg-navy-900',
-    borderColor: 'border-gold/30',
-    products: ['aceiq']
-  },
-  {
     id: 'inventory',
     title: 'Supply & Stock Control',
     icon: FaBoxes,
@@ -218,23 +209,6 @@ const products = [
     category: 'financial-operations'
   },
   {
-    id: 'aceiq',
-    name: 'AceIQ',
-    subtitle: 'AI Study Helper',
-    price: 199,
-    priceLabel: 'R199',
-    description: 'Turns school notes into colour coded summaries, flashcards, mind maps and practice tests, plans the exam timetable and shows progress, in English or Afrikaans, kept in your own Google Sheet. Year end special, R499 from 2027.',
-    tagline: 'Study smarter from your own notes.',
-    icon: FaBookOpen,
-    color: 'from-indigo-500 to-purple-600',
-    badge: 'NEW',
-    badgeColor: 'bg-indigo-500',
-    available: true,
-    orderUrl: '/aceiq',
-    features: ['Summaries, flashcards, mind maps', 'Practice tests', 'Exam timetable and progress report', 'English and Afrikaans'],
-    category: 'learning'
-  },
-  {
     id: 'availability',
     name: 'Availability',
     subtitle: 'Stock & Supplier Pro',
@@ -279,7 +253,7 @@ const products = [
     badge: 'REQUEST QUOTE',
     badgeColor: 'bg-violet-500',
     available: true,
-    orderUrl: 'https://script.google.com/macros/s/AKfycbxYopxLBZudEeEFN5c44RkuQMdHns7pCZksPpFLBtZYy3E9UUVJhgtOUnomEEc82UFpgg/exec',
+    orderUrl: 'https://script.google.com/macros/s/AKfycbwxnnUTTw6rkzb1579hAGHSEy90AJQDHUpYSdIsccgUzxsq00tFpQqoNwewDHQzn2ty/exec',
     features: ['Strategy intake', 'Social media management', 'Website launch', 'Conversion tracking'],
     category: 'growth-branding'
   },
