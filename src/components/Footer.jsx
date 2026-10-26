@@ -94,6 +94,7 @@ export default function Footer() {
               <li><Link href="/receiptsnap" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">ReceiptSnap · R299</Link></li>
               <li><Link href="/bookability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">BookAbility · R499</Link></li>
               <li><Link href="/budgetability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">BudgetAbility · R499</Link></li>
+              <li><Link href="/aceiq" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">AceIQ · R199 <span className="text-xs">(R499 from 2027)</span></Link></li>
               <li>
                 <a href={buildOrderUrl('Visibility', 'Content Planner')} className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-1">
                   Content Planner · R299

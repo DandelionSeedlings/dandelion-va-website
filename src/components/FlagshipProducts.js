@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { FaUsers, FaReceipt, FaCalendarCheck, FaFileInvoice, FaWallet, FaArrowRight, FaGift } from 'react-icons/fa'
+import { FaUsers, FaReceipt, FaCalendarCheck, FaFileInvoice, FaWallet, FaBookOpen, FaArrowRight, FaGift } from 'react-icons/fa'
 
 const products = [
   {
@@ -46,6 +46,14 @@ const products = [
     desc: 'Track accounts, budgets, bills and debt for your household, in any currency, from your own Google Sheet.',
     href: '/budgetability',
   },
+  {
+    icon: FaBookOpen,
+    name: 'AceIQ',
+    price: 'R199',
+    priceNote: 'once-off, R499 from 2027',
+    desc: 'Turn school notes into summaries, flashcards, mind maps and practice tests, in English or Afrikaans.',
+    href: '/aceiq',
+  },
 ]
 
 export default function FlagshipProducts() {
@@ -62,7 +70,7 @@ export default function FlagshipProducts() {
           <p className="text-gray-600 max-w-xl mx-auto">Each one is engineered to work alone or together, as part of the full AbilitySuite&trade; ecosystem.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product, i) => (
             <motion.div
               key={i}

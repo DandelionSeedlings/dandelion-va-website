@@ -45,6 +45,15 @@ const productCategories = [
     products: ['payability', 'budgetability', 'profitability', 'mini-cash-up']
   },
   {
+    id: 'learning',
+    title: 'Learning Tools',
+    icon: FaBookOpen,
+    color: 'text-gold',
+    bgColor: 'bg-navy-900',
+    borderColor: 'border-gold/30',
+    products: ['aceiq']
+  },
+  {
     id: 'inventory',
     title: 'Supply & Stock Control',
     icon: FaBoxes,
@@ -207,6 +216,23 @@ const products = [
     orderUrl: '/budgetability',
     features: ['Multi currency accounts', 'Budgets and bills', 'Debt payoff plan', 'CSV export'],
     category: 'financial-operations'
+  },
+  {
+    id: 'aceiq',
+    name: 'AceIQ',
+    subtitle: 'AI Study Helper',
+    price: 199,
+    priceLabel: 'R199',
+    description: 'Turns school notes into colour coded summaries, flashcards, mind maps and practice tests, in English or Afrikaans, kept in your own Google Sheet. Year end special, R499 from 2027.',
+    tagline: 'Study smarter from your own notes.',
+    icon: FaBookOpen,
+    color: 'from-indigo-500 to-purple-600',
+    badge: 'NEW',
+    badgeColor: 'bg-indigo-500',
+    available: true,
+    orderUrl: '/aceiq',
+    features: ['Summaries and keywords', 'Flashcards and mind maps', 'Practice tests', 'English and Afrikaans'],
+    category: 'learning'
   },
   {
     id: 'availability',
