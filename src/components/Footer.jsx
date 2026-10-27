@@ -73,6 +73,7 @@ export default function Footer() {
               <li><Link href="/blog" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Blog</Link></li>
               <li><Link href="/embeddedsupport" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Embedded Support</Link></li>
               <li><Link href="/partners" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Partner Program</Link></li>
+              <li><Link href="/setup-guide" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">App Setup Guide</Link></li>
               <li><Link href="/book" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Book a Systems Audit</Link></li>
               <li>
                 <a href={buildOrderUrl()} className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-2">
@@ -94,7 +95,6 @@ export default function Footer() {
               <li><Link href="/receiptsnap" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">ReceiptSnap · R299</Link></li>
               <li><Link href="/bookability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">BookAbility · R499</Link></li>
               <li><Link href="/budgetability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">BudgetAbility · R499</Link></li>
-              <li><Link href="/aceiq" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">AceIQ · R199 <span className="text-xs">(R499 from 2027)</span></Link></li>
               <li>
                 <a href={buildOrderUrl('Visibility', 'Content Planner')} className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-1">
                   Content Planner · R299

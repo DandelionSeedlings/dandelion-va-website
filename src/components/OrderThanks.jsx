@@ -83,6 +83,7 @@ export default function OrderThanks() {
       <h1>Payment received</h1>
       <p>Thank you. Your licence keys are on their way to your email, usually within a minute. Check your spam folder if you do not see them.</p>
       <div className="sum"><strong>Order number:</strong> {res.orderId}<br /><strong>Total paid:</strong> R{Number(res.total).toLocaleString('en-ZA')}<br /><strong>Products:</strong> {res.products}</div>
+      <p>New to this? Follow our <a href="/setup-guide">step by step setup guide</a>. It takes about 10 minutes.</p>
       <p>Need help getting started? WhatsApp <a href="https://wa.me/27728393087">+27 72 839 3087</a>.</p>
     </>)
   } else if (state === 'failed' || state === 'abandoned' || state === 'reversed') {
