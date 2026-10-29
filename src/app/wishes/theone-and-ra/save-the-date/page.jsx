@@ -381,7 +381,7 @@ function DetailScreen({ countdown, rsvpUrl, onMore }) {
         >
           Troudiens om 15h00
           <br />
-          Indawo Game Lodge, Ermelo
+          Hein se Plaas, Ermelo, Mpumalanga
         </p>
       </Pos>
 
