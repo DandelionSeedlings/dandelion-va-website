@@ -1,10 +1,11 @@
+
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useReferral, readSavedCode } from '../lib/referral'
 
-// The Orders Apps Script deployment (Code.gs in the Orders sheet). Keep the same
-// deployment and publish a new version after changing the script.
+// The Orders Apps Script deployment (Code.gs in the Orders sheet).
+// Keep the same deployment and publish a new version after changing the script.
 const ORDER_ENDPOINT = process.env.NEXT_PUBLIC_ORDER_ENDPOINT ||
   'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
@@ -17,6 +18,10 @@ const PRODUCTS = [
   { id: 'receiptsnap', key: 'receiptsnap', name: 'ReceiptSnap', price: 299, badge: 'New', desc: 'Snap photos of receipts, extract the data with AI, and export clean CSV files for your bookkeeper.' },
   { id: 'bookability', key: 'bookability', name: 'BookAbility: CRM + Booking System', price: 499, badge: 'New', desc: 'QR code booking, a PIN-protected admin portal, email and WhatsApp confirmations, and slot blocking.' },
   { id: 'budgetability', key: 'budgetability', name: 'BudgetAbility: Household Finance Tracker', price: 499, badge: 'New', desc: 'Accounts, budgets, bills, goals and debt payoff for your household, in more than one currency, in your own Google Sheet.' },
+
+  // AceIQ AI Study Assistant
+  { id: 'aceiq', key: 'aceiq', name: 'AceIQ: AI Study Assistant', price: 199, badge: 'Year-End Special', desc: 'Turn school notes, photos and PDFs into colour-coded summaries, flashcards, mind maps and practice tests. Includes an exam timetable and progress report in English or Afrikaans, in your own Google Sheet.' },
+
   { id: 'content-planner', key: 'visibility', name: 'Visibility: Content Planner', price: 299, badge: 'New', desc: 'Plan your AI written posts in one calendar, check they are ready, and let clients approve them from a link.' },
   { id: 'crm-pro', key: 'scalability', name: 'Scalability: CRM Pro', price: 499, badge: 'Popular', desc: 'Advanced sales pipelines, relationship metrics, and growth tracking for account managers.' },
   { id: 'payability', key: 'payability', name: 'PayAbility: Invoice Sorter Pro', price: 499, group: 'payability', option: 'Do it yourself', desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet. Set it up yourself with the guide.' },
