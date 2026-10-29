@@ -1,5 +1,5 @@
 
-// src/components/wishes/DetailsSection.jsx
+ // src/components/wishes/DetailsSection.jsx
 // Program, venue and practical notes for Theoné & Ra.
 // Afrikaans. Accommodation and all Indawo references removed.
 
@@ -206,8 +206,8 @@ export default function DetailsSection({
             </a>
           )}
         </div>
+      </div>
 
-        
       {/* Dress code and menu */}
       <div
         style={{
