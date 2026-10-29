@@ -96,9 +96,7 @@ export default function Footer() {
               <li><Link href="/bookability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">BookAbility · R499</Link></li>
               <li><Link href="/budgetability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">BudgetAbility · R499</Link></li>
               <li>
-                <a href={buildOrderUrl('Visibility', 'Content Planner')} className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-1">
-                  Content Planner · R299
-                </a>
+                <Link href="/visibility" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-1">Visibility · R299</Link>
               </li>
               <li>
                 <a href={buildOrderUrl('Scalability', 'CRM Pro')} className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-1">
