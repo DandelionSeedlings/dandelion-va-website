@@ -1,30 +1,29 @@
-
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useReferral, readSavedCode } from '../lib/referral'
 
-// The Orders Apps Script deployment (Code.gs in the Orders sheet).
-// Keep the same deployment and publish a new version after changing the script.
+// The Orders Apps Script deployment (Code.gs in the Orders sheet). Keep the same
+// deployment and publish a new version after changing the script.
 const ORDER_ENDPOINT = process.env.NEXT_PUBLIC_ORDER_ENDPOINT ||
   'https://script.google.com/macros/s/AKfycbwpt4kWYZWGXdocgba7citoNpC_AEt7ImG2izh-LacgIAAA3wDhtL8PXLX-pw_WGXWx9Q/exec'
 
 const MAX_POP = 5 * 1024 * 1024
 const POP_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'application/pdf']
 
+// AceIQ is R199 up to and including 31 December 2026, then R499. The server works out the real price the same way.
+const ACEIQ_SPECIAL = new Date() < new Date('2027-01-01T00:00:00+02:00')
+
 // Prices here are for display only. The server works out the real price from the ids.
 const PRODUCTS = [
-  { id: 'crm-mini', key: 'connectability', name: 'ConnectAbility: CRM Mini', price: 0, badge: 'Free', desc: 'Client tracking foundations for front-facing sales and administrative workflows.' },
-  { id: 'receiptsnap', key: 'receiptsnap', name: 'ReceiptSnap', price: 299, badge: 'New', desc: 'Snap photos of receipts, extract the data with AI, and export clean CSV files for your bookkeeper.' },
-  { id: 'bookability', key: 'bookability', name: 'BookAbility: CRM + Booking System', price: 499, badge: 'New', desc: 'QR code booking, a PIN-protected admin portal, email and WhatsApp confirmations, and slot blocking.' },
-  { id: 'budgetability', key: 'budgetability', name: 'BudgetAbility: Household Finance Tracker', price: 499, badge: 'New', desc: 'Accounts, budgets, bills, goals and debt payoff for your household, in more than one currency, in your own Google Sheet.' },
-
-  // AceIQ AI Study Assistant
-  { id: 'aceiq', key: 'aceiq', name: 'AceIQ: AI Study Assistant', price: 199, badge: 'Year-End Special', desc: 'Turn school notes, photos and PDFs into colour-coded summaries, flashcards, mind maps and practice tests. Includes an exam timetable and progress report in English or Afrikaans, in your own Google Sheet.' },
-
-  { id: 'content-planner', key: 'visibility', name: 'Visibility: Content Planner', price: 299, badge: 'New', desc: 'Plan your AI written posts in one calendar, check they are ready, and let clients approve them from a link.' },
+  { id: 'crm-mini', key: 'connectability', name: 'ConnectAbility: CRM Mini', price: 0, badge: 'Free', needs: 'Runs in your own Google account.', desc: 'Client tracking foundations for front-facing sales and administrative workflows.' },
+  { id: 'receiptsnap', key: 'receiptsnap', name: 'ReceiptSnap', price: 299, badge: 'New', needs: 'Needs a free Google account and a free Groq key for the AI.', desc: 'Snap photos of receipts, extract the data with AI, and export clean CSV files for your bookkeeper.' },
+  { id: 'bookability', key: 'bookability', name: 'BookAbility: CRM + Booking System', price: 499, badge: 'New', needs: 'Needs a free Google account.', desc: 'QR code booking, a PIN-protected admin portal, email and WhatsApp confirmations, and slot blocking.' },
+  { id: 'budgetability', key: 'budgetability', name: 'BudgetAbility: Household Finance Tracker', price: 499, badge: 'New', needs: 'Needs a free Google account.', desc: 'Accounts, budgets, bills, goals and debt payoff for your household, in more than one currency, in your own Google Sheet.' },
+  { id: 'aceiq', key: 'aceiq', name: 'AceIQ: AI Study Helper', price: ACEIQ_SPECIAL ? 199 : 499, badge: ACEIQ_SPECIAL ? 'Special' : 'New', needs: 'Needs a free Google account.', desc: ACEIQ_SPECIAL ? 'Turn your own notes into summaries, flashcards, a mind map and practice tests, with a daily study plan. R199 until 31 December, then R499. Free 72 hour demo.' : 'Turn your own notes into summaries, flashcards, a mind map and practice tests, with a daily study plan.' },
+  { id: 'content-planner', key: 'visibility', name: 'Visibility: Content Planner', price: 299, badge: 'New', needs: 'Needs a free Google account. Works with whichever AI you already use.', desc: 'Plan your AI written posts in one calendar, check they are ready, and let clients approve them from a link.' },
   { id: 'crm-pro', key: 'scalability', name: 'Scalability: CRM Pro', price: 499, badge: 'Popular', desc: 'Advanced sales pipelines, relationship metrics, and growth tracking for account managers.' },
-  { id: 'payability', key: 'payability', name: 'PayAbility: Invoice Sorter Pro', price: 499, group: 'payability', option: 'Do it yourself', desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet. Set it up yourself with the guide.' },
+  { id: 'payability', key: 'payability', name: 'PayAbility: Invoice Sorter Pro', price: 499, group: 'payability', option: 'Do it yourself', needs: 'Needs a free Google account.', desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet. Set it up yourself with the guide.' },
   { id: 'payability-dwy', key: 'payability-dwy', name: 'PayAbility: Done-With-You Setup', price: 999, group: 'payability', option: 'Done with you', desc: 'Everything in PayAbility, set up with you on a call: your details, tax settings and first invoice.' },
   { id: 'stock-supplier', key: 'availability', name: 'Availability: Stock & Supplier Pro', price: 499, desc: 'Inventory control, procurement tracking, and supply chain management.' },
   { id: 'profitability', key: 'profitability', name: 'Profitability: Income & Expenses', price: 799, desc: 'An automated banking ledger and CSV importing for business owners and accountants.' },
@@ -150,6 +149,7 @@ font-family:var(--font-inter),Inter,system-ui,-apple-system,Segoe UI,Roboto,Aria
 .of .assure li:before{content:"\\2713";color:var(--ok);font-weight:800;margin-right:8px}
 .of .foot{text-align:center;color:#b6c2d6;font-size:14px;margin-top:26px}
 .of .foot a,.of .link{color:var(--gold)}
+.of .how{background:#f8fafc;border:1px solid #e2e8f0;border-left:4px solid #C9A84C;border-radius:12px;padding:14px 16px;margin:0 0 16px;font-size:14.5px;line-height:1.5}.of .how ul{margin:6px 0 0;padding-left:20px;list-style:disc}.of .how li{margin:4px 0}.of .need{display:block;color:#8A6D1F;font-size:13px;margin-top:2px}
 .of .done{max-width:560px;margin:0 auto;text-align:center}
 .of .tick{width:68px;height:68px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:32px;margin:0 auto 16px}
 .of .done .box{text-align:left;background:#f8fafc;border-radius:14px;padding:16px;margin:16px 0;font-size:14.5px}
@@ -342,6 +342,13 @@ export default function OrderForm() {
           )}
           {done.total > 0 && !done.hadPop && <p className="lead">Already paid? <a className="wa" href={wa} target="_blank" rel="noopener noreferrer">Send your proof of payment on WhatsApp</a></p>}
           <p className="lead">Your licence keys follow by email as soon as payment is confirmed, usually within 24 hours.</p>
+          {done.items.some((n) => !/ConnectAbility/i.test(n)) && (
+            <div className="box" style={{ textAlign: 'left' }}>
+              <strong>Want help setting it up?</strong>
+              <p style={{ margin: '6px 0 10px' }}>Book a free setup call. We share screens and switch it on together, up to 20 minutes.</p>
+              <a className="btn" href="/book?type=setup">Book a free setup call</a>
+            </div>
+          )}
           <button type="button" className="btn" onClick={again}>Place another order</button>
         </div></div>
       </div>
@@ -373,6 +380,15 @@ export default function OrderForm() {
               {step === 1 && (<fieldset style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}>
                 <legend style={{ padding: 0 }}><h2>Choose your products</h2></legend>
                 <p className="lead">Pick one or more. Add as many as you like.</p>
+                <div className="how" role="note">
+                  <strong>How it works</strong>
+                  <ul>
+                    <li>Each system runs in your own Google account, not on our computers. Your data stays in your Google Sheet.</li>
+                    <li>You pay once. There is no monthly fee and nothing to renew.</li>
+                    <li>It is not an app from an app store. You switch it on once with our step by step guide, then open it from a private link.</li>
+                    <li>After you order, you can book a free setup call and we will do it with you on a screen share, up to 20 minutes.</li>
+                  </ul>
+                </div>
                 <div className="list">
                   {PRODUCTS.map((p) => {
                     const on = !!picked[p.id]
@@ -382,6 +398,7 @@ export default function OrderForm() {
                         <span className="info">
                           <span className="name">{p.name}{p.option ? <span className="badge">{p.option}</span> : null}{p.badge ? <span className={'badge' + (p.price === 0 ? ' free' : '')}>{p.badge}</span> : null}</span>
                           <span className="desc">{p.desc}</span>
+                          {p.needs ? <span className="desc need">{p.needs}</span> : null}
                         </span>
                         <span className={'price' + (p.price === 0 ? ' free' : '')}>
                           {p.price === 0 ? 'Free' : money(priceOf(p))}

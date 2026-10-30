@@ -16,7 +16,7 @@ const dow = (s) => { const { y, m, d } = parseIso(s); return new Date(Date.UTC(y
 
 const field = 'w-full rounded-xl border border-white/15 bg-navy-800 px-4 py-3 text-white placeholder-gray-500 focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold'
 
-export default function BookingFlow() {
+export default function BookingFlow({ prefer = 'audit' }) {
   const [cfg, setCfg] = useState(null)
   const [service, setService] = useState(null)
   const [loadError, setLoadError] = useState('')
@@ -41,7 +41,9 @@ export default function BookingFlow() {
         const s = await bookingCall('services', {})
         if (!live) return
         const list = s.services || []
-        const audit = list.find((x) => /audit/i.test(x.name)) || list[0]
+        const wanted = list.find((x) => new RegExp(prefer, 'i').test(x.name))
+        if (prefer === 'setup' && !wanted) { setLoadError('Setup calls cannot be booked online yet. Please WhatsApp us and we will find a time.'); return }
+        const audit = wanted || list.find((x) => /audit/i.test(x.name)) || list[0]
         if (!audit) { setLoadError('No services are available to book right now.'); return }
         setCfg(c)
         setService(audit)
