@@ -347,6 +347,7 @@ export default function OrderForm() {
               <strong>Want help setting it up?</strong>
               <p style={{ margin: '6px 0 10px' }}>Book a free setup call. We share screens and switch it on together, up to 20 minutes.</p>
               <a className="btn" href="/book?type=setup">Book a free setup call</a>
+              <p style={{ margin: '12px 0 0', fontSize: 13.5 }}><a href="/setup-call">How to get ready for the call</a> | <a href="/refunds">Refund policy</a></p>
             </div>
           )}
           <button type="button" className="btn" onClick={again}>Place another order</button>
@@ -464,6 +465,7 @@ export default function OrderForm() {
                     <label className={'opt' + (method === 'Bank Transfer' ? ' on' : '')}><input type="radio" name="method" checked={method === 'Bank Transfer'} onChange={() => setMethod('Bank Transfer')} /><div><b>Bank transfer (EFT)</b><span>Pay from your banking app. Keys follow once we see the payment.</span></div></label>
                     <label className={'opt' + (method === 'QR Code' ? ' on' : '')}><input type="radio" name="method" checked={method === 'QR Code'} onChange={() => setMethod('QR Code')} /><div><b>Scan a QR code</b><span>Scan with your banking app, no typing needed.</span></div></label>
                   </div>
+                  <p className="note mute" style={{ marginTop: 10 }}>Not happy? We help first with a free setup call, then refund you if it still is not right. <a href="/refunds" target="_blank" rel="noopener noreferrer">Read the refund policy</a>.</p>
                   {method === 'Bank Transfer' && (
                     <div className="bank"><strong>FNB, Simone Theron</strong>
                       <dl><dt>Account no</dt><dd>631 4425 1509</dd><dt>Branch code</dt><dd>250655</dd><dt>Reference</dt><dd>Your order number, shown after you order</dd></dl>

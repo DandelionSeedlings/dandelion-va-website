@@ -21,3 +21,7 @@ export const ORDER_URL =
 
 export const whatsappLink = (text = '') =>
   `https://wa.me/${SITE.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ''}`
+
+// The screen share link used for free setup calls (a permanent Google Meet or Zoom room).
+// Set NEXT_PUBLIC_SCREENSHARE_URL, or paste the link here. Empty means the page says the link is sent before the call.
+export const SCREENSHARE_URL = process.env.NEXT_PUBLIC_SCREENSHARE_URL || ''
