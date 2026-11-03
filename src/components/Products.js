@@ -25,6 +25,17 @@ const floatingSeeds = Array.from({ length: 8 }, (_, i) => ({
   opacity: 0.08 + (i % 3) * 0.04
 }));
 
+// Screenshot panels shown at the top of each product card. Products without a screenshot yet get a quiet icon panel.
+const productVisuals = {
+  connectability: { img: '/images/connectability/dashboard.webp', tint: '#E1F0E7' },
+  bookability: { img: '/images/bookability/bookings.webp', tint: '#FBE4EA' },
+  receiptsnap: { img: '/images/receiptsnap/receipts.webp', tint: '#F8E6D2' },
+  visibility: { img: '/images/visibility/calendar.webp', tint: '#EAE4F7' },
+  payability: { img: '/images/payability/invoices.webp', tint: '#F3EBD6' },
+  budgetability: { img: '/images/budgetability/dashboard.webp', tint: '#E4EEF8' },
+  aceiq: { img: '/images/aceiq/dashboard.webp', tint: '#ECE7F8' },
+};
+
 const productCategories = [
   {
     id: 'client-management',
@@ -43,6 +54,15 @@ const productCategories = [
     bgColor: 'bg-navy-900',
     borderColor: 'border-gold/30',
     products: ['payability', 'budgetability', 'profitability', 'mini-cash-up']
+  },
+  {
+    id: 'learning',
+    title: 'Learning Tools',
+    icon: FaBookOpen,
+    color: 'text-gold',
+    bgColor: 'bg-navy-900',
+    borderColor: 'border-gold/30',
+    products: ['aceiq']
   },
   {
     id: 'inventory',
@@ -208,6 +228,23 @@ const products = [
     orderUrl: '/budgetability',
     features: ['Multi currency accounts', 'Budgets and bills', 'Debt payoff plan', 'CSV export'],
     category: 'financial-operations'
+  },
+  {
+    id: 'aceiq',
+    name: 'AceIQ',
+    subtitle: 'AI Study Helper',
+    price: 199,
+    priceLabel: 'R199',
+    description: 'Turns school notes into colour coded summaries, flashcards, mind maps and practice tests, plans the exam timetable and shows progress, in English or Afrikaans, kept in your own Google Sheet. Year end special, R499 from 2027.',
+    tagline: 'Study smarter from your own notes.',
+    icon: FaBookOpen,
+    color: 'from-indigo-500 to-purple-600',
+    badge: 'NEW',
+    badgeColor: 'bg-indigo-500',
+    available: true,
+    orderUrl: '/aceiq',
+    features: ['Summaries, flashcards, mind maps', 'Practice tests', 'Exam timetable and progress report', 'English and Afrikaans'],
+    category: 'learning'
   },
   {
     id: 'availability',
@@ -544,18 +581,28 @@ export default function Products() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.05 }}
-                      className={`bg-white rounded-2xl p-6 shadow-lg border-2 ${product.available ? 'border-transparent hover:border-gold/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300' : 'border-gray-200 opacity-70'} ${product.popular ? 'scale-105 shadow-2xl' : ''}`}
+                      className={`bg-white rounded-2xl overflow-hidden shadow-lg border-2 ${product.available ? 'border-transparent hover:border-gold/40 hover:shadow-xl hover:-translate-y-1 transition-all duration-300' : 'border-gray-200 opacity-70'} ${product.popular ? 'scale-105 shadow-2xl' : ''}`}
                     >
-                      {product.popular && (
-                        <div className="bg-gold text-navy-900 text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
-                          Most Popular
-                        </div>
-                      )}
-                      {product.badge && !product.popular && (
-                        <div className={`${product.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4`}>
-                          {product.badge}
-                        </div>
-                      )}
+                      <div className="relative h-44 overflow-hidden" style={{ background: productVisuals[product.id]?.tint || '#F3EFE4' }}>
+                        {productVisuals[product.id] ? (
+                          <img
+                            src={productVisuals[product.id].img}
+                            alt={product.name + ' screenshot'}
+                            loading="lazy"
+                            className="absolute left-6 top-8 w-[118%] max-w-none rounded-tl-xl shadow-2xl shadow-navy-900/20"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <product.icon className="w-14 h-14 text-navy-900/15" />
+                          </div>
+                        )}
+                        {(product.popular || product.badge) && (
+                          <span className={`absolute top-3 right-3 text-xs font-bold px-3 py-1 rounded-full ${product.popular ? 'bg-gold text-navy-900' : product.badgeColor + ' text-white'}`}>
+                            {product.popular ? 'Most Popular' : product.badge}
+                          </span>
+                        )}
+                      </div>
+                      <div className="p-6">
                       <h4 className="text-xl font-bold text-navy-900 mb-1">{product.name}</h4>
                       <p className="text-xs text-gold font-semibold uppercase tracking-wider mb-3">
                         {product.subtitle}
@@ -602,6 +649,7 @@ export default function Products() {
                           Referral code applied: 10% off
                         </p>
                       )}
+                      </div>
                     </motion.div>
                   ))}
                 </div>
