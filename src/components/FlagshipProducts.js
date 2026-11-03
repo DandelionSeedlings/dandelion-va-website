@@ -2,34 +2,9 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { FaUsers, FaReceipt, FaCalendarCheck, FaFileInvoice, FaWallet, FaBookOpen, FaArrowRight, FaGift } from 'react-icons/fa'
+import { FaUsers, FaFileInvoice, FaBookOpen, FaArrowRight, FaGift } from 'react-icons/fa'
 
 const products = [
-  {
-    icon: FaUsers,
-    name: 'ConnectAbility',
-    price: 'Free',
-    priceNote: 'forever',
-    desc: 'A simple CRM to manage leads, log every conversation, and never miss a follow-up again.',
-    href: '/connectability',
-    badge: true,
-  },
-  {
-    icon: FaReceipt,
-    name: 'ReceiptSnap',
-    price: 'R299',
-    priceNote: 'once-off',
-    desc: 'Snap a photo of any receipt, AI extracts vendor, amount, date, and VAT automatically.',
-    href: '/receiptsnap',
-  },
-  {
-    icon: FaCalendarCheck,
-    name: 'BookAbility',
-    price: 'R499',
-    priceNote: 'once-off',
-    desc: 'A live booking page and approval dashboard, no more back-and-forth to confirm a slot.',
-    href: '/bookability',
-  },
   {
     icon: FaFileInvoice,
     name: 'PayAbility',
@@ -39,20 +14,21 @@ const products = [
     href: '/payability',
   },
   {
-    icon: FaWallet,
-    name: 'BudgetAbility',
-    price: 'R499',
-    priceNote: 'once-off',
-    desc: 'Track accounts, budgets, bills and debt for your household, in any currency, from your own Google Sheet.',
-    href: '/budgetability',
-  },
-  {
     icon: FaBookOpen,
     name: 'AceIQ',
     price: 'R199',
     priceNote: 'once-off, R499 from 2027',
     desc: 'Turn school notes into summaries, flashcards, mind maps and practice tests, in English or Afrikaans.',
     href: '/aceiq',
+  },
+  {
+    icon: FaUsers,
+    name: 'ConnectAbility',
+    price: 'Free',
+    priceNote: 'forever',
+    desc: 'A simple CRM to manage leads, log every conversation, and never miss a follow-up again.',
+    href: '/connectability',
+    badge: true,
   },
 ]
 
@@ -66,11 +42,11 @@ export default function FlagshipProducts() {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-3">Five Systems. Start Anywhere.</h2>
-          <p className="text-gray-600 max-w-xl mx-auto">Each one is engineered to work alone or together, as part of the full AbilitySuite&trade; ecosystem.</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-3">Start With One. Add More Later.</h2>
+          <p className="text-gray-600 max-w-xl mx-auto">Each app works on its own, in your own Google account, and you pay once.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {products.map((product, i) => (
             <motion.div
               key={i}
@@ -107,7 +83,7 @@ export default function FlagshipProducts() {
             href="/abilitysuite"
             className="inline-flex items-center gap-2 text-navy-900 font-semibold hover:text-gold transition-colors underline"
           >
-            See the full AbilitySuite&trade; ecosystem <FaArrowRight size={12} />
+            See all our apps <FaArrowRight size={12} />
           </Link>
         </div>
       </div>
