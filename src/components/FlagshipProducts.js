@@ -2,33 +2,39 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { FaUsers, FaFileInvoice, FaBookOpen, FaArrowRight, FaGift } from 'react-icons/fa'
+import { FaArrowRight } from 'react-icons/fa'
 
 const products = [
   {
-    icon: FaFileInvoice,
     name: 'PayAbility',
     price: 'R499',
     priceNote: 'once-off',
     desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet, with no monthly fee.',
     href: '/payability',
+    img: '/images/payability/invoices.webp',
+    alt: 'PayAbility invoices screen',
+    tint: '#F3EBD6',
   },
   {
-    icon: FaBookOpen,
     name: 'AceIQ',
     price: 'R199',
-    priceNote: 'once-off, R499 from 2027',
+    priceNote: 'R499 from 2027',
     desc: 'Turn school notes into summaries, flashcards, mind maps and practice tests, in English or Afrikaans.',
     href: '/aceiq',
+    img: '/images/aceiq/dashboard.webp',
+    alt: 'AceIQ student dashboard',
+    tint: '#ECE7F8',
   },
   {
-    icon: FaUsers,
     name: 'ConnectAbility',
     price: 'Free',
     priceNote: 'forever',
     desc: 'A simple CRM to manage leads, log every conversation, and never miss a follow-up again.',
     href: '/connectability',
-    badge: true,
+    img: '/images/connectability/dashboard.webp',
+    alt: 'ConnectAbility dashboard',
+    tint: '#E1F0E7',
+    free: true,
   },
 ]
 
@@ -49,30 +55,37 @@ export default function FlagshipProducts() {
         <div className="grid md:grid-cols-3 gap-6">
           {products.map((product, i) => (
             <motion.div
-              key={i}
+              key={product.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -6 }}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-gold/10 hover:shadow-xl hover:shadow-gold/10 hover:border-gold/30 transition-all duration-300 relative"
+              className="h-full"
             >
-              {product.badge && (
-                <div className="absolute -top-3 right-6 bg-signal-green text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
-                  <FaGift size={10} /> FREE
-                </div>
-              )}
-              <div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-600 rounded-xl flex items-center justify-center text-white mb-5">
-                <product.icon size={20} />
-              </div>
-              <h3 className="font-display text-xl font-bold text-navy-900 mb-1">{product.name}</h3>
-              <p className="text-gold font-bold text-sm mb-3">{product.price} <span className="text-gray-400 font-normal">{product.priceNote}</span></p>
-              <p className="text-gray-600 text-sm mb-6 leading-relaxed">{product.desc}</p>
               <Link
                 href={product.href}
-                className="inline-flex items-center gap-2 text-navy-900 font-bold text-sm hover:text-gold transition-colors"
+                className="group flex flex-col h-full bg-white rounded-3xl overflow-hidden border border-gold/10 shadow-sm hover:shadow-xl hover:shadow-gold/10 hover:border-gold/30 transition-all duration-300"
               >
-                Learn more <FaArrowRight size={12} />
+                <div className="relative h-56 overflow-hidden" style={{ background: product.tint }}>
+                  <img
+                    src={product.img}
+                    alt={product.alt}
+                    loading="lazy"
+                    className="absolute left-8 top-10 w-[120%] max-w-none rounded-tl-2xl shadow-2xl shadow-navy-900/20 transition-transform duration-500 group-hover:-translate-y-1.5"
+                  />
+                  <span className={`absolute top-4 right-4 text-sm font-bold px-4 py-1.5 rounded-full ${product.free ? 'bg-signal-green text-white' : 'bg-navy-900 text-gold'}`}>
+                    {product.price}
+                  </span>
+                </div>
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="font-display text-xl font-bold text-navy-900 mb-1">{product.name}</h3>
+                  <p className="text-gray-400 text-sm mb-3">{product.priceNote}</p>
+                  <p className="text-gray-600 text-sm mb-6 leading-relaxed">{product.desc}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 text-navy-900 font-bold text-sm group-hover:text-gold transition-colors">
+                    Learn more <FaArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </div>
               </Link>
             </motion.div>
           ))}
