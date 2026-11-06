@@ -195,7 +195,7 @@ const BODY = `<header class="top"><div class="wrap">
       <a class="btn btn-gold" style="display:block;text-align:center" href="/order?product=crm-mini">Get it free</a>
     </div>
   </div>
-  <p class="sub" style="margin:28px 0 0;color:#CBD5E1">Outgrown a contact list? <a href="/order?product=crm-pro" style="color:var(--gold)">Scalability: CRM Pro</a> adds full deal pipelines and growth tracking.</p>
+  <p class="sub" style="margin:28px 0 0;color:#CBD5E1">Outgrown a contact list? <a href="/scalability" style="color:var(--gold)">Scalability: CRM Pro</a> adds deals, a pipeline board, tasks and a team list.</p>
 </div></section>
 
 <section><div class="wrap">
@@ -206,7 +206,7 @@ const BODY = `<header class="top"><div class="wrap">
   <details><summary>Where is my data stored?</summary><p>In your own Google Sheet, in your own Google account. We never see your contacts.</p></details>
   <details><summary>Can I bring my existing contacts?</summary><p>Yes. Import a CSV file from your phone, email or another CRM. You see a preview before anything is saved.</p></details>
   <details><summary>Can I take my data with me?</summary><p>Yes. Everything is already in your sheet, and you can export contacts and interactions to CSV any time.</p></details>
-  <details><summary>What if I outgrow it?</summary><p>Scalability: CRM Pro adds full pipeline tracking and growth analytics. Your contacts move across.</p></details>
+  <details><summary>What if I outgrow it?</summary><p>Scalability: CRM Pro adds deals, a pipeline board, tasks and a team list. Your contacts move across with an import.</p></details>
 </div></section>
 
 <section class="band final"><div class="wrap">
@@ -218,7 +218,7 @@ const BODY = `<header class="top"><div class="wrap">
 <footer><div class="wrap">
   <span>&copy; Dandelion Creations</span>
   <span><a href="/">Home</a> &middot; <a href="/abilitysuite">All systems</a> &middot; <a href="/book">Book a Systems Audit</a></span>
-  <span>WhatsApp +27 72 839 3087 &middot; dandelioncreat@outlook.com</span>
+  <span>WhatsApp +27 72 839 3087 &middot; hello.dandelioncreat@outlook.com</span>
 </div></footer>`
 
 const LD = {"@context": "https://schema.org", "@type": "Product", "name": "ConnectAbility", "description": "A free CRM that runs from your own Google Sheet. Contacts, interaction log and follow-ups.", "brand": {"@type": "Brand", "name": "Dandelion Creations"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "ZAR", "availability": "https://schema.org/InStock"}}

@@ -100,9 +100,9 @@ export default function Footer() {
                 <Link href="/visibility" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-1">Visibility · R299</Link>
               </li>
               <li>
-                <a href={buildOrderUrl('Scalability', 'CRM Pro')} className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-1">
-                  CRM Pro · R499
-                </a>
+                <Link href="/scalability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-1">
+                  Scalability · R499
+                </Link>
               </li>
               <li><Link href="/payability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">PayAbility · R499</Link></li>
               <li>
@@ -119,7 +119,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <FiMail className="text-gold mt-1 flex-shrink-0" size={18} />
-                <a href="mailto:dandelioncreat@outlook.com" className="text-gray-400 hover:text-gold transition-colors text-sm">dandelioncreat@outlook.com</a>
+                <a href="mailto:hello.dandelioncreat@outlook.com" className="text-gray-400 hover:text-gold transition-colors text-sm">hello.dandelioncreat@outlook.com</a>
               </li>
               <li className="flex items-start gap-3">
                 <FiPhone className="text-gold mt-1 flex-shrink-0" size={18} />

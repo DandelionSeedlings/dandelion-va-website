@@ -34,6 +34,7 @@ const productVisuals = {
   payability: { img: '/images/payability/invoices.webp', tint: '#F3EBD6' },
   budgetability: { img: '/images/budgetability/dashboard.webp', tint: '#E4EEF8' },
   aceiq: { img: '/images/aceiq/dashboard.webp', tint: '#ECE7F8' },
+  scalability: { img: '/images/scalability/dashboard.webp', tint: '#E8E4D8' },
 };
 
 const productCategories = [
@@ -134,15 +135,15 @@ const products = [
     subtitle: 'CRM Pro',
     price: 499,
     priceLabel: 'R499',
-    description: 'A full pipeline architecture, deal stages, relationship metrics, and growth tracking, engineered for teams that have outgrown a contact list.',
+    description: 'Deals, a pipeline board, tasks and follow-ups for small teams that have outgrown a contact list. Everyone shares one private link, and it all stays in your own Google Sheet.',
     tagline: 'Expanding your reach with systematic precision.',
     icon: FaUsers,
     color: 'from-blue-500 to-indigo-600',
-    badge: 'POPULAR',
+    badge: 'NEW',
     badgeColor: 'bg-blue-500',
-    popular: true,
     available: true,
-    features: ['Full pipeline tracking', 'Deal management', 'Team collaboration', 'Growth analytics'],
+    orderUrl: '/scalability',
+    features: ['Deals and a pipeline board', 'Stages and win chances you set', 'Tasks and follow-ups', 'Win rate and quiet deals'],
     category: 'client-management'
   },
   {
