@@ -116,9 +116,10 @@ const html = `
     <p class="lead">A sales pipeline for a small team. It runs from your own Google Sheet and one private link. You pay once and there is no monthly fee.</p>
     <div class="btns">
       <a class="btn btn-gold" href="/order?product=crm-pro">Get Scalability for R499</a>
+      <a class="btn btn-line" href="https://docs.google.com/spreadsheets/d/1gWJ59mLZSOUaW1CH7X9Ze9mGwjBkXU2OOu7zd8W7zFw/copy" target="_blank" rel="noopener noreferrer">Try the demo sheet</a>
       <a class="btn btn-line" href="#see">See it in action</a>
     </div>
-    <p class="fine">R499 once-off. No subscription. A free setup call is included if you want a hand switching it on.</p>
+    <p class="fine">R499 once-off. No subscription. 72 hour demo included. Make your own copy of the demo sheet, then start the 72 hour demo with the key PRO-DEMO-2026. A free setup call is included if you want a hand switching it on.</p>
     <p class="fine"><b>Best for</b> small teams who have outgrown a contact list. It does not do invoicing, bookings or email sending.</p>
   </div>
   <div class="mock" aria-hidden="true">
@@ -224,7 +225,7 @@ const html = `
       <span class="tag">Once-off</span>
       <h3>Scalability: CRM Pro</h3>
       <div class="big">R499</div><div style="color:var(--muted);font-size:14px">pay once, no subscription</div>
-      <ul><li>The Scalability sheet and your activation key</li><li>Step by step setup guide</li><li>A free setup call, up to 20 minutes, on a screen share</li><li>Import from ConnectAbility or any CSV, and export any time</li></ul>
+      <ul><li>The Scalability sheet and your activation key</li><li>72 hour demo before you commit</li><li>Step by step setup guide</li><li>A free setup call, up to 20 minutes, on a screen share</li><li>Import from ConnectAbility or any CSV, and export any time</li></ul>
       <a class="btn btn-gold" style="display:block;text-align:center" href="/order?product=crm-pro">Order Scalability</a>
       <p style="margin:14px 0 0;font-size:14px;color:var(--muted)">Not happy? We help first with a setup call, then refund you if it still is not right. <a href="/refunds">Read the refund policy</a>.</p>
     </div>
@@ -234,6 +235,7 @@ const html = `
 <section><div class="wrap">
   <h2>Questions</h2>
   <p class="sub">Short answers.</p>
+  <details><summary>Can I try it first?</summary><p>Yes. Make your own copy of the demo sheet, set it up with the guide, and start the 72 hour demo with the key PRO-DEMO-2026. Every feature is switched on, and a button loads a made-up sample business so you can look around. The demo can be started once on each sheet. When it ends, your data stays in the sheet and the app asks for an activation key.</p></details>
   <details><summary>Is it a subscription?</summary><p>No. You pay R499 once. There is no monthly fee and nothing to renew.</p></details>
   <details><summary>Do I need to know how to code?</summary><p>No. Switching it on is a handful of clicks and the guide shows each one. You can also book a free setup call and we do it together.</p></details>
   <details><summary>Where is my data stored?</summary><p>In your own Google Sheet, in your own Google account. We never see your contacts or deals. When you activate, your key and the email of your Google account are checked with us once, and after that Scalability keeps working on its own.</p></details>
