@@ -1,7 +1,7 @@
 export const metadata = {
   title: 'Embedded Operations Support',
   description:
-    'Monthly retainers to look after the systems we build: fixes, reporting, running routine processes and training your team. From R5,500 a month.',
+    'Operations support for small businesses: social media, admin, reporting and system care. Start with a 30 day trial month, then a fixed monthly price from R5,500.',
   alternates: { canonical: '/embeddedsupport' },
 }
 

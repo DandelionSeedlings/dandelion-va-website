@@ -22,9 +22,9 @@ const services = [
   },
   {
     title: 'Running the process',
-    desc: 'We work inside the systems on your behalf, so the routine work gets done on time.',
+    desc: 'We work inside your systems and accounts on your behalf, so the routine work, from social media to admin, gets done on time.',
     icon: FiRepeat,
-    items: ['Invoicing and payment follow-ups', 'Bookings and client records', 'Receipt capture and filing', 'Data entry into your own sheets'],
+    items: ['Social media posting and scheduling', 'Invoicing and payment follow-ups', 'Bookings and client records', 'Email, calendar and data entry'],
   },
   {
     title: 'Training and handover',
@@ -58,6 +58,16 @@ const tiers = [
   },
 ]
 
+const TRIAL_RATE = 'R275'
+const TRIAL_MAX_HOURS = 20
+
+const trialSteps = [
+  { title: 'Book a Systems Audit', desc: 'We talk through how your week really runs and what is worth handing over first.' },
+  { title: 'Agree the work and the hours', desc: `We agree the type of work and a maximum number of hours, up to ${TRIAL_MAX_HOURS} for the month, so you know the most it can cost.` },
+  { title: 'Trial month', desc: `You pay ${TRIAL_RATE} an hour for the hours actually worked, up to the agreed maximum. No long contract.` },
+  { title: 'Day 25 review', desc: 'We look at the hours used and what was done. Then we set the right monthly plan and price, or you stop with no notice period.' },
+]
+
 const sectors = [
   'Yoga studios', 'Personal fitness', 'Beauty salons', 'Wellness studios',
   'Supermarkets', 'Pharmacies', 'Machine control and surveying',
@@ -82,7 +92,7 @@ export default function EmbeddedSupportPage() {
               the build, to keep things working, run the routine work and answer questions when they come up.
             </p>
             <p className="mb-8 leading-relaxed text-gray-400">
-              That is what this is. A monthly retainer, a fixed price and one person who already knows how your business runs.
+              That is what this is. One person who already knows how your business runs, a fixed monthly price, and a 30 day trial month to start so you can see the work first.
             </p>
             <Link
               href={SITE.cta.href}
@@ -185,12 +195,36 @@ export default function EmbeddedSupportPage() {
         </div>
       </section>
 
+      <section id="trial" className="scroll-mt-24 bg-white px-4 py-20">
+        <div className="mx-auto max-w-5xl">
+          <motion.div {...rise} className="mb-12 text-center">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">How it starts</p>
+            <h2 className="mb-4 text-3xl font-bold text-navy-900 md:text-4xl">Start with a trial month</h2>
+            <p className="mx-auto max-w-xl text-gray-500">
+              You do not have to guess how many hours you need. We find out together, then set the plan. Five trial places open from 1 December.
+            </p>
+          </motion.div>
+          <ol className="grid gap-6 md:grid-cols-2">
+            {trialSteps.map((step, i) => (
+              <motion.li key={step.title} {...rise} className="rounded-2xl border border-gold/15 bg-cream p-8">
+                <p className="mb-2 text-sm font-semibold text-gold">Step {i + 1}</p>
+                <h3 className="mb-2 text-lg font-bold text-navy-900">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-gray-600">{step.desc}</p>
+              </motion.li>
+            ))}
+          </ol>
+          <p className="mt-8 text-center text-sm text-gray-500">
+            You also get written handover notes for every routine, kept in your own Drive, and a one page report each month showing the hours used and what was done.
+          </p>
+        </div>
+      </section>
+
       <section className="bg-navy-900 px-4 py-24">
         <div className="mx-auto max-w-6xl">
           <motion.div {...rise} className="mb-16 text-center">
             <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">Investment</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Monthly retainers</h2>
-            <p className="mx-auto max-w-xl text-gray-400">A fixed price every month. Cancel with 30 days notice.</p>
+            <p className="mx-auto max-w-xl text-gray-400">After your trial month, a fixed price every month, set from the hours you actually need. Cancel with 30 days notice.</p>
           </motion.div>
 
           <div className="grid gap-8 md:grid-cols-3">
