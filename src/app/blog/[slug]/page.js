@@ -56,15 +56,15 @@ export default async function BlogPostPage({ params }) {
       />
 
       <div className="blog-post-cta">
-        <h3>Ready to automate your business?</h3>
-        <p>We build custom Google Workspace systems that save you 10+ hours per week.</p>
+        <h3>Not sure what to fix first?</h3>
+        <p>Book a free Systems Audit. We go through how your week really runs and I show you what is worth sorting first.</p>
         <div className="blog-cta-buttons">
-          <a href="https://wa.me/27728393087" className="btn-primary" target="_blank" rel="noopener noreferrer">
+          <Link href="/book" className="btn-primary">
+            Book a free Systems Audit
+          </Link>
+          <a href="https://wa.me/27728393087" className="btn-secondary" target="_blank" rel="noopener noreferrer">
             WhatsApp Us
           </a>
-          <Link href="/#templates" className="btn-secondary">
-            View Products
-          </Link>
         </div>
       </div>
     </article>

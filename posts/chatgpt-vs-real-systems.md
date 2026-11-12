@@ -1,70 +1,58 @@
 ---
-title: "Here's the Harsh Truth: Why ChatGPT Can't Build Your Business Systems"
+title: "Can ChatGPT Build Your Business Systems?"
 date: "2026-07-08"
 category: "Automation"
-readTime: 5
-excerpt: "Everyone thinks ChatGPT can build your business systems in 10 minutes. I know better. Here's why real automation needs engineering, not just prompting."
+readTime: 4
+excerpt: "AI can write a formula in seconds. Running your invoices, bookings and follow-ups on it is a different job. Here is what to check before you trust it."
 coverImage: "/images/blog/chatgpt-systems.webp"
 ---
 
-Everyone thinks ChatGPT can build your business systems in 10 minutes.
+Short answer: it can help, but it can't look after a system for you.
 
-I know better.
+I use AI tools when I build, so this isn't an argument against them. A chatbot is very good at writing a single formula or a short script, and it does it fast. The trouble starts when that formula becomes the thing your business runs on.
 
-ChatGPT is brilliant at generating single formulas. It's terrible at maintaining data integrity across scaling systems.
+## What goes wrong
 
-The second your source data changes, those formulas break.
+Most AI-built spreadsheets work on the day they are made. The problems show up later:
 
-**#REF! errors. #N/A cascades. Your entire reporting system in flames.**
+- Someone adds a column and half the formulas point at the wrong cells.
+- Someone renames a sheet and a report goes blank.
+- Someone types "Paid" five different ways and the totals stop adding up.
+- A client's name has a stray space in it, so the invoice never matches the payment.
 
-Why? Because prompting is not engineering.
+None of these are hard to fix. The problem is that nobody planned for them, and nobody is responsible for fixing them.
 
-## AI Doesn't Know Your Business
+## Why a prompt isn't enough
 
-AI doesn't know your specific business rules, accounting nuances, or edge cases. If a user inputs a stray character, a generic prompt-built sheet breaks because it lacks hard-coded validation.
+A chatbot only knows what you told it in that conversation. It doesn't know that your clients pay on the 25th, that you charge VAT on some items and not others, or that two bookings can't overlap. If you don't think to mention a rule, it isn't in the system.
 
-Here's what actually happens when you rely on AI-generated spreadsheets:
+A system your business depends on also needs a few things that don't come from a prompt:
 
-- **Data breaks** when new columns are added
-- **Formulas fail** when sheet names change
-- **Reports show wrong numbers** because there's no validation layer
-- **Nobody knows how to fix it** because the "developer" was a chatbot
+- **Checks on what people type in**, so bad data is stopped at the door.
+- **A test with your real situations**, including the odd ones.
+- **Notes on how it works**, so someone other than the builder can fix it.
+- **A person who looks after it** when something changes.
 
-## What Real Systems Need
+## What to check before you trust any system
 
-Real business systems need:
+This goes for mine too. Ask these five questions:
 
-✓ **Hard-coded architecture**: Fixed, secure relational logic that doesn't break when someone sneezes
+1. If it breaks, who fixes it, and how quickly?
+2. Can I open it and see how it works, or is it locked away?
+3. What happens when someone enters something unexpected?
+4. Whose account does it live in?
+5. Is there a monthly fee just to keep using my own information?
 
-✓ **Validation rules**: Not AI guesses, but actual data validation that prevents bad inputs
+Questions 4 and 5 are the reason I build the way I do. Everything I make lives in your own Google account, so you own it and there is no subscription to keep using it.
 
-✓ **Maintenance included**: We fix it if it breaks, because we built it properly
+## Where AI fits
 
-✓ **Documentation**: So your team understands how it works
+Use it for the small things: a formula, a quick clean-up, a first draft of a script. For the parts your business depends on, like invoices, bookings and follow-ups, get them built, tested and written down properly.
 
-✓ **Scalability**: Built to grow with your business, not collapse under it
+## Want a second opinion on what you have?
 
-## The Real Cost of "Cheap" Automation
+If you already have a sheet that was built with AI, or you're not sure what to fix first, [book a free Systems Audit](/book). We go through how your week really runs, and I'll tell you what is worth fixing and what is fine as it is.
 
-That "free" AI-built spreadsheet? It just cost you 6 hours of debugging, a missed client deadline, and your accountant's patience.
+Not sure where to start? Read [what a small business should automate first](/blog/what-to-automate-first-small-business).
 
-**Stop buying generic AI playbooks that leave you stranded when an array breaks.**
-
-Invest in structured, tailored solutions built natively into your Google Workspace ecosystem. Solutions that understand South African accounting practices, SARS requirements, and the reality of running a small business here.
-
-## Ready for Actual Automation?
-
-We build custom Google Apps Script systems that:
-- Run inside your existing Google Workspace
-- Never break when your data changes
-- Include proper validation and error handling
-- Come with documentation and support
-- Save you 10+ hours per week, guaranteed
-
-**No subscriptions. No monthly fees. Just systems that work.**
-
-📲 WhatsApp: +27 72 839 3087
-
----
-
-*Dandelion Creations builds custom automation for South African small businesses. From invoice tracking to CRM systems: we turn your spreadsheet chaos into clean, reliable workflows.*
+*Dandelion Creations builds business systems that live in your own Google account, for small businesses in South Africa. You pay once and you own them.*
