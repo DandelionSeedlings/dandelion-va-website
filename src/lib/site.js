@@ -2,7 +2,7 @@
 export const SITE = {
   name: 'Dandelion Creations',
   url: 'https://dandelioncreations.co.za',
-  email: 'dandelioncreat@outlook.com',
+  email: 'hello.dandelioncreat@outlook.com',
   whatsapp: '27728393087',
   whatsappDisplay: '+27 72 839 3087',
   location: 'Pretoria, South Africa',

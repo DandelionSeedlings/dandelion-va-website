@@ -9,7 +9,7 @@ import PricingCard from '../../components/wishes/PricingCard'
 import { BloomIcon } from '../../components/wishes/WishesDecor'
 
 const WA_LINK = 'https://wa.me/27728393087'
-const EMAIL = 'mailto:dandelioncreat@outlook.com'
+const EMAIL = 'mailto:hello.dandelioncreat@outlook.com'
 const WEDDING_TARGET = new Date('2027-02-14T15:00:00')
 
 function useCountdown(target) {

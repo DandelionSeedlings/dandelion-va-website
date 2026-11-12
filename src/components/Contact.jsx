@@ -42,13 +42,13 @@ export default function Contact() {
             <h3 className="text-2xl font-bold mb-8 text-gold">Contact Information</h3>
 
             <div className="space-y-6 mb-12">
-              <a href="mailto:dandelioncreat@outlook.com" className="flex items-center gap-4 text-cream/70 hover:text-gold transition-smooth group">
+              <a href="mailto:hello.dandelioncreat@outlook.com" className="flex items-center gap-4 text-cream/70 hover:text-gold transition-smooth group">
                 <div className="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center border border-gold/20 group-hover:bg-gold/20 transition-colors">
                   <FiMail className="w-5 h-5 text-gold" />
                 </div>
                 <div>
                   <p className="text-sm text-cream/40">Email</p>
-                  <p className="font-medium">dandelioncreat@outlook.com</p>
+                  <p className="font-medium">hello.dandelioncreat@outlook.com</p>
                 </div>
               </a>
 

@@ -251,7 +251,7 @@ const BODY = `<header class="top"><div class="wrap">
 <footer><div class="wrap">
   <span>&copy; Dandelion Creations</span>
   <span><a href="/">Home</a> &middot; <a href="/abilitysuite">All systems</a> &middot; <a href="/book">Book a Systems Audit</a></span>
-  <span>WhatsApp +27 72 839 3087 &middot; dandelioncreat@outlook.com</span>
+  <span>WhatsApp +27 72 839 3087 &middot; hello.dandelioncreat@outlook.com</span>
 </div></footer>`
 
 const LD = {"@context": "https://schema.org", "@type": "Product", "name": "Visibility", "description": "A social media content planner that runs in your own Google Sheet. Plan posts from any AI, check they are ready, get client approval from a link, and track results. One payment, no subscription.", "brand": {"@type": "Brand", "name": "Dandelion Creations"}, "offers": {"@type": "Offer", "price": "299", "priceCurrency": "ZAR", "availability": "https://schema.org/InStock"}}

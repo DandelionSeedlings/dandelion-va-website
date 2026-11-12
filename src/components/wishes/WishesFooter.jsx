@@ -7,8 +7,8 @@ export default function WishesFooter() {
           +27 72 839 3087
         </a>{' '}
         · Email{' '}
-        <a href="mailto:dandelioncreat@outlook.com" className="underline hover:text-[#7C8B68]">
-          dandelioncreat@outlook.com
+        <a href="mailto:hello.dandelioncreat@outlook.com" className="underline hover:text-[#7C8B68]">
+          hello.dandelioncreat@outlook.com
         </a>
       </p>
       <p className="text-xs text-[#A8B89C] italic mb-1">carried on a wish, sealed in a vow</p>

@@ -243,7 +243,7 @@ const BODY = `<header class="top"><div class="wrap">
 <footer><div class="wrap">
   <span>&copy; Dandelion Creations</span>
   <span><a href="/">Home</a> &middot; <a href="/abilitysuite">All systems</a> &middot; <a href="/book">Book a Systems Audit</a></span>
-  <span>WhatsApp +27 72 839 3087 &middot; dandelioncreat@outlook.com</span>
+  <span>WhatsApp +27 72 839 3087 &middot; hello.dandelioncreat@outlook.com</span>
 </div></footer>`
 
 const LD = {"@context": "https://schema.org", "@type": "Product", "name": "BudgetAbility", "description": "A household money tracker in your own Google Sheet. Accounts, budgets, bills, goals and debt payoff in any currency. One payment, no subscription.", "brand": {"@type": "Brand", "name": "Dandelion Creations"}, "offers": {"@type": "Offer", "price": "499", "priceCurrency": "ZAR", "availability": "https://schema.org/InStock"}}
