@@ -35,6 +35,7 @@ const productVisuals = {
   budgetability: { img: '/images/budgetability/dashboard.webp', tint: '#E4EEF8' },
   aceiq: { img: '/images/aceiq/dashboard.webp', tint: '#ECE7F8' },
   scalability: { img: '/images/scalability/dashboard.webp', tint: '#E8E4D8' },
+  availability: { img: '/images/availability/dashboard.webp', tint: '#E1ECEF' },
 };
 
 const productCategories = [
@@ -253,14 +254,15 @@ const products = [
     subtitle: 'Stock & Supplier Pro',
     price: 499,
     priceLabel: 'R499',
-    description: 'Comprehensive inventory control, procurement tracking, and supply chain management.',
+    description: 'Stock levels, a reorder list and purchase orders for your suppliers. Everyone shares one private link, and it all stays in your own Google Sheet.',
     tagline: 'Keeping your business perfectly supplied, never short.',
     icon: FaBoxes,
     color: 'from-sky-500 to-cyan-600',
-    badge: null,
-    badgeColor: '',
+    badge: 'NEW',
+    badgeColor: 'bg-sky-500',
     available: true,
-    features: ['Inventory tracking', 'Supplier management', 'Stock alerts', 'Reorder automation'],
+    orderUrl: '/availability',
+    features: ['Stock levels and reorder alerts', 'Purchase orders by print or email', 'Part deliveries and stock takes', 'Supplier details and ratings'],
     category: 'inventory'
   },
   {
