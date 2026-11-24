@@ -37,6 +37,7 @@ const productVisuals = {
   scalability: { img: '/images/scalability/dashboard.webp', tint: '#E8E4D8' },
   availability: { img: '/images/availability/dashboard.webp', tint: '#E1ECEF' },
   orderability: { img: '/images/orderability/today.webp', tint: '#DCEBE8' },
+  profitability: { img: '/images/profitability/dashboard.webp', tint: '#F8E3E8' },
 };
 
 const productCategories = [
