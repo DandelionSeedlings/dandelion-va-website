@@ -302,9 +302,10 @@ const products = [
     tagline: 'Unlocking real-time financial clarity at a glance.',
     icon: FaChartLine,
     color: 'from-rose-500 to-pink-600',
-    badge: null,
-    badgeColor: '',
+    badge: 'NEW',
+    badgeColor: 'bg-rose-500',
     available: true,
+    orderUrl: '/profitability',
     features: ['Banking ledger', 'CSV import', 'Profit/loss reports', 'Category tracking'],
     category: 'financial-operations'
   },

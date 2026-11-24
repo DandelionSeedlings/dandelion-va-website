@@ -111,6 +111,7 @@ export default function Footer() {
                   Availability · R499
                 </Link>
               </li>
+              <li><Link href="/profitability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Profitability · R799</Link></li>
             </ul>
           </div>
 

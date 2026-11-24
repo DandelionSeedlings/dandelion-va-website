@@ -27,7 +27,7 @@ const PRODUCTS = [
   { id: 'payability-dwy', key: 'payability-dwy', name: 'PayAbility: Done-With-You Setup', price: 999, group: 'payability', option: 'Done with you', desc: 'Everything in PayAbility, set up with you on a call: your details, tax settings and first invoice.' },
   { id: 'stock-supplier', key: 'availability', name: 'Availability: Stock & Supplier Pro', price: 499, badge: 'New', needs: 'Needs a free Google account.', desc: 'Stock levels, a reorder list and purchase orders for your suppliers, in your own Google Sheet. Everyone shares one private link. Free 72 hour demo.' },
   { id: 'orderability', key: 'orderability', name: 'OrderAbility: Orders, Invoices & Money', price: 799, badge: 'New', needs: 'Needs a free Google account.', desc: 'Take orders from WhatsApp, send invoices, track payments, stock and suppliers, and see your profit. Everyone shares one private link. Free 72 hour demo.' },
-  { id: 'profitability', key: 'profitability', name: 'Profitability: Income & Expenses', price: 799, desc: 'An automated banking ledger and CSV importing for business owners and accountants.' },
+  { id: 'profitability', key: 'profitability', name: 'Profitability: Income & Expenses', price: 799, needs: 'Needs a free Google account.', desc: 'Import your bank statement, sort it into categories and see income, expenses, VAT and profit, in your own Google Sheet. Everyone shares one private link. Free 72 hour demo.' },
   { id: 'done-with-you', key: 'adaptability', name: 'Adaptability: Done-With-You Setup', price: 999, badge: 'Recommended', desc: 'White-label setup of any module, with your logo, colours and business name.' },
 ]
 
