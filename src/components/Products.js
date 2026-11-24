@@ -36,8 +36,7 @@ const productVisuals = {
   aceiq: { img: '/images/aceiq/dashboard.webp', tint: '#ECE7F8' },
   scalability: { img: '/images/scalability/dashboard.webp', tint: '#E8E4D8' },
   availability: { img: '/images/availability/dashboard.webp', tint: '#E1ECEF' },
-  orderability: { img: '/images/orderability/today.webp', tint: '#DCEBE8' },
-  profitability: { img: '/images/profitability/dashboard.webp', tint: '#F8E3E8' },
+  'mini-cash-up': { img: '/images/mini-cash-up/dashboard.webp', tint: '#E0F2EE' },
 };
 
 const productCategories = [
@@ -67,15 +66,6 @@ const productCategories = [
     bgColor: 'bg-navy-900',
     borderColor: 'border-gold/30',
     products: ['aceiq']
-  },
-  {
-    id: 'selling',
-    title: 'Orders & Selling',
-    icon: FaShoppingCart,
-    color: 'text-gold',
-    bgColor: 'bg-navy-900',
-    borderColor: 'border-gold/30',
-    products: ['orderability']
   },
   {
     id: 'inventory',
@@ -277,23 +267,6 @@ const products = [
     category: 'inventory'
   },
   {
-    id: 'orderability',
-    name: 'OrderAbility',
-    subtitle: 'Orders, Invoices & Money',
-    price: 799,
-    priceLabel: 'R799',
-    description: 'Take orders from WhatsApp, send invoices, track payments and stock, order from suppliers and see your profit. Made for small home businesses, on a phone, with one private link.',
-    tagline: 'Every order, invoice and rand in one place.',
-    icon: FaShoppingCart,
-    color: 'from-teal-600 to-emerald-700',
-    badge: 'NEW',
-    badgeColor: 'bg-teal-600',
-    available: true,
-    orderUrl: '/orderability',
-    features: ['Orders and WhatsApp invoices', 'Who has paid and who owes', 'Suppliers, cost prices and profit', 'Courier and PUDO addresses'],
-    category: 'selling'
-  },
-  {
     id: 'profitability',
     name: 'Profitability',
     subtitle: 'Income & Expenses',
@@ -303,10 +276,9 @@ const products = [
     tagline: 'Unlocking real-time financial clarity at a glance.',
     icon: FaChartLine,
     color: 'from-rose-500 to-pink-600',
-    badge: 'NEW',
-    badgeColor: 'bg-rose-500',
+    badge: null,
+    badgeColor: '',
     available: true,
-    orderUrl: '/profitability',
     features: ['Banking ledger', 'CSV import', 'Profit/loss reports', 'Category tracking'],
     category: 'financial-operations'
   },
@@ -370,9 +342,10 @@ const products = [
     tagline: 'Balanced books before you lock the door.',
     icon: FaCalculator,
     color: 'from-teal-400 to-cyan-500',
-    badge: 'COMING SOON',
-    badgeColor: 'bg-gray-400',
-    available: false,
+    badge: 'NEW',
+    badgeColor: 'bg-teal-500',
+    available: true,
+    orderUrl: '/mini-cash-up',
     features: ['Daily till reconciliation', 'Float tracking', 'Discrepancy alerts', 'End-of-day reports'],
     category: 'financial-operations'
   },
