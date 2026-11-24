@@ -105,6 +105,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li><Link href="/payability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">PayAbility · R499</Link></li>
+              <li><Link href="/orderability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">OrderAbility · R799</Link></li>
               <li>
                 <Link href="/availability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm flex items-center gap-1">
                   Availability · R499

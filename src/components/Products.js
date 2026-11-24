@@ -36,6 +36,7 @@ const productVisuals = {
   aceiq: { img: '/images/aceiq/dashboard.webp', tint: '#ECE7F8' },
   scalability: { img: '/images/scalability/dashboard.webp', tint: '#E8E4D8' },
   availability: { img: '/images/availability/dashboard.webp', tint: '#E1ECEF' },
+  orderability: { img: '/images/orderability/today.webp', tint: '#DCEBE8' },
 };
 
 const productCategories = [
@@ -65,6 +66,15 @@ const productCategories = [
     bgColor: 'bg-navy-900',
     borderColor: 'border-gold/30',
     products: ['aceiq']
+  },
+  {
+    id: 'selling',
+    title: 'Orders & Selling',
+    icon: FaShoppingCart,
+    color: 'text-gold',
+    bgColor: 'bg-navy-900',
+    borderColor: 'border-gold/30',
+    products: ['orderability']
   },
   {
     id: 'inventory',
@@ -264,6 +274,23 @@ const products = [
     orderUrl: '/availability',
     features: ['Stock levels and reorder alerts', 'Purchase orders by print or email', 'Part deliveries and stock takes', 'Supplier details and ratings'],
     category: 'inventory'
+  },
+  {
+    id: 'orderability',
+    name: 'OrderAbility',
+    subtitle: 'Orders, Invoices & Money',
+    price: 799,
+    priceLabel: 'R799',
+    description: 'Take orders from WhatsApp, send invoices, track payments and stock, order from suppliers and see your profit. Made for small home businesses, on a phone, with one private link.',
+    tagline: 'Every order, invoice and rand in one place.',
+    icon: FaShoppingCart,
+    color: 'from-teal-600 to-emerald-700',
+    badge: 'NEW',
+    badgeColor: 'bg-teal-600',
+    available: true,
+    orderUrl: '/orderability',
+    features: ['Orders and WhatsApp invoices', 'Who has paid and who owes', 'Suppliers, cost prices and profit', 'Courier and PUDO addresses'],
+    category: 'selling'
   },
   {
     id: 'profitability',
