@@ -6,18 +6,18 @@ import { FaLock, FaSyncAlt, FaCheckDouble } from 'react-icons/fa'
 const points = [
   {
     icon: FaLock,
-    title: 'Owned, Not Rented',
+    title: 'Owned, not rented',
     desc: 'Built once, inside your own Google Workspace. It stays yours whether or not you ever hire us again.',
   },
   {
     icon: FaSyncAlt,
-    title: 'No Subscriptions',
+    title: 'No subscriptions',
     desc: 'One payment per system. No monthly fee stacking on top of the last one.',
   },
   {
     icon: FaCheckDouble,
-    title: 'Engineered, Not Patched',
-    desc: 'We fix the root cause once, not the symptom every week.',
+    title: 'Fixed properly, once',
+    desc: 'We find the real problem and fix it once, so it stops coming back.',
   },
 ]
 

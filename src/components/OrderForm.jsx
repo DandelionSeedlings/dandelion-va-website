@@ -30,7 +30,7 @@ const PRODUCTS = [
   { id: 'trackability', key: 'trackability', name: 'TrackAbility: Staff Time, Leave & Payslips', price: 799, badge: 'New', needs: 'Needs a free Google account.', desc: 'Staff clock in on a tablet or with a QR code and their own PIN. Overtime, leave balances and printable payslips with UIF, in your own Google Sheet. Free 72 hour demo.' },
   { id: 'orderability', key: 'orderability', name: 'OrderAbility: Orders, Invoices & Money', price: 799, badge: 'New', needs: 'Needs a free Google account.', desc: 'Take orders from WhatsApp, send invoices, track who has paid, stock and suppliers, and see your profit. In your own Google Sheet, opened from one private link.' },
   { id: 'profitability', key: 'profitability', name: 'Profitability: Income & Expenses', price: 799, desc: 'An automated banking ledger and CSV importing for business owners and accountants.' },
-  { id: 'done-with-you', key: 'adaptability', name: 'Adaptability: Done-With-You Setup', price: 999, badge: 'Recommended', desc: 'White-label setup of any module, with your logo, colours and business name.' },
+  { id: 'done-with-you', key: 'adaptability', name: 'Adaptability: Done-With-You Setup', price: 999, badge: 'Recommended', desc: 'One of our apps set up with your logo, colours and business name, your records brought across and a video walkthrough.' },
 ]
 
 const QUOTES = [
@@ -166,7 +166,7 @@ function Summary({ chosen, total, saving, applied, percent }) {
   return (
     <aside className="side" aria-label="Order summary">
       <h3>Your order</h3>
-      {chosen.length === 0 ? <p className="empty">Nothing chosen yet. Pick a module to get started.</p> : chosen.map((p) => (
+      {chosen.length === 0 ? <p className="empty">Nothing chosen yet. Pick an app to get started.</p> : chosen.map((p) => (
         <div className="li" key={p.id}>
           <span>{p.name.split(':')[0]}{p.option ? <small>{p.option}</small> : null}</span>
           <b>{p.price === 0 ? 'Free' : money(applied ? Math.round(p.price * (1 - percent / 100)) : p.price)}</b>
@@ -369,7 +369,7 @@ export default function OrderForm() {
         <div className="head">
           <p className="eyebrow">Order</p>
           <h1>Get your systems</h1>
-          <p>One form for every module. Includes the free ConnectAbility CRM Mini.</p>
+          <p>One form for every app. Includes the free ConnectAbility CRM Mini.</p>
           <div className="trust"><span>Pay once</span><span>No subscription</span><span>Branded invoice</span></div>
         </div>
 
@@ -449,7 +449,7 @@ export default function OrderForm() {
 
               {step === 3 && (<fieldset style={{ border: 0, padding: 0, margin: 0, minWidth: 0 }}>
                 <legend style={{ padding: 0 }}><h2>Referral code and payment</h2></legend>
-                <p className="lead">Have a referral code? Add it for 10% off paid modules.</p>
+                <p className="lead">Have a referral code? Add it for 10% off paid apps.</p>
                 <div className="field">
                   <label className="l" htmlFor="o-code">Referral code (optional)</label>
                   <div className="ref"><input id="o-code" className="t" value={code} onChange={(e) => setCode(e.target.value.toUpperCase().replace(/\s/g, ''))} placeholder="e.g. SARAHJON-47" maxLength={30} autoComplete="off" autoCapitalize="characters" spellCheck={false} /></div>

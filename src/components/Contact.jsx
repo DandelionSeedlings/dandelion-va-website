@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { FiMail, FiPhone, FiMapPin, FiCheckCircle, FiCalendar } from 'react-icons/fi'
+import { FiMail, FiPhone, FiMapPin, FiCheckCircle } from 'react-icons/fi'
 import { SITE, whatsappLink } from '../lib/site'
 import ContactForm from './ContactForm'
 
@@ -21,13 +21,13 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">Get In Touch</p>
+          <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">Get in touch</p>
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
             Let&apos;s find what is <span className="text-gold">slowing you down</span>
           </h2>
           <div className="w-24 h-1 bg-gold mx-auto rounded-full"></div>
           <p className="text-xl text-cream/60 max-w-2xl mx-auto mt-6">
-            Whether you need one module or a fully custom system, it starts the same way: we look at what is actually breaking before we propose anything.
+            Whether you need one app or a fully custom system, it starts the same way: we look at what is actually breaking before we propose anything.
           </p>
         </motion.div>
 
@@ -39,7 +39,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }} 
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold mb-8 text-gold">Contact Information</h3>
+            <h3 className="text-2xl font-bold mb-8 text-gold">Contact details</h3>
 
             <div className="space-y-6 mb-12">
               <a href="mailto:hello.dandelioncreat@outlook.com" className="flex items-center gap-4 text-cream/70 hover:text-gold transition-smooth group">
@@ -73,43 +73,9 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* What Happens Next */}
-            <div className="bg-navy-800/50 rounded-2xl p-8 border border-gold/10">
-              <h4 className="text-lg font-bold text-gold mb-6 flex items-center gap-2">
-                <FiCalendar className="w-5 h-5" />
-                What Happens Next?
-              </h4>
-              <div className="space-y-5">
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 bg-gold rounded-full flex items-center justify-center flex-shrink-0 text-navy-900 font-bold text-sm">1</div>
-                  <div>
-                    <p className="font-medium text-cream">Book your audit</p>
-                    <p className="text-sm text-cream/50">Choose a time. Tell us what is breaking, not which solution you think you need.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 bg-gold/30 rounded-full flex items-center justify-center flex-shrink-0 text-gold font-bold text-sm">2</div>
-                  <div>
-                    <p className="font-medium text-cream">We reply within 24 hours</p>
-                    <p className="text-sm text-cream/50">We confirm the time and read your answers before we speak.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 bg-gold/30 rounded-full flex items-center justify-center flex-shrink-0 text-gold font-bold text-sm">3</div>
-                  <div>
-                    <p className="font-medium text-cream">The audit call</p>
-                    <p className="text-sm text-cream/50">A focused 15 to 30 minutes on your process, not a sales call.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 bg-gold/30 rounded-full flex items-center justify-center flex-shrink-0 text-gold font-bold text-sm">4</div>
-                  <div>
-                    <p className="font-medium text-cream">Written proposal</p>
-                    <p className="text-sm text-cream/50">The exact system, scoped, priced and timelined.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <p className="text-sm leading-relaxed text-cream/60">
+              Book a free audit or send a message. We reply within 24 hours, and if we are a fit you get a written, priced plan within 48 hours.
+            </p>
           </motion.div>
 
           {/* Right: Two CTA Cards */}
@@ -142,7 +108,7 @@ export default function Contact() {
             <ContactForm />
 
             <p className="text-center text-sm text-cream/50">
-              Just want a ready-made system? <Link href="/order" className="text-gold underline underline-offset-4 hover:text-gold-light">Order a module</Link>
+              Just want a ready-made app? <Link href="/order" className="text-gold underline underline-offset-4 hover:text-gold-light">Order an app</Link>
             </p>
           </motion.div>
         </div>

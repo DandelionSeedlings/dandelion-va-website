@@ -38,7 +38,7 @@ export default function Header() {
               {...fade(0.2)}
               className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-gold"
             >
-              Operations engineering studio, {SITE.location.split(',')[0]}
+              Business systems for small businesses, {SITE.location.split(',')[0]}
             </motion.p>
 
             <motion.h1
@@ -54,13 +54,19 @@ export default function Header() {
               your own Google Workspace. You pay once and keep it.
             </motion.p>
 
-            <motion.div {...fade(0.6)}>
+            <motion.div {...fade(0.6)} className="flex flex-wrap items-center gap-3">
               <Link
                 href={SITE.cta.href}
                 className="inline-flex items-center gap-2 rounded-full bg-gold px-8 py-4 text-base font-semibold text-navy-900 transition hover:bg-gold-light focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900"
               >
                 {SITE.cta.label}
                 <FiArrowRight aria-hidden="true" />
+              </Link>
+              <Link
+                href="/abilitysuite"
+                className="inline-flex items-center rounded-full border border-white/30 px-8 py-4 text-base font-semibold text-white transition hover:border-gold hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900"
+              >
+                See the apps
               </Link>
             </motion.div>
           </div>

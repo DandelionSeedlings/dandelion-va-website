@@ -89,10 +89,10 @@ export default function PortfolioTeaser() {
 
         <div className="text-center">
           <Link
-            href="/book"
+            href="/abilitysuite"
             className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-8 py-4 font-semibold text-gold transition hover:bg-navy-700"
           >
-            Book a Systems Audit <FiArrowRight aria-hidden="true" />
+            See all the apps <FiArrowRight aria-hidden="true" />
           </Link>
         </div>
       </div>

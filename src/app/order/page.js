@@ -3,8 +3,8 @@ import Footer from '../../components/Footer'
 import OrderForm from '../../components/OrderForm'
 
 export const metadata = {
-  title: 'Order a Module',
-  description: 'Order your Dandelion Creations modules in one form. Pay once, own it, no subscription.',
+  title: 'Order an app',
+  description: 'Order your Dandelion Creations apps in one form. Pay once, own it, no subscription.',
   alternates: { canonical: '/order' },
   robots: { index: false, follow: true },
 }
