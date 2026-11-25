@@ -69,6 +69,10 @@ const CSS = `.aq{--navy:#0a1628;--navy2:#0f1d33;--gold:#C9A227;--cream:#F5F1E8;-
 .aq .feat li:before{content:"";position:absolute;left:4px;top:20px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
 .aq .feat b{display:block}
 .aq .feat span{color:var(--muted);font-size:15px}
+.aq .quote{max-width:720px;margin:0 auto;background:#FBF7EC;border:1px solid #EEE3C6;border-left:5px solid var(--gold);border-radius:14px;padding:30px 32px}
+.aq .quote p{margin:0;font-size:clamp(19px,2.4vw,23px);line-height:1.45;color:var(--navy);font-weight:600}
+.aq .quote figcaption{margin-top:14px;font-size:15px;color:var(--muted)}
+.aq .quote figcaption b{color:var(--navy)}
 .aq .price{display:grid;grid-template-columns:minmax(0,1fr);max-width:460px}
 .aq .price .card{padding:30px;background:#fff;color:var(--ink);border:2px solid var(--gold)}
 .aq .price .big{font-size:44px;font-weight:800;letter-spacing:-.02em;margin:6px 0 2px}
@@ -195,6 +199,13 @@ const BODY = `<header class="top"><div class="wrap">
     <li><b>Print and download</b><span>Print any summary, mind map, timetable or report, save the mind map as a picture, and download keywords and flashcards as a spreadsheet file.</span></li>
     <li><b>Private by design</b><span>A long private key on your link. Your notes are stored in your own Google Sheet, not on our servers.</span></li>
   </ul>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <figure class="quote" style="margin:0 auto">
+    <p>&ldquo;AceIQ made learning a lot easier, and it&rsquo;s easy to use. The flashcards are my favourite part.&rdquo;</p>
+    <figcaption><b>Theardt, Grade 11.</b> Simone&rsquo;s son, and one of the first learners to use AceIQ.</figcaption>
+  </figure>
 </div></section>
 
 <section class="band" id="buy"><div class="wrap">
