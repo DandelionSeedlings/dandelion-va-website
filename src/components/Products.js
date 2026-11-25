@@ -129,6 +129,7 @@ const products = [
     badge: 'FREE',
     badgeColor: 'bg-emerald-500',
     available: true,
+    orderUrl: '/connectability',
     features: ['Contact management', 'Lead tracking', 'Basic pipeline', 'Email integration'],
     category: 'client-management'
   },
@@ -162,6 +163,7 @@ const products = [
     badge: null,
     badgeColor: '',
     available: true,
+    orderUrl: '/bookability',
     features: ['Link and QR code self-booking', 'Email and WhatsApp confirmations', 'Google Calendar sync', 'Loyalty card with stamps'],
     category: 'client-management'
   },
@@ -280,6 +282,7 @@ const products = [
     badge: null,
     badgeColor: '',
     available: true,
+    orderUrl: '/profitability',
     features: ['Banking ledger', 'CSV import', 'Profit/loss reports', 'Category tracking'],
     category: 'financial-operations'
   },
