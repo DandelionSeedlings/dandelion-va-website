@@ -15,14 +15,14 @@ export default function AbilitySuitePage() {
       <div className="pt-32 pb-12">
         <div className="max-w-7xl mx-auto px-6 text-center mb-12">
           <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">
-            AbilitySuite™ Ecosystem
+            AbilitySuite™
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-navy-900 mb-4">
-            Every Module. One Architecture.
+            Every app. Pay once, keep it.
           </h1>
           <p className="text-navy-600 text-lg max-w-2xl mx-auto">
-            Each Ability is engineered to solve one operational problem precisely, 
-            deployed inside your Google Workspace, owned outright, built to scale.
+            Ready-made apps for small businesses in South Africa. Each one runs in your own
+            Google account and costs once, with no monthly fee.
           </p>
         </div>
       </div>

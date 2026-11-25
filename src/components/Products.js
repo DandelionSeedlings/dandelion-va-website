@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useReferral } from '../lib/referral';
 import { motion } from 'framer-motion';
 import { 
@@ -49,7 +49,7 @@ const productVisuals = {
 const productCategories = [
   {
     id: 'client-management',
-    title: 'Relationship Systems',
+    title: 'Clients and bookings',
     icon: FaUsers,
     color: 'text-gold',
     bgColor: 'bg-navy-900',
@@ -58,7 +58,7 @@ const productCategories = [
   },
   {
     id: 'financial-operations',
-    title: 'Financial Infrastructure',
+    title: 'Money',
     icon: FaMoneyBillWave,
     color: 'text-gold',
     bgColor: 'bg-navy-900',
@@ -67,7 +67,7 @@ const productCategories = [
   },
   {
     id: 'learning',
-    title: 'Learning Tools',
+    title: 'Learning',
     icon: FaBookOpen,
     color: 'text-gold',
     bgColor: 'bg-navy-900',
@@ -76,7 +76,7 @@ const productCategories = [
   },
   {
     id: 'inventory',
-    title: 'Supply & Stock Control',
+    title: 'Stock and suppliers',
     icon: FaBoxes,
     color: 'text-gold',
     bgColor: 'bg-navy-900',
@@ -85,7 +85,7 @@ const productCategories = [
   },
   {
     id: 'people-time',
-    title: 'Workforce Systems',
+    title: 'Staff',
     icon: FaClock,
     color: 'text-white',
     bgColor: 'bg-navy-800',
@@ -94,7 +94,7 @@ const productCategories = [
   },
   {
     id: 'quick-solutions',
-    title: 'Rapid Deployment Tools',
+    title: 'Quick tools',
     icon: FaEye,
     color: 'text-gold',
     bgColor: 'bg-navy-900',
@@ -103,7 +103,7 @@ const productCategories = [
   },
   {
     id: 'growth-branding',
-    title: 'Growth Engineering',
+    title: 'Marketing and growth',
     icon: FaBullhorn,
     color: 'text-gold',
     bgColor: 'bg-navy-900',
@@ -112,7 +112,7 @@ const productCategories = [
   },
   {
     id: 'custom',
-    title: 'Bespoke Builds',
+    title: 'Made for you',
     icon: FaCogs,
     color: 'text-gold',
     bgColor: 'bg-navy-900',
@@ -128,8 +128,8 @@ const products = [
     subtitle: 'CRM Mini',
     price: 0,
     priceLabel: 'FREE',
-    description: 'The relationship-tracking layer every operation needs before it can scale, deployed free, upgraded when you\'re ready.',
-    tagline: 'The foundation layer for every client relationship you\'ll ever manage.',
+    description: 'A free CRM to keep track of leads, log every conversation and never miss a follow-up. Move up to Scalability when you need a team pipeline.',
+    tagline: 'Never lose track of a lead again.',
     icon: FaUsers,
     color: 'from-emerald-500 to-teal-600',
     badge: 'FREE',
@@ -146,7 +146,7 @@ const products = [
     price: 499,
     priceLabel: 'R499',
     description: 'Deals, a pipeline board, tasks and follow-ups for small teams that have outgrown a contact list. Everyone shares one private link, and it all stays in your own Google Sheet.',
-    tagline: 'Expanding your reach with systematic precision.',
+    tagline: 'Every deal, every follow-up, one place.',
     icon: FaUsers,
     color: 'from-blue-500 to-indigo-600',
     badge: 'NEW',
@@ -214,7 +214,7 @@ const products = [
     price: 499,
     priceLabel: 'R499',
     description: 'A complete invoicing system that runs from your own Google Sheet: invoices, quotes, payment links and VAT reports, opened from one private link.',
-    tagline: 'Streamlining cash flow with effortless efficiency.',
+    tagline: 'Know who owes you, and get paid.',
     icon: FaFileInvoice,
     color: 'from-cyan-500 to-blue-600',
     badge: null,
@@ -265,7 +265,7 @@ const products = [
     price: 499,
     priceLabel: 'R499',
     description: 'Stock levels, a reorder list and purchase orders for your suppliers. Everyone shares one private link, and it all stays in your own Google Sheet.',
-    tagline: 'Keeping your business perfectly supplied, never short.',
+    tagline: 'Reorder before you run out.',
     icon: FaBoxes,
     color: 'from-sky-500 to-cyan-600',
     badge: 'NEW',
@@ -281,8 +281,8 @@ const products = [
     subtitle: 'Income & Expenses',
     price: 799,
     priceLabel: 'R799',
-    description: 'Real-time financial visibility, without a bookkeeper re-entering your data by hand.',
-    tagline: 'Unlocking real-time financial clarity at a glance.',
+    description: 'Bring in your bank statements, sort every transaction into a category and see what you made and what you spent, without typing it all in by hand.',
+    tagline: 'See your profit without the spreadsheet stress.',
     icon: FaChartLine,
     color: 'from-rose-500 to-pink-600',
     badge: null,
@@ -316,7 +316,7 @@ const products = [
     price: 0,
     priceLabel: 'Request Quote',
     description: 'Tiered digital strategies, social media management intake, and fast GitHub/Vercel website launch workflows.',
-    tagline: 'Engineered for high-speed digital authority and conversions.',
+    tagline: 'Get seen, then get enquiries.',
     icon: FaBullhorn,
     color: 'from-violet-500 to-purple-600',
     badge: 'REQUEST QUOTE',
@@ -333,7 +333,7 @@ const products = [
     price: 0,
     priceLabel: 'Request Quote',
     description: 'Visual proofing, local South African supplier directory linking, and markup calculators for physical branded merchandise.',
-    tagline: 'Transforming your visual identity into tangible corporate impact.',
+    tagline: 'Branded gifts and merch, without the back and forth.',
     icon: FaTshirt,
     color: 'from-pink-500 to-rose-600',
     badge: 'REQUEST QUOTE',
@@ -366,7 +366,7 @@ const products = [
     subtitle: 'Daily Cash Reconciliation',
     price: 499,
     priceLabel: 'R499',
-    description: 'Lightweight daily cash-up tool for retail and hospitality businesses. Reconcile tills, track floats, and spot discrepancies in minutes.',
+    description: 'Close each till at the end of the day: float, takings, payouts and the counted cash, with a warning when a drawer is out. For shops, cafés and salons.',
     tagline: 'Balanced books before you lock the door.',
     icon: FaCalculator,
     color: 'from-teal-400 to-cyan-500',
@@ -402,7 +402,7 @@ const products = [
     priceLabel: 'R999',
     orderUrl: '/adaptability',
     description: 'We put your logo, colours and business name on one of our apps, bring your records across and walk you through it on a call.',
-    tagline: 'Tailoring high-level automation to fit any business blueprint.',
+    tagline: 'Your app, with your name on it.',
     icon: FaCogs,
     color: 'from-gold to-amber-600',
     badge: 'RECOMMENDED',
@@ -448,7 +448,17 @@ export default function Products() {
     return query ? `${base}?${query}` : base;
   };
 
-  const getProductById = (id) => products.find(p => p.id === id);
+  // AceIQ's year end special ends on 31 December 2026. Checked in the browser,
+  // so the card shows R499 from 1 January even if the site was built before then.
+  const [aceSpecial, setAceSpecial] = useState(true);
+  useEffect(() => { setAceSpecial(new Date() < new Date('2027-01-01T00:00:00+02:00')); }, []);
+  const getProductById = (id) => {
+    const p = products.find(x => x.id === id);
+    if (p && p.id === 'aceiq' && !aceSpecial) {
+      return { ...p, price: 499, priceLabel: 'R499', description: p.description.replace(' Year end special, R499 from 2027.', '') };
+    }
+    return p;
+  };
 
   const discountedPrice = (price) => {
     if (price === 0) return price;
@@ -463,7 +473,7 @@ export default function Products() {
     if (!product.available) return 'Coming Soon';
     if (product.price === 0 && !product.orderUrl) return 'Get Free';
     if (product.orderUrl && product.orderUrl.startsWith('/')) return 'Learn More';
-    return 'Deploy Now';
+    return product.priceLabel === 'Request Quote' ? 'Ask for a quote' : 'Order now';
   };
 
   const getButtonTarget = (product) => {
@@ -529,18 +539,18 @@ export default function Products() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">Engineered Systems</p>
+          <p className="text-gold font-bold tracking-widest uppercase text-sm mb-4">How it works</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-navy-900 mb-4">
-            AbilitySuite&trade;
+            Pick what you need. Add more later.
           </h2>
           <p className="text-navy-600 text-lg max-w-2xl mx-auto">
-            A Modular Operations Architecture
+            Each app does one job well and works on its own. They also work side by side, so you can start small.
           </p>
           <p className="text-navy-500 text-base max-w-3xl mx-auto mt-4">
-            Each Ability is a purpose-engineered automation solving one operational problem precisely, deployed inside your existing Google Workspace, owned outright, and built to interoperate as your business scales. This isn&apos;t a bundle of templates. It&apos;s infrastructure, assembled module by module, exactly to the shape of your operation.
+            Every app runs in your own Google account, so your information stays with you. Most come with a free 72 hour demo, so you can try before you buy.
           </p>
           <p className="text-gold-dark font-bold text-sm mt-4">
-            No subscriptions. No rented software. Build it once, and it&apos;s yours, permanently.
+            No subscriptions. Pay once and it is yours to keep.
           </p>
         </motion.div>
 
@@ -561,7 +571,7 @@ export default function Products() {
                 </div>
                 <div>
                   <h3 className="text-navy-900 font-bold text-lg">Have a Referral Code?</h3>
-                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid module. This is a customer discount, separate from the <a href="/partners" className="text-gold underline hover:no-underline">Partner Program</a> where you earn by reselling.</p>
+                  <p className="text-navy-600 text-sm">Enter it below and get <span className="text-gold font-bold">10% off</span> any paid app. This is a customer discount, separate from the <a href="/partners" className="text-gold underline hover:no-underline">Partner Program</a> where you earn by reselling.</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 w-full md:w-auto">
@@ -820,46 +830,46 @@ export default function Products() {
           <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="inline-block bg-gold/20 text-gold px-4 py-1.5 rounded-full text-sm font-bold mb-4 border border-gold/30">
-                Custom Engineering
+                Done with you
               </span>
               <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                Every Module, Rebuilt as Yours.
+                Any app, with your name on it.
               </h3>
               <p className="text-cream/80 text-lg mb-6 leading-relaxed">
-                Adaptability is where engineering becomes bespoke. We take any Ability module and rebuild it entirely around your identity, your colors, your logo, your business name, on every sheet, and hand it back as a system that looks, and functions, like it was built from scratch for you alone.
+                With Adaptability we put your logo, colours and business name on one of our apps, bring your existing records across and walk you through it on a video call. It looks like it was built just for you.
               </p>
               <div className="bg-white/10 rounded-xl p-6 border border-white/10 mb-6 backdrop-blur-sm">
                 <p className="text-gold font-bold mb-2">Example:</p>
                 <p className="text-cream/80 text-sm">
-                  Scalability (CRM Pro) + Adaptability White-Label = <span className="text-gold font-bold">Your own custom CRM</span> for just <span className="text-gold font-bold">R1,498 total</span>
+                  Scalability (CRM Pro) + Adaptability setup = <span className="text-gold font-bold">Your own custom CRM</span> for just <span className="text-gold font-bold">R1,498 total</span>
                 </p>
                 <p className="text-cream/60 text-xs mt-2">
-                  That&apos;s R499 for the module + R999 for the white-label setup. You get a fully branded system that looks like it was built just for you.
+                  That is R499 for the app and R999 for the setup.
                 </p>
               </div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-3 text-cream/80">
                   <FaCheckCircle className="text-gold flex-shrink-0" size={16} />
-                  Your logo, colors, and business name on every sheet
+                  Your logo, colours and business name on every sheet
                 </li>
                 <li className="flex items-center gap-3 text-cream/80">
                   <FaCheckCircle className="text-gold flex-shrink-0" size={16} />
-                  Custom domain email integration
+                  Your existing records brought across
                 </li>
                 <li className="flex items-center gap-3 text-cream/80">
                   <FaCheckCircle className="text-gold flex-shrink-0" size={16} />
-                  30-minute personal setup walkthrough
+                  A 30 minute video walkthrough
                 </li>
                 <li className="flex items-center gap-3 text-cream/80">
                   <FaCheckCircle className="text-gold flex-shrink-0" size={16} />
-                  Resell it to your own clients (reseller license available)
+                  R999 once, per app
                 </li>
               </ul>
               <a
                 href="/adaptability"
                 className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
               >
-                <FaShoppingCart /> Commission Adaptability · {codeActive ? formatPrice(discountedPrice(999)) : 'R999'}
+                <FaShoppingCart /> See how Adaptability works · {codeActive ? formatPrice(discountedPrice(999)) : 'R999'}
               </a>
               {codeActive && (
                 <p className="text-emerald-400 text-sm mt-2">
@@ -918,11 +928,11 @@ export default function Products() {
           className="bg-white/60 backdrop-blur-md rounded-2xl p-8 text-center border border-gold/20 shadow-lg"
         >
           <h3 className="text-2xl font-bold tracking-tight text-navy-900 mb-4">
-            Ready to Deploy Your Infrastructure?
+            Ready to order?
           </h3>
           <p className="text-navy-600 max-w-lg mx-auto mb-6">
-            Select your modules, fill in your details, and pay via bank transfer or QR code.
-            Your license keys are delivered within 24 hours.
+            Pick your apps, fill in your details and pay by card, bank transfer or QR code.
+            Your licence keys are emailed to you within 24 hours.
           </p>
 
           {codeActive && (
@@ -1045,11 +1055,11 @@ export default function Products() {
                   rel="noopener noreferrer"
                   className="block w-full bg-gold hover:bg-[#c4a030] text-navy-900 text-center py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2"
                 >
-                  <FaShoppingCart /> Deploy {selectedProduct.name}
+                  <FaShoppingCart /> Order {selectedProduct.name}
                 </a>
               )}
               <p className="text-center text-navy-400 text-xs mt-3">
-                You can add more modules in the order form
+                You can add more apps on the order form
               </p>
             </div>
           </motion.div>
