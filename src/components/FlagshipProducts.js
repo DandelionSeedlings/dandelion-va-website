@@ -99,6 +99,20 @@ export default function FlagshipProducts() {
             See all 13 apps <FaArrowRight size={12} />
           </Link>
         </div>
+
+        <Link
+          href="/claude"
+          className="group mt-12 flex flex-col gap-3 rounded-2xl bg-navy-900 px-6 py-6 text-white transition hover:shadow-xl hover:shadow-navy-900/20 md:flex-row md:items-center md:justify-between md:px-8"
+        >
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold">Works with Claude</p>
+            <p className="mt-1.5 font-display text-xl font-semibold md:text-2xl">Did you know you can ask Claude about your business?</p>
+            <p className="mt-1 text-sm text-slate-300">Your apps live in your own Google Sheets, so Claude can already read them.</p>
+          </div>
+          <span className="inline-flex shrink-0 items-center gap-2 font-semibold text-gold">
+            See how <FaArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </span>
+        </Link>
       </div>
     </section>
   )
