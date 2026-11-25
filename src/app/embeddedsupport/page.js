@@ -22,9 +22,9 @@ const services = [
   },
   {
     title: 'Running the process',
-    desc: 'We work inside your systems and accounts on your behalf, so the routine work, from social media to admin, gets done on time.',
+    desc: 'I run the routine work that keeps your business visible and paid, using your own systems and accounts, so it gets done on time.',
     icon: FiRepeat,
-    items: ['Social media posting and scheduling', 'Invoicing and payment follow-ups', 'Bookings and client records', 'Email, calendar and data entry'],
+    items: ['Social media posting and scheduling', 'Invoicing and payment follow-ups', 'Bookings and client records'],
   },
   {
     title: 'Training and handover',
@@ -62,15 +62,24 @@ const TRIAL_RATE = 'R275'
 const TRIAL_MAX_HOURS = 20
 
 const trialSteps = [
-  { title: 'Book a Systems Audit', desc: 'We talk through how your week really runs and what is worth handing over first.' },
-  { title: 'Agree the work and the hours', desc: `We agree the type of work and a maximum number of hours, up to ${TRIAL_MAX_HOURS} for the month, so you know the most it can cost.` },
+  { title: 'Book a Systems Audit', desc: 'You and I talk through how your week really runs and what is worth handing over first.' },
+  { title: 'Agree the work and the hours', desc: `You and I agree the type of work and a maximum number of hours, up to ${TRIAL_MAX_HOURS} for the month, so you know the most it can cost.` },
   { title: 'Trial month', desc: `You pay ${TRIAL_RATE} an hour for the hours actually worked, up to the agreed maximum. No long contract.` },
-  { title: 'Day 25 review', desc: 'We look at the hours used and what was done. Then we set the right monthly plan and price, or you stop with no notice period.' },
+  { title: 'Day 25 review', desc: 'I show you the hours used and what was done. Then I set the right monthly plan and price with you, or you stop with no notice period.' },
 ]
 
 const sectors = [
   'Yoga studios', 'Personal fitness', 'Beauty salons', 'Wellness studios',
   'Supermarkets', 'Pharmacies', 'Machine control and surveying',
+]
+
+const faqs = [
+  ['What if I need more hours than my plan?', 'Extra hours are billed per hour, on top of your monthly plan.'],
+  ['What happens to hours I do not use?', 'They carry over to the next month.'],
+  ['How do you get into my accounts?', 'You give me a login for the accounts the work needs. Your information stays in your own accounts, and I am the only person who works on them.'],
+  ['Who does the work?', 'Only me. You always deal with the same person, who already knows how your business runs.'],
+  ['How quickly do you reply?', 'On the Core plan you get a reply within 24 hours, and Strategic clients get priority on WhatsApp. How long the work itself takes depends on how big the job is.'],
+  ['Can I stop?', 'Yes. During the trial month you can stop with no notice. After that, a monthly plan needs 30 days notice.'],
 ]
 
 const rise = { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6 } }
@@ -159,7 +168,7 @@ export default function EmbeddedSupportPage() {
       <section className="bg-navy-900 px-4 py-20">
         <div className="mx-auto max-w-6xl">
           <motion.div {...rise} className="mb-10 text-center">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">The systems we look after</p>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">The systems I look after</p>
             <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">Your support comes with the real thing</h2>
             <p className="mx-auto max-w-xl text-gray-400">Every retainer covers systems like these, built in your own Google Workspace.</p>
           </motion.div>
@@ -167,7 +176,7 @@ export default function EmbeddedSupportPage() {
             {[
               { src: '/images/payability/dashboard.webp', w: 1600, h: 1538, name: 'PayAbility', alt: 'PayAbility dashboard with invoices and money owed' },
               { src: '/images/bookability/dashboard.webp', w: 1800, h: 1400, name: 'BookAbility', alt: 'BookAbility dashboard with bookings and follow-ups' },
-              { src: '/images/receiptsnap/dashboard.webp', w: 1600, h: 1538, name: 'ReceiptSnap', alt: 'ReceiptSnap dashboard with captured receipts' },
+              { src: '/images/trackability/dashboard.webp', w: 1800, h: 1250, name: 'TrackAbility', alt: 'TrackAbility dashboard with staff hours and leave' },
             ].map((shot) => (
               <motion.figure key={shot.name} {...rise} className="overflow-hidden rounded-2xl border border-white/10 bg-navy-800">
                 <img src={shot.src} alt={shot.alt} width={shot.w} height={shot.h} loading="lazy" className="h-auto w-full" />
@@ -181,8 +190,8 @@ export default function EmbeddedSupportPage() {
       <section className="bg-cream px-4 py-20">
         <div className="mx-auto max-w-5xl text-center">
           <motion.div {...rise}>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">Who we have worked with</p>
-            <h2 className="mb-10 text-3xl font-bold text-navy-900 md:text-4xl">Businesses we have supported</h2>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">Who I have worked with</p>
+            <h2 className="mb-10 text-3xl font-bold text-navy-900 md:text-4xl">Businesses I have supported</h2>
           </motion.div>
           <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
             {sectors.map((sector) => (
@@ -201,7 +210,7 @@ export default function EmbeddedSupportPage() {
             <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">How it starts</p>
             <h2 className="mb-4 text-3xl font-bold text-navy-900 md:text-4xl">Start with a trial month</h2>
             <p className="mx-auto max-w-xl text-gray-500">
-              You do not have to guess how many hours you need. We find out together, then set the plan. Five trial places open from 1 December.
+              You do not have to guess how many hours you need. You and I find out together, then set the plan. Five trial places open from 1 December.
             </p>
           </motion.div>
           <ol className="grid gap-6 md:grid-cols-2">
@@ -254,6 +263,28 @@ export default function EmbeddedSupportPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-cream px-4 py-20">
+        <div className="mx-auto max-w-3xl">
+          <motion.div {...rise} className="mb-10 text-center">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">Questions</p>
+            <h2 className="text-3xl font-bold text-navy-900 md:text-4xl">Before you sign up</h2>
+          </motion.div>
+          <dl className="divide-y divide-gold/15 rounded-2xl border border-gold/15 bg-white px-6 md:px-8">
+            {faqs.map(([q, a]) => (
+              <div key={q} className="py-5">
+                <dt className="font-semibold text-navy-900">{q}</dt>
+                <dd className="mt-1.5 text-sm leading-relaxed text-gray-600">{a}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-10 text-center text-navy-900/70">
+            Not sure which plan fits?{' '}
+            <Link href={SITE.cta.href} className="font-semibold text-navy-900 underline underline-offset-4 hover:text-gold">Start with a Systems Audit</Link>{' '}
+            and the trial month.
+          </p>
         </div>
       </section>
 
