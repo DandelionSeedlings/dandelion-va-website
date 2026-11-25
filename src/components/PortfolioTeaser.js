@@ -6,9 +6,9 @@ import { FiArrowRight } from 'react-icons/fi'
 import { FaUsers, FaReceipt, FaCalendarCheck, FaFileInvoiceDollar } from 'react-icons/fa'
 
 const stats = [
-  { value: '5', label: 'Systems Built', sub: 'ConnectAbility, PayAbility, ReceiptSnap, BookAbility, BudgetAbility' },
-  { value: '0', label: 'Monthly Subscriptions', sub: 'Own your infrastructure' },
-  { value: '100%', label: 'Owned By You', sub: 'Not us, not a platform' },
+  { value: '13', label: 'Apps built', sub: 'From bookings and invoices to stock and payslips' },
+  { value: '0', label: 'Monthly subscriptions', sub: 'You pay once and keep it' },
+  { value: '100%', label: 'Owned by you', sub: 'Your Google account, your data' },
 ]
 
 const systemsWeUse = [
@@ -45,10 +45,9 @@ export default function PortfolioTeaser() {
           className="text-center mb-12"
         >
           <p className="text-[#D4AF37] font-bold tracking-widest uppercase text-sm mb-4">Systems We Build & Use</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-4">We Run Our Own Business On These</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#0a1628] mb-4">We run our own business on these</h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            Client case studies are coming as those relationships mature. In the meantime, here&apos;s something you can actually verify:
-            we use exactly what we build, every day, to run Dandelion Creations OS itself.
+            Everything we sell, we use first. Our own enquiries, invoices, receipts and bookings run through these apps every day.
           </p>
         </motion.div>
 

@@ -6,30 +6,30 @@ import { FaArrowRight } from 'react-icons/fa'
 
 const products = [
   {
-    name: 'PayAbility',
-    price: 'R499',
+    name: 'OrderAbility',
+    price: 'R799',
     priceNote: 'once-off',
-    desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet, with no monthly fee.',
-    href: '/payability',
-    img: '/images/payability/invoices.webp',
-    alt: 'PayAbility invoices screen',
-    tint: '#F3EBD6',
+    desc: 'Take orders from WhatsApp, send invoices and see who still owes you. Stock, suppliers and profit in the same place.',
+    href: '/orderability',
+    img: '/images/orderability/card.webp',
+    alt: 'OrderAbility on a phone: money owed, profit and a supplier order',
+    tint: '#E6EFE9',
   },
   {
-    name: 'AceIQ',
-    price: 'R199',
-    priceNote: 'R499 from 2027',
-    desc: 'Turn school notes into summaries, flashcards, mind maps and practice tests, in English or Afrikaans.',
-    href: '/aceiq',
-    img: '/images/aceiq/dashboard.webp',
-    alt: 'AceIQ student dashboard',
-    tint: '#ECE7F8',
+    name: 'BookAbility',
+    price: 'R499',
+    priceNote: 'once-off',
+    desc: 'Clients book from a link or QR code, you manage it all from your phone, and regulars collect loyalty stamps.',
+    href: '/bookability',
+    img: '/images/bookability/bookings.webp',
+    alt: 'BookAbility bookings screen',
+    tint: '#FBE4EA',
   },
   {
     name: 'ConnectAbility',
     price: 'Free',
     priceNote: 'forever',
-    desc: 'A simple CRM to manage leads, log every conversation, and never miss a follow-up again.',
+    desc: 'A simple CRM to keep track of leads, log every conversation and never miss a follow-up.',
     href: '/connectability',
     img: '/images/connectability/dashboard.webp',
     alt: 'ConnectAbility dashboard',
@@ -48,7 +48,7 @@ export default function FlagshipProducts() {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-3">Start With One. Add More Later.</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-navy-900 mb-3">Start with one. Add more later.</h2>
           <p className="text-gray-600 max-w-xl mx-auto">Each app works on its own, in your own Google account, and you pay once.</p>
         </motion.div>
 
@@ -96,7 +96,7 @@ export default function FlagshipProducts() {
             href="/abilitysuite"
             className="inline-flex items-center gap-2 text-navy-900 font-semibold hover:text-gold transition-colors underline"
           >
-            See all our apps <FaArrowRight size={12} />
+            See all 13 apps <FaArrowRight size={12} />
           </Link>
         </div>
       </div>

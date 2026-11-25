@@ -2,56 +2,32 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { FiSearch, FiMap, FiClock, FiPenTool, FiCpu, FiCheckCircle, FiSend, FiHeart } from 'react-icons/fi'
+import { FiSearch, FiPenTool, FiCpu, FiSend } from 'react-icons/fi'
 
 const steps = [
   {
     num: '01',
-    title: 'Discover Your Business',
-    desc: 'We get to know you, your goals, and your chaos. Every system starts with understanding the real problem, not the assumed one.',
+    title: 'Free Systems Audit',
+    desc: 'A 15 to 30 minute call about how your business runs today. You tell us what keeps breaking or eating your time.',
     icon: FiSearch,
   },
   {
     num: '02',
-    title: 'Map Your Workflow',
-    desc: 'We map your processes end-to-end and spot the gaps where time, money, and energy are leaking out.',
-    icon: FiMap,
-  },
-  {
-    num: '03',
-    title: 'Find Time-Wasting Tasks',
-    desc: 'We identify the repetitive tasks that drain your team, the ones that should have been automated months ago.',
-    icon: FiClock,
-  },
-  {
-    num: '04',
-    title: 'Design The System',
-    desc: 'We design a custom system that works for you, not against you. Every screen, every flow, every formula, intentional.',
+    title: 'A written plan',
+    desc: 'Within 48 hours you get the fix in writing, with the price. A ready-made app if one fits, a custom build if it does not.',
     icon: FiPenTool,
   },
   {
-    num: '05',
-    title: 'Build & Automate',
-    desc: 'We engineer your solution with precision-built automation. Every trigger, every formula, every workflow, crafted to run without you.',
+    num: '03',
+    title: 'We build and test it',
+    desc: 'Inside your own Google account, with your real information, and checked properly before you rely on it.',
     icon: FiCpu,
   },
   {
-    num: '06',
-    title: 'Test Everything',
-    desc: 'We test every detail under real conditions so when it goes live, it runs smoothly from day one. No surprises.',
-    icon: FiCheckCircle,
-  },
-  {
-    num: '07',
-    title: 'Launch & Train',
-    desc: 'We launch your system and empower your team to use it with confidence. Documentation included, confusion excluded.',
+    num: '04',
+    title: 'Handover and support',
+    desc: 'We show you and your team how it works. If you want help after that, Embedded Support looks after it for you.',
     icon: FiSend,
-  },
-  {
-    num: '08',
-    title: 'Support & Improve',
-    desc: "We're here for support, tweaks, and continuous improvement. Systems evolve, and so does our partnership.",
-    icon: FiHeart,
   },
 ]
 
@@ -82,13 +58,13 @@ export default function ProcessSteps() {
           className="text-center mb-16"
         >
           <p className="text-[#D4AF37] font-bold tracking-widest uppercase text-sm mb-4">
-            How We Work
+            The Dandelion process
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0a1628] mb-4">
-            The Dandelion Process
+            How we work
           </h2>
-          <p className="text-[#0a1628]/60 text-lg max-w-xl mx-auto font-medium italic">
-            We don't just build systems. We build freedom.
+          <p className="text-[#0a1628]/60 text-lg max-w-xl mx-auto font-medium">
+            Four steps, and you know the price before anything gets built.
           </p>
         </motion.div>
 
@@ -121,7 +97,7 @@ export default function ProcessSteps() {
                 {step.desc}
               </p>
 
-              {i < steps.length - 1 && i % 4 !== 3 && (
+              {i < steps.length - 1 && true && (
                 <div className="hidden lg:block absolute top-6 -right-4 w-8 h-px bg-gradient-to-r from-[#D4AF37]/20 to-transparent" />
               )}
             </motion.div>
