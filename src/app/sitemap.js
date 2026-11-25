@@ -5,7 +5,7 @@ const base = 'https://dandelioncreations.co.za'
 export default function sitemap() {
   const pages = [
     '/', '/book', '/order', '/abilitysuite', '/payability', '/bookability', '/receiptsnap', '/visibility',
-    '/connectability', '/scalability', '/availability', '/mini-cash-up', '/trackability', '/budgetability', '/embeddedsupport', '/partners', '/setup-guide', '/refunds', '/cv', '/blog',
+    '/connectability', '/scalability', '/availability', '/mini-cash-up', '/trackability', '/budgetability', '/embeddedsupport', '/partners', '/setup-guide', '/refunds', '/cv', '/adaptability', '/blog',
   ].map((path) => ({ url: base + path, lastModified: new Date() }))
 
   const posts = getAllPosts().map((post) => ({

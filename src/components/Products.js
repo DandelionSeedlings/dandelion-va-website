@@ -38,6 +38,11 @@ const productVisuals = {
   availability: { img: '/images/availability/dashboard.webp', tint: '#E1ECEF' },
   'mini-cash-up': { img: '/images/mini-cash-up/dashboard.webp', tint: '#E0F2EE' },
   'trackability': { img: '/images/trackability/dashboard.webp', tint: '#E8EEF8' },
+  profitability: { img: '/images/profitability/dashboard.webp', tint: '#E3F1E6' },
+  'cv-portfolio': { img: '/images/cv/builder.webp', tint: '#E7E6F6' },
+  adaptability: { img: '/images/adaptability/card.webp', tint: '#F3EBD6' },
+  marketability: { img: '/images/marketability/card.webp', tint: '#EAE4F7' },
+  promotability: { img: '/images/promotability/card.webp', tint: '#FBE4EA' },
 };
 
 const productCategories = [
@@ -377,14 +382,15 @@ const products = [
     subtitle: 'Done-With-You Setup',
     price: 999,
     priceLabel: 'R999',
-    description: 'The core onboarding engine and developer configuration block built for white-label reseller buyers.',
+    orderUrl: '/adaptability',
+    description: 'We put your logo, colours and business name on one of our apps, bring your records across and walk you through it on a call.',
     tagline: 'Tailoring high-level automation to fit any business blueprint.',
     icon: FaCogs,
     color: 'from-gold to-amber-600',
     badge: 'RECOMMENDED',
     badgeColor: 'bg-gold',
     available: true,
-    features: ['30-min video setup', 'Data import', 'Branding config', 'Personal walkthrough'],
+    features: ['Your logo and colours', 'Your records brought across', '30-min video walkthrough', 'R999 once, per app'],
     category: 'custom'
   },
 ];
@@ -832,9 +838,7 @@ export default function Products() {
                 </li>
               </ul>
               <a
-                href={buildOrderUrl({ name: 'Adaptability', subtitle: 'White-Label Setup', price: 999, orderUrl: null }, globalPartnerCode)}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/adaptability"
                 className="inline-flex items-center gap-2 bg-gold hover:bg-[#c4a030] text-navy-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 hover:shadow-lg hover:shadow-gold/30"
               >
                 <FaShoppingCart /> Commission Adaptability · {codeActive ? formatPrice(discountedPrice(999)) : 'R999'}
