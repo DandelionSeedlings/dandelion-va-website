@@ -38,6 +38,7 @@ const productVisuals = {
   availability: { img: '/images/availability/dashboard.webp', tint: '#E1ECEF' },
   'mini-cash-up': { img: '/images/mini-cash-up/dashboard.webp', tint: '#E0F2EE' },
   'trackability': { img: '/images/trackability/dashboard.webp', tint: '#E8EEF8' },
+  orderability: { img: '/images/orderability/card.webp', tint: '#E6EFE9' },
   profitability: { img: '/images/profitability/dashboard.webp', tint: '#E3F1E6' },
   'cv-portfolio': { img: '/images/cv/builder.webp', tint: '#E7E6F6' },
   adaptability: { img: '/images/adaptability/card.webp', tint: '#F3EBD6' },
@@ -62,7 +63,7 @@ const productCategories = [
     color: 'text-gold',
     bgColor: 'bg-navy-900',
     borderColor: 'border-gold/30',
-    products: ['payability', 'budgetability', 'profitability', 'mini-cash-up']
+    products: ['orderability', 'payability', 'budgetability', 'profitability', 'mini-cash-up']
   },
   {
     id: 'learning',
@@ -289,6 +290,23 @@ const products = [
     available: true,
     orderUrl: '/profitability',
     features: ['Banking ledger', 'CSV import', 'Profit/loss reports', 'Category tracking'],
+    category: 'financial-operations'
+  },
+  {
+    id: 'orderability',
+    name: 'OrderAbility',
+    subtitle: 'Orders, Invoices & Money',
+    price: 799,
+    priceLabel: 'R799',
+    description: 'Take orders from WhatsApp, send invoices and see who still owes you. Stock, suppliers and your profit, in your own Google Sheet.',
+    tagline: 'Know who has paid and what is left.',
+    icon: FaShoppingCart,
+    color: 'from-emerald-500 to-teal-600',
+    badge: 'NEW',
+    badgeColor: 'bg-emerald-600',
+    available: true,
+    orderUrl: '/orderability',
+    features: ['Orders and invoices', 'Who still owes you', 'Stock and supplier orders', 'Profit on what you sold'],
     category: 'financial-operations'
   },
   {

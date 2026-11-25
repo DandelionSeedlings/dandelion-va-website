@@ -114,6 +114,7 @@ export default function Footer() {
               </li>
               <li><Link href="/mini-cash-up" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Mini Cash-Up · R499</Link></li>
               <li><Link href="/trackability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">TrackAbility · R799</Link></li>
+              <li><Link href="/orderability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">OrderAbility · R799</Link></li>
               <li><Link href="/profitability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Profitability · R799</Link></li>
               <li><Link href="/aceiq" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">AceIQ · R199</Link></li>
               <li><Link href="/adaptability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Adaptability setup · R999</Link></li>

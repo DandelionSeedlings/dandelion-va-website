@@ -28,6 +28,7 @@ const PRODUCTS = [
   { id: 'stock-supplier', key: 'availability', name: 'Availability: Stock & Supplier Pro', price: 499, badge: 'New', needs: 'Needs a free Google account.', desc: 'Stock levels, a reorder list and purchase orders for your suppliers, in your own Google Sheet. Everyone shares one private link. Free 72 hour demo.' },
   { id: 'mini-cash-up', key: 'minicashup', name: 'Mini Cash-Up: Daily Cash Reconciliation', price: 499, badge: 'New', needs: 'Needs a free Google account.', desc: 'Close each till at the end of the day: float, takings, payouts and the counted cash, with alerts when a drawer is out. In your own Google Sheet. Free 72 hour demo.' },
   { id: 'trackability', key: 'trackability', name: 'TrackAbility: Staff Time, Leave & Payslips', price: 799, badge: 'New', needs: 'Needs a free Google account.', desc: 'Staff clock in on a tablet or with a QR code and their own PIN. Overtime, leave balances and printable payslips with UIF, in your own Google Sheet. Free 72 hour demo.' },
+  { id: 'orderability', key: 'orderability', name: 'OrderAbility: Orders, Invoices & Money', price: 799, badge: 'New', needs: 'Needs a free Google account.', desc: 'Take orders from WhatsApp, send invoices, track who has paid, stock and suppliers, and see your profit. In your own Google Sheet, opened from one private link.' },
   { id: 'profitability', key: 'profitability', name: 'Profitability: Income & Expenses', price: 799, desc: 'An automated banking ledger and CSV importing for business owners and accountants.' },
   { id: 'done-with-you', key: 'adaptability', name: 'Adaptability: Done-With-You Setup', price: 999, badge: 'Recommended', desc: 'White-label setup of any module, with your logo, colours and business name.' },
 ]
@@ -38,7 +39,6 @@ const QUOTES = [
 ]
 
 const SOON = [
-  { name: 'Trackability: Time & Payroll', price: 499, desc: 'Kiosk QR check-in and check-out, and automated PDF payslips.' },
   { name: 'Capability: Main Office Dashboard', price: 1499, desc: 'A master view that brings together the numbers from across the suite.' },
 ]
 
