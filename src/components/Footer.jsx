@@ -72,7 +72,6 @@ export default function Footer() {
               <li><Link href="/#contact" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Contact</Link></li>
               <li><Link href="/blog" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Blog</Link></li>
               <li><Link href="/cv" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">CV Builder</Link></li>
-              <li><Link href="/wishes" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Dandelion Wishes</Link></li>
               <li><Link href="/embeddedsupport" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Embedded Support</Link></li>
               <li><Link href="/partners" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Partner Program</Link></li>
               <li><Link href="/setup-guide" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">App Setup Guide</Link></li>

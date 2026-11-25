@@ -4,6 +4,9 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://dandelioncreations.co.za/sitemap.xml',
+    sitemap: [
+      'https://dandelioncreations.co.za/sitemap.xml',
+      'https://dandelioncreations.co.za/wishes/sitemap.xml',
+    ],
   }
 }
