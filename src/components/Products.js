@@ -155,14 +155,14 @@ const products = [
     subtitle: 'Appointment Scheduler',
     price: 499,
     priceLabel: 'R499',
-    description: 'Client self-booking with automated confirmations, calendar sync, and reminder workflows, no more back-and-forth scheduling.',
+    description: 'Clients book themselves from a link or QR code. Email and WhatsApp confirmations, Google Calendar sync and a loyalty card, in your own Google Sheet.',
     tagline: 'Let clients book themselves while you focus on delivering.',
     icon: FaBookOpen,
     color: 'from-rose-400 to-pink-500',
     badge: null,
     badgeColor: '',
     available: true,
-    features: ['Self-service booking page', 'Automated email/SMS confirmations', 'Calendar integration', 'Reminder workflows'],
+    features: ['Link and QR code self-booking', 'Email and WhatsApp confirmations', 'Google Calendar sync', 'Loyalty card with stamps'],
     category: 'client-management'
   },
   {

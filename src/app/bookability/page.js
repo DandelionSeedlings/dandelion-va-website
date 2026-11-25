@@ -2,7 +2,7 @@ import html from './bookability-html';
 
 export const metadata = {
   title: 'BookAbility | Online booking you own',
-  description: 'Clients book from a link or QR code. You manage everything in a private app on your own Google Sheet. R499 once, no subscription.',
+  description: 'Clients book from a link or QR code, and regulars collect loyalty stamps. You manage everything in a private app on your own Google Sheet. R499 once, no subscription.',
   alternates: { canonical: '/bookability' },
   openGraph: {
     title: 'BookAbility | Online booking you own',

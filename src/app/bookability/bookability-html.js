@@ -114,6 +114,19 @@ const html = `
 .bk .btn:active{transform:scale(.97);transition:transform 100ms ease-out}
 .bk h1,.bk h2{text-wrap:balance}
 @media (prefers-reduced-motion:reduce){.bk *{transition:none!important}}
+/* loyalty */
+.bk .ly{background:linear-gradient(165deg,var(--navy) 0%,#17213B 100%);color:#fff}
+.bk .ly .eyebrow{color:var(--gold)}
+.bk .ly p.sub{color:#CBD5E1}
+.bk .ly-two{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,.62fr);gap:36px;align-items:start;margin-top:44px}
+.bk .ly-two figure{margin:0}
+.bk .ly .tile{border-color:rgba(255,255,255,.1);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.bk .ly .phone{border-color:#0B1222;outline:1px solid rgba(255,255,255,.12)}
+.bk .ly .cap{color:#CBD5E1}.bk .ly .cap b{color:#fff}
+.bk .ly .f{background:var(--navy2);border-color:#243049}
+.bk .ly .f h3{color:#fff}.bk .ly .f p{color:#CBD5E1}
+.bk .ly .note{color:#94A3B8}
+@media(max-width:900px){.bk .ly-two{grid-template-columns:1fr}.bk .ly-two .ph{max-width:260px;margin:0 auto}}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BookAbility","applicationCategory":"BusinessApplication","description":"An online booking system you own. Clients book from a link or QR code, you manage everything in a private app backed by your own Google Sheet.","offers":{"@type":"Offer","price":"499","priceCurrency":"ZAR"},"publisher":{"@type":"Organization","name":"Dandelion Creations","url":"https://www.dandelioncreations.co.za"}}</script>
@@ -206,7 +219,31 @@ const html = `
       <div class="f"><h3>A private admin</h3><p>Your admin app sits behind a private link and a PIN that you choose.</p></div>
       <div class="f"><h3>A client list</h3><p>Everyone who books is saved with their history. Add notes and follow-up dates.</p></div>
       <div class="f"><h3>Google Calendar</h3><p>Optional. Confirmed bookings go onto your calendar, and your other events block those times.</p></div>
+      <div class="f"><h3>A loyalty card</h3><p>A stamp for every completed visit, a reward you choose, and a list of regulars who have gone quiet.</p></div>
     </div>
+  </div>
+</section>
+
+<section class="ly" id="loyalty">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">New: the loyalty card</span>
+      <h2>Keep your regulars coming back</h2>
+      <p class="sub">Every time you mark a booking completed, the client gets a stamp. When the card is full, their reward is waiting. When a regular stays away longer than usual, BookAbility puts them on a list with a WhatsApp message ready to send.</p>
+    </div>
+    <div class="ly-two">
+      <figure><div class="tile"><img loading="lazy" src="/images/bookability/loyalty.webp" width="1800" height="1250" alt="The loyalty page with stamp counts, a full card ready for its reward and a client who has not been back in 8 weeks"></div><p class="cap"><b>Rewards ready, and who is slipping away.</b> One tap to message them.</p></figure>
+      <figure class="ph"><div class="phone"><img loading="lazy" src="/images/bookability/loyalty-card.webp" width="780" height="1600" alt="A client's loyalty card on a phone with 4 of 10 stamps, the reward and their next visit"></div><p class="cap"><b>What your client sees.</b> Their stamps, the reward and their next visit.</p></figure>
+    </div>
+    <div class="feat">
+      <div class="f"><h3>A stamp for every visit</h3><p>Mark a booking completed and the stamp is added. No paper cards to lose, and nothing for your client to download.</p></div>
+      <div class="f"><h3>You choose the reward</h3><p>Ten visits for a free manicure, six for a free wash. Set the number and the reward in Settings.</p></div>
+      <div class="f"><h3>A card on their phone</h3><p>Each client has a private card page with a Book again button. Send it on WhatsApp or add it to your confirmation email.</p></div>
+      <div class="f"><h3>See who is slipping away</h3><p>BookAbility learns how often each client usually comes in, and lists the ones who have stayed away much longer with nothing booked.</p></div>
+      <div class="f"><h3>Win them back in one tap</h3><p>A friendly come-back message opens in WhatsApp, in your own words, or goes out as an email. It is noted on their history so you don't nag.</p></div>
+      <div class="f"><h3>Every stamp on record</h3><p>Changing a card by hand needs a reason, and every stamp and reward is kept in your sheet.</p></div>
+    </div>
+    <p class="note center">The card is a web page your client saves to their home screen. It is not an Apple or Google Wallet pass, so it does not pop up on their lock screen. Screenshots use demo data.</p>
   </div>
 </section>
 
@@ -235,6 +272,7 @@ const html = `
       <div class="once">once off</div>
       <ul>
         <li>The full app: booking page, admin, client list and QR code</li>
+        <li>A loyalty card with come-back messages</li>
         <li>Your own private link and PIN</li>
         <li>A 72 hour trial built in</li>
         <li>A step by step buyer guide</li>
@@ -254,6 +292,8 @@ const html = `
       <details><summary>Where is my data kept?</summary><p>In a Google Sheet in your own Google account. We never see your bookings or your clients.</p></details>
       <details><summary>Do my clients need an account?</summary><p>No. They open your link, pick a time and type their name and email.</p></details>
       <details><summary>What do I need?</summary><p>A Google account. A free Gmail account works.</p></details>
+      <details><summary>How does the loyalty card work?</summary><p>Each time you mark a booking completed, the client gets a stamp. You pick how many stamps earn a reward and what the reward is. When a card is full it shows on your Loyalty page, and you tap Use reward when they claim it. Extra stamps carry over to the next card.</p></details>
+      <details><summary>Do my clients need an app for the loyalty card?</summary><p>No. Their card is a private web page. You send them the link on WhatsApp or in your confirmation email, and they can save it to their home screen. It is not an Apple or Google Wallet pass, so it does not pop up on their lock screen.</p></details>
       <details><summary>Can I try it first?</summary><p>Yes. Every copy has a 72 hour trial built in.</p></details>
       <details><summary>What if two people pick the same time?</summary><p>Whoever books first gets it. The second person is told the time was just taken and is shown the free times again.</p></details>
       <details><summary>Are there any limits?</summary><p>Google limits how many emails an account can send in a day. At the time of writing that is 100 recipients for a free Gmail account, and more for Google Workspace. Confirmation emails count towards it.</p></details>
