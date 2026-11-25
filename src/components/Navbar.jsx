@@ -66,7 +66,7 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link.name}
-              href={isHome ? link.href : '/' + link.href}
+              href={isHome || !link.href.startsWith('#') ? link.href : '/' + link.href}
               onClick={(e) => isHome && handleClick(e, link.href)}
               className="text-[13px] font-medium tracking-wide text-white/70 hover:text-white transition-colors duration-300 relative group"
             >
@@ -117,7 +117,7 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <a
                   key={link.name}
-                  href={isHome ? link.href : '/' + link.href}
+                  href={isHome || !link.href.startsWith('#') ? link.href : '/' + link.href}
                   onClick={(e) => {
                     if (isHome) handleClick(e, link.href)
                     setIsOpen(false)
