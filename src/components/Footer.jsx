@@ -38,6 +38,7 @@ const COLUMNS = [
       ['Embedded Support', '/embeddedsupport'],
       ['Adaptability setup', '/adaptability'],
       ['App Setup Guide', '/setup-guide'],
+      ['Use with Claude', '/claude'],
       ['CV Builder', '/cv'],
       ['AceIQ for students', '/aceiq'],
     ],
