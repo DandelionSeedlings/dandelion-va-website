@@ -111,6 +111,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li><Link href="/mini-cash-up" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">Mini Cash-Up · R499</Link></li>
+              <li><Link href="/trackability" className="text-gray-400 hover:text-gold transition-colors duration-300 text-sm">TrackAbility · R799</Link></li>
             </ul>
           </div>
 

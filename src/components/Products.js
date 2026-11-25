@@ -37,6 +37,7 @@ const productVisuals = {
   scalability: { img: '/images/scalability/dashboard.webp', tint: '#E8E4D8' },
   availability: { img: '/images/availability/dashboard.webp', tint: '#E1ECEF' },
   'mini-cash-up': { img: '/images/mini-cash-up/dashboard.webp', tint: '#E0F2EE' },
+  'trackability': { img: '/images/trackability/dashboard.webp', tint: '#E8EEF8' },
 };
 
 const productCategories = [
@@ -318,18 +319,19 @@ const products = [
   },
   {
     id: 'trackability',
-    name: 'Trackability',
-    subtitle: 'Time & Payroll',
-    price: 499,
-    priceLabel: 'R499',
-    description: 'Kiosk QR check-in/out interfaces and automated backend PDF payslip generators for HR managers.',
-    tagline: 'Empowering workforce operations with absolute accountability.',
+    name: 'TrackAbility',
+    subtitle: 'Staff Time, Leave & Payslips',
+    price: 799,
+    priceLabel: 'R799',
+    description: 'Staff clock in on a shop tablet or with a QR code and their own PIN. Overtime, leave balances and printable payslips with UIF, in your own Google Sheet.',
+    tagline: 'Pay the hours that were worked.',
     icon: FaClock,
-    color: 'from-gray-400 to-gray-500',
-    badge: 'COMING SOON',
-    badgeColor: 'bg-gray-400',
-    available: false,
-    features: ['QR check-in/out', 'Payslip generation', 'Attendance tracking', 'HR reporting'],
+    color: 'from-indigo-400 to-blue-500',
+    badge: 'NEW',
+    badgeColor: 'bg-indigo-500',
+    available: true,
+    orderUrl: '/trackability',
+    features: ['Tablet and QR clock-in with PINs', 'Overtime and public holidays', 'Leave balances', 'Payslips with UIF'],
     category: 'people-time'
   },
   {
