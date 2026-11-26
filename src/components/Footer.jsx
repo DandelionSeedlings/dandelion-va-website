@@ -28,6 +28,7 @@ const COLUMNS = [
       ['Scalability', '/scalability'],
       ['Visibility', '/visibility'],
       ['TrackAbility', '/trackability'],
+      ['SchoolAbility', '/schoolability'],
       ['Availability', '/availability'],
     ],
   },

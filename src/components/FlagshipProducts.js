@@ -96,7 +96,7 @@ export default function FlagshipProducts() {
             href="/abilitysuite"
             className="inline-flex items-center gap-2 text-navy-900 font-semibold hover:text-gold transition-colors underline"
           >
-            See all 13 apps <FaArrowRight size={12} />
+            See all 14 apps <FaArrowRight size={12} />
           </Link>
         </div>
 

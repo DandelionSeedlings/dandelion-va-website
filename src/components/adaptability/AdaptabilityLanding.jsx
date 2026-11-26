@@ -49,7 +49,7 @@ const INCLUDED = [
 
 const FAQ = [
   ['Do I need to own the app already?', 'No. Tick "I still need to buy it" on the form and add the app to the same order.'],
-  ['Which apps can you set up?', 'Any of our paid Ability apps: BookAbility, TrackAbility, Mini Cash-Up, Profitability, PayAbility and the rest. R999 covers one app. Want more than one? Tick them all and we will quote.'],
+  ['Which apps can you set up?', 'Any of our paid Ability apps: BookAbility, TrackAbility, SchoolAbility, Mini Cash-Up, Profitability, PayAbility and the rest. R999 covers one app. Want more than one? Tick them all and we will quote.'],
   ['Does it add new features?', "No. It's the same app, set up and branded for you. If you need it to do something new, that's a custom build. Ask us for a quote."],
   ['What can you bring across?', "Anything in a spreadsheet or CSV file. If your records are on paper or in another system, say so on the form and we'll tell you what's possible before you pay."],
   ['Do I get access to the code?', 'You never need it. You fill in a form on this website, we do the setup, and you get your branded app back.'],

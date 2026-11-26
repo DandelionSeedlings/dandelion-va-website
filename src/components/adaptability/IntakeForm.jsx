@@ -10,7 +10,7 @@ import { SITE, whatsappLink } from '../../lib/site'
 
 export const APPS = [
   'BookAbility', 'TrackAbility', 'Mini Cash-Up', 'Profitability', 'PayAbility',
-  'BudgetAbility', 'Scalability', 'ConnectAbility', 'Availability', 'Visibility', 'ReceiptSnap',
+  'BudgetAbility', 'Scalability', 'ConnectAbility', 'Availability', 'Visibility', 'ReceiptSnap', 'SchoolAbility',
 ]
 const DATA = ['Nothing to bring across', 'A spreadsheet or CSV file', 'Another app or system', 'Paper records']
 

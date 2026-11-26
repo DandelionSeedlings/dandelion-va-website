@@ -179,8 +179,8 @@ const html = `
   <p class="sub">Each person gets their own link and only sees what they need.</p>
   <div class="cards roles">
     <div class="card"><h3>The principal</h3><p>Opens a private link on a computer or phone.</p><ul><li>Today's page with who is here, messages and birthdays</li><li>Children, contacts and who may fetch</li><li>Staff, groups, fees and settings</li></ul></div>
-    <div class="card"><h3>The teacher on duty</h3><p>Taps their name on the staff link and types a PIN.</p><ul><li>The gate register for every group</li><li>Allergies and messages on each child's card</li><li>Homework, progress and AceIQ notes</li></ul></div>
-    <div class="card"><h3>The parents</h3><p>Each child gets a private link, and the parent types their own PIN.</p><ul><li>Send the school a message for a day</li><li>Notes from the teacher and the register</li><li>Their statement and how to pay</li></ul></div>
+    <div class="card"><h3>The teacher on duty</h3><p>Taps their name on the staff link and types a PIN.</p><ul><li>The gate register for every group</li><li>Allergies and messages on each child's card</li><li>A homework list per grade, marked done and checked</li></ul></div>
+    <div class="card"><h3>The parents</h3><p>Each child gets a private link, and the parent types their own PIN.</p><ul><li>Send the school a message for a day</li><li>Homework, notes and the register</li><li>Their statement and how to pay</li></ul></div>
   </div>
 </div></section>
 
@@ -204,7 +204,7 @@ const html = `
     <li><b>Allergies on every card</b><span>Allergies and medication show in red on the child's card at the gate and on the principal's page.</span></li>
     <li><b>Messages from parents</b><span>Pickup changes, absent days and other notes for a day. The teacher marks them as seen, and the parent can see that.</span></li>
     <li><b>Birthday reminders</b><span>A birthday tag at the gate on the day, and this week's birthdays on the principal's page.</span></li>
-    <li><b>Notes from the teacher</b><span>Homework done or not, progress, behaviour, incidents and an AceIQ tick. You choose which notes parents see.</span></li>
+    <li><b>Homework for every grade</b><span>The teacher copies the homework once for the day or the week, then marks each child not done, done or checked. Tests show with their date. Progress and AceIQ notes too.</span></li>
     <li><b>Groups that fit your centre</b><span>Starts with Gr 1, Gr 2, Gr 3 and Gr 4-7. Change them to match your teachers.</span></li>
     <li><b>Monthly and late pickup fees</b><span>You set the monthly fee and the late fee rules. Late pickups are worked out from the gate times.</span></li>
     <li><b>Statements and payments</b><span>Bill the month in one click, record payments, and each parent sees their own statement.</span></li>
@@ -243,6 +243,7 @@ const html = `
       <tr><th scope="row">Who may fetch each child</th><td class="no">In a file in the office</td><td class="y">On the child's card at the gate</td></tr>
       <tr><th scope="row">The real sign-out time</th><td class="no">What someone wrote down</td><td class="y">From the sheet's clock</td></tr>
       <tr><th scope="row">Pickup changes from parents</th><td class="no">On one teacher's phone</td><td class="y">On the child's card, marked as seen</td></tr>
+      <tr><th scope="row">Homework</th><td class="no">A signature in a book in the school bag</td><td class="y">Done and checked, per child, on the parent's page</td></tr>
       <tr><th scope="row">Allergies</th><td class="no">On a list on the wall</td><td class="y">In red on every card</td></tr>
       <tr><th scope="row">Late pickup fees</th><td class="no">You do the sum</td><td class="y">Worked out from the gate times</td></tr>
       <tr><th scope="row">Parents' statements</th><td class="no">Typed by hand</td><td class="y">On their own page</td></tr>
@@ -284,6 +285,7 @@ const html = `
   <details><summary>Do the teachers need to install an app?</summary><p>No. The staff link opens in the phone's browser. Each teacher taps their name and types their own 4 digit PIN. Parents use their own link the same way.</p></details>
   <details><summary>What happens if someone not on the list comes to fetch a child?</summary><p>They're not on the child's list, so the teacher taps Someone else. The app says not to let the child go and shows the parents' numbers to phone. Only the principal can add a person to the list.</p></details>
   <details><summary>Can a parent change the pickup person with a message?</summary><p>They can tell the school, and the teacher sees it on the child's card. The message doesn't add anyone to the list. If it's someone new, the principal adds them first.</p></details>
+  <details><summary>Does it keep test marks?</summary><p>No. Teachers add the test date and what to study, so parents see it coming. The school marks the work and keeps the marks. The aftercare makes sure the homework got done.</p></details>
   <details><summary>Can we use it in Afrikaans?</summary><p>Yes. Every screen is in Afrikaans and English. You choose the school's default, and each teacher and parent can switch with one tap.</p></details>
   <details><summary>Can we change the fees and groups?</summary><p>Yes. The principal fills in the monthly fee, the late pickup fee and the closing time, and can add or rename groups. Nothing is billed until you set the amounts.</p></details>
   <details><summary>What about POPIA?</summary><p>The registration form asks the parent for consent before you keep their child's details, and the details stay in your own Google account. You are still responsible for how your centre uses them, so keep the sheet's sharing to the people who need it.</p></details>
