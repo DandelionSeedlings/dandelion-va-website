@@ -17,20 +17,29 @@ const ACEIQ_SPECIAL = new Date() < new Date('2027-01-01T00:00:00+02:00')
 // Prices here are for display only. The server works out the real price from the ids.
 const PRODUCTS = [
   { id: 'crm-mini', key: 'connectability', name: 'ConnectAbility: CRM Mini', price: 0, badge: 'Free', needs: 'Runs in your own Google account.', desc: 'Client tracking foundations for front-facing sales and administrative workflows.' },
-  { id: 'receiptsnap', key: 'receiptsnap', name: 'ReceiptSnap', price: 299, badge: 'New', needs: 'Needs a free Google account and a free Groq key for the AI.', desc: 'Snap photos of receipts, extract the data with AI, and export clean CSV files for your bookkeeper.' },
-  { id: 'bookability', key: 'bookability', name: 'BookAbility: CRM + Booking System', price: 499, badge: 'New', needs: 'Needs a free Google account.', desc: 'QR code booking, a PIN-protected admin portal, email and WhatsApp confirmations, slot blocking and a loyalty card with stamps.' },
-  { id: 'budgetability', key: 'budgetability', name: 'BudgetAbility: Household Finance Tracker', price: 499, badge: 'New', needs: 'Needs a free Google account.', desc: 'Accounts, budgets, bills, goals and debt payoff for your household, in more than one currency, in your own Google Sheet.' },
+  { id: 'receiptsnap', key: 'receiptsnap', name: 'ReceiptSnap', price: 299, needs: 'Needs a free Google account and a free Groq key for the AI.', desc: 'Snap photos of receipts, extract the data with AI, and export clean CSV files for your bookkeeper.' },
+  { id: 'bookability', key: 'bookability', name: 'BookAbility: CRM + Booking System', price: 499, needs: 'Needs a free Google account.', desc: 'QR code booking, a PIN-protected admin portal, email and WhatsApp confirmations, slot blocking and a loyalty card with stamps.' },
+  { id: 'budgetability', key: 'budgetability', name: 'BudgetAbility: Household Finance Tracker', price: 499, needs: 'Needs a free Google account.', desc: 'Accounts, budgets, bills, goals and debt payoff for your household, in more than one currency, in your own Google Sheet.' },
   { id: 'aceiq', key: 'aceiq', name: 'AceIQ: AI Study Helper', price: ACEIQ_SPECIAL ? 199 : 499, badge: ACEIQ_SPECIAL ? 'Special' : 'New', needs: 'Needs a free Google account.', desc: ACEIQ_SPECIAL ? 'Turn your own notes into summaries, flashcards, a mind map and practice tests, with a daily study plan. R199 until 31 December, then R499. Free 72 hour demo.' : 'Turn your own notes into summaries, flashcards, a mind map and practice tests, with a daily study plan.' },
-  { id: 'content-planner', key: 'visibility', name: 'Visibility: Content Planner', price: 299, badge: 'New', needs: 'Needs a free Google account. Works with whichever AI you already use.', desc: 'Plan your AI written posts in one calendar, check they are ready, and let clients approve them from a link.' },
-  { id: 'crm-pro', key: 'scalability', name: 'Scalability: CRM Pro', price: 499, badge: 'New', needs: 'Needs a free Google account.', desc: 'Deals, a pipeline board, tasks and follow-ups for a small team, with owners, win rate and quiet deals, in your own Google Sheet. Everyone shares one private link. Free 72 hour demo.' },
+  { id: 'content-planner', key: 'visibility', name: 'Visibility: Content Planner', price: 299, needs: 'Needs a free Google account. Works with whichever AI you already use.', desc: 'Plan your AI written posts in one calendar, check they are ready, and let clients approve them from a link.' },
+  { id: 'crm-pro', key: 'scalability', name: 'Scalability: CRM Pro', price: 499, needs: 'Needs a free Google account.', desc: 'Deals, a pipeline board, tasks and follow-ups for a small team, with owners, win rate and quiet deals, in your own Google Sheet. Everyone shares one private link. Free 72 hour demo.' },
   { id: 'payability', key: 'payability', name: 'PayAbility: Invoice Sorter Pro', price: 499, group: 'payability', option: 'Do it yourself', needs: 'Needs a free Google account.', desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet. Set it up yourself with the guide.' },
   { id: 'payability-dwy', key: 'payability-dwy', name: 'PayAbility: Done-With-You Setup', price: 999, group: 'payability', option: 'Done with you', desc: 'Everything in PayAbility, set up with you on a call: your details, tax settings and first invoice.' },
-  { id: 'stock-supplier', key: 'availability', name: 'Availability: Stock & Supplier Pro', price: 499, badge: 'New', needs: 'Needs a free Google account.', desc: 'Stock levels, a reorder list and purchase orders for your suppliers, in your own Google Sheet. Everyone shares one private link. Free 72 hour demo.' },
-  { id: 'mini-cash-up', key: 'minicashup', name: 'Mini Cash-Up: Daily Cash Reconciliation', price: 499, badge: 'New', needs: 'Needs a free Google account.', desc: 'Close each till at the end of the day: float, takings, payouts and the counted cash, with alerts when a drawer is out. In your own Google Sheet. Free 72 hour demo.' },
+  { id: 'stock-supplier', key: 'availability', name: 'Availability: Stock & Supplier Pro', price: 499, needs: 'Needs a free Google account.', desc: 'Stock levels, a reorder list and purchase orders for your suppliers, in your own Google Sheet. Everyone shares one private link. Free 72 hour demo.' },
+  { id: 'mini-cash-up', key: 'minicashup', name: 'Mini Cash-Up: Daily Cash Reconciliation', price: 499, needs: 'Needs a free Google account.', desc: 'Close each till at the end of the day: float, takings, payouts and the counted cash, with alerts when a drawer is out. In your own Google Sheet. Free 72 hour demo.' },
   { id: 'trackability', key: 'trackability', name: 'TrackAbility: Staff Time and Payslips', price: 799, badge: 'New', needs: 'Needs a free Google account.', desc: 'Staff clock in on a tablet or with a QR code and their own PIN. Overtime, leave balances and printable payslips with UIF, in your own Google Sheet. Free 72 hour demo.' },
   { id: 'orderability', key: 'orderability', name: 'OrderAbility: Orders and Invoices', price: 799, badge: 'New', needs: 'Needs a free Google account.', desc: 'Take orders from WhatsApp, send invoices, track who has paid, stock and suppliers, and see your profit. In your own Google Sheet, opened from one private link.' },
   { id: 'profitability', key: 'profitability', name: 'Profitability: Income & Expenses', price: 799, desc: 'An automated banking ledger and CSV importing for business owners and accountants.' },
   { id: 'done-with-you', key: 'adaptability', name: 'Adaptability: Done-With-You Setup', price: 999, badge: 'Recommended', desc: 'One of our apps set up with your logo, colours and business name, your records brought across and a video walkthrough.' },
+]
+
+// How the products are grouped on the form. Every id in PRODUCTS must appear here once.
+const GROUPS = [
+  { title: 'Clients and bookings', ids: ['crm-mini', 'bookability', 'crm-pro', 'content-planner'] },
+  { title: 'Money and admin', ids: ['orderability', 'payability', 'payability-dwy', 'profitability', 'mini-cash-up', 'receiptsnap'] },
+  { title: 'Staff and stock', ids: ['trackability', 'stock-supplier'] },
+  { title: 'Home and school', ids: ['budgetability', 'aceiq'] },
+  { title: 'Set up for you', ids: ['done-with-you'] },
 ]
 
 const QUOTES = [
@@ -392,8 +401,11 @@ export default function OrderForm() {
                     <li>After you order, you can book a free setup call and we will do it with you on a screen share, up to 20 minutes.</li>
                   </ul>
                 </div>
-                <div className="list">
-                  {PRODUCTS.map((p) => {
+                {GROUPS.map((g) => (
+                  <div key={g.title}>
+                    <p className="sub">{g.title}</p>
+                    <div className="list">
+                      {g.ids.map((id) => PRODUCTS.find((x) => x.id === id)).filter(Boolean).map((p) => {
                     const on = !!picked[p.id]
                     return (
                       <label key={p.id} className={'prod' + (on ? ' on' : '')}>
@@ -410,7 +422,9 @@ export default function OrderForm() {
                       </label>
                     )
                   })}
-                </div>
+                    </div>
+                  </div>
+                ))}
                 <p className="sub">By quote</p>
                 <div className="list">
                   {QUOTES.map((q) => (
