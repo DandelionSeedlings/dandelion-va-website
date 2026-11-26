@@ -74,7 +74,7 @@ const sectors = [
 ]
 
 const faqs = [
-  ['What if I need more hours than my plan?', 'Extra hours are billed per hour, on top of your monthly plan.'],
+  ['What if I need more hours than my plan?', `Extra hours are billed at ${TRIAL_RATE} an hour, on top of your monthly plan.`],
   ['What happens to hours I do not use?', 'They carry over to the next month.'],
   ['How do you get into my accounts?', 'You give me a login for the accounts the work needs. Your information stays in your own accounts, and I am the only person who works on them.'],
   ['Who does the work?', 'Only me. You always deal with the same person, who already knows how your business runs.'],
@@ -210,7 +210,7 @@ export default function EmbeddedSupportPage() {
             <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gold">How it starts</p>
             <h2 className="mb-4 text-3xl font-bold text-navy-900 md:text-4xl">Start with a trial month</h2>
             <p className="mx-auto max-w-xl text-gray-500">
-              You do not have to guess how many hours you need. You and I find out together, then set the plan. Five trial places open from 1 December.
+              You do not have to guess how many hours you need. You and I find out together, then set the plan.
             </p>
           </motion.div>
           <ol className="grid gap-6 md:grid-cols-2">
