@@ -215,7 +215,7 @@ const html = `
 
 <section class="band"><div class="wrap">
   <h2>See it in action</h2>
-  <p class="sub">The principal's Today page, the gate on a teacher's phone and the parent page.</p>
+  <p class="sub">The principal's Today page, the gate and the homework list on a teacher's phone, and the parent page.</p>
   <div class="shotframe"><div class="bar"><i></i><i></i><i></i><span>Your private SchoolAbility link</span></div><img src="/images/schoolability/dashboard.webp" alt="SchoolAbility Today page with children here now, a parent message, birthdays this week and allergies" width="1800" height="1251" loading="lazy"></div>
   <div class="phones">
     <div><div class="shotframe phone"><img src="/images/schoolability/gate-list.webp" alt="The gate register on a phone, with Message and Birthday tags on Mia's name" width="780" height="1600" loading="lazy"></div><p class="cap">The gate register</p></div>
@@ -223,13 +223,14 @@ const html = `
     <div><div class="shotframe phone"><img src="/images/schoolability/gate-pickup.webp" alt="Choosing who is fetching Mia from her list, with a warning option for someone else" width="780" height="1600" loading="lazy"></div><p class="cap">Only the people on her list</p></div>
   </div>
   <div class="shots">
+    <div><div class="shotframe"><img src="/images/schoolability/homework.webp" alt="The Homework page for Gr 1 with each child marked not done, done or checked" width="1800" height="1251" loading="lazy"></div><p class="cap">Homework for each grade</p></div>
     <div><div class="shotframe"><img src="/images/schoolability/register.webp" alt="The day's register with arrival and sign-out times and who fetched each child" width="1800" height="1251" loading="lazy"></div><p class="cap">The day's register</p></div>
     <div><div class="shotframe"><img src="/images/schoolability/fees.webp" alt="The fees page for November with charged, paid and owed amounts" width="1800" height="1251" loading="lazy"></div><p class="cap">Fees for the month</p></div>
   </div>
   <div class="phones">
     <div><div class="shotframe phone"><img src="/images/schoolability/register-form.webp" alt="The registration form parents fill in on their phone" width="780" height="1600" loading="lazy"></div><p class="cap">The registration form</p></div>
-    <div><div class="shotframe phone"><img src="/images/schoolability/parent-message.webp" alt="The parent page with a sent message marked as seen by the teacher" width="780" height="1600" loading="lazy"></div><p class="cap">Mom sees her message was read</p></div>
-    <div><div class="shotframe phone"><img src="/images/schoolability/parent-register.webp" alt="The parent page register showing when Mia arrived, left and who fetched her" width="780" height="1600" loading="lazy"></div><p class="cap">When she left, and with whom</p></div>
+    <div><div class="shotframe phone"><img src="/images/schoolability/teacher-homework.webp" alt="The teacher's homework list on a phone, with each child marked not done, done or checked" width="780" height="1600" loading="lazy"></div><p class="cap">Homework, ticked per child</p></div>
+    <div><div class="shotframe phone"><img src="/images/schoolability/parent-homework.webp" alt="The parent page homework tab showing what was checked and the spelling test coming up" width="780" height="1600" loading="lazy"></div><p class="cap">Mom sees what was checked</p></div>
   </div>
   <p class="shotnote" style="color:#94A3B8">Screens show a made-up demo school.</p>
 </div></section>
