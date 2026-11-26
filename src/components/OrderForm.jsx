@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useReferral, readSavedCode } from '../lib/referral'
+import { whatsappLink } from '../lib/site'
 
 // The Orders Apps Script deployment (Code.gs in the Orders sheet). Keep the same
 // deployment and publish a new version after changing the script.
@@ -48,7 +49,7 @@ const QUOTES = [
 ]
 
 const SOON = [
-  { name: 'Capability: Main Office Dashboard', price: 1499, desc: 'A master view that brings together the numbers from across the suite.' },
+  { name: 'Capability: one dashboard for all your apps', desc: 'Use more than one of our apps? We are planning a single screen that shows the numbers from all of them, like money owed, bookings, staff hours and stock. The plan is to include it free with app bundles. Tap to say you are interested and we will let you know when it is ready.' },
 ]
 
 const money = (n) => 'R' + Number(n).toLocaleString('en-ZA').replace(/ /g, ' ')
@@ -434,13 +435,13 @@ export default function OrderForm() {
                     </a>
                   ))}
                 </div>
-                <p className="sub">Coming soon</p>
+                <p className="sub">In the works</p>
                 <div className="list">
                   {SOON.map((s) => (
-                    <div key={s.name} className="prod off" aria-disabled="true">
-                      <span className="info"><span className="name">{s.name}<span className="badge soon">Coming soon</span></span><span className="desc">{s.desc}</span></span>
-                      <span className="price">{money(s.price)}</span>
-                    </div>
+                    <a key={s.name} className="prod" href={whatsappLink(`Hi, I am interested in ${s.name.split(':')[0]}. Please let me know when it is ready.`)} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                      <span className="info"><span className="name">{s.name}<span className="badge soon">Planned</span></span><span className="desc">{s.desc}</span></span>
+                      <span className="price" style={{ fontSize: 13 }}>I&apos;m interested</span>
+                    </a>
                   ))}
                 </div>
               </fieldset>)}
