@@ -22,6 +22,7 @@ const PRODUCTS = [
   { id: 'bookability', key: 'bookability', name: 'BookAbility: CRM + Booking System', price: 499, needs: 'Needs a free Google account.', desc: 'QR code booking, a PIN-protected admin portal, email and WhatsApp confirmations, slot blocking and a loyalty card with stamps.' },
   { id: 'budgetability', key: 'budgetability', name: 'BudgetAbility: Household Finance Tracker', price: 499, needs: 'Needs a free Google account.', desc: 'Accounts, budgets, bills, goals and debt payoff for your household, in more than one currency, in your own Google Sheet.' },
   { id: 'aceiq', key: 'aceiq', name: 'AceIQ: AI Study Helper', price: ACEIQ_SPECIAL ? 199 : 499, badge: ACEIQ_SPECIAL ? 'Special' : 'New', needs: 'Needs a free Google account.', desc: ACEIQ_SPECIAL ? 'Turn your own notes into summaries, flashcards, a mind map and practice tests, with a daily study plan. R199 until 31 December, then R499. Free 72 hour demo.' : 'Turn your own notes into summaries, flashcards, a mind map and practice tests, with a daily study plan.' },
+  { id: 'schoolability', key: 'schoolability', name: 'SchoolAbility: Aftercare Records', price: 1499, badge: 'New', needs: 'Needs a free Google account.', desc: 'Registration forms parents fill in, a gate register with who may fetch each child, allergies, homework notes, fees and a private page for each parent. Afrikaans and English. Free 72 hour demo.' },
   { id: 'content-planner', key: 'visibility', name: 'Visibility: Content Planner', price: 299, needs: 'Needs a free Google account. Works with whichever AI you already use.', desc: 'Plan your AI written posts in one calendar, check they are ready, and let clients approve them from a link.' },
   { id: 'crm-pro', key: 'scalability', name: 'Scalability: CRM Pro', price: 499, needs: 'Needs a free Google account.', desc: 'Deals, a pipeline board, tasks and follow-ups for a small team, with owners, win rate and quiet deals, in your own Google Sheet. Everyone shares one private link. Free 72 hour demo.' },
   { id: 'payability', key: 'payability', name: 'PayAbility: Invoice Sorter Pro', price: 499, group: 'payability', option: 'Do it yourself', needs: 'Needs a free Google account.', desc: 'Invoices, quotes, payment links and VAT reports from your own Google Sheet. Set it up yourself with the guide.' },
@@ -39,7 +40,7 @@ const GROUPS = [
   { title: 'Clients and bookings', ids: ['crm-mini', 'bookability', 'crm-pro', 'content-planner'] },
   { title: 'Money and admin', ids: ['orderability', 'payability', 'payability-dwy', 'profitability', 'mini-cash-up', 'receiptsnap'] },
   { title: 'Staff and stock', ids: ['trackability', 'stock-supplier'] },
-  { title: 'Home and school', ids: ['budgetability', 'aceiq'] },
+  { title: 'Schools and home', ids: ['schoolability', 'aceiq', 'budgetability'] },
   { title: 'Set up for you', ids: ['done-with-you'] },
 ]
 

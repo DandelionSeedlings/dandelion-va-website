@@ -9,7 +9,7 @@ import {
   FaCalendarAlt, FaBullhorn, FaTshirt, FaClock,
   FaBuilding, FaCogs, FaReceipt, FaArrowRight,
   FaBalanceScale, FaMoneyBillWave, FaCalculator,
-  FaTag, FaPercentage, FaBookOpen, FaWallet
+  FaTag, FaPercentage, FaBookOpen, FaWallet, FaSchool
 } from 'react-icons/fa';
 
 const ORDER_FORM_URL = '/order';
@@ -38,6 +38,7 @@ const productVisuals = {
   availability: { img: '/images/availability/dashboard.webp', tint: '#E1ECEF' },
   'mini-cash-up': { img: '/images/mini-cash-up/dashboard.webp', tint: '#E0F2EE' },
   'trackability': { img: '/images/trackability/dashboard.webp', tint: '#E8EEF8' },
+  'schoolability': { img: '/images/schoolability/dashboard.webp', tint: '#F6EED8' },
   orderability: { img: '/images/orderability/card.webp', tint: '#E6EFE9' },
   profitability: { img: '/images/profitability/dashboard.webp', tint: '#E3F1E6' },
   'cv-portfolio': { img: '/images/cv/builder.webp', tint: '#E7E6F6' },
@@ -67,12 +68,12 @@ const productCategories = [
   },
   {
     id: 'learning',
-    title: 'Learning',
+    title: 'Schools and learning',
     icon: FaBookOpen,
     color: 'text-gold',
     bgColor: 'bg-navy-900',
     borderColor: 'border-gold/30',
-    products: ['aceiq']
+    products: ['schoolability', 'aceiq']
   },
   {
     id: 'inventory',
@@ -359,6 +360,23 @@ const products = [
     orderUrl: '/trackability',
     features: ['Tablet and QR clock-in with PINs', 'Overtime and public holidays', 'Leave balances', 'Payslips with UIF'],
     category: 'people-time'
+  },
+  {
+    id: 'schoolability',
+    name: 'SchoolAbility',
+    subtitle: 'Aftercare Records',
+    price: 1499,
+    priceLabel: 'R1,499',
+    description: 'Parents register with a link, teachers sign children in and out at the gate on a phone, and every parent gets a private page with notes, the register and their statement. Afrikaans and English, in your own Google Sheet.',
+    tagline: 'Know who fetched every child.',
+    icon: FaSchool,
+    color: 'from-amber-400 to-yellow-500',
+    badge: 'NEW',
+    badgeColor: 'bg-amber-500',
+    available: true,
+    orderUrl: '/schoolability',
+    features: ['Parent registration link with POPIA consent', 'Gate register with pickup list', 'Allergies, homework and AceIQ notes', 'Monthly and late pickup fees'],
+    category: 'learning'
   },
   {
     id: 'mini-cash-up',
